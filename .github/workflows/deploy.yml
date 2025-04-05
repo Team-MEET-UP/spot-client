@@ -29,6 +29,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Link to Vercel Project
+        run: pnpm dlx vercel link --yes --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: Pull Vercel Environment Information
         run: pnpm dlx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
