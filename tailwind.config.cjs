@@ -1,6 +1,4 @@
-const { Warning } = require("postcss");
-const plugin = require("tailwindcss/plugin");
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/**/*.html"],
   theme: {
@@ -39,4 +37,5 @@ module.exports = {
       },
     },
   },
+  plugins: [],
 };
