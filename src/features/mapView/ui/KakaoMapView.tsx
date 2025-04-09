@@ -13,8 +13,9 @@ function KakaoMapView() {
 
       window.kakao.maps.load(() => {
         if (mapRef.current) {
-          // 초기 중심점 설정 (서울 시청)
-          const center = new window.kakao.maps.LatLng(37.5665, 126.9780);
+          // mockLocationData의 첫 번째 위치를 초기 중심점으로 설정
+          const firstLocation = mockLocationData.locations[0];
+          const center = new window.kakao.maps.LatLng(firstLocation.lat, firstLocation.lng);
           const options = {
             center,
             level: 3,
