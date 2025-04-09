@@ -21,12 +21,22 @@ declare global {
           }) => {
             setMap: (map: any) => void;
           };
+          Polyline: new (options: {
+            path: any[];
+            strokeWeight: number;
+            strokeColor: string;
+            strokeOpacity: number;
+            map: any;
+          }) => {
+            setMap: (map: any) => void;
+          };
           event: {
             addListener: (target: any, type: string, handler: () => void) => void;
             removeListener: (target: any, type: string, handler: () => void) => void;
           };
         };
       };
+      polylines: any[];
     }
   }
   

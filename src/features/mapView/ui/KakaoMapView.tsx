@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import MapMarker from "./MapMarker";
 import { mockLocationData } from "../../../shared/model";
 
-
 function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<any>(null);
+  const [center, setCenter] = useState<any>(null);
 
   useEffect(() => {
     const initializeMap = () => {
@@ -13,11 +13,15 @@ function KakaoMapView() {
 
       window.kakao.maps.load(() => {
         if (mapRef.current) {
-          // mockLocationData의 첫 번째 위치를 초기 중심점으로 설정
-          const firstLocation = mockLocationData.locations[0];
-          const center = new window.kakao.maps.LatLng(firstLocation.lat, firstLocation.lng);
+          // mockLocationData의 midpoint를 초기 중심점으로 설정
+          const centerLatLng = new window.kakao.maps.LatLng(
+            mockLocationData.midpoint.lat,
+            mockLocationData.midpoint.lng
+          );
+          setCenter(centerLatLng);
+          
           const options = {
-            center,
+            center: centerLatLng,
             level: 3,
           };
 
@@ -59,6 +63,41 @@ function KakaoMapView() {
       document.head.appendChild(script);
     }
   }, []);
+
+  // midpoint에서 각 마커까지의 Polyline을 그리는 함수
+  const drawPolylines = () => {
+    if (!map || !center) return;
+
+    // 기존 Polyline 제거
+    if (window.polylines) {
+      window.polylines.forEach((polyline: any) => {
+        polyline.setMap(null);
+      });
+    }
+
+    // 새로운 Polyline 배열 생성
+    window.polylines = [];
+
+    // 각 마커 위치에서 midpoint까지 Polyline 그리기
+    mockLocationData.locations.forEach(location => {
+      const markerLatLng = new window.kakao.maps.LatLng(location.lat, location.lng);
+      
+      const polyline = new window.kakao.maps.Polyline({
+        path: [markerLatLng, center],
+        strokeWeight: 3,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.7,
+        map: map
+      });
+
+      window.polylines.push(polyline);
+    });
+  };
+
+  // map이나 center가 변경될 때마다 Polyline 다시 그리기
+  useEffect(() => {
+    drawPolylines();
+  }, [map, center]);
 
   return (
     <div
