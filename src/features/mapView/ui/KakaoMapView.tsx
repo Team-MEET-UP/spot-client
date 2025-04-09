@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import MapMarker from "./MapMarker";
+import { mockLocationData } from "../../../shared/model";
+
 
 function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -48,11 +51,20 @@ function KakaoMapView() {
     <div
       ref={mapRef}
       style={{
-        width: "500px",
+        width: "100%",
         height: "500px",
         borderRadius: "8px",
       }}
-    />
+    >
+      {map && mockLocationData.locations.map((location) => (
+        <MapMarker 
+          key={location.id} 
+          map={map} 
+          position={{ lat: location.lat, lng: location.lng }}
+          title={location.name}
+        />
+      ))}
+    </div>
   );
 }
 
