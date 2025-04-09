@@ -1,1 +1,1 @@
-export * from "./mocks/MockLocationData";
+export * from "./mocks/mockLocationData";
