@@ -13,6 +13,7 @@ function KakaoMapView() {
 
       window.kakao.maps.load(() => {
         if (mapRef.current) {
+          // 초기 중심점 설정 (서울 시청)
           const center = new window.kakao.maps.LatLng(37.5665, 126.9780);
           const options = {
             center,
@@ -21,6 +22,17 @@ function KakaoMapView() {
 
           const kakaoMap = new window.kakao.maps.Map(mapRef.current, options);
           setMap(kakaoMap);
+
+          // 모든 마커의 위치를 포함하는 LatLngBounds 객체 생성
+          const bounds = new window.kakao.maps.LatLngBounds();
+          
+          // mockLocationData의 모든 위치를 bounds에 추가
+          mockLocationData.locations.forEach(location => {
+            bounds.extend(new window.kakao.maps.LatLng(location.lat, location.lng));
+          });
+
+          // 지도에 bounds 적용
+          kakaoMap.setBounds(bounds);
 
           window.kakao.maps.event.addListener(kakaoMap, 'tilesloaded', () => {
             console.log("맵 로드 완료");
