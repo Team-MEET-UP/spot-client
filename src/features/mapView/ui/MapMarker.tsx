@@ -1,8 +1,7 @@
-// src/features/mapView/ui/MapMarker.tsx
 import { useEffect } from 'react';
 
 interface MapMarkerProps {
-  map: any;
+  map: kakao.maps.Map;
   position: {
     lat: number;
     lng: number;
