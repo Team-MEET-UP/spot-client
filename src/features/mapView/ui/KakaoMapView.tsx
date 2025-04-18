@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import MapMarker from "./MapMarker";
 import { mockLocationData } from "@/shared/model";
 
-
 function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +36,7 @@ function KakaoMapView() {
 
           kakaoMap.setBounds(bounds);
 
-          window.kakao.maps.event.addListener(kakaoMap, 'tilesloaded', () => {
+          window.kakao.maps.event.addListener(kakaoMap, "tilesloaded", () => {
             console.log("맵 로드 완료");
           });
         }
@@ -77,7 +76,7 @@ function KakaoMapView() {
       const polyline = new window.kakao.maps.Polyline({
         path: [markerLatLng, center],
         strokeWeight: 3,
-        strokeColor: '#FF0000',
+        strokeColor: "#FF0000",
         strokeOpacity: 0.7,
         map: map,
       });
@@ -97,16 +96,16 @@ function KakaoMapView() {
         width: "100%",
         height: "500px",
         borderRadius: "8px",
-      }}
-    >
-      {map && mockLocationData.locations.map((location) => (
-        <MapMarker 
-          key={location.id} 
-          map={map} 
-          position={{ lat: location.lat, lng: location.lng }}
-          title={location.name}
-        />
-      ))}
+      }}>
+      {map &&
+        mockLocationData.locations.map(location => (
+          <MapMarker
+            key={location.id}
+            map={map}
+            position={{ lat: location.lat, lng: location.lng }}
+            title={location.name}
+          />
+        ))}
     </div>
   );
 }
