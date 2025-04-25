@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
 interface PlainTextProps {
-  url: string;
   title: string;
 }
 
-const PlainHeader = ({ url, title }: PlainTextProps) => {
+const PlainHeader = ({ title }: PlainTextProps) => {
   const navigate = useNavigate();
 
   return (
@@ -14,7 +13,7 @@ const PlainHeader = ({ url, title }: PlainTextProps) => {
         src="/icon/back.svg"
         alt="back"
         onClick={() => {
-          navigate(url);
+          navigate(-1);
         }}
       />
       <span className="absolute top-3 left-1/2 -translate-x-1/2 text-md font-semibold">{title}</span>
