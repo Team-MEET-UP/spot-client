@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
-const BackHeader = () => {
+const CloseHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="w-full px-5 py-3">
+    <header className="w-full px-5 py-3 flex justify-end">
       <img
-        src="/icon/back.svg"
-        alt="back"
+        src="/icon/close.svg"
+        alt="close"
         onClick={() => {
           navigate(-1);
         }}
@@ -16,4 +16,4 @@ const BackHeader = () => {
   );
 };
 
-export default BackHeader;
+export default CloseHeader;
