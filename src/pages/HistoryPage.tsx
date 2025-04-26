@@ -1,10 +1,10 @@
-import Banner from "@/features/my/ui/Banner";
-import Empty from "@/features/my/ui/Empty";
-import Header from "@/features/my/ui/Header";
-import GroupCard from "@/features/my/ui/GroupCard";
+import Banner from "@/features/history/ui/Banner";
+import Empty from "@/features/history/ui/Empty";
+import Header from "@/features/history/ui/Header";
+import GroupCard from "@/features/history/ui/GroupCard";
 import { mockListData } from "@/shared/model";
 
-const MyPage = () => {
+const HistoryPage = () => {
   const length = 1; // 임시 ui 구현을 위한 작업!
 
   return (
@@ -25,4 +25,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default HistoryPage;
