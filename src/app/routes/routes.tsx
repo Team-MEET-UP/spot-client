@@ -5,6 +5,7 @@ import StartPointPage from "../../pages/StartPointPage";
 import FindPage from "../../pages/FindPage";
 import PlacePage from "../../pages/PlacePage";
 import DetailPage from "../../pages/DetailPage";
+import HistoryPage from "@/pages/HistoryPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <MainPage /> },
@@ -12,5 +13,6 @@ export const router = createBrowserRouter([
   { path: "/startPoint", element: <StartPointPage /> },
   { path: "/find", element: <FindPage /> },
   { path: "/place", element: <PlacePage /> },
-  { path: "detail", element: <DetailPage /> },
+  { path: "/detail", element: <DetailPage /> },
+  { path: "/history", element: <HistoryPage /> },
 ]);
