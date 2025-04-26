@@ -11,4 +11,4 @@ const Header = ({ profileImg }: HeaderProps) => {
   );
 };
 
-export default Header;
+export { Header };

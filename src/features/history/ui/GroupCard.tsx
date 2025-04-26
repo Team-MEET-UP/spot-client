@@ -1,4 +1,4 @@
-import Chip from "./Chip";
+import { Chip } from "./Chip";
 
 interface GroupCardProps {
   midPoint: string;
@@ -54,4 +54,4 @@ const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isCo
   );
 };
 
-export default GroupCard;
+export { GroupCard };

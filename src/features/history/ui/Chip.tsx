@@ -12,4 +12,4 @@ const Chip = ({ isComplete }: ChipProps) => {
   );
 };
 
-export default Chip;
+export { Chip };

@@ -110,4 +110,4 @@ function KakaoMapView() {
   );
 }
 
-export default KakaoMapView;
+export { KakaoMapView };

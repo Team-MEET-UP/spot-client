@@ -8,4 +8,4 @@ const KakaoLogin = () => {
   );
 };
 
-export default KakaoLogin;
+export { KakaoLogin };
