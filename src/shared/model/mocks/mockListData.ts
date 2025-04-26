@@ -1,4 +1,5 @@
-interface ListProps {
+interface GroupCardProps {
+  id: number;
   midPoint: string;
   isSelect?: boolean;
   place?: string;
@@ -8,8 +9,9 @@ interface ListProps {
   isComplete: boolean;
 }
 
-export const mockListData: ListProps[] = [
+export const mockListData: GroupCardProps[] = [
   {
+    id: 1,
     midPoint: "동대문역사문화공원역",
     place: "박승광해물손칼국수",
     imgUrl: [
@@ -23,6 +25,7 @@ export const mockListData: ListProps[] = [
     isComplete: true,
   },
   {
+    id: 2,
     midPoint: "동대문역사문화공원역",
     isSelect: false,
     imgUrl: ["https://github.com/shadcn.png", "https://avatars.githubusercontent.com/u/1024025?v=4"],

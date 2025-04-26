@@ -1,6 +1,6 @@
 import Chip from "./Chip";
 
-interface ListProps {
+interface GroupCardProps {
   midPoint: string;
   isSelect?: boolean;
   place?: string;
@@ -10,7 +10,7 @@ interface ListProps {
   isComplete: boolean;
 }
 
-const List = ({ midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: ListProps) => {
+const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: GroupCardProps) => {
   const displayImages = imgUrl.slice(0, 3);
 
   return (
@@ -54,4 +54,4 @@ const List = ({ midPoint, isSelect = true, place, imgUrl, people, day, isComplet
   );
 };
 
-export default List;
+export default GroupCard;
