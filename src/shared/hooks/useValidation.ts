@@ -3,7 +3,7 @@ import { useState } from "react";
 export const useValidation = (initialValue: string, validate: (value: string) => string) => {
   const [value, setValue] = useState(initialValue);
   const [error, setError] = useState<string>("");
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
