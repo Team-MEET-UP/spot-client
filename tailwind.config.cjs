@@ -75,6 +75,7 @@ module.exports = {
           line9: "#BDB092",
         },
         kakao: { yellow: "#FEE500", black: "#1E1E20" },
+        error: "#D4013B",
       },
     },
   },
