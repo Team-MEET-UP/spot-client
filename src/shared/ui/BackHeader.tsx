@@ -5,13 +5,12 @@ const BackHeader = () => {
 
   return (
     <header className="w-full px-5 py-3">
-      <img
-        src="/icon/back.svg"
-        alt="back"
+      <button
         onClick={() => {
           navigate(-1);
-        }}
-      />
+        }}>
+        <img src="/icon/back.svg" alt="back" />
+      </button>
     </header>
   );
 };
