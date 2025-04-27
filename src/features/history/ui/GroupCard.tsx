@@ -1,6 +1,7 @@
 import Chip from "./Chip";
 
 interface GroupCardProps {
+  id: number;
   midPoint: string;
   isSelect?: boolean;
   place?: string;
@@ -10,7 +11,7 @@ interface GroupCardProps {
   isComplete: boolean;
 }
 
-const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: GroupCardProps) => {
+const GroupCard = ({ id, midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: GroupCardProps) => {
   const displayImages = imgUrl.slice(0, 3);
 
   return (
@@ -48,7 +49,7 @@ const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isCo
           <p className="font-semibold text-gray-40">·</p>
           <p className="text-gray-40">{day}일 전</p>
         </div>
-        <Chip isComplete={isComplete} />
+        <Chip isComplete={isComplete} id={id} />
       </div>
     </section>
   );
