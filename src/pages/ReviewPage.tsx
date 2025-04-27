@@ -3,8 +3,12 @@ import SmallButton from "@/features/review/ui/SmallButton";
 import Title from "@/features/review/ui/Title";
 import CloseHeader from "@/shared/ui/CloseHeader";
 import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceList";
+import { useNavigate } from "react-router-dom";
 
 const ReviewPage = () => {
+  const id = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col h-screen">
       <CloseHeader url="/history" />
@@ -17,7 +21,13 @@ const ReviewPage = () => {
           </div>
         </div>
         <div className="w-full flex gap-2">
-          <SmallButton isVisit={false}>다른 곳을 방문했어요</SmallButton>
+          <SmallButton
+            isVisit={false}
+            onClick={() => {
+              navigate(`/notVisited/${id}`);
+            }}>
+            다른 곳을 방문했어요
+          </SmallButton>
           <SmallButton isVisit={true}>네, 방문했어요</SmallButton>
         </div>
       </div>
