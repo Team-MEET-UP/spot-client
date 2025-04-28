@@ -1,13 +1,20 @@
 import { useFindStore } from "@/shared/stores";
 import { InputField } from "./InputField";
-import { useValidation } from "@/shared/hooks";
-import { validateName } from "@/shared/utils";
 import Button from "@/shared/ui/Button";
 import { GetLocaitonButton } from ".";
+import { useState } from "react";
 
 const LocationStep = () => {
   const { startPoint, setStartPoint, prevStep } = useFindStore();
-  const { value, error, handleChange, validateValue } = useValidation(startPoint, validateName);
+  const [value, setValue] = useState(startPoint || "");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const validateValue = () => {
+    return value.trim().length > 0;
+  };
 
   const handleComplete = () => {
     if (!validateValue()) return;
@@ -17,7 +24,7 @@ const LocationStep = () => {
 
   return (
     <div className="flex flex-col gap-4 px-4">
-      <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} error={error} />
+      <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} />
       <GetLocaitonButton />
       <div className="flex gap-2">
         <Button onClick={handleComplete}>완료</Button>
