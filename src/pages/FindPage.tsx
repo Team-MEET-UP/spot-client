@@ -2,7 +2,7 @@ import { FindContainer } from "@/features/find/ui";
 
 const FindPage = () => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-screen">
       <FindContainer />
     </div>
   );
