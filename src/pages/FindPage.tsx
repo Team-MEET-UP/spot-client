@@ -1,9 +1,9 @@
-import { NameStep } from "@/features/find/ui/NameStep";
+import { FindContainer } from "@/features/find/ui";
 
 const FindPage = () => {
   return (
-    <div>
-      <NameStep />
+    <div className="flex flex-col items-center">
+      <FindContainer />
     </div>
   );
 };
