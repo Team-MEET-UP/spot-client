@@ -3,6 +3,7 @@ import { InputField } from "./InputField";
 import Button from "@/shared/ui/Button";
 import { GetLocaitonButton } from ".";
 import { useState } from "react";
+import PlainHeader from "@/shared/ui/PlainHeader";
 
 const LocationStep = () => {
   const { startPoint, setStartPoint, prevStep } = useFindStore();
@@ -23,11 +24,19 @@ const LocationStep = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 px-4">
+    <div className="flex flex-col gap-4">
+      <PlainHeader title="멤버 추가" onBack={prevStep} />
+      <p className="text-gray-90 text-lg font-semibold">
+        멤버 추가를 위해
+        <br />
+        이름과 출발지를 입력해주세요.
+      </p>
       <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} />
       <GetLocaitonButton />
       <div className="flex gap-2">
-        <Button onClick={handleComplete}>완료</Button>
+        <Button onClick={handleComplete} disabled={!validateValue()}>
+          완료
+        </Button>
       </div>
     </div>
   );
