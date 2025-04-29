@@ -3,9 +3,9 @@ import PlainHeader from "@/shared/ui/PlainHeader";
 
 const MyPage = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-5">
       <PlainHeader url="/history" title="내 정보" />
-      <div className="flex flex-col px-5 gap-2 mb-8">
+      <div className="flex flex-col gap-2 mb-8">
         <Profile />
         <Logout />
       </div>

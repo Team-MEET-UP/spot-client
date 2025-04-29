@@ -24,7 +24,7 @@ const menuItems = [
 
 export const Menu = () => {
   return (
-    <div className="flex flex-col px-5 py-3">
+    <div className="flex flex-col py-3">
       {menuItems.map((item, idx) => (
         <button
           key={idx}

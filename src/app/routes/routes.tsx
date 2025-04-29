@@ -6,6 +6,8 @@ import FindPage from "../../pages/FindPage";
 import PlacePage from "../../pages/PlacePage";
 import DetailPage from "../../pages/DetailPage";
 import HistoryPage from "@/pages/HistoryPage";
+import ReviewPage from "@/pages/ReviewPage";
+import NotVisitedPage from "@/pages/NotVisitedPage";
 import MyPage from "@/pages/MyPage";
 
 export const router = createBrowserRouter([
@@ -16,5 +18,7 @@ export const router = createBrowserRouter([
   { path: "/place", element: <PlacePage /> },
   { path: "/detail", element: <DetailPage /> },
   { path: "/history", element: <HistoryPage /> },
+  { path: "/review/:id", element: <ReviewPage /> },
+  { path: "/notVisited/:id", element: <NotVisitedPage /> },
   { path: "/my", element: <MyPage /> },
 ]);
