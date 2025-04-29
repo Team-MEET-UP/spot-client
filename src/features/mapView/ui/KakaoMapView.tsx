@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import MapMarker from "./MapMarker";
+import { MeetingMarker } from "./MeetingMarker";
 import { mockMapData } from "@/shared/model";
 
 export function KakaoMapView() {
@@ -106,7 +107,7 @@ export function KakaoMapView() {
       {map && (
         <>
           {/* 중간지점 마커 */}
-          <MapMarker
+          <MeetingMarker
             map={map}
             position={{
               lat: mockMapData.meetingPoint.latitude,

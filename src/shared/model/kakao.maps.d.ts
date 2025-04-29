@@ -1,4 +1,3 @@
-
 export {}; // 모듈로 인식되도록 설정
 
 declare global {
@@ -27,8 +26,21 @@ declare global {
           position: LatLng;
           map: Map;
           title?: string;
+          image?: MarkerImage;
         });
         setMap(map: Map | null): void;
+      }
+
+      class MarkerImage {
+        constructor(src: string, size: Size, options?: { offset?: Point });
+      }
+
+      class Size {
+        constructor(width: number, height: number);
+      }
+
+      class Point {
+        constructor(x: number, y: number);
       }
 
       class Polyline {
