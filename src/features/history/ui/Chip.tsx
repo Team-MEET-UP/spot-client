@@ -1,13 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface ChipProps {
   id: number;
   isComplete: boolean;
 }
 
-export const Chip = ({ isComplete }: ChipProps) => {
+export const Chip = ({ id, isComplete }: ChipProps) => {
   const navigate = useNavigate();
-  const { id } = useParams();
 
   return (
     <button

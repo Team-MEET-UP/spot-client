@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-interface SmallButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface SmallButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   isVisit: boolean;
 }
 
-const SmallButton = ({ children, isVisit }: SmallButton) => {
+export const SmallButton = ({ children, isVisit }: SmallButtonProps) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -17,5 +17,3 @@ const SmallButton = ({ children, isVisit }: SmallButton) => {
     </button>
   );
 };
-
-export default SmallButton;

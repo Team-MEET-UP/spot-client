@@ -30,7 +30,7 @@ const NotVisitedPage = () => {
     console.log(selectedTime);
   };
 
-  const haddleSecondStep = () => {
+  const handleSecondStep = () => {
     console.log(secondData);
   };
 
@@ -46,7 +46,7 @@ const NotVisitedPage = () => {
           {currentStep === 2 && <SecondStep secondData={secondData} setSecondData={setSecondData} />}
         </div>
         <Button
-          onClick={currentStep === 1 ? handleFirstStep : haddleSecondStep}
+          onClick={currentStep === 1 ? handleFirstStep : handleSecondStep}
           disabled={
             (currentStep === 1 && !selectedTime) ||
             (currentStep === 2 &&

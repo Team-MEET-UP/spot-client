@@ -2,7 +2,7 @@ interface TitleProps {
   title: string;
 }
 
-const Title = ({ title }: TitleProps) => {
+export const Title = ({ title }: TitleProps) => {
   return (
     <div className="text-2xl font-semibold">
       <div className="overflow-hidden text-ellipsis whitespace-nowrap text-sub-sub">{title}</div>
@@ -10,5 +10,3 @@ const Title = ({ title }: TitleProps) => {
     </div>
   );
 };
-
-export default Title;
