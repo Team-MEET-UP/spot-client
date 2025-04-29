@@ -4,7 +4,7 @@ interface HeaderProps {
   profileImg: string;
 }
 
-const Header = ({ profileImg }: HeaderProps) => {
+export const Header = ({ profileImg }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -19,5 +19,3 @@ const Header = ({ profileImg }: HeaderProps) => {
     </header>
   );
 };
-
-export default Header;

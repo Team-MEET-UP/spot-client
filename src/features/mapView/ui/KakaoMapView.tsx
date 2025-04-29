@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import MapMarker from "./MapMarker";
 import { mockLocationData } from "@/shared/model";
 
-function KakaoMapView() {
+export function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);
 
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
@@ -109,5 +109,3 @@ function KakaoMapView() {
     </div>
   );
 }
-
-export default KakaoMapView;

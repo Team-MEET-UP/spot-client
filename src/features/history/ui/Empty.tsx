@@ -1,4 +1,4 @@
-const Empty = () => {
+export const Empty = () => {
   return (
     <div className="mt-[100px] flex flex-col items-center gap-[2px]">
       <div className="w-[160px] h-[160px] bg-gray-20" /> {/* 임시 이미지 */}
@@ -7,5 +7,3 @@ const Empty = () => {
     </div>
   );
 };
-
-export default Empty;

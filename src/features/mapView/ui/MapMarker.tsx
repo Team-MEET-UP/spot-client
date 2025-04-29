@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface MapMarkerProps {
   map: kakao.maps.Map;
@@ -17,11 +17,11 @@ const MapMarker = ({ map, position, title, onClick }: MapMarkerProps) => {
     const marker = new window.kakao.maps.Marker({
       position: new window.kakao.maps.LatLng(position.lat, position.lng),
       map: map,
-      title: title
+      title: title,
     });
 
     if (onClick) {
-      window.kakao.maps.event.addListener(marker, 'click', onClick);
+      window.kakao.maps.event.addListener(marker, "click", onClick);
     }
 
     return () => {

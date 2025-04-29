@@ -1,4 +1,4 @@
-import Chip from "./Chip";
+import { Chip } from "./Chip";
 
 interface GroupCardProps {
   midPoint: string;
@@ -10,7 +10,7 @@ interface GroupCardProps {
   isComplete: boolean;
 }
 
-const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: GroupCardProps) => {
+export const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: GroupCardProps) => {
   const displayImages = imgUrl.slice(0, 3);
 
   return (
@@ -53,5 +53,3 @@ const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isCo
     </section>
   );
 };
-
-export default GroupCard;
