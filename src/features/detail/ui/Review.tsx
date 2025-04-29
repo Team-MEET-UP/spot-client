@@ -1,8 +1,8 @@
-import ProgressBar from "./ProgressBar";
-import ReviewItem from "./ReviewItem";
-import Tag from "./Tag";
+import { ProgressBar } from "./ProgressBar";
+import { ReviewItem } from "./ReviewItem";
+import { Tag } from "./Tag";
 
-const Review = () => {
+export const Review = () => {
   return (
     <>
       <div className="px-5 pt-4 pb-6 flex flex-col gap-4">
@@ -18,10 +18,6 @@ const Review = () => {
         </div>
       </div>
       <ReviewItem />
-      <ReviewItem />
-      <ReviewItem />
     </>
   );
 };
-
-export default Review;

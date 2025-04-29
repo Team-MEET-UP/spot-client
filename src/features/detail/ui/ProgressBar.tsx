@@ -17,7 +17,7 @@ const congestionInfo = {
   5: { description: "매우 시끄러워요", colorClass: "bg-metro-S" },
 } as const;
 
-const ProgressBar = ({ type, congestion }: ProgressBarProps) => {
+export const ProgressBar = ({ type, congestion }: ProgressBarProps) => {
   const label = typeLabel[type];
   const isEmpty = congestion === 0;
   const percentage = congestion * 20;
@@ -43,5 +43,3 @@ const ProgressBar = ({ type, congestion }: ProgressBarProps) => {
     </div>
   );
 };
-
-export default ProgressBar;

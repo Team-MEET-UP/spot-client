@@ -1,7 +1,5 @@
-import Empty from "@/features/detail/ui/Empty";
-import Photo from "@/features/detail/ui/Photo";
-import PlaceInfo from "@/features/detail/ui/PlaceInfo";
-import Review from "@/features/detail/ui/Review";
+import { Photo, PlaceInfo, Review } from "@/features/detail/ui";
+import { Empty } from "@/features/history/ui";
 import Button from "@/shared/ui/Button";
 
 // @TODO 백엔드 데이터 구조에 따라 아래와 같은 type 설정 후 props로 관리하는 구조로 변경해야 함!
@@ -10,23 +8,6 @@ interface Review {
   profileImg: string;
   date: string;
   text: string;
-}
-
-interface DetailDataProps {
-  id: number;
-  placeName: string;
-  distance: number;
-  images: string[];
-  openinghours: string;
-  totalScore: string;
-  congestion: {
-    morning: number;
-    afternoon: number;
-    evening: number;
-  };
-  plugScore: number;
-  seatScore: number;
-  review: Review[];
 }
 
 const images = [

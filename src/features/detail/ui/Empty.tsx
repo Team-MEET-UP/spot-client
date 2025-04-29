@@ -1,4 +1,4 @@
-const Empty = () => {
+export const Empty = () => {
   return (
     <div className="p-5 pt-[26px] flex flex-col items-center">
       <div className="w-[160px] h-[160px] bg-gray-30" /> {/* 임시 이미지 영역*/}
@@ -10,5 +10,3 @@ const Empty = () => {
     </div>
   );
 };
-
-export default Empty;

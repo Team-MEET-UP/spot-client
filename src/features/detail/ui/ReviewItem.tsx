@@ -1,4 +1,4 @@
-const ReviewItem = () => {
+export const ReviewItem = () => {
   return (
     <div className="p-5 pl-6 flex flex-col gap-2 border-t border-t-gray-5">
       <div className="flex items-center gap-1 text-sm font-medium">
@@ -13,5 +13,3 @@ const ReviewItem = () => {
     </div>
   );
 };
-
-export default ReviewItem;

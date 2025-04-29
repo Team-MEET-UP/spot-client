@@ -1,4 +1,4 @@
-const PlaceInfo = () => {
+export const PlaceInfo = () => {
   return (
     <div className="px-5 pt-4 pb-[14px] flex flex-col gap-[6px]">
       <div className="flex py-[2px] px-[6px] gap-1 items-center rounded-[4px] bg-sub-10 w-fit text-xs font-semibold text-sub-sub">
@@ -30,5 +30,3 @@ const PlaceInfo = () => {
     </div>
   );
 };
-
-export default PlaceInfo;

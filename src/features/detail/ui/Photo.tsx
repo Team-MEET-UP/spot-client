@@ -2,7 +2,7 @@ interface PhotoProps {
   images: string[];
 }
 
-const Photo = ({ images }: PhotoProps) => {
+export const Photo = ({ images }: PhotoProps) => {
   const length = images.length;
 
   if (length === 1) {
@@ -63,5 +63,3 @@ const Photo = ({ images }: PhotoProps) => {
     );
   }
 };
-
-export default Photo;

@@ -12,7 +12,7 @@ const typeInfo = {
       4: "많아요",
       3: "적당해요",
       2: "부족해요",
-      1: "콘센트가 없어요",
+      1: "없어요",
     },
   },
   seat: {
@@ -28,7 +28,7 @@ const typeInfo = {
   },
 } as const;
 
-const Tag = ({ type, score }: TagProps) => {
+export const Tag = ({ type, score }: TagProps) => {
   const { label, iconSrc, scoreText } = typeInfo[type];
 
   return (
@@ -41,5 +41,3 @@ const Tag = ({ type, score }: TagProps) => {
     </div>
   );
 };
-
-export default Tag;
