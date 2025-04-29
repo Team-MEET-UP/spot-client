@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //@TODO 백 연동 시 이름, 프로필사진, 이메일 수정
-const Profile = () => {
+export const Profile = () => {
   const [isEditting, setIsEditting] = useState(false);
   const [name, setName] = useState("");
 
@@ -47,5 +47,3 @@ const Profile = () => {
     </div>
   );
 };
-
-export default Profile;

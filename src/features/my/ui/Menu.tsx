@@ -22,7 +22,7 @@ const menuItems = [
   },
 ];
 
-const Menu = () => {
+export const Menu = () => {
   return (
     <div className="flex flex-col px-5 py-3">
       {menuItems.map((item, idx) => (
@@ -39,5 +39,3 @@ const Menu = () => {
     </div>
   );
 };
-
-export default Menu;

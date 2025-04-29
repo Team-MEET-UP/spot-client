@@ -1,6 +1,4 @@
-import Logout from "@/features/my/ui/Logout";
-import Menu from "@/features/my/ui/Menu";
-import Profile from "@/features/my/ui/Profile";
+import { Logout, Menu, Profile } from "@/features/my/ui";
 import PlainHeader from "@/shared/ui/PlainHeader";
 
 const MyPage = () => {
