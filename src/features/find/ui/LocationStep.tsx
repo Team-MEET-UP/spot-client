@@ -78,7 +78,7 @@ const LocationStep = () => {
           </p>
           <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} />
           {isTyping ? (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {searchResults.map((location, index) => (
                 <LocationCard
                   key={index}
