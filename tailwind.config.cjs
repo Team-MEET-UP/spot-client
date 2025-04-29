@@ -60,6 +60,7 @@ module.exports = {
           line9: "#BB8336", // 9호선
         },
         kakao: { yellow: "#FEE500", black: "#1E1E20" },
+        error: "#D4013B",
       },
     },
   },
