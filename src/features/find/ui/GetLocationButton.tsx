@@ -2,7 +2,7 @@ interface GetLocationButtonProps {
   onClick?: () => void;
 }
 
-const GetLocaitonButton = ({ onClick }: GetLocationButtonProps) => {
+export const GetLocaitonButton = ({ onClick }: GetLocationButtonProps) => {
   return (
     <button
       className=" flex gap-1 justify-center w-full py-[12px] rounded-xl bg-gray-5 text-gray-50 text-md hover:bg-gray-10"
@@ -11,5 +11,3 @@ const GetLocaitonButton = ({ onClick }: GetLocationButtonProps) => {
     </button>
   );
 };
-
-export { GetLocaitonButton };

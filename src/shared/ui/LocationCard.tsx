@@ -4,7 +4,7 @@ interface LocationCardProps {
   onClick?: () => void;
 }
 
-const LocationCard = ({ name, address, onClick }: LocationCardProps) => {
+export const LocationCard = ({ name, address, onClick }: LocationCardProps) => {
   return (
     <div onClick={onClick} className="flex flex-col w-full hover:bg-gray-5 p-[8px] rounded-xl">
       <p className="text-gray-60 text-md">{name}</p>
@@ -12,5 +12,3 @@ const LocationCard = ({ name, address, onClick }: LocationCardProps) => {
     </div>
   );
 };
-
-export { LocationCard };

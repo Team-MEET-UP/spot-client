@@ -11,7 +11,7 @@ interface Location {
   address: string;
 }
 
-const LocationStep = () => {
+export const LocationStep = () => {
   const { startPoint, setStartPoint, prevStep } = useFindStore();
   const [value, setValue] = useState(startPoint || "");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
@@ -106,5 +106,3 @@ const LocationStep = () => {
     </div>
   );
 };
-
-export { LocationStep };

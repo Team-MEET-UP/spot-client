@@ -2,7 +2,7 @@ import { useFindStore } from "@/shared/stores";
 import { NameStep } from "./NameStep";
 import { LocationStep } from "./LocationStep";
 
-const FindContainer = () => {
+export const FindContainer = () => {
   const { currentStep } = useFindStore();
 
   return (
@@ -12,5 +12,3 @@ const FindContainer = () => {
     </div>
   );
 };
-
-export { FindContainer };

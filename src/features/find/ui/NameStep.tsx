@@ -6,7 +6,7 @@ import PlainHeader from "@/shared/ui/PlainHeader";
 import { useEffect, useState } from "react";
 import { InputField } from "@/shared/ui";
 
-const NameStep = () => {
+export const NameStep = () => {
   const { name, setName, nextStep } = useFindStore();
   const { value, error, handleChange, validateValue, isValid } = useValidation(name, validateName);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
@@ -58,5 +58,3 @@ const NameStep = () => {
     </div>
   );
 };
-
-export { NameStep };
