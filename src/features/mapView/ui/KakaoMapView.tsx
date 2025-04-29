@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import MapMarker from "./MapMarker";
-import { mockLocationData } from "@/shared/model";
+import { mockMapData } from "@/shared/model";
 
 export function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);
-
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [center, setCenter] = useState<kakao.maps.LatLng | null>(null);
 
@@ -15,8 +14,8 @@ export function KakaoMapView() {
       window.kakao.maps.load(() => {
         if (mapRef.current) {
           const centerLatLng = new window.kakao.maps.LatLng(
-            mockLocationData.midpoint.lat,
-            mockLocationData.midpoint.lng
+            mockMapData.meetingPoint.latitude,
+            mockMapData.meetingPoint.longitude
           );
           setCenter(centerLatLng);
 
@@ -30,8 +29,12 @@ export function KakaoMapView() {
 
           const bounds = new window.kakao.maps.LatLngBounds();
 
-          mockLocationData.locations.forEach(location => {
-            bounds.extend(new window.kakao.maps.LatLng(location.lat, location.lng));
+          // Add meeting point to bounds
+          bounds.extend(centerLatLng);
+
+          // Add all user locations to bounds
+          mockMapData.users.forEach(user => {
+            bounds.extend(new window.kakao.maps.LatLng(user.latitude, user.longitude));
           });
 
           kakaoMap.setBounds(bounds);
@@ -70,8 +73,8 @@ export function KakaoMapView() {
 
     window.polylines = [];
 
-    mockLocationData.locations.forEach(location => {
-      const markerLatLng = new window.kakao.maps.LatLng(location.lat, location.lng);
+    mockMapData.users.forEach(user => {
+      const markerLatLng = new window.kakao.maps.LatLng(user.latitude, user.longitude);
 
       const polyline = new window.kakao.maps.Polyline({
         path: [markerLatLng, center],
@@ -94,18 +97,34 @@ export function KakaoMapView() {
       ref={mapRef}
       style={{
         width: "100%",
-        height: "500px",
-        borderRadius: "8px",
+        height: "calc(100vh - 64px)",
+        position: "fixed",
+        top: "64px",
+        left: 0,
+        zIndex: 0,
       }}>
-      {map &&
-        mockLocationData.locations.map(location => (
+      {map && (
+        <>
+          {/* 중간지점 마커 */}
           <MapMarker
-            key={location.id}
             map={map}
-            position={{ lat: location.lat, lng: location.lng }}
-            title={location.name}
+            position={{
+              lat: mockMapData.meetingPoint.latitude,
+              lng: mockMapData.meetingPoint.longitude,
+            }}
+            title={mockMapData.meetingPoint.stationName}
           />
-        ))}
+          {/* 사용자 마커 */}
+          {mockMapData.users.map(user => (
+            <MapMarker
+              key={user.id}
+              map={map}
+              position={{ lat: user.latitude, lng: user.longitude }}
+              title={user.name}
+            />
+          ))}
+        </>
+      )}
     </div>
   );
 }
