@@ -1,10 +1,10 @@
 import { useValidation } from "@/shared/hooks";
 import { useFindStore } from "@/shared/stores";
 import { validateName } from "@/shared/utils";
-import { InputField } from "./InputField";
 import Button from "@/shared/ui/Button";
 import PlainHeader from "@/shared/ui/PlainHeader";
 import { useEffect, useState } from "react";
+import { InputField } from "@/shared/ui";
 
 const NameStep = () => {
   const { name, setName, nextStep } = useFindStore();
@@ -46,12 +46,11 @@ const NameStep = () => {
           <InputField value={value} placeholder="이름을 입력해주세요" onChange={handleChange} error={error} />
         </div>
       </div>
-      <div 
+      <div
         className="px-4 mb-5 transition-all duration-300"
-        style={{ 
-          marginBottom: keyboardHeight > 0 ? `${keyboardHeight + 20}px` : '20px'
-        }}
-      >
+        style={{
+          marginBottom: keyboardHeight > 0 ? `${keyboardHeight + 20}px` : "20px",
+        }}>
         <Button onClick={handleNext} disabled={!isValid}>
           다음
         </Button>

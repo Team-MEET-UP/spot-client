@@ -1,11 +1,10 @@
 import { useFindStore } from "@/shared/stores";
-import { InputField } from "./InputField";
 import Button from "@/shared/ui/Button";
 import { GetLocaitonButton } from ".";
 import { useState, useEffect } from "react";
 import PlainHeader from "@/shared/ui/PlainHeader";
 import { mockSearchData } from "@/shared/model";
-import { LocationCard } from "@/shared/ui";
+import { InputField, LocationCard } from "@/shared/ui";
 
 interface Location {
   name: string;

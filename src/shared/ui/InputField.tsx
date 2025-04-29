@@ -5,7 +5,7 @@ interface InputFieldProps {
   error?: string;
 }
 
-const InputField = ({ value, onChange, placeholder, error }: InputFieldProps) => {
+export const InputField = ({ value, onChange, placeholder, error }: InputFieldProps) => {
   return (
     <div className="relative w-full">
       <input
@@ -20,5 +20,3 @@ const InputField = ({ value, onChange, placeholder, error }: InputFieldProps) =>
     </div>
   );
 };
-
-export { InputField };
