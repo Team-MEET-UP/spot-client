@@ -2,7 +2,7 @@ interface HeaderProps {
   profileImg: string;
 }
 
-const Header = ({ profileImg }: HeaderProps) => {
+export const Header = ({ profileImg }: HeaderProps) => {
   return (
     <header className="flex justify-between items-center py-4">
       <img src="icon/logo.svg" alt="logo" className="h-6" />
@@ -10,5 +10,3 @@ const Header = ({ profileImg }: HeaderProps) => {
     </header>
   );
 };
-
-export default Header;

@@ -1,4 +1,4 @@
-import KakaoLogin from "@/features/main/ui/KakaoLogin";
+import { KakaoLogin } from "@/features/main/ui";
 import Button from "@/shared/ui/Button";
 import { useNavigate } from "react-router-dom";
 

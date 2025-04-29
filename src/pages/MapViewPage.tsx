@@ -1,4 +1,4 @@
-import KakaoMapView from "../features/mapView/ui/KakaoMapView";
+import { KakaoMapView } from "@/features/mapView/ui";
 
 const MapViewPage = () => {
   return (
