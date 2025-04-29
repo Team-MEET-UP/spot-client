@@ -1,7 +1,4 @@
-import Banner from "@/features/history/ui/Banner";
-import Empty from "@/features/history/ui/Empty";
-import Header from "@/features/history/ui/Header";
-import GroupCard from "@/features/history/ui/GroupCard";
+import { Banner, Empty, Header, GroupCard } from "@/features/history/ui";
 import { mockListData } from "@/shared/model";
 
 const HistoryPage = () => {

@@ -1,4 +1,5 @@
-import Chip from "./Chip";
+import { useParams } from "react-router-dom";
+import { Chip } from "./Chip";
 
 interface GroupCardProps {
   id: number;
@@ -11,8 +12,9 @@ interface GroupCardProps {
   isComplete: boolean;
 }
 
-const GroupCard = ({ id, midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: GroupCardProps) => {
+export const GroupCard = ({ midPoint, isSelect = true, place, imgUrl, people, day, isComplete }: GroupCardProps) => {
   const displayImages = imgUrl.slice(0, 3);
+  const { id } = useParams();
 
   return (
     <section className="flex flex-col pb-5 pt-4 gap-1">
@@ -54,5 +56,3 @@ const GroupCard = ({ id, midPoint, isSelect = true, place, imgUrl, people, day, 
     </section>
   );
 };
-
-export default GroupCard;
