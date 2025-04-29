@@ -6,7 +6,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-3 items-center pb-6 justify-end h-screen">
+    <div className="flex flex-col gap-3 items-center pb-6 justify-end h-screen px-5">
       <span className="text-md font-medium text-gray-60">모임의 기준을 만들다</span>
       <img src="/icon/logo.svg" alt="logo" className="mb-[38px]" />
       <Button
