@@ -54,6 +54,15 @@ declare global {
         setMap(map: Map | null): void;
       }
 
+      class CustomOverlay {
+        constructor(options: {
+          position: LatLng;
+          content: HTMLElement;
+          yAnchor?: number;
+        });
+        setMap(map: Map | null): void;
+      }
+
       namespace event {
         function addListener(
           target: any,

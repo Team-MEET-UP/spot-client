@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import MapMarker from "./MapMarker";
 import { MeetingMarker } from "./MeetingMarker";
 import { mockMapData } from "@/shared/model";
+import { MapMarker } from "./MapMarker";
 
 export function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -30,10 +30,10 @@ export function KakaoMapView() {
 
           const bounds = new window.kakao.maps.LatLngBounds();
 
-          // Add meeting point to bounds
+          // 중간지점 bounds 설정
           bounds.extend(centerLatLng);
 
-          // Add all user locations to bounds
+          // 사용자 위치 bounds 설정
           mockMapData.users.forEach(user => {
             bounds.extend(new window.kakao.maps.LatLng(user.latitude, user.longitude));
           });
@@ -121,7 +121,8 @@ export function KakaoMapView() {
               key={user.id}
               map={map}
               position={{ lat: user.latitude, lng: user.longitude }}
-              title={user.name}
+              profileImg={user.profileImg}
+              name={user.name}
             />
           ))}
         </>
