@@ -7,7 +7,7 @@ interface UserCardProps {
 
 export const UserCard = ({ name, startStation, totalTime, onClick }: UserCardProps) => {
   return (
-    <div className="py-[8px]" onClick={onClick}>
+    <div className="py-[8px] cursor-pointer" onClick={onClick}>
       <div className="flex gap-1 text-lg font-bold text-gray-80">
         <img src="./icon/transfer.svg" alt="transfer" />
         <span>{totalTime}분</span>

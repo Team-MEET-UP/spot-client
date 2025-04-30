@@ -14,16 +14,7 @@ export const BottomSheetContent = () => {
         </div>
       </div>
 
-      <div
-        className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px]"
-        style={{
-          WebkitOverflowScrolling: "touch",
-          overscrollBehavior: "contain",
-          touchAction: "pan-y",
-          WebkitTouchCallout: "none",
-          WebkitUserSelect: "none",
-          userSelect: "none",
-        }}>
+      <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden">
         {users.map(user => (
           <UserCard key={user.id} name={user.name} startStation={user.startStation} totalTime={user.totalTime} />
         ))}
