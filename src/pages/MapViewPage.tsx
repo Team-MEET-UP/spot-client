@@ -1,6 +1,7 @@
-import { KakaoMapView, MapBottomSheet, MapHeader } from "@/features/mapView/ui";
+import { AddMemberBottomSheet, KakaoMapView, MapBottomSheet, MapHeader } from "@/features/mapView/ui";
 
 const MapViewPage = () => {
+  const memberCount = 2;
 
   return (
     <div>
@@ -8,7 +9,7 @@ const MapViewPage = () => {
         <MapHeader />
       </div>
       <KakaoMapView />
-      <MapBottomSheet />
+      {memberCount >= 2 ? <MapBottomSheet /> : <AddMemberBottomSheet />}
     </div>
   );
 };

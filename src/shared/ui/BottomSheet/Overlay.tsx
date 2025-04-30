@@ -4,9 +4,6 @@ interface OverlayProps {
 
 export const Overlay = ({ onClick }: OverlayProps) => {
   return (
-    <div
-      className="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-200"
-      onClick={onClick}
-    />
+    <div className="fixed inset-0 bg-black/50 transition-opacity duration-200 backdrop-blur-sm" onClick={onClick} />
   );
 };
