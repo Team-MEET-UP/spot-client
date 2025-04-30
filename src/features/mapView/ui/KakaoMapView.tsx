@@ -77,15 +77,27 @@ export function KakaoMapView() {
     mockMapData.users.forEach(user => {
       const markerLatLng = new window.kakao.maps.LatLng(user.latitude, user.longitude);
 
-      const polyline = new window.kakao.maps.Polyline({
+      // 1. 흰색 테두리용 선 (먼저 그림)
+      const borderLine = new window.kakao.maps.Polyline({
         path: [markerLatLng, center],
-        strokeWeight: 3,
-        strokeColor: "#FF0000",
-        strokeOpacity: 0.7,
+        strokeWeight: 8, // 원래보다 굵게
+        strokeColor: "#FFF", // 테두리 색상
+        strokeOpacity: 1,
+        strokeStyle: "solid",
         map: map,
       });
 
-      window.polylines.push(polyline);
+      // 2. 실제 선 (위에 겹쳐 그림)
+      const mainLine = new window.kakao.maps.Polyline({
+        path: [markerLatLng, center],
+        strokeWeight: 4,
+        strokeColor: "#9494A8",
+        strokeOpacity: 0.7,
+        strokeStyle: "solid",
+        map: map,
+      });
+
+      window.polylines.push(borderLine, mainLine);
     });
   };
 
