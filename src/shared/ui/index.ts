@@ -5,3 +5,5 @@ export * from "./CloseHeader";
 export * from "./LocationCard";
 export * from "./InputField";
 export * from "./PlaceCard";
+export * from "./Portal";
+export * from "./Modal";
