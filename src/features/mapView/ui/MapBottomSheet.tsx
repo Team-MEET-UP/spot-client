@@ -1,14 +1,16 @@
 import { BottomSheet } from "@/shared/ui";
+import { BottomSheetContent, FixedButtons } from "./BottomSheetContent";
 
 export const MapBottomSheet = () => {
   return (
-    <BottomSheet minHeightVh={25}>
-      <BottomSheet.Header />
-      <BottomSheet.Content>
-        <div className="p-4">
-          안녕하세요
-        </div>
-      </BottomSheet.Content>
-    </BottomSheet>
+    <>
+      <BottomSheet minHeightVh={35} maxHeightVh={80}>
+        <BottomSheet.Header />
+        <BottomSheet.Content>
+          <BottomSheetContent />
+          <FixedButtons />
+        </BottomSheet.Content>
+      </BottomSheet>
+    </>
   );
 };
