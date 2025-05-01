@@ -40,7 +40,7 @@ export function MeetingMarker({ map, position, title }: MeetingMarkerProps) {
 
     // 폴리곤 이미지
     const polygon = document.createElement("img");
-    polygon.src = "/image/polygon.svg";
+    polygon.src = "/icon/polygon.svg";
     polygon.style.width = "12px";
     polygon.style.height = "6px";
     polygon.style.marginTop = "0px";
