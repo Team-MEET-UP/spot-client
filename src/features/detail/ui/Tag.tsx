@@ -1,35 +1,12 @@
+import { TagTypeInfo } from "../config";
+
 interface TagProps {
   type: "plug" | "seat";
   score: 1 | 2 | 3 | 4 | 5;
 }
 
-const typeInfo = {
-  plug: {
-    label: "콘센트",
-    iconSrc: "/icon/plug.svg",
-    scoreText: {
-      5: "아주 많아요",
-      4: "많아요",
-      3: "적당해요",
-      2: "부족해요",
-      1: "없어요",
-    },
-  },
-  seat: {
-    label: "좌석",
-    iconSrc: "/icon/seat.svg",
-    scoreText: {
-      5: "아주 많아요",
-      4: "많아요",
-      3: "적당해요",
-      2: "부족해요",
-      1: "많이 부족해요",
-    },
-  },
-} as const;
-
 export const Tag = ({ type, score }: TagProps) => {
-  const { label, iconSrc, scoreText } = typeInfo[type];
+  const { label, iconSrc, scoreText } = TagTypeInfo[type];
 
   return (
     <div className="w-full px-4 py-2 rounded-[10px] border border-gray-5 flex justify-between items-center text-sm">
