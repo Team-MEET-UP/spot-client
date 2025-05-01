@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
-  <rect x="6.5" y="10" width="3.33333" height="2" rx="1" transform="rotate(90 6.5 10)" fill="#FFA857"/>
-  <rect x="12.5" y="10" width="3.33333" height="2" rx="1" transform="rotate(90 12.5 10)" fill="#FFA857"/>
-  <path d="M4.5 3.33333C4.5 2.59695 5.09695 2 5.83333 2H11.1667C11.903 2 12.5 2.59695 12.5 3.33333V9.33333H4.5V3.33333Z" fill="#FFA857"/>
-  <path d="M12.8337 6C13.3858 6.00019 13.8337 6.44783 13.8337 7V10.667C13.8335 11.035 13.5347 11.333 13.1667 11.333H3.83366L3.6989 11.3193C3.39529 11.2571 3.16683 10.989 3.16667 10.667V7C3.16667 6.44772 3.61439 6 4.16667 6C4.71895 6.00001 5.16667 6.44772 5.16667 7V8.66699H11.8337V7C11.8337 6.44772 12.2814 6 12.8337 6Z" fill="#FFD0A5"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <rect x="9" y="15" width="5" height="3" rx="1.5" transform="rotate(90 9 15)" fill="#FFA857"/>
+  <rect x="18" y="15" width="5" height="3" rx="1.5" transform="rotate(90 18 15)" fill="#FFA857"/>
+  <path d="M6 5C6 3.89543 6.89543 3 8 3H16C17.1046 3 18 3.89543 18 5V14H6V5Z" fill="#FFA857"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 9C6.32843 9 7 9.67157 7 10.5V13H17V10.5C17 9.67157 17.6716 9 18.5 9C19.3284 9 20 9.67157 20 10.5V16C20 16.5523 19.5523 17 19 17H17H7H5C4.44772 17 4 16.5523 4 16V10.5C4 9.67157 4.67157 9 5.5 9Z" fill="#FFD0A5"/>
 </svg>
