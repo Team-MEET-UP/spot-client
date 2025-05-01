@@ -8,7 +8,7 @@ export const RecommendList = () => {
   return (
     <div className="h-full flex flex-col bg-gray-5">
       <FilterChips />
-      <div className="flex-1 overflow-y-auto px-5">
+      <div className="flex-1 overflow-y-auto px-5 pb-3">
         <div className="flex flex-col gap-3">
           {mockPlaceItems.map(item => (
             <PlaceCard
