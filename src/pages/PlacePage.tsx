@@ -1,10 +1,12 @@
 import { ConfirmedCard, RecommendCard, RecommendList } from "@/features/place/ui";
 import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceList";
 import PlainHeader from "@/shared/ui/PlainHeader";
+import { useNavigate } from "react-router-dom";
 
 const PlacePage = () => {
   const mockData = mockPlaceItems[0];
   const isConfirmed = true; // 여기서 장소의 확정 상태를 받아온다면
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
@@ -12,7 +14,7 @@ const PlacePage = () => {
         <PlainHeader title="장소 추천" url="/mapview" />
       </div>
       <div className="flex-none mt-3 px-5">
-        {!isConfirmed && <RecommendCard place="동대문역사문화공원역" />}
+        {!isConfirmed && <RecommendCard place="동대문역사문화공원역" onClick={() => navigate("/detail")} />}
         {isConfirmed && (
           <ConfirmedCard
             placeName="동대문 역사문화공원역"
@@ -20,6 +22,7 @@ const PlacePage = () => {
             image={mockData.image}
             openingHours={mockData.openingHours}
             review={mockData.review}
+            onClick={() => navigate("/detail")}
           />
         )}
       </div>

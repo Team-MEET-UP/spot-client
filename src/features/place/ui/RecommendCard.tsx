@@ -1,10 +1,11 @@
 interface RecommendCardProps {
   place: string;
+  onClick: () => void;
 }
 
-export const RecommendCard = ({ place }: RecommendCardProps) => {
+export const RecommendCard = ({ place, onClick }: RecommendCardProps) => {
   return (
-    <div className="py-[29px]">
+    <div className="py-[29px] cursor-pointer" onClick={onClick}>
       <div className="flex flex-col gap-1">
         <h1 className="text-lg font-semibold">
           <span className=" text-sub-sub ">{place}</span> <br />

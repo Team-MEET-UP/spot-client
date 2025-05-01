@@ -9,11 +9,12 @@ interface ConfirmedCardProps {
     score: number;
     chips: string[];
   };
+  onClick: () => void;
 }
 
-export const ConfirmedCard = ({ placeName, distance, image, openingHours, review }: ConfirmedCardProps) => {
+export const ConfirmedCard = ({ placeName, distance, image, openingHours, review, onClick }: ConfirmedCardProps) => {
   return (
-    <div className="relative ">
+    <div className="relative cursor-pointer" onClick={onClick}>
       <div className="absolute -top-3 right-1">
         <img src="/icon/blueCheck.svg" alt="Confirmed" className="w-[96px] h-[96px]" />
       </div>
