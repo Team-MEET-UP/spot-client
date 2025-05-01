@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Banner = () => {
+export const Banner = () => {
   const navigate = useNavigate();
 
   return (
@@ -18,5 +18,3 @@ const Banner = () => {
     </div>
   );
 };
-
-export default Banner;
