@@ -6,3 +6,5 @@ export * from "./LocationCard";
 export * from "./InputField";
 export * from "./PlaceCard";
 export * from "./BottomSheet/BottomSheet";
+export * from "./Portal";
+export * from "./Modal";
