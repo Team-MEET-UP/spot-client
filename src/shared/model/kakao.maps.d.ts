@@ -1,4 +1,3 @@
-
 export {}; // 모듈로 인식되도록 설정
 
 declare global {
@@ -23,12 +22,20 @@ declare global {
       }
 
       class Marker {
-        constructor(options: {
-          position: LatLng;
-          map: Map;
-          title?: string;
-        });
+        constructor(options: { position: LatLng; map: Map; title?: string; image?: MarkerImage });
         setMap(map: Map | null): void;
+      }
+
+      class MarkerImage {
+        constructor(src: string, size: Size, options?: { offset?: Point });
+      }
+
+      class Size {
+        constructor(width: number, height: number);
+      }
+
+      class Point {
+        constructor(x: number, y: number);
       }
 
       class Polyline {
@@ -37,23 +44,21 @@ declare global {
           strokeWeight: number;
           strokeColor: string;
           strokeOpacity: number;
+          strokeStyle: string;
           map: Map;
         });
         setMap(map: Map | null): void;
       }
 
-      namespace event {
-        function addListener(
-          target: any,
-          type: string,
-          handler: () => void
-        ): void;
+      class CustomOverlay {
+        constructor(options: { position: LatLng; content: HTMLElement; yAnchor?: number });
+        setMap(map: Map | null): void;
+      }
 
-        function removeListener(
-          target: any,
-          type: string,
-          handler: () => void
-        ): void;
+      namespace event {
+        function addListener(target: any, type: string, handler: () => void): void;
+
+        function removeListener(target: any, type: string, handler: () => void): void;
       }
 
       function load(callback: () => void): void;
