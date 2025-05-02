@@ -11,18 +11,13 @@ export const useBottomSheetDrag = ({
 }: UseBottomSheetDragProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
-  
-  // vh를 픽셀로 변환하는 함수를 메모이제이션
-  const vhToPixels = useCallback((vh: number) => (window.innerHeight * vh) / 100, []);
-  const [currentHeight, setCurrentHeight] = useState(() => vhToPixels(minHeightVh));
+
+  // vh를 픽셀로 변환
+  const vhToPixels = (vh: number) => (window.innerHeight * vh) / 100;
+  const [currentHeight, setCurrentHeight] = useState(vhToPixels(minHeightVh));
 
   // 스크롤 가능한 영역을 ref로 저장
   const scrollableRef = useRef<HTMLElement | null>(null);
-  // 최소/최대 높이를 픽셀로 변환한 값을 캐시
-  const heightLimitsRef = useRef({
-    min: vhToPixels(minHeightVh),
-    max: vhToPixels(maxHeightVh)
-  });
 
   // 컴포넌트 마운트 시 한 번만 스크롤 가능한 영역을 찾음
   useEffect(() => {
@@ -49,11 +44,14 @@ export const useBottomSheetDrag = ({
       const delta = startY - clientY;
       const newHeight = currentHeight + delta;
 
-      // 캐시된 높이 제한값 사용
-      setCurrentHeight(Math.min(Math.max(newHeight, heightLimitsRef.current.min), heightLimitsRef.current.max));
+      // vh 기준으로 높이 제한
+      const minPixels = vhToPixels(minHeightVh);
+      const maxPixels = vhToPixels(maxHeightVh);
+
+      setCurrentHeight(Math.min(Math.max(newHeight, minPixels), maxPixels));
       setStartY(clientY);
     },
-    [isDragging, startY, currentHeight]
+    [isDragging, startY, currentHeight, minHeightVh, maxHeightVh]
   );
 
   const handleDragEnd = useCallback(() => {
@@ -80,12 +78,7 @@ export const useBottomSheetDrag = ({
   // 화면 크기 변경 시 높이 조정
   const handleResize = useCallback(() => {
     setCurrentHeight(vhToPixels(minHeightVh));
-    // 높이 제한값도 업데이트
-    heightLimitsRef.current = {
-      min: vhToPixels(minHeightVh),
-      max: vhToPixels(maxHeightVh)
-    };
-  }, [minHeightVh, maxHeightVh, vhToPixels]);
+  }, [minHeightVh]);
 
   return {
     currentHeight,

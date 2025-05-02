@@ -15,4 +15,8 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
     },
   },
+  server: {
+    port: 5173,
+    allowedHosts: true, // 💡 모든 외부 도메인 허용 (개발용으로 안전)
+  },
 });
