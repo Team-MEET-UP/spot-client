@@ -1,12 +1,12 @@
-import FirstStep from "@/features/notVisited/ui/FirstStep";
-import SecondStep from "@/features/notVisited/ui/SecondStep";
+import FirstStep from "@/features/visited/ui/FirstStep";
+import SecondStep from "@/features/visited/ui/SecondStep";
 import BackHeader from "@/shared/ui/BackHeader";
 import Button from "@/shared/ui/Button";
 import StepIndicator from "@/shared/ui/StepIndicator";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const NotVisitedPage = () => {
+const VisitedPage = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedTime, setSelectedTime] = useState("");
@@ -59,4 +59,4 @@ const NotVisitedPage = () => {
   );
 };
 
-export default NotVisitedPage;
+export default VisitedPage;

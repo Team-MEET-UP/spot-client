@@ -27,7 +27,13 @@ const ReviewPage = () => {
             }}>
             다른 곳을 방문했어요
           </SmallButton>
-          <SmallButton isVisit={true}>네, 방문했어요</SmallButton>
+          <SmallButton
+            isVisit={true}
+            onClick={() => {
+              navigate(`/visited/${id}`);
+            }}>
+            네, 방문했어요
+          </SmallButton>
         </div>
       </div>
     </div>
