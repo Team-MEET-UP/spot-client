@@ -5,7 +5,7 @@ const MapViewPage = () => {
 
   return (
     <div>
-      <div className="px-5 min-h-[100dvh]">
+      <div className="px-5">
         <MapHeader />
       </div>
       <KakaoMapView />
