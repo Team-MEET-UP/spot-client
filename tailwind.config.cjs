@@ -62,9 +62,9 @@ module.exports = {
         kakao: { yellow: "#FEE500", black: "#1E1E20" },
         error: "#D4013B",
       },
-    },
-    height: {
-      "screen-dvh": "100dvh",
+      height: {
+        "screen-dvh": "100dvh",
+      },
     },
   },
   plugins: [],
