@@ -5,7 +5,7 @@ const HistoryPage = () => {
   const length = 1; // 임시 ui 구현을 위한 작업!
 
   return (
-    <div className="flex flex-col px-5 gap-2">
+    <div className="flex flex-col px-5 gap-2 h-screen-dvh">
       <Header profileImg="https://github.com/shadcn.png" />
       <Banner />
       <span className="mt-4 py-3 text-lg font-bold">참여한 모임</span>
