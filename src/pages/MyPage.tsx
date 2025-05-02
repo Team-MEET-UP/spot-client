@@ -3,7 +3,7 @@ import PlainHeader from "@/shared/ui/PlainHeader";
 
 const MyPage = () => {
   return (
-    <div className="flex flex-col px-5">
+    <div className="flex flex-col px-5 h-screen-dvh">
       <PlainHeader url="/history" title="내 정보" />
       <div className="flex flex-col gap-2 mb-8">
         <Profile />

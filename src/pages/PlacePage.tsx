@@ -9,7 +9,7 @@ const PlacePage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
+    <div className="flex flex-col h-screen-dvh overflow-hidden">
       <div className="flex-none px-5">
         <PlainHeader title="장소 추천" url="/mapview" />
       </div>

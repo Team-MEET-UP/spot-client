@@ -9,7 +9,7 @@ const ReviewPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen-dvh">
       <CloseHeader url="/history" />
       <div className="flex flex-col justify-between h-full p-5 pt-4">
         <div className="flex flex-col gap-8">

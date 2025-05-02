@@ -22,7 +22,7 @@ const DetailPage = () => {
   const isComplete = true; // 약속 장소 확정 유무
 
   return (
-    <div className="relative flex flex-col min-h-screen">
+    <div className="relative flex flex-col h-screen-dvh">
       <div className="flex-1 overflow-y-auto">
         <Photo images={images} />
         <PlaceInfo />

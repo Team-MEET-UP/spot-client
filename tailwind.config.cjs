@@ -63,6 +63,9 @@ module.exports = {
         error: "#D4013B",
       },
     },
+    height: {
+      "screen-dvh": "100dvh",
+    },
   },
   plugins: [],
 };

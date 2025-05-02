@@ -35,7 +35,7 @@ const VisitedPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen-dvh">
       <BackHeader onClick={handleBack} />
       <div className="flex flex-col justify-between h-full p-5 pt-2">
         <div>
