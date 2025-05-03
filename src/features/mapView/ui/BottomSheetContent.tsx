@@ -14,7 +14,7 @@ export const BottomSheetContent = () => {
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden">
+      <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden" data-scrollable="true">
         {users.map(user => (
           <UserCard key={user.id} name={user.name} startStation={user.startStation} totalTime={user.totalTime} />
         ))}

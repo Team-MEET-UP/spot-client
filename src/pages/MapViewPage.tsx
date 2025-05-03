@@ -1,7 +1,7 @@
 import { AddMemberBottomSheet, KakaoMapView, MapBottomSheet, MapHeader } from "@/features/mapView/ui";
 
 const MapViewPage = () => {
-  const memberCount = 2;
+  const memberCount = 2; // 임시 인원 설정
 
   return (
     <div>
