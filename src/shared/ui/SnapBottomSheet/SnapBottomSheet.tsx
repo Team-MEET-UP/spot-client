@@ -1,6 +1,4 @@
-// BottomSheet.tsx
 import { useEffect } from "react";
-
 import { Portal } from "../Portal";
 
 import { SnapWrapper } from "./SnapWrapper";
@@ -10,15 +8,11 @@ import { useSnapPointDrag } from "@/shared/hooks";
 
 interface BottomSheetProps {
   children: React.ReactNode;
-  snapPoints?: number[]; // [30, 60, 80]
-  defaultSnap?: number; // 기본 스냅 포인트
+  snapPoints?: number[];
+  defaultSnap?: number;
 }
 
-export const SnapBottomSheet = ({
-  children,
-  snapPoints = [30, 60, 80],
-  defaultSnap = 0,
-}: BottomSheetProps) => {
+export const SnapBottomSheet = ({ children, snapPoints = [30, 50, 80], defaultSnap = 0 }: BottomSheetProps) => {
   const { height, isDragging, handlers, bindDragEvents } = useSnapPointDrag({
     snapPoints,
     defaultSnap,
@@ -37,8 +31,7 @@ export const SnapBottomSheet = ({
           height: `${height}px`,
           transition: isDragging ? "none" : "height 0.3s ease",
         }}
-        {...handlers}
-      >
+        {...handlers}>
         {children}
       </SnapWrapper>
     </Portal>
