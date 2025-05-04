@@ -33,7 +33,7 @@ export const FixedButtons = () => {
           className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
           onClick={() => navigate("/find")}>
           <img src="./icon/addUser.svg" alt="addUser" />
-          <span>출발지 등록</span>
+          <span>멤버 추가하기</span>
         </button>
         <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-md">
           <img src="./icon/share.svg" alt="share" />
