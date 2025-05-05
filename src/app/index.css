@@ -9,6 +9,7 @@
 }
 
 @layer base {
+  html,
   body {
     @apply m-0 h-screen;
     width: 100%;
