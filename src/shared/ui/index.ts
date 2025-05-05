@@ -8,3 +8,4 @@ export * from "./PlaceCard";
 export * from "./BottomSheet/BottomSheet";
 export * from "./Portal";
 export * from "./Modal";
+export * from "./SnapBottomSheet/SnapBottomSheet";
