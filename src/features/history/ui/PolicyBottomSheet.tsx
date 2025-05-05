@@ -11,10 +11,9 @@ interface PolicyBottomSheetProps {
 export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
   const [firstCheckBox, setFirstCheckBox] = useState(false);
   const [secondCheckBox, setSecondCheckBox] = useState(false);
-  const allCheckBox = firstCheckBox && secondCheckBox;
 
   const handleClick = () => {
-    if (allCheckBox) {
+    if (firstCheckBox) {
       onClose();
     } else {
       setFirstCheckBox(true);
@@ -38,13 +37,13 @@ export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
                 onToggle={() => setFirstCheckBox(prev => !prev)}
               />
               <CheckBox
-                label="마케팅 수신 동의(선택"
+                label="마케팅 수신 동의(선택)"
                 isChecked={secondCheckBox}
                 onToggle={() => setSecondCheckBox(prev => !prev)}
               />
             </div>
           </div>
-          <Button onClick={handleClick}>{allCheckBox ? "완료" : "모두 동의하기"}</Button>
+          <Button onClick={handleClick}>{firstCheckBox ? "완료" : "모두 동의하기"}</Button>
         </div>
       </BottomSheet>
     </>

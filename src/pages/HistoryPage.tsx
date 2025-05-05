@@ -11,23 +11,23 @@ const HistoryPage = () => {
   };
 
   return (
-    <>
-      <div className="flex flex-col px-5 gap-2 h-screen-dvh">
+    <div className="flex flex-col h-screen-dvh">
+      <div className="flex flex-col px-5 gap-2">
         <Header profileImg="https://github.com/shadcn.png" />
         <Banner />
         <span className="mt-4 py-3 text-lg font-bold">참여한 모임</span>
-        {length > 0 ? (
-          <div>
-            {mockListData.map(data => (
-              <GroupCard key={data.id} {...data} />
-            ))}
-          </div>
-        ) : (
-          <Empty />
-        )}
       </div>
+      {length > 0 ? (
+        <div>
+          {mockListData.map(data => (
+            <GroupCard key={data.id} {...data} />
+          ))}
+        </div>
+      ) : (
+        <Empty />
+      )}
       {isPolicy && <PolicyBottomSheet onClose={handleClick} />}
-    </>
+    </div>
   );
 };
 

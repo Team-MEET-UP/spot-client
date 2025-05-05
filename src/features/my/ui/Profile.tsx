@@ -27,7 +27,8 @@ export const Profile = () => {
       <div className="flex flex-col gap-1 w-full">
         {isEditting ? (
           <input
-            className="w-full border-b-gray-90 border-b outline-none text-lg font-semibold text-gray-90"
+            type="text"
+            className="rounded-none w-full border-b-gray-90 border-b outline-none text-lg font-semibold text-gray-90"
             value={name}
             onChange={e => setName(e.target.value)}
             onBlur={handleBlur}

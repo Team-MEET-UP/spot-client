@@ -10,7 +10,7 @@ export const Chip = ({ id, isComplete }: ChipProps) => {
 
   return (
     <button
-      className={`flex gap-[2px] px-3 py-1 w-fit rounded-[40px] items-center ${isComplete ? "bg-gray-5 text-gray-30" : "bg-sub-10 text-sub-sub"}`}
+      className={`flex gap-1 px-3 py-1 w-fit rounded-[40px] items-center text-sm ${isComplete ? "bg-gray-5 text-gray-30" : "bg-sub-10 text-sub-sub"}`}
       onClick={() => {
         if (isComplete) return;
 
