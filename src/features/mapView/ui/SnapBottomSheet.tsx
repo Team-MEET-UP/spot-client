@@ -3,7 +3,7 @@ import { BottomSheetContent, FixedButtons } from "./BottomSheetContent";
 
 export const SnapMapBottomSheet = () => {
   return (
-    <SnapBottomSheet snapPoints={[35, 55, 80]} defaultSnap={0}>
+    <SnapBottomSheet>
       <div className="relative">
         <SnapBottomSheet.Header />
         <button className="absolute -top-14 left-1/2 -translate-x-1/2 bg-gray-80 text-white font-semibold text-md px-[24px] py-[12px] rounded-3xl">
