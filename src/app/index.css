@@ -9,8 +9,12 @@
 }
 
 @layer base {
+  html,
   body {
-    @apply m-0 min-h-screen;
+    @apply m-0 h-screen;
+    width: 100%;
+    height: 100%;
+    overscroll-behavior: none;
   }
 }
 .scrollbar-hidden {
