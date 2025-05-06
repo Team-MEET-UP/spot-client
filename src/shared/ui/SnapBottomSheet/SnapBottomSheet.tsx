@@ -10,9 +10,10 @@ interface BottomSheetProps {
   children: React.ReactNode;
   snapPoints?: number[];
   defaultSnap?: number;
+  minHeightVh: number;
 }
 
-export const SnapBottomSheet = ({ children, snapPoints = [30, 50, 80], defaultSnap = 0 }: BottomSheetProps) => {
+export const SnapBottomSheet = ({ children, snapPoints = [30, 50, 80], defaultSnap = 0, minHeightVh }: BottomSheetProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [dynamicSnapPoints, setDynamicSnapPoints] = useState(snapPoints);
 
@@ -30,7 +31,7 @@ export const SnapBottomSheet = ({ children, snapPoints = [30, 50, 80], defaultSn
         console.log("콘텐츠 높이를 기반으로 vh 계산", (contentHeight / viewportHeight) * 100, "vh");
 
         // 콘텐츠 높이를 기반으로 동적 snap points 계산
-        const small = 35; // 지도에 맞춰 최소 35vh를 유지한다.
+        const small = minHeightVh; // 지도에 맞춰진 최소 높이
         const middle = Math.min(50, ((contentHeight * 0.7) / viewportHeight) * 100);
         const large = Math.min(80, ((contentHeight * 0.9) / viewportHeight) * 100);
 
