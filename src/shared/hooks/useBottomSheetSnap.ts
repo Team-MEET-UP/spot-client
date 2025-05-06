@@ -14,9 +14,21 @@ export const useSnapPointDrag = ({ snapPoints, defaultSnap }: UseSnapPointDragPr
 
   const startY = useRef(0);
   const startHeight = useRef(height);
+  const prevSnapPoints = useRef(snapPoints);
 
   // 스크롤 가능한 영역을 ref로 저장
   const scrollableRef = useRef<HTMLElement | null>(null);
+
+  // snapPoints가 변경될 때 height 업데이트
+  useEffect(() => {
+    if (JSON.stringify(prevSnapPoints.current) !== JSON.stringify(snapPoints)) {
+      const newSnapHeights = snapPoints.map(vhToPx);
+      const currentSnapIndex = snapHeights.findIndex(h => Math.abs(h - height) < 1);
+      const newHeight = newSnapHeights[currentSnapIndex] ?? newSnapHeights[defaultSnap];
+      setHeight(newHeight);
+      prevSnapPoints.current = snapPoints;
+    }
+  }, [snapPoints, height, defaultSnap, snapHeights]);
 
   // 컴포넌트 마운트 시 한 번만 스크롤 가능한 영역을 찾음
   useEffect(() => {
