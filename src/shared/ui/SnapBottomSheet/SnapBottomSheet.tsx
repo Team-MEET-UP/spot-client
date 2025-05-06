@@ -13,7 +13,12 @@ interface BottomSheetProps {
   minHeightVh: number;
 }
 
-export const SnapBottomSheet = ({ children, snapPoints = [30, 50, 80], defaultSnap = 0, minHeightVh }: BottomSheetProps) => {
+export const SnapBottomSheet = ({
+  children,
+  snapPoints = [30, 50, 80],
+  defaultSnap = 0,
+  minHeightVh,
+}: BottomSheetProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [dynamicSnapPoints, setDynamicSnapPoints] = useState(snapPoints);
 
@@ -26,17 +31,10 @@ export const SnapBottomSheet = ({ children, snapPoints = [30, 50, 80], defaultSn
         const contentHeight = entry.contentRect.height;
         const viewportHeight = window.innerHeight;
 
-        console.log("콘텐츠 높이:", contentHeight, "px");
-        console.log("뷰포트 높이:", viewportHeight, "px");
-        console.log("콘텐츠 높이를 기반으로 vh 계산", (contentHeight / viewportHeight) * 100, "vh");
-
         // 콘텐츠 높이를 기반으로 동적 snap points 계산
         const small = minHeightVh; // 지도에 맞춰진 최소 높이
         const middle = Math.min(50, ((contentHeight * 0.7) / viewportHeight) * 100);
         const large = Math.min(80, ((contentHeight * 0.9) / viewportHeight) * 100);
-
-        console.log("Calculated snap points:", { small, middle, large });
-
         setDynamicSnapPoints([small, middle, large]);
       }
     });
