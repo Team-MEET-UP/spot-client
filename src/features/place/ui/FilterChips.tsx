@@ -6,7 +6,7 @@ const icons = ["/icon/meeting.svg", "/icon/study.svg", "/icon/drinking.svg"];
 export const FilterChips = () => {
   const [selected, setSelected] = useState("회의");
   return (
-    <div className="flex flex-row gap-2 justify-center my-3 px-5">
+    <div className="flex flex-row gap-2 justify-start items-center my-3 px-5">
       {filters.map((filter, idx) => {
         const isSelected = selected === filter;
         return (

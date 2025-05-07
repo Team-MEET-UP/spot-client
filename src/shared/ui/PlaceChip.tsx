@@ -16,7 +16,7 @@ const PlaceChip = ({ label }: PlaceChipProps) => {
 
   return (
     <div className="flex gap-[1px] py-[3px] px-[6px] bg-gray-5 rounded-[6px] items-center font-semibold text-xxs">
-      <img src={chip.icon} alt={chip.displayName} />
+      <img src={chip.icon} alt={chip.displayName} className="w-[16px] h-[16px]" />
       {chip.displayName}
     </div>
   );

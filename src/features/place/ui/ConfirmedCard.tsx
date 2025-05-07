@@ -16,7 +16,7 @@ export const ConfirmedCard = ({ placeName, distance, image, openingHours, review
   return (
     <div className="relative cursor-pointer" onClick={onClick}>
       <div className="absolute -top-3 right-1">
-        <img src="/icon/blueCheck.svg" alt="Confirmed" className="w-[96px] h-[96px]" />
+        <img src="/icon/confirmed.svg" alt="Confirmed" className="w-[96px] h-[96px]" />
       </div>
       <div className="flex flex-col gap-1">
         <h1 className="text-lg font-semibold">

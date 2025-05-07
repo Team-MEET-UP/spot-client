@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const PlacePage = () => {
   const mockData = mockPlaceItems[0];
-  const isConfirmed = true; // 여기서 장소의 확정 상태를 받아온다면
+  const isConfirmed = false; // 여기서 장소의 확정 상태를 받아온다면
   const navigate = useNavigate();
 
   return (
