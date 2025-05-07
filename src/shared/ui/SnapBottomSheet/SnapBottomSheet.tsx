@@ -33,8 +33,8 @@ export const SnapBottomSheet = ({
 
         // 콘텐츠 높이를 기반으로 동적 snap points 계산
         const small = minHeightVh; // 지도에 맞춰진 최소 높이
-        const middle = Math.min(50, ((contentHeight * 0.7) / viewportHeight) * 100);
-        const large = Math.min(80, ((contentHeight * 0.9) / viewportHeight) * 100);
+        const middle = Math.min(50, (contentHeight / viewportHeight) * 100);
+        const large = Math.min(80, (contentHeight / viewportHeight) * 100);
         setDynamicSnapPoints([small, middle, large]);
       }
     });

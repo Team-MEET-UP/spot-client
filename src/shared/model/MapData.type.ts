@@ -1,9 +1,9 @@
 interface TransferInfo {
   type: string;
-  duration: string;
+  duration: number;
   line?: string;
   board?: string;
-  stations?: string[];
+  stations?: { name: string; latitude: number; longitude: number }[];
   distance?: number;
 }
 
