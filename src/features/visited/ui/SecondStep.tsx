@@ -37,7 +37,7 @@ const SecondStep = ({ secondData, setSecondData }: SecondStepProps) => {
           <div className="text-sm font-medium text-gray-40 py-[2px] px-[6px] bg-gray-5 rounded-[6px]">선택</div>
         </div>
         <textarea
-          className="p-4 outline-none rounded-2xl border border-gray-10 h-32 text-md font-medium text-gray-60 resize-none"
+          className="p-4 outline-none rounded-2xl border border-gray-10 h-32 text-md font-medium text-gray-60 resize-none placeholder-gray-30"
           value={secondData.review}
           onChange={e =>
             setSecondData(prev => ({
@@ -45,6 +45,7 @@ const SecondStep = ({ secondData, setSecondData }: SecondStepProps) => {
               review: e.target.value,
             }))
           }
+          placeholder="이곳은 어땠나요? 한 줄 평가를 남겨보세요."
         />
       </div>
     </div>

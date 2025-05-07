@@ -24,7 +24,7 @@ export const GroupCard = ({
   const displayImages = imgUrl.slice(0, 3);
 
   return (
-    <section className="flex flex-col pb-5 pt-4 gap-1">
+    <section className="flex flex-col px-5 pb-5 pt-4 gap-1 border-b border-b-gray-5">
       <span className="text-md font-semibold text-gray-90">{midPoint}</span>
       <div className="flex gap-1 items-center text-sm font-medium text-gray-40 overflow-hidden text-ellipsis whitespace-nowrap">
         {isSelect ? (
@@ -37,7 +37,7 @@ export const GroupCard = ({
         )}
       </div>
       <div className="flex mt-1 items-center justify-between">
-        <div className="flex gap-1 text-xs font-medium">
+        <div className="flex gap-1 text-xs font-medium items-center">
           {/* 이미지 영역 */}
           <div className="flex items-center">
             {displayImages.map((src, index) => {

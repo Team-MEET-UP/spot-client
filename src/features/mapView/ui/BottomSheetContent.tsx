@@ -14,7 +14,7 @@ export const BottomSheetContent = () => {
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden">
+      <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden" data-scrollable="true">
         {users.map(user => (
           <UserCard key={user.id} name={user.name} startStation={user.startStation} totalTime={user.totalTime} />
         ))}
@@ -33,7 +33,7 @@ export const FixedButtons = () => {
           className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
           onClick={() => navigate("/find")}>
           <img src="./icon/addUser.svg" alt="addUser" />
-          <span>출발지 등록</span>
+          <span>멤버 추가하기</span>
         </button>
         <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-md">
           <img src="./icon/share.svg" alt="share" />
