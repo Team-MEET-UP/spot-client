@@ -75,7 +75,7 @@ export const LocationStep = () => {
             <br />
             이름과 출발지를 입력해주세요.
           </p>
-          <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} />
+          <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} type="startPoint" />
           {isTyping ? (
             <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {searchResults.map((location, index) => (

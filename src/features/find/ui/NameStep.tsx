@@ -43,7 +43,13 @@ export const NameStep = () => {
             <br />
             이름과 출발지를 입력해주세요.
           </p>
-          <InputField value={value} placeholder="이름을 입력해주세요" onChange={handleChange} error={error} />
+          <InputField
+            value={value}
+            placeholder="5글자 내로 입력해주세요"
+            onChange={handleChange}
+            error={error}
+            type="name"
+          />
         </div>
       </div>
       <div

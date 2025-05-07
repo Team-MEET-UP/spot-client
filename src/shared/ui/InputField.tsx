@@ -3,9 +3,10 @@ interface InputFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   error?: string;
+  type: string;
 }
 
-export const InputField = ({ value, onChange, placeholder, error }: InputFieldProps) => {
+export const InputField = ({ value, onChange, placeholder, error, type }: InputFieldProps) => {
   return (
     <div className="relative w-full">
       <input
@@ -13,9 +14,13 @@ export const InputField = ({ value, onChange, placeholder, error }: InputFieldPr
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full py-[8px] my-[16px] border-b border-gray-20 placeholder:text-gray-20 focus:border-gray-80 focus:placeholder:text-gray-80 placeholder:text-lg focus:outline-none focus:text-gray-90 pr-8"
+        className="w-full py-[8px] my-[16px] border-b border-gray-20 placeholder:text-gray-20 focus:border-gray-80 focus:placeholder-transparent placeholder:text-lg focus:outline-none focus:text-gray-90 pr-8 rounded-none"
       />
-      <img src="./icon/search.svg" alt="search" className="absolute right-0 top-1/2 -translate-y-1/2" />
+      {type === "startPoint" ? (
+        <img src="./icon/search.svg" alt="search" className="absolute right-0 top-1/2 -translate-y-1/2" />
+      ) : (
+        <></>
+      )}
       {error && <p className="text-error text-xs">{error}</p>}
     </div>
   );
