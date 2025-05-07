@@ -39,10 +39,6 @@ export function KakaoMapView() {
           });
 
           kakaoMap.setBounds(bounds);
-
-          window.kakao.maps.event.addListener(kakaoMap, "tilesloaded", () => {
-            console.log("맵 로드 완료");
-          });
         }
       });
     };
