@@ -1,9 +1,9 @@
-import { BottomSheet } from "@/shared/ui";
-import { Overlay } from "@/shared/ui/BottomSheet/Overlay";
 import { useState } from "react";
 import { CarDetail } from "./TransferDetail";
 import { FixedButton, Path, TransferDetail } from "./DetailBottomSheet";
 import { TransferInfo, TransferType } from "../model";
+import { SnapBottomSheet } from "@/shared/ui";
+import { mockMapData } from "@/shared/model";
 
 const transferInfo: TransferInfo[] = [
   {
@@ -22,21 +22,6 @@ const transferInfo: TransferInfo[] = [
     bus: ["202", "302"],
     duration: 15,
   },
-  {
-    type: "subway",
-    line: "수도권 2호선",
-    startBoard: "서울대입구역",
-    endBoard: "강남역",
-    stationsCnt: 8,
-    stations: [],
-    duration: 14,
-  },
-  {
-    type: "walk",
-    endBoard: "회사",
-    distance: 535,
-    duration: 3,
-  },
 ] as const;
 
 export const MapDetailBottomSheet = () => {
@@ -44,13 +29,21 @@ export const MapDetailBottomSheet = () => {
 
   return (
     <>
-      <Overlay isBlur={false} />
-      <BottomSheet minHeightVh={25} maxHeightVh={50}>
-        <BottomSheet.Header />
-        <BottomSheet.Content>
-          <TransferDetail type={type} averageDuration={37} startPoint="선릉역" endPoint="신촌역" />
+      <SnapBottomSheet minHeightVh={20}>
+        <SnapBottomSheet.Header />
+        <TransferDetail
+          type={type}
+          averageDuration={37}
+          startPoint={mockMapData.users[0].startStation}
+          endPoint={mockMapData.users[0].destination}
+        />
+        <SnapBottomSheet.Content>
           {type === "subway" ? (
-            <Path startPoint="신촌역" endPoint="옥수역" transferInfo={transferInfo} />
+            <Path
+              startPoint={mockMapData.users[0].startStation}
+              endPoint={mockMapData.users[0].destination}
+              transferInfo={transferInfo}
+            />
           ) : (
             <CarDetail
               driveDistance={37}
@@ -60,8 +53,8 @@ export const MapDetailBottomSheet = () => {
             />
           )}
           <FixedButton type={type} setType={setType} />
-        </BottomSheet.Content>
-      </BottomSheet>
+        </SnapBottomSheet.Content>
+      </SnapBottomSheet>
     </>
   );
 };
