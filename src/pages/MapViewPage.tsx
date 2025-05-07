@@ -6,11 +6,10 @@ import {
   MapHeader,
   SnapMapBottomSheet,
 } from "@/features/mapView/ui";
-import { useState } from "react";
 
 const MapViewPage = () => {
-  const [isDetail, setIsDetail] = useState(true);
-  const [openDetailBottomSheet, setOpenDetailBottomSheet] = useState(true);
+  const isDetail = true; // 임시 작업
+  const openDetailBottomSheet = true; // 임시 작업
   const memberCount = 2; // 임시 인원 설정
 
   return (
