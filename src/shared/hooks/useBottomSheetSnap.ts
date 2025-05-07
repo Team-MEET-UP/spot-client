@@ -37,11 +37,14 @@ export const useSnapPointDrag = ({ snapPoints, defaultSnap }: UseSnapPointDragPr
 
   useEffect(() => {
     const preventScroll = (e: TouchEvent) => {
+      // 드래그 중 + 가장 작은 snap보다 낮은 경우만 막음
       const maxHeight = Math.max(...snapHeights);
+      if (!e.cancelable) return;
       if (isDragging && height < maxHeight) {
-        e.preventDefault(); // 드래그 중일 때 스크롤 막기 + 스냅 포인트 고려
+        e.preventDefault();
       }
     };
+
     document.addEventListener("touchmove", preventScroll, { passive: false });
 
     return () => {
