@@ -17,7 +17,7 @@ export const Chip = ({ id, isComplete }: ChipProps) => {
         navigate(`/review/${id}`);
       }}>
       <img src={isComplete ? "/icon/check.svg" : "/icon/review.svg"} alt="icon" />
-      {isComplete ? "작성완료" : "리뷰작성"}
+      {isComplete ? "작성 완료" : "리뷰 작성"}
     </button>
   );
 };

@@ -16,7 +16,7 @@ const MainPage = () => {
           onClick={() => {
             navigate("/find");
           }}>
-          바로 모임 만들기
+          중간지점 찾기
         </Button>
         <KakaoLogin />
       </div>
