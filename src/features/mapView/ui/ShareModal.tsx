@@ -1,10 +1,24 @@
 import { Modal } from "@/shared/ui";
+import { shareToKakao } from "../service/kakaoShare";
 
 interface ShareModalProps {
   onClose: () => void;
 }
 
 export const ShareModal = ({ onClose }: ShareModalProps) => {
+  const shareContent = {
+    title: "님이 모임을 생성했어요",
+    description: "",
+    imageUrl: "https://meetup-client-silk.vercel.app/image/main.png",
+    findLink: "https://meetup-client-silk.vercel.app/find",
+    mapViewLink: "https://meetup-client-silk.vercel.app/mapView",
+  };
+
+  const handleKakaoShare = () => {
+    shareToKakao(shareContent);
+    onClose();
+  };
+
   return (
     <Modal>
       <div className="flex flex-col gap-2 p-5">
@@ -24,7 +38,9 @@ export const ShareModal = ({ onClose }: ShareModalProps) => {
             <p>링크 복사</p>
           </div>
           <div>
-            <img src="/icon/share/kakao.svg" alt="카카오톡 공유" />
+            <button onClick={handleKakaoShare}>
+              <img src="/icon/share/kakao.svg" alt="카카오톡 공유" />
+            </button>
             <p>카카오톡</p>
           </div>
         </div>
