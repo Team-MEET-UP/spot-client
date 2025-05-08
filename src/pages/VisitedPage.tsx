@@ -42,7 +42,7 @@ const VisitedPage = () => {
           <StepIndicator step={currentStep} />
           <span className="mt-2 text-lg font-bold text-gray-70">이 장소는 어떠셨나요?</span>
           <p className="text-md font-medium text-gray-40">이용 경험에 대해 알려주세요</p>
-          <div className="flex-1 overflow-y-auto max-h-[calc(100vh-220px)] scrollbar-hidden -webkit-overflow-scrolling-touch">
+          <div className="flex-1 overflow-y-auto max-h-[calc(100vh-220px)] scrollbar-hidden overflow-touch">
             {currentStep === 1 && <FirstStep selectedTime={selectedTime} setSelectedTime={setSelectedTime} />}
             {currentStep === 2 && <SecondStep secondData={secondData} setSecondData={setSecondData} />}
           </div>
