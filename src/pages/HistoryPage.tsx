@@ -15,7 +15,7 @@ const HistoryPage = () => {
       <div className="flex flex-col px-5 gap-2">
         <Header profileImg="https://github.com/shadcn.png" />
         <Banner />
-        <span className="mt-4 py-3 text-lg font-bold">참여한 모임</span>
+        <span className="mt-4 py-3 text-lg font-bold">나의 모임</span>
       </div>
       {length > 0 ? (
         <div>

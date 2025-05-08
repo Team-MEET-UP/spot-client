@@ -13,7 +13,7 @@ export const Banner = () => {
         <span className="text-lg font-bold">모임 만들기</span>
         <img src="/icon/arrow.svg" alt="arrow" />
       </div>
-      <p className="text-sm font-medium">만남 장소를 정해보세요</p>
+      <p className="text-sm font-medium">중간지점을 찾아드려요</p>
       <img src="/image/banner.png" className=" absolute top-0 right-5 h-20 w-20" />
     </div>
   );
