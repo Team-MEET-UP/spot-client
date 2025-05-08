@@ -18,7 +18,7 @@ const images = [
 ];
 
 const DetailPage = () => {
-  const isReview = false;
+  const isReview = true;
   const isComplete = true; // 약속 장소 확정 유무
 
   return (
