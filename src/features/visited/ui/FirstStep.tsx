@@ -8,17 +8,20 @@ const options = [
   {
     label: "아침",
     value: "morning",
-    imageUrl: "https://images.unsplash.com/photo-1501426026826-31c667bdf23d?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "/icon/morning.svg",
+    activeUrl: "/icon/morningBlue.svg",
   },
   {
     label: "점심",
     value: "afternoon",
-    imageUrl: "https://images.unsplash.com/photo-1501426026826-31c667bdf23d?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "/icon/afternoon.svg",
+    activeUrl: "/icon/afternoonBlue.svg",
   },
   {
     label: "저녁",
     value: "evening",
-    imageUrl: "https://images.unsplash.com/photo-1501426026826-31c667bdf23d?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "/icon/evening.svg",
+    activeUrl: "/icon/eveningBlue.svg",
   },
 ];
 
@@ -35,7 +38,7 @@ const FirstStep = ({ selectedTime, setSelectedTime }: FirstStepProps) => {
             className={`relative flex gap-3 py-3 px-4 rounded-xl w-full text-md font-semibold items-center border 
               ${isSelected ? "bg-white border-sub-sub text-sub-sub" : "bg-gray-5 text-gray-60 border-gray-5"}
             `}>
-            <img className="w-8 h-8" src={option.imageUrl} alt={option.value} />
+            <img className="w-8 h-8" src={isSelected ? option.activeUrl : option.imageUrl} alt={option.value} />
             {option.label}에 방문했어요
             {isSelected && <img className="absolute top-4 right-4" src="/icon/checkBlue.svg" alt="check" />}
           </button>
