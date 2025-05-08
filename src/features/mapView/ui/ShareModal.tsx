@@ -18,7 +18,7 @@ export const ShareModal = ({ onClose }: ShareModalProps) => {
           </button>
         </div>
 
-        <div className="flex flex-row gap-6 justify-center items-center text-gray-80 text-xs">
+        <div className="flex flex-row gap-6 justify-center items-center text-gray-80 text-xs text-center">
           <div>
             <img src="/icon/share/link.svg" alt="링크 복사" />
             <p>링크 복사</p>

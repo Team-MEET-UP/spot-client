@@ -1,8 +1,7 @@
 import { useMapStore } from "@/shared/stores";
-import { useNavigate } from "react-router-dom";
 import { UserCard } from "./UserCard";
 import { useState } from "react";
-import { ShareModal } from ".";
+import { LoginModal, ShareModal } from ".";
 
 export const BottomSheetContent = () => {
   const { users, meetingPoint } = useMapStore();
@@ -27,14 +26,15 @@ export const BottomSheetContent = () => {
 
 export const FixedButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
+  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false); // 추후 로그인 상태인지 검증하는 로직 구현예정
+  // const navigate = useNavigate();
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white p-5">
       <div className="flex flex-row gap-2">
         <button
           className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
-          onClick={() => navigate("/find")}>
+          onClick={() => setIsOpenLoginModal(true)}>
           <img src="./icon/addUser.svg" alt="addUser" />
           <span>멤버 추가하기</span>
         </button>
@@ -43,6 +43,7 @@ export const FixedButtons = () => {
         </button>
       </div>
       {isOpen && <ShareModal onClose={() => setIsOpen(false)} />}
+      {isOpenLoginModal && <LoginModal />}
     </div>
   );
 };
