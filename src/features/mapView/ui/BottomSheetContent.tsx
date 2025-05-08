@@ -1,6 +1,8 @@
 import { useMapStore } from "@/shared/stores";
 import { useNavigate } from "react-router-dom";
 import { UserCard } from "./UserCard";
+import { useState } from "react";
+import { ShareModal } from ".";
 
 export const BottomSheetContent = () => {
   const { users, meetingPoint } = useMapStore();
@@ -24,6 +26,7 @@ export const BottomSheetContent = () => {
 };
 
 export const FixedButtons = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -36,9 +39,10 @@ export const FixedButtons = () => {
           <span>멤버 추가하기</span>
         </button>
         <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-md">
-          <img src="./icon/share.svg" alt="share" />
+          <img src="./icon/share.svg" alt="share" onClick={() => setIsOpen(true)} />
         </button>
       </div>
+      {isOpen && <ShareModal onClose={() => setIsOpen(false)} />}
     </div>
   );
 };

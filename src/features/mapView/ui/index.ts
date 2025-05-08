@@ -5,3 +5,4 @@ export * from "./MapDetailBottomSheet";
 export * from "./SnapBottomSheet";
 export * from "./DetailKakaoMapView";
 export * from "./TooCloseSheet";
+export * from "./ShareModal";
