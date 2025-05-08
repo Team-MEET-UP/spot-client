@@ -16,7 +16,7 @@ export const MapHeader = ({ profileImg }: HeaderProps) => {
   };
 
   return (
-    <header className="flex justify-between items-center py-3">
+    <header className="flex justify-between items-center py-3 px-5 bg-white w-full z-[101] relative">
       <img src="icon/logo.svg" alt="logo" className="h-6" onClick={handleLogoClick} />
       {profileImg ? (
         <button onClick={() => navigate("/my")}>
