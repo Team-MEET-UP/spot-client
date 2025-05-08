@@ -1,5 +1,5 @@
 import { Photo, PlaceInfo, Review } from "@/features/detail/ui";
-import { Empty } from "@/features/history/ui";
+import { Empty } from "@/features/detail/ui";
 import Button from "@/shared/ui/Button";
 
 // @TODO 백엔드 데이터 구조에 따라 아래와 같은 type 설정 후 props로 관리하는 구조로 변경해야 함!
@@ -18,7 +18,7 @@ const images = [
 ];
 
 const DetailPage = () => {
-  const isReview = true;
+  const isReview = false;
   const isComplete = true; // 약속 장소 확정 유무
 
   return (

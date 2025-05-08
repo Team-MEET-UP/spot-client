@@ -3,7 +3,7 @@ import { mockListData } from "@/shared/model";
 import { useState } from "react";
 
 const HistoryPage = () => {
-  const length = 1; // 임시 ui 구현을 위한 작업!
+  const length = 0; // 임시 ui 구현을 위한 작업!
   const [isPolicy, setIsPolicy] = useState(true);
 
   const handleClick = () => {
