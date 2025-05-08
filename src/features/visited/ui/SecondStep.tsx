@@ -20,7 +20,7 @@ const fields = [
 
 const SecondStep = ({ secondData, setSecondData }: SecondStepProps) => {
   return (
-    <div className="flex flex-col gap-14 mt-8">
+    <div className="flex flex-col gap-14 mt-8" data-scrollable={true}>
       <div className="flex flex-col gap-10">
         {fields.map(({ label, key }) => (
           <ScoreSelector
