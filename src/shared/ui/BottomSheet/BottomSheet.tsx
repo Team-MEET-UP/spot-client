@@ -2,32 +2,27 @@ import { useEffect } from "react";
 import { useBottomSheetDrag } from "@/shared/hooks/useBottomSheetDrag";
 import { Header } from "./Header";
 import { Content } from "./Content";
-import { Wrapper } from "./Wrapper";
 import { Portal } from "..";
+import { motion } from "framer-motion";
 
 interface BottomSheetProps {
   children: React.ReactNode;
   minHeightVh?: number;
   maxHeightVh?: number;
+  isVisible?: boolean;
 }
 
-export const BottomSheet = ({
-  children,
-  minHeightVh = 25, // 기본값 25vh
-  maxHeightVh = 80, // 기본값 80vh
-}: BottomSheetProps) => {
+export const BottomSheet = ({ children, minHeightVh = 25, maxHeightVh = 80, isVisible = true }: BottomSheetProps) => {
   const { currentHeight, isDragging, handlers, bindDragEvents, handleResize } = useBottomSheetDrag({
     minHeightVh,
     maxHeightVh,
   });
 
-  // 드래그 이벤트 바인딩
   useEffect(() => {
     const cleanup = bindDragEvents();
     return () => cleanup();
   }, [bindDragEvents]);
 
-  // 화면 크기 변경 감지
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -35,18 +30,22 @@ export const BottomSheet = ({
 
   return (
     <Portal>
-      <Wrapper
+      <motion.div
+        initial={{ y: "100%" }}
+        animate={{ y: isVisible ? 0 : "100%" }}
+        exit={{ y: "100%" }}
+        transition={{ duration: 0.3 }}
         style={{
-          height: `${currentHeight}px`,
+          height: currentHeight,
           transition: isDragging ? "none" : "height 0.3s ease-out",
         }}
+        className="fixed bottom-0 left-0 w-full z-[1000] bg-white rounded-t-2xl shadow-lg"
         {...handlers}>
         {children}
-      </Wrapper>
+      </motion.div>
     </Portal>
   );
 };
 
-// Compound Components
 BottomSheet.Header = Header;
 BottomSheet.Content = Content;
