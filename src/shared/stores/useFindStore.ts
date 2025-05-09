@@ -29,6 +29,7 @@ interface FindState {
   prevStep: () => void;
   reset: () => void;
   getFormattedData: () => FormattedData | null;
+  resetFindStore: () => void;
 }
 
 const useFindStore = create<FindState>()((set, get) => ({
@@ -59,6 +60,18 @@ const useFindStore = create<FindState>()((set, get) => ({
       latitude: state.startPointInfo.latitude,
     };
   },
+  resetFindStore: () =>
+    set({
+      name: "",
+      startPointInfo: {
+        name: "",
+        startPoint: "",
+        address: "",
+        roadAddress: "",
+        latitude: 0,
+        longitude: 0,
+      },
+    }),
 }));
 
 export { useFindStore };
