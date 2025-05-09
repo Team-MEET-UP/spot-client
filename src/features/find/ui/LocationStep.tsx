@@ -14,15 +14,17 @@ interface StartPoint {
   id: string;
   name: string;
   address: string;
+  roadAddress: string;
   latitude: number;
   longitude: number;
 }
 
 export const LocationStep = () => {
-  const { startPoint, setStartPoint, prevStep } = useFindStore();
-  const [value, setValue] = useState(startPoint || "");
+  const { startPointInfo, setStartPointInfo, prevStep, name, getFormattedData } = useFindStore();
+  const [value, setValue] = useState(startPointInfo?.name ?? "");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const debouncedValue = useDebounce(value, 300);
+  const [isSearching, setIsSearching] = useState(false);
 
   const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
     queryKey: ["searchStartPoints", debouncedValue],
@@ -32,13 +34,15 @@ export const LocationStep = () => {
         id: doc.id,
         name: doc.place_name,
         address: doc.address_name,
+        roadAddress: doc.road_address_name,
         latitude: parseFloat(doc.y),
         longitude: parseFloat(doc.x),
       })),
-    enabled: debouncedValue.trim().length > 0,
+    enabled: isSearching && debouncedValue.trim().length > 0,
     staleTime: 0,
     refetchOnWindowFocus: false,
   });
+
   useEffect(() => {
     const handleResize = () => {
       if (window.visualViewport) {
@@ -57,21 +61,31 @@ export const LocationStep = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    setIsSearching(true);
   };
 
   const validateValue = () => value.trim().length > 0;
 
   const handleSelectLocation = (location: StartPoint) => {
     setValue(location.name);
+    setStartPointInfo({
+      name: name,
+      startPoint: location.name,
+      address: location.address,
+      roadAddress: location.roadAddress,
+      latitude: location.latitude,
+      longitude: location.longitude,
+    });
+    setIsSearching(false);
   };
 
   const handleComplete = () => {
-    if (!validateValue()) return;
-    setStartPoint(value);
-    // TODO: 완료 처리
+    if (!validateValue() || !startPointInfo) return;
+    const data = getFormattedData();
+    console.log("서버로 보낼 정보", data);
   };
 
-  const isTyping = debouncedValue.trim().length > 0;
+  const isTyping = isSearching && debouncedValue.trim().length > 0;
 
   return (
     <div className="flex flex-col h-full">
