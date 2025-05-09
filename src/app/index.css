@@ -24,3 +24,6 @@
 .scrollbar-hidden::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+.overflow-touch {
+  -webkit-overflow-scrolling: touch; /* iOS Safari 부드러운 스크롤 */
+}
