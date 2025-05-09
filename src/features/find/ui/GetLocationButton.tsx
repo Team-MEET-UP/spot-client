@@ -12,7 +12,6 @@ export const GetLocationButton = ({ setValue }: GetLocationButtonProps) => {
 
   const handleGetCurrentLocation = async () => {
     try {
-      // ✅ 1. 현재 위치 가져오기
       const position = await new Promise<GeolocationPosition>((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
           enableHighAccuracy: true,
@@ -21,16 +20,10 @@ export const GetLocationButton = ({ setValue }: GetLocationButtonProps) => {
         });
       });
 
-      // ✅ 2. Kakao Maps SDK 로딩
       await loadKakaoMapSdk();
 
-      // ✅ 3. 좌표 → 주소 변환
-      const locationInfo = await getLocationInfo(
-        position.coords.latitude,
-        position.coords.longitude
-      );
+      const locationInfo = await getLocationInfo(position.coords.latitude, position.coords.longitude);
 
-      // ✅ 4. 상태 업데이트
       setValue(locationInfo.placeName);
 
       setStartPointInfo({
@@ -49,10 +42,8 @@ export const GetLocationButton = ({ setValue }: GetLocationButtonProps) => {
   return (
     <button
       onClick={handleGetCurrentLocation}
-      className="flex gap-2 w-full h-14 justify-center items-center bg-gray-100 text-gray-50 text-md font-semibold rounded-2xl"
-    >
-      <img src="/icon/location.svg" alt="현재 위치" className="w-5 h-5" />
-      현 위치 불러오기
+      className="flex gap-2 w-full h-14 justify-center items-center bg-gray-100 text-gray-50 text-md font-semibold rounded-2xl">
+      <img src="/icon/location.svg" alt="현재 위치" className="w-5 h-5" />현 위치 불러오기
     </button>
   );
 };

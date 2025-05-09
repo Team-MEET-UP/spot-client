@@ -4,10 +4,7 @@ interface LocationInfo {
   placeName: string;
 }
 
-export const getLocationInfo = (
-  latitude: number,
-  longitude: number
-): Promise<LocationInfo> => {
+export const getLocationInfo = (latitude: number, longitude: number): Promise<LocationInfo> => {
   return new Promise((resolve, reject) => {
     if (!window.kakao || !window.kakao.maps) {
       reject(new Error("Kakao Maps SDK not loaded"));
@@ -17,17 +14,11 @@ export const getLocationInfo = (
     window.kakao.maps.load(() => {
       const geocoder = new window.kakao.maps.services.Geocoder();
 
-      // 좌표 로그 출력
-      console.log("Latitude:", latitude, "Longitude:", longitude);
-
       geocoder.coord2Address(longitude, latitude, (result: any, status: string) => {
-        console.log("Geocode result:", result);
-        console.log("Geocode status:", status);
-
         if (status === window.kakao.maps.services.Status.OK) {
           // result가 직접 documents 배열을 가지고 있는 경우
           const documents = Array.isArray(result) ? result : result.documents;
-          
+
           if (documents && documents.length > 0) {
             const document = documents[0];
 
