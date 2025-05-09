@@ -9,7 +9,7 @@ interface StartPointInfo {
   latitude: number;
 }
 
-interface FormattedData {
+export interface FormattedData {
   username: string;
   startPoint: string;
   address: string;

@@ -5,10 +5,11 @@ import { useState, useEffect } from "react";
 import PlainHeader from "@/shared/ui/PlainHeader";
 import { InputField, LocationCard } from "@/shared/ui";
 import { useDebounce } from "@/shared/hooks";
-import { searchStartPoints } from "../service";
-import { useQuery } from "@tanstack/react-query";
+import { createEvent, searchStartPoints } from "../service";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { StartPointResponse } from "../model";
-import { highlightMatchingText } from "@/shared/utils";
+import { highlightMatchingText, setCookie } from "@/shared/utils";
+import { useNavigate } from "react-router-dom";
 
 interface StartPoint {
   id: string;
@@ -25,6 +26,7 @@ export const LocationStep = () => {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const debouncedValue = useDebounce(value, 300);
   const [isSearching, setIsSearching] = useState(false);
+  const navigate = useNavigate();
 
   const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
     queryKey: ["searchStartPoints", debouncedValue],
@@ -41,6 +43,23 @@ export const LocationStep = () => {
     enabled: isSearching && debouncedValue.trim().length > 0,
     staleTime: 0,
     refetchOnWindowFocus: false,
+  });
+
+  const { mutate: createEventMutate } = useMutation({
+    mutationFn: createEvent,
+    onSuccess: response => {
+      const { eventId, startPointId } = response.data;
+
+      // 쿠키 저장
+      setCookie("eventId", eventId, { path: "/", maxAge: 86400 });
+      setCookie("startPointId", startPointId, { path: "/", maxAge: 86400 });
+
+      // 페이지 이동
+      navigate(`/mapview?eventId=${eventId}`);
+    },
+    onError: error => {
+      console.error("모임 생성 실패", error);
+    },
   });
 
   useEffect(() => {
@@ -82,7 +101,8 @@ export const LocationStep = () => {
   const handleComplete = () => {
     if (!validateValue() || !startPointInfo) return;
     const data = getFormattedData();
-    console.log("서버로 보낼 정보", data);
+    if (!data) return;
+    createEventMutate(data);
   };
 
   const isTyping = isSearching && debouncedValue.trim().length > 0;
