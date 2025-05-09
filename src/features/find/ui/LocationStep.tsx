@@ -1,6 +1,6 @@
 import { FormattedData, useFindStore } from "@/shared/stores";
 import Button from "@/shared/ui/Button";
-import { GetLocaitonButton } from ".";
+import { GetLocationButton } from ".";
 import { useState, useEffect } from "react";
 import PlainHeader from "@/shared/ui/PlainHeader";
 import { InputField, LocationCard } from "@/shared/ui";
@@ -154,7 +154,7 @@ export const LocationStep = () => {
               )}
             </div>
           ) : (
-            <GetLocaitonButton />
+            <GetLocationButton setValue={setValue} />
           )}
         </div>
       </div>
@@ -165,7 +165,7 @@ export const LocationStep = () => {
             marginBottom: keyboardHeight > 0 ? `${keyboardHeight + 20}px` : "20px",
           }}>
           <Button onClick={handleComplete} disabled={!validateValue()}>
-            완료
+            추가하기
           </Button>
         </div>
       )}
