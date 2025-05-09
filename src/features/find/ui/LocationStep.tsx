@@ -7,10 +7,14 @@ import { InputField, LocationCard } from "@/shared/ui";
 import { useDebounce } from "@/shared/hooks";
 import { searchStartPoints } from "../service";
 import { useQuery } from "@tanstack/react-query";
+import { StartPointResponse } from "../model";
 
-interface Location {
+interface StartPoint {
+  id: string;
   name: string;
   address: string;
+  latitude: number;
+  longitude: number;
 }
 
 export const LocationStep = () => {
@@ -19,14 +23,21 @@ export const LocationStep = () => {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const debouncedValue = useDebounce(value, 300);
 
-  const { data: searchResults = [], isError } = useQuery({
+  const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
     queryKey: ["searchStartPoints", debouncedValue],
     queryFn: () => searchStartPoints({ textQuery: debouncedValue.trim() }),
+    select: response =>
+      response.data.documents.map(doc => ({
+        id: doc.id,
+        name: doc.place_name,
+        address: doc.address_name,
+        latitude: parseFloat(doc.y),
+        longitude: parseFloat(doc.x),
+      })),
     enabled: debouncedValue.trim().length > 0,
     staleTime: 0,
     refetchOnWindowFocus: false,
   });
-
   useEffect(() => {
     const handleResize = () => {
       if (window.visualViewport) {
@@ -49,7 +60,7 @@ export const LocationStep = () => {
 
   const validateValue = () => value.trim().length > 0;
 
-  const handleSelectLocation = (location: Location) => {
+  const handleSelectLocation = (location: StartPoint) => {
     setValue(location.name);
   };
 
