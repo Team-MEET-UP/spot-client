@@ -3,8 +3,10 @@ import Button from "@/shared/ui/Button";
 import { GetLocaitonButton } from ".";
 import { useState, useEffect } from "react";
 import PlainHeader from "@/shared/ui/PlainHeader";
-import { mockSearchData } from "@/shared/model";
 import { InputField, LocationCard } from "@/shared/ui";
+import { useDebounce } from "@/shared/hooks";
+import { searchStartPoints } from "../service";
+import { useQuery } from "@tanstack/react-query";
 
 interface Location {
   name: string;
@@ -15,8 +17,15 @@ export const LocationStep = () => {
   const { startPoint, setStartPoint, prevStep } = useFindStore();
   const [value, setValue] = useState(startPoint || "");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
-  const [isTyping, setIsTyping] = useState(false);
-  const [searchResults, setSearchResults] = useState<Location[]>([]);
+  const debouncedValue = useDebounce(value, 300);
+
+  const { data: searchResults = [], isError } = useQuery({
+    queryKey: ["searchStartPoints", debouncedValue],
+    queryFn: () => searchStartPoints({ textQuery: debouncedValue.trim() }),
+    enabled: debouncedValue.trim().length > 0,
+    staleTime: 0,
+    refetchOnWindowFocus: false,
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,28 +44,13 @@ export const LocationStep = () => {
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
     setValue(e.target.value);
-    if (inputValue.trim().length > 0) {
-      setIsTyping(true);
-      // mock 데이터 필터링해서 리스트 보여주기 (임시)
-      setSearchResults(
-        mockSearchData.filter(item => item.name.includes(inputValue) || item.address.includes(inputValue))
-      );
-    } else {
-      setIsTyping(false);
-      setSearchResults([]);
-    }
   };
 
-  const validateValue = () => {
-    return value.trim().length > 0;
-  };
+  const validateValue = () => value.trim().length > 0;
 
   const handleSelectLocation = (location: Location) => {
     setValue(location.name);
-    setIsTyping(false);
-    setSearchResults([]);
   };
 
   const handleComplete = () => {
@@ -64,6 +58,8 @@ export const LocationStep = () => {
     setStartPoint(value);
     // TODO: 완료 처리
   };
+
+  const isTyping = debouncedValue.trim().length > 0;
 
   return (
     <div className="flex flex-col h-full">
@@ -78,14 +74,18 @@ export const LocationStep = () => {
           <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} type="startPoint" />
           {isTyping ? (
             <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-              {searchResults.map((location, index) => (
-                <LocationCard
-                  key={index}
-                  name={location.name}
-                  address={location.address}
-                  onClick={() => handleSelectLocation(location)}
-                />
-              ))}
+              {isError ? (
+                <p className="text-red-500 text-sm">검색 중 오류가 발생했어요.</p>
+              ) : (
+                searchResults.map((location, index) => (
+                  <LocationCard
+                    key={index}
+                    name={location.name}
+                    address={location.address}
+                    onClick={() => handleSelectLocation(location)}
+                  />
+                ))
+              )}
             </div>
           ) : (
             <GetLocaitonButton />
