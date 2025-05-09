@@ -8,6 +8,7 @@ import { useDebounce } from "@/shared/hooks";
 import { searchStartPoints } from "../service";
 import { useQuery } from "@tanstack/react-query";
 import { StartPointResponse } from "../model";
+import { highlightMatchingText } from "@/shared/utils";
 
 interface StartPoint {
   id: string;
@@ -91,7 +92,7 @@ export const LocationStep = () => {
                 searchResults.map((location, index) => (
                   <LocationCard
                     key={index}
-                    name={location.name}
+                    name={highlightMatchingText(location.name, debouncedValue)}
                     address={location.address}
                     onClick={() => handleSelectLocation(location)}
                   />
