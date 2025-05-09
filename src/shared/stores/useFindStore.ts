@@ -62,6 +62,7 @@ const useFindStore = create<FindState>()((set, get) => ({
   },
   resetFindStore: () =>
     set({
+      currentStep: 0,
       name: "",
       startPointInfo: {
         name: "",
