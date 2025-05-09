@@ -22,3 +22,13 @@ export const createEvent = async (payload: FormattedData) => {
     throw error;
   }
 };
+
+export const addMember = async (payload: FormattedData, eventId: string) => {
+  try {
+    const response = await api.post(`/events/${eventId}/start-points`, payload);
+    return response.data;
+  } catch (error) {
+    console.log("멤버 추가 실패", error);
+    throw error;
+  }
+};

@@ -1,15 +1,15 @@
-import { useFindStore } from "@/shared/stores";
+import { FormattedData, useFindStore } from "@/shared/stores";
 import Button from "@/shared/ui/Button";
 import { GetLocaitonButton } from ".";
 import { useState, useEffect } from "react";
 import PlainHeader from "@/shared/ui/PlainHeader";
 import { InputField, LocationCard } from "@/shared/ui";
 import { useDebounce } from "@/shared/hooks";
-import { createEvent, searchStartPoints } from "../service";
+import { addMember, createEvent, searchStartPoints } from "../service";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { StartPointResponse } from "../model";
 import { highlightMatchingText, setCookie } from "@/shared/utils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface StartPoint {
   id: string;
@@ -26,6 +26,9 @@ export const LocationStep = () => {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const debouncedValue = useDebounce(value, 300);
   const [isSearching, setIsSearching] = useState(false);
+  const [searchParams] = useSearchParams();
+  const eventIdParam = searchParams.get("eventId"); // eventId 쿼리 파라미터 추출
+  const eventIdExists = !!eventIdParam;
   const navigate = useNavigate();
 
   const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
@@ -59,6 +62,16 @@ export const LocationStep = () => {
     },
     onError: error => {
       console.error("모임 생성 실패", error);
+    },
+  });
+  const { mutate: addMemberMutate } = useMutation({
+    mutationFn: ({ payload, eventId }: { payload: FormattedData; eventId: string }) => addMember(payload, eventId),
+    onSuccess: response => {
+      setCookie("startPointId", response.data.startPointId, { path: "/", maxAge: 86400 });
+      navigate(`/mapview?eventId=${eventIdParam}`);
+    },
+    onError: error => {
+      console.error("멤버 추가 실패", error);
     },
   });
 
@@ -102,7 +115,14 @@ export const LocationStep = () => {
     if (!validateValue() || !startPointInfo) return;
     const data = getFormattedData();
     if (!data) return;
-    createEventMutate(data);
+
+    if (eventIdExists && eventIdParam) {
+      // eventId가 있으면 addMember 호출
+      addMemberMutate({ payload: data, eventId: eventIdParam });
+    } else {
+      // eventId 없으면 createEvent 호출
+      createEventMutate(data);
+    }
   };
 
   const isTyping = isSearching && debouncedValue.trim().length > 0;
