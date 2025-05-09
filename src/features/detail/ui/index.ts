@@ -5,5 +5,4 @@ export * from "./ProgressBar";
 export * from "./Review";
 export * from "./ReviewItem";
 export * from "./Tag";
-export * from "./ShareModal";
 export * from "./PlaceModal";

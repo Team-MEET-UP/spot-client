@@ -1,6 +1,8 @@
 import { useMapStore } from "@/shared/stores";
-import { useNavigate } from "react-router-dom";
 import { UserCard } from "./UserCard";
+import { useState } from "react";
+import { LoginModal } from ".";
+import { ShareModal } from "@/shared/ui";
 
 export const BottomSheetContent = () => {
   const { users, meetingPoint } = useMapStore();
@@ -24,21 +26,40 @@ export const BottomSheetContent = () => {
 };
 
 export const FixedButtons = () => {
-  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false); // 추후 로그인 상태인지 검증하는 로직 구현예정
+  const shareContent = {
+    title: "님이 모임을 생성했어요",
+    description: "",
+    imageUrl: "https://meetup-client-silk.vercel.app/image/main.png",
+    links: [
+      { label: "내 출발지 입력하기", url: "https://meetup-client-silk.vercel.app/find" },
+      { label: "우리 모임의 중간지점은?", url: "https://meetup-client-silk.vercel.app/mapView" },
+    ],
+  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white p-5">
       <div className="flex flex-row gap-2">
         <button
           className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
-          onClick={() => navigate("/find")}>
+          onClick={() => setIsOpenLoginModal(true)}>
           <img src="./icon/addUser.svg" alt="addUser" />
           <span>멤버 추가하기</span>
         </button>
         <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-md">
-          <img src="./icon/share.svg" alt="share" />
+          <img src="./icon/share.svg" alt="share" onClick={() => setIsOpen(true)} />
         </button>
       </div>
+      {isOpen && (
+        <ShareModal
+          onClose={() => setIsOpen(false)}
+          title="링크 공유하기"
+          description="멤버가 출발지를 직접 입력할 수 있어요"
+          shareContent={shareContent}
+        />
+      )}
+      {isOpenLoginModal && <LoginModal />}
     </div>
   );
 };
