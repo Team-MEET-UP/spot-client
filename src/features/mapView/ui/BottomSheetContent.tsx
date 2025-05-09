@@ -34,8 +34,8 @@ export const FixedButtons = () => {
     description: "",
     imageUrl: "https://meetup-client-silk.vercel.app/image/main.png",
     links: [
-      { label: "내 출발지 입력하기", url: `https://meetup-client-silk.vercel.app/find?eventId=${eventId}` },
-      { label: "우리 모임의 중간지점은?", url: `https://meetup-client-silk.vercel.app/mapView?eventId=${eventId}` },
+      { label: "내 출발지 입력", url: `https://meetup-client-silk.vercel.app/find?eventId=${eventId}` },
+      { label: "중간지점 보기", url: `https://meetup-client-silk.vercel.app/mapView?eventId=${eventId}` },
     ],
   };
 
