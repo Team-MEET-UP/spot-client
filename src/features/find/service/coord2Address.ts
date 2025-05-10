@@ -4,6 +4,27 @@ interface LocationInfo {
   placeName: string;
 }
 
+interface KakaoGeocoderAddress {
+  address_name: string;
+  region_1depth_name: string;
+  region_2depth_name: string;
+  region_3depth_name: string;
+  mountain_yn: string;
+  main_address_no: string;
+  sub_address_no: string;
+  zip_code: string;
+}
+
+interface KakaoGeocoderRoadAddress {
+  address_name: string;
+  building_name: string;
+}
+
+interface KakaoGeocoderDocument {
+  address: KakaoGeocoderAddress;
+  road_address: KakaoGeocoderRoadAddress | null;
+}
+
 export const getLocationInfo = (latitude: number, longitude: number): Promise<LocationInfo> => {
   return new Promise((resolve, reject) => {
     if (!window.kakao || !window.kakao.maps) {
@@ -14,28 +35,21 @@ export const getLocationInfo = (latitude: number, longitude: number): Promise<Lo
     window.kakao.maps.load(() => {
       const geocoder = new window.kakao.maps.services.Geocoder();
 
-      geocoder.coord2Address(longitude, latitude, (result: any, status: string) => {
+      geocoder.coord2Address(longitude, latitude, (result: KakaoGeocoderDocument[], status: string) => {
         if (status === window.kakao.maps.services.Status.OK) {
-          // result가 직접 documents 배열을 가지고 있는 경우
-          const documents = Array.isArray(result) ? result : result.documents;
+          if (result && result.length > 0) {
+            const document = result[0];
 
-          if (documents && documents.length > 0) {
-            const document = documents[0];
-
-            // 주소 정보 추출
-            const address = document.address?.address_name || "";
+            const address = document.address.address_name;
             const roadAddress = document.road_address?.address_name || address;
 
-            // 지명 추출 (우선순위: road_address > region_3depth_name > region_2depth_name > region_1depth_name)
             let placeName = "";
-            if (document.road_address?.building_name) {
-              placeName = document.road_address.building_name;
-            } else if (document.address?.region_3depth_name) {
+            if (document.address.region_3depth_name) {
               placeName = document.address.region_3depth_name;
-            } else if (document.address?.region_2depth_name) {
+            } else if (document.address.region_2depth_name) {
               placeName = document.address.region_2depth_name;
             } else {
-              placeName = document.address?.region_1depth_name || "";
+              placeName = document.address.region_1depth_name;
             }
 
             resolve({
