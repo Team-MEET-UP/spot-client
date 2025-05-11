@@ -1,19 +1,29 @@
 import api from "@/shared/api/api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-export const getUserInfo = async () => {
-  try {
-    const response = await api.get("/users");
-    if (response.data.result === "SUCCESS") {
-      return response.data;
-    } else {
-      console.error("서버 에러 발생", response.data.error.message);
-      return null;
-    }
-  } catch (error) {
-    console.error("유저 정보 조회 실패: ", error);
-    throw error;
-  }
+interface UserInfo {
+  userId: number;
+  nickname: string;
+  profileImageUrl: string;
+  personalInfoAgreement: boolean;
+  marketingAgreement: boolean;
+}
+
+export const useUserInfo = () => {
+  return useQuery<UserInfo>({
+    queryKey: ["userInfo"],
+    queryFn: async () => {
+      const response = await api.get("/users");
+      if (response.data.result === "SUCCESS") {
+        return response.data.data;
+      } else {
+        console.error("서버 에러 발생", response.data.error.message);
+        throw new Error(response.data.error.message);
+      }
+    },
+    retry: 2, // 실패 시 최대 두 번 재시도
+    staleTime: 1000 * 60 * 5, // 5분 동안 데이터 캐시 유지
+  });
 };
 
 export const useStoreAgreement = () => {
