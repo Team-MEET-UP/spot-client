@@ -43,14 +43,8 @@ export const getLocationInfo = (latitude: number, longitude: number): Promise<Lo
             const address = document.address.address_name;
             const roadAddress = document.road_address?.address_name || address;
 
-            let placeName = "";
-            if (document.address.region_3depth_name) {
-              placeName = document.address.region_3depth_name;
-            } else if (document.address.region_2depth_name) {
-              placeName = document.address.region_2depth_name;
-            } else {
-              placeName = document.address.region_1depth_name;
-            }
+            // 도로명 주소가 존재하면 도로명 주소를 placeName으로, 없으면 지번 주소
+            const placeName = document.road_address?.address_name ?? document.address.address_name;
 
             resolve({
               address,

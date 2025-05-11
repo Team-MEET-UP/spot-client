@@ -7,8 +7,12 @@ import { useEffect, useState } from "react";
 import { InputField } from "@/shared/ui";
 import { useNavigate } from "react-router-dom";
 
-export const NameStep = () => {
-  const { name, setName, nextStep } = useFindStore();
+interface NameStepProps {
+  setCurrentStep: (step: number) => void;
+}
+
+export const NameStep = ({ setCurrentStep }: NameStepProps) => {
+  const { name, setName } = useFindStore();
   const { value, error, handleChange, validateValue, isValid } = useValidation(name, validateName);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const navigate = useNavigate();
@@ -32,7 +36,7 @@ export const NameStep = () => {
   const handleNext = () => {
     if (!validateValue()) return;
     setName(value);
-    nextStep();
+    setCurrentStep(1);
   };
 
   return (

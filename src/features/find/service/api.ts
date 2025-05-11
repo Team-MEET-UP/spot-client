@@ -1,6 +1,5 @@
 import api from "@/shared/api/api";
-import { StartPointResponse } from "../model";
-import { FormattedData } from "@/shared/stores";
+import { FormattedData, StartPointResponse } from "../model";
 
 interface SearchStartPointParams {
   textQuery: string;

@@ -1,4 +1,4 @@
-import { FormattedData, useFindStore } from "@/shared/stores";
+import { useFindStore } from "@/shared/stores";
 import Button from "@/shared/ui/Button";
 import { GetLocationButton } from ".";
 import { useState, useEffect } from "react";
@@ -7,7 +7,7 @@ import { InputField, LocationCard } from "@/shared/ui";
 import { useDebounce } from "@/shared/hooks";
 import { addMember, createEvent, searchStartPoints } from "../service";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { StartPointResponse } from "../model";
+import { FormattedData, StartPointInfo, StartPointResponse } from "../model";
 import { highlightMatchingText, setCookie } from "@/shared/utils";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -20,9 +20,15 @@ interface StartPoint {
   longitude: number;
 }
 
-export const LocationStep = () => {
-  const { startPointInfo, setStartPointInfo, prevStep, name, getFormattedData } = useFindStore();
-  const [value, setValue] = useState(startPointInfo?.name ?? "");
+interface LocationStepProps {
+  setCurrentStep: (step: number) => void;
+  startPointInfo: StartPointInfo | null;
+  setStartPointInfo: (info: StartPointInfo) => void;
+}
+
+export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo }: LocationStepProps) => {
+  const { name } = useFindStore();
+  const [value, setValue] = useState(startPointInfo?.address ?? "");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const debouncedValue = useDebounce(value, 300);
   const [isSearching, setIsSearching] = useState(false);
@@ -111,16 +117,27 @@ export const LocationStep = () => {
     setIsSearching(false);
   };
 
+  const getFormattedData = (): FormattedData | null => {
+    if (!name || !startPointInfo) return null;
+
+    return {
+      username: name,
+      startPoint: startPointInfo.startPoint,
+      address: startPointInfo.address,
+      roadAddress: startPointInfo.roadAddress,
+      longitude: startPointInfo.longitude,
+      latitude: startPointInfo.latitude,
+    };
+  };
+
   const handleComplete = () => {
     if (!validateValue() || !startPointInfo) return;
     const data = getFormattedData();
     if (!data) return;
 
     if (eventIdExists && eventIdParam) {
-      // eventId가 있으면 addMember 호출
       addMemberMutate({ payload: data, eventId: eventIdParam });
     } else {
-      // eventId 없으면 createEvent 호출
       createEventMutate(data);
     }
   };
@@ -131,7 +148,7 @@ export const LocationStep = () => {
     <div className="flex flex-col h-full">
       <div className="flex-1 px-4">
         <div className="flex flex-col gap-4">
-          <PlainHeader title="멤버 추가" onBack={prevStep} />
+          <PlainHeader title="멤버 추가" onBack={() => setCurrentStep(0)} />
           <p className="text-gray-90 text-lg font-semibold">
             멤버 추가를 위해
             <br />
@@ -154,7 +171,7 @@ export const LocationStep = () => {
               )}
             </div>
           ) : (
-            <GetLocationButton setValue={setValue} />
+            <GetLocationButton setValue={setValue} setStartPointInfo={setStartPointInfo} />
           )}
         </div>
       </div>

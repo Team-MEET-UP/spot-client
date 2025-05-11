@@ -6,10 +6,10 @@ export const LoginModal = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId"); // eventId 쿼리 파라미터 추출
-  const { resetFindStore } = useFindStore(); // store 초기화 함수 추가
+  const { setName } = useFindStore(); // store 초기화 함수 추가
 
   const handleNextTime = () => {
-    resetFindStore(); // store 초기화
+    setName("");
     navigate(`/find?eventId=${eventIdParam}`);
   };
 
