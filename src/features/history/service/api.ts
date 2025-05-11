@@ -1,4 +1,5 @@
 import api from "@/shared/api/api";
+import { useMutation } from "@tanstack/react-query";
 
 export const getUserInfo = async () => {
   try {
@@ -15,18 +16,29 @@ export const getUserInfo = async () => {
   }
 };
 
-export const storeAgreement = async (isPersonalInfoAgreement: boolean, isMarketingAgreement: boolean) => {
-  try {
-    const response = await api.post("/users/agreement", { isPersonalInfoAgreement, isMarketingAgreement });
+export const useStoreAgreement = () => {
+  return useMutation({
+    mutationFn: async ({
+      isPersonalInfoAgreement,
+      isMarketingAgreement,
+    }: {
+      isPersonalInfoAgreement: boolean;
+      isMarketingAgreement: boolean;
+    }) => {
+      const response = await api.post("/users/agreement", {
+        isPersonalInfoAgreement,
+        isMarketingAgreement,
+      });
 
-    if (response.data.result === "SUCCESS") {
-      return true;
-    } else {
-      console.error("서버 에러 발생", response.data.error.message);
-      return false;
-    }
-  } catch (error) {
-    console.error("약관 동의 저장 실패: ", error);
-    return false;
-  }
+      if (response.data.result === "SUCCESS") {
+        return true;
+      } else {
+        console.error("서버 에러 발생", response.data.error.message);
+        throw new Error(response.data.error.message);
+      }
+    },
+    onError: error => {
+      console.error("약관 동의 저장 실패: ", error);
+    },
+  });
 };

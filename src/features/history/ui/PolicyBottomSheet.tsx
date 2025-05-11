@@ -3,22 +3,33 @@ import { Overlay } from "@/shared/ui/BottomSheet/Overlay";
 import Button from "@/shared/ui/Button";
 import { useState } from "react";
 import { CheckBox } from "./CheckBox";
-import { storeAgreement } from "../service";
+import { useStoreAgreement } from "../service";
 
 interface PolicyBottomSheetProps {
   onClose: () => void;
 }
 
 export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
+  const { mutate } = useStoreAgreement();
   const [firstCheckBox, setFirstCheckBox] = useState(false);
   const [secondCheckBox, setSecondCheckBox] = useState(false);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     if (firstCheckBox) {
-      const isSuccess = await storeAgreement(firstCheckBox, secondCheckBox);
-      if (isSuccess) {
-        onClose();
-      }
+      mutate(
+        {
+          isPersonalInfoAgreement: firstCheckBox,
+          isMarketingAgreement: secondCheckBox,
+        },
+        {
+          onSuccess: () => {
+            onClose();
+          },
+          onError: error => {
+            console.error("약관 동의 요청 실패", error);
+          },
+        }
+      );
     } else {
       setFirstCheckBox(true);
       setSecondCheckBox(true);
