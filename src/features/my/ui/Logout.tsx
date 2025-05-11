@@ -1,9 +1,12 @@
-import { logout } from "../service";
+import { useLogout } from "../service";
+
+//@TODO 로그아웃 처리 관련 논의 필요, 로그아웃 로딩중 처리
 
 export const Logout = () => {
+  const { mutate } = useLogout();
+
   const handleClick = async () => {
-    const isSuccess = await logout();
-    console.log(isSuccess); // @TODO 로그아웃 처리를 어떻게 구현할지 고민!
+    mutate();
   };
 
   return (
