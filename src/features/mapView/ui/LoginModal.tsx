@@ -1,15 +1,12 @@
 import { Modal } from "@/shared/ui";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useFindStore } from "@/shared/stores";
 
 export const LoginModal = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId"); // eventId 쿼리 파라미터 추출
-  const { setName } = useFindStore(); // store 초기화 함수 추가
 
   const handleNextTime = () => {
-    setName("");
     navigate(`/find?eventId=${eventIdParam}`);
   };
 

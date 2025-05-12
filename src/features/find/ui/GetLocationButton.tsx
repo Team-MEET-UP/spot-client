@@ -1,5 +1,4 @@
 import { getLocationInfo } from "../service/coord2Address";
-import { useFindStore } from "@/shared/stores";
 import { loadKakaoMapSdk } from "@/shared/utils";
 import { Dispatch, SetStateAction } from "react";
 import { StartPointInfo } from "../model";
@@ -7,11 +6,10 @@ import { StartPointInfo } from "../model";
 interface GetLocationButtonProps {
   setValue: Dispatch<SetStateAction<string>>;
   setStartPointInfo: (info: StartPointInfo) => void;
+  name: string;
 }
 
-export const GetLocationButton = ({ setValue, setStartPointInfo }: GetLocationButtonProps) => {
-  const { name } = useFindStore();
-
+export const GetLocationButton = ({ setValue, setStartPointInfo, name }: GetLocationButtonProps) => {
   const handleGetCurrentLocation = async () => {
     try {
       const position = await new Promise<GeolocationPosition>((resolve, reject) => {

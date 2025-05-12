@@ -1,5 +1,4 @@
 import { useValidation } from "@/shared/hooks";
-import { useFindStore } from "@/shared/stores";
 import { validateName } from "@/shared/utils";
 import Button from "@/shared/ui/Button";
 import PlainHeader from "@/shared/ui/PlainHeader";
@@ -9,10 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 interface NameStepProps {
   setCurrentStep: (step: number) => void;
+  setName: (name: string) => void;
+  name: string;
 }
 
-export const NameStep = ({ setCurrentStep }: NameStepProps) => {
-  const { name, setName } = useFindStore();
+export const NameStep = ({ setCurrentStep, setName, name }: NameStepProps) => {
   const { value, error, handleChange, validateValue, isValid } = useValidation(name, validateName);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const navigate = useNavigate();

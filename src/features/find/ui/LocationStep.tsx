@@ -1,4 +1,3 @@
-import { useFindStore } from "@/shared/stores";
 import Button from "@/shared/ui/Button";
 import { GetLocationButton } from ".";
 import { useState, useEffect } from "react";
@@ -22,10 +21,10 @@ interface LocationStepProps {
   setCurrentStep: (step: number) => void;
   startPointInfo: StartPointInfo | null;
   setStartPointInfo: (info: StartPointInfo) => void;
+  name: string;
 }
 
-export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo }: LocationStepProps) => {
-  const { name } = useFindStore();
+export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo, name }: LocationStepProps) => {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
@@ -111,7 +110,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
               )}
             </div>
           ) : (
-            <GetLocationButton setValue={setValue} setStartPointInfo={setStartPointInfo} />
+            <GetLocationButton setValue={setValue} setStartPointInfo={setStartPointInfo} name={name} />
           )}
         </div>
       </div>

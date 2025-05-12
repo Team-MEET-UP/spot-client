@@ -7,7 +7,7 @@ export const Banner = () => {
     <div
       className="relative w-full bg-sub-sub px-5 py-4 rounded-2xl text-white cursor-pointer"
       onClick={() => {
-        navigate("/find");
+        navigate("/find?startStep=1");
       }}>
       <div className="flex items-center gap-1">
         <span className="text-lg font-bold">모임 만들기</span>
