@@ -1,19 +1,18 @@
-import { useEventStore, useMapStore } from "@/shared/stores";
+import { useEventStore } from "@/shared/stores";
 import { UserCard } from "./UserCard";
 import { useState } from "react";
 import { LoginModal } from ".";
 import { ShareModal } from "@/shared/ui";
 
 export const BottomSheetContent = () => {
-  const { users, meetingPoint } = useMapStore();
   const eventData = useEventStore(state => state.eventData);
 
   return (
     <div className="h-full flex flex-col">
       <div className="mx-5">
         <div>
-          <h1 className="text-gray-80 text-lg font-bold">{meetingPoint.stationName}</h1>
-          <p className="text-gray-40 text-md">{meetingPoint.averageDuration}</p>
+          <h1 className="text-gray-80 text-lg font-bold">{eventData?.meetingPoint.endStationName}</h1>
+          <p className="text-gray-40 text-md">평균 {eventData?.averageTime}분</p>
         </div>
       </div>
 
