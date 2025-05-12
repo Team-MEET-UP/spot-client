@@ -60,7 +60,7 @@ export function KakaoMapView() {
       };
       document.head.appendChild(script);
     }
-  }, []);
+  }, [eventData]);
 
   const drawPolylines = () => {
     if (!map || !center) return;

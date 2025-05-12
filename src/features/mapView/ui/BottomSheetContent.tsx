@@ -1,4 +1,4 @@
-import { useMapStore } from "@/shared/stores";
+import { useEventStore, useMapStore } from "@/shared/stores";
 import { UserCard } from "./UserCard";
 import { useState } from "react";
 import { LoginModal } from ".";
@@ -6,6 +6,7 @@ import { ShareModal } from "@/shared/ui";
 
 export const BottomSheetContent = () => {
   const { users, meetingPoint } = useMapStore();
+  const eventData = useEventStore(state => state.eventData);
 
   return (
     <div className="h-full flex flex-col">
@@ -17,8 +18,8 @@ export const BottomSheetContent = () => {
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden" data-scrollable="true">
-        {users.map(user => (
-          <UserCard key={user.id} name={user.name} startStation={user.startStation} totalTime={user.totalTime} />
+        {eventData?.routeResponse.map(user => (
+          <UserCard key={user.id} name={user.nickname} startStation={user.startName} totalTime={user.totalTime} />
         ))}
       </div>
     </div>

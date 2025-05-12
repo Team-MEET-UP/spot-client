@@ -1,7 +1,7 @@
 interface UserCardProps {
   name: string;
   startStation: string;
-  totalTime: string;
+  totalTime: number;
   onClick?: () => void;
 }
 
