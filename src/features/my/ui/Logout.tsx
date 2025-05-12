@@ -1,6 +1,4 @@
-import { useLogout } from "../service";
-
-//@TODO 로그아웃 처리 관련 논의 필요, 로그아웃 로딩중 처리
+import { useLogout } from "../hooks";
 
 export const Logout = () => {
   const { mutate } = useLogout();
