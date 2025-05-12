@@ -63,7 +63,7 @@ export function KakaoMapView() {
   }, [eventData]);
 
   const drawPolylines = () => {
-    if (!map || !center) return;
+    if (!map || !center || !eventData) return;
 
     if (window.polylines) {
       window.polylines.forEach((polyline: kakao.maps.Polyline) => {
@@ -74,11 +74,27 @@ export function KakaoMapView() {
     window.polylines = [];
 
     eventData?.routeResponse.forEach(user => {
-      const markerLatLng = new window.kakao.maps.LatLng(user.startLatitude, user.startLongitude);
+      const fullPath: kakao.maps.LatLng[] = [];
+      // 사용자의 시작 위치 추가
+      fullPath.push(new window.kakao.maps.LatLng(user.startLatitude, user.startLongitude));
+
+      if (user.isTransit) {
+        // 각 지하철 구간의 정류장 좌표를 추가
+        user.transitRoute.forEach(section => {
+          if (section.trafficType === "SUBWAY" && section.passStopList?.stations) {
+            section.passStopList.stations.forEach(station => {
+              fullPath.push(new window.kakao.maps.LatLng(parseFloat(station.y), parseFloat(station.x)));
+            });
+          }
+        });
+      }
+
+      // 중간지점 좌표 마지막에 추가
+      fullPath.push(center);
 
       // 1. 흰색 테두리용 선 (먼저 그림)
       const borderLine = new window.kakao.maps.Polyline({
-        path: [markerLatLng, center],
+        path: fullPath,
         strokeWeight: 8, // 원래보다 굵게
         strokeColor: "#FFF", // 테두리 색상
         strokeOpacity: 1,
@@ -88,7 +104,7 @@ export function KakaoMapView() {
 
       // 2. 실제 선 (위에 겹쳐 그림)
       const mainLine = new window.kakao.maps.Polyline({
-        path: [markerLatLng, center],
+        path: fullPath,
         strokeWeight: 4,
         strokeColor: "#9494A8",
         strokeOpacity: 0.7,
