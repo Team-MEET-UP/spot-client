@@ -1,22 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import { MeetingMarker } from "./MeetingMarker";
-import { mockMapData } from "@/shared/model";
 import { MapMarker } from "./MapMarker";
+import { useEventStore } from "@/shared/stores";
 
 export function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [center, setCenter] = useState<kakao.maps.LatLng | null>(null);
 
+  const eventData = useEventStore(state => state.eventData);
+
   useEffect(() => {
+    if (!eventData) return; // 데이터 없으면 초기화하지 않음
     const initializeMap = () => {
       if (!window.kakao || !window.kakao.maps) return;
 
       window.kakao.maps.load(() => {
         if (mapRef.current) {
           const centerLatLng = new window.kakao.maps.LatLng(
-            mockMapData.meetingPoint.latitude,
-            mockMapData.meetingPoint.longitude
+            eventData.meetingPoint.endLatitude,
+            eventData.meetingPoint.endLongitude
           );
           setCenter(centerLatLng);
 
@@ -34,8 +37,8 @@ export function KakaoMapView() {
           bounds.extend(centerLatLng);
 
           // 사용자 위치 bounds 설정
-          mockMapData.users.forEach(user => {
-            bounds.extend(new window.kakao.maps.LatLng(user.latitude, user.longitude));
+          eventData.routeResponse.forEach(user => {
+            bounds.extend(new window.kakao.maps.LatLng(user.startLatitude, user.startLongitude));
           });
 
           kakaoMap.setBounds(bounds);
@@ -70,8 +73,8 @@ export function KakaoMapView() {
 
     window.polylines = [];
 
-    mockMapData.users.forEach(user => {
-      const markerLatLng = new window.kakao.maps.LatLng(user.latitude, user.longitude);
+    eventData?.routeResponse.forEach(user => {
+      const markerLatLng = new window.kakao.maps.LatLng(user.startLatitude, user.startLongitude);
 
       // 1. 흰색 테두리용 선 (먼저 그림)
       const borderLine = new window.kakao.maps.Polyline({
@@ -118,19 +121,19 @@ export function KakaoMapView() {
           <MeetingMarker
             map={map}
             position={{
-              lat: mockMapData.meetingPoint.latitude,
-              lng: mockMapData.meetingPoint.longitude,
+              lat: eventData!.meetingPoint.endLatitude,
+              lng: eventData!.meetingPoint.endLongitude,
             }}
-            title={mockMapData.meetingPoint.stationName}
+            title={eventData!.meetingPoint.endStationName}
           />
           {/* 사용자 마커 */}
-          {mockMapData.users.map(user => (
+          {eventData!.routeResponse.map(user => (
             <MapMarker
               key={user.id}
               map={map}
-              position={{ lat: user.latitude, lng: user.longitude }}
-              profileImg={user.profileImg}
-              name={user.name}
+              position={{ lat: user.startLatitude, lng: user.startLongitude }}
+              profileImg={user.profileImage}
+              name={user.nickname}
             />
           ))}
         </>

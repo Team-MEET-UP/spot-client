@@ -35,7 +35,6 @@ const MapViewPage = () => {
   return (
     <div>
       <MapHeader />
-      <KakaoMapView />
       {isLoading ? (
         <div>실시간 교통상황을 가져오고 있습니다...</div>
       ) : isError ? (
@@ -50,7 +49,10 @@ const MapViewPage = () => {
           {openDetailBottomSheet && <MapDetailBottomSheet />}
         </>
       ) : (
-        <>{memberCount >= 2 ? <SnapMapBottomSheet /> : <AddMemberBottomSheet />}</>
+        <>
+          <KakaoMapView />
+          {memberCount >= 2 ? <SnapMapBottomSheet /> : <AddMemberBottomSheet />}
+        </>
       )}
     </div>
   );

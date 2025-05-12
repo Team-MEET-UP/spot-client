@@ -3,7 +3,7 @@ import { useEffect } from "react";
 interface MapMarkerProps {
   map: kakao.maps.Map;
   position: { lat: number; lng: number };
-  profileImg?: string;
+  profileImg: string | null;
   name?: string;
   onClick?: () => void;
 }
