@@ -3,7 +3,7 @@ import { Overlay } from "@/shared/ui/BottomSheet/Overlay";
 import Button from "@/shared/ui/Button";
 import { useState } from "react";
 import { CheckBox } from "./CheckBox";
-import { useStoreAgreement } from "../service";
+import { useStoreAgreement } from "../hooks";
 
 interface PolicyBottomSheetProps {
   onClose: () => void;

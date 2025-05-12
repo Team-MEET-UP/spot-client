@@ -1,4 +1,4 @@
-import { useUserInfo } from "@/features/history/service";
+import { useUserInfo } from "@/features/history/hooks";
 import { Banner, Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
 import { mockListData } from "@/shared/model";
 import { useUserStore } from "@/shared/stores";
