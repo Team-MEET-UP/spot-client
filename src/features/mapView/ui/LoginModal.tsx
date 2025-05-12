@@ -1,8 +1,15 @@
 import { Modal } from "@/shared/ui";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const LoginModal = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const eventIdParam = searchParams.get("eventId"); // eventId 쿼리 파라미터 추출
+
+  const handleNextTime = () => {
+    navigate(`/find?eventId=${eventIdParam}`);
+  };
+
   return (
     <Modal>
       <div>
@@ -14,7 +21,7 @@ export const LoginModal = () => {
           </p>
         </div>
         <div className="flex flex-row w-full text-sm font-semibold">
-          <button className="w-1/2 border-t border-gray-5 py-3 text-gray-40" onClick={() => navigate("/find")}>
+          <button className="w-1/2 border-t border-gray-5 py-3 text-gray-40" onClick={handleNextTime}>
             다음에 하기
           </button>
           <button className="w-1/2 bg-gray-90 text-white rounded-br-2xl" onClick={() => navigate("/")}>
