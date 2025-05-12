@@ -1,0 +1,55 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { searchStartPoints } from "../service";
+import { StartPointResponse } from "../model";
+import { useDebounce } from "@/shared/hooks";
+
+interface StartPoint {
+  id: string;
+  name: string;
+  address: string;
+  roadAddress: string;
+  latitude: number;
+  longitude: number;
+}
+
+export const useSearch = () => {
+  const [value, setValue] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const debouncedValue = useDebounce(value, 300);
+
+  const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
+    queryKey: ["searchStartPoints", debouncedValue],
+    queryFn: () => searchStartPoints({ textQuery: debouncedValue.trim() }),
+    select: response =>
+      response.data.documents.map(doc => ({
+        id: doc.id,
+        name: doc.place_name,
+        address: doc.address_name,
+        roadAddress: doc.road_address_name,
+        latitude: parseFloat(doc.y),
+        longitude: parseFloat(doc.x),
+      })),
+    enabled: isSearching && debouncedValue.trim().length > 0,
+    staleTime: 0,
+    refetchOnWindowFocus: false,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+    setIsSearching(true);
+  };
+
+  const isTyping = isSearching && debouncedValue.trim().length > 0;
+
+  return {
+    value,
+    setValue,
+    isSearching,
+    setIsSearching,
+    searchResults,
+    isError,
+    handleChange,
+    isTyping,
+  };
+};

@@ -4,12 +4,10 @@ import { GetLocationButton } from ".";
 import { useState, useEffect } from "react";
 import PlainHeader from "@/shared/ui/PlainHeader";
 import { InputField, LocationCard } from "@/shared/ui";
-import { useDebounce } from "@/shared/hooks";
-import { addMember, createEvent, searchStartPoints } from "../service";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { FormattedData, StartPointInfo, StartPointResponse } from "../model";
-import { highlightMatchingText, setCookie } from "@/shared/utils";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { FormattedData, StartPointInfo } from "../model";
+import { highlightMatchingText } from "@/shared/utils";
+import { useSearchParams } from "react-router-dom";
+import { useCreateStartPoint, useSearch } from "../hooks";
 
 interface StartPoint {
   id: string;
@@ -28,58 +26,13 @@ interface LocationStepProps {
 
 export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo }: LocationStepProps) => {
   const { name } = useFindStore();
-  const [value, setValue] = useState(startPointInfo?.address ?? "");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
-  const debouncedValue = useDebounce(value, 300);
-  const [isSearching, setIsSearching] = useState(false);
   const [searchParams] = useSearchParams();
-  const eventIdParam = searchParams.get("eventId"); // eventId 쿼리 파라미터 추출
-  const eventIdExists = !!eventIdParam;
-  const navigate = useNavigate();
+  const eventIdParam = searchParams.get("eventId");
 
-  const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
-    queryKey: ["searchStartPoints", debouncedValue],
-    queryFn: () => searchStartPoints({ textQuery: debouncedValue.trim() }),
-    select: response =>
-      response.data.documents.map(doc => ({
-        id: doc.id,
-        name: doc.place_name,
-        address: doc.address_name,
-        roadAddress: doc.road_address_name,
-        latitude: parseFloat(doc.y),
-        longitude: parseFloat(doc.x),
-      })),
-    enabled: isSearching && debouncedValue.trim().length > 0,
-    staleTime: 0,
-    refetchOnWindowFocus: false,
-  });
+  const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching } = useSearch();
 
-  const { mutate: createEventMutate } = useMutation({
-    mutationFn: createEvent,
-    onSuccess: response => {
-      const { eventId, startPointId } = response.data;
-
-      // 쿠키 저장
-      setCookie("eventId", eventId, { path: "/", maxAge: 86400 });
-      setCookie("startPointId", startPointId, { path: "/", maxAge: 86400 });
-
-      // 페이지 이동
-      navigate(`/mapview?eventId=${eventId}`);
-    },
-    onError: error => {
-      console.error("모임 생성 실패", error);
-    },
-  });
-  const { mutate: addMemberMutate } = useMutation({
-    mutationFn: ({ payload, eventId }: { payload: FormattedData; eventId: string }) => addMember(payload, eventId),
-    onSuccess: response => {
-      setCookie("startPointId", response.data.startPointId, { path: "/", maxAge: 86400 });
-      navigate(`/mapview?eventId=${eventIdParam}`);
-    },
-    onError: error => {
-      console.error("멤버 추가 실패", error);
-    },
-  });
+  const { handleSubmit } = useCreateStartPoint(eventIdParam);
 
   useEffect(() => {
     const handleResize = () => {
@@ -97,15 +50,9 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
     };
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    setIsSearching(true);
-  };
-
-  const validateValue = () => value.trim().length > 0;
-
   const handleSelectLocation = (location: StartPoint) => {
     setValue(location.name);
+    setIsSearching(false);
     setStartPointInfo({
       name: name,
       startPoint: location.name,
@@ -114,7 +61,6 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
       latitude: location.latitude,
       longitude: location.longitude,
     });
-    setIsSearching(false);
   };
 
   const getFormattedData = (): FormattedData | null => {
@@ -131,18 +77,12 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   };
 
   const handleComplete = () => {
-    if (!validateValue() || !startPointInfo) return;
+    if (value.trim().length === 0 || !startPointInfo) return;
     const data = getFormattedData();
     if (!data) return;
 
-    if (eventIdExists && eventIdParam) {
-      addMemberMutate({ payload: data, eventId: eventIdParam });
-    } else {
-      createEventMutate(data);
-    }
+    handleSubmit(data);
   };
-
-  const isTyping = isSearching && debouncedValue.trim().length > 0;
 
   return (
     <div className="flex flex-col h-full">
@@ -163,7 +103,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
                 searchResults.map((location, index) => (
                   <LocationCard
                     key={index}
-                    name={highlightMatchingText(location.name, debouncedValue)}
+                    name={highlightMatchingText(location.name, value)}
                     address={location.address}
                     onClick={() => handleSelectLocation(location)}
                   />
@@ -181,7 +121,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
           style={{
             marginBottom: keyboardHeight > 0 ? `${keyboardHeight + 20}px` : "20px",
           }}>
-          <Button onClick={handleComplete} disabled={!validateValue()}>
+          <Button onClick={handleComplete} disabled={value.trim().length === 0}>
             추가하기
           </Button>
         </div>
