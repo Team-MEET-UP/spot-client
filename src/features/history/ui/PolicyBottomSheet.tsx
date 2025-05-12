@@ -3,18 +3,33 @@ import { Overlay } from "@/shared/ui/BottomSheet/Overlay";
 import Button from "@/shared/ui/Button";
 import { useState } from "react";
 import { CheckBox } from "./CheckBox";
+import { useStoreAgreement } from "../hooks";
 
 interface PolicyBottomSheetProps {
   onClose: () => void;
 }
 
 export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
+  const { mutate } = useStoreAgreement();
   const [firstCheckBox, setFirstCheckBox] = useState(false);
   const [secondCheckBox, setSecondCheckBox] = useState(false);
 
   const handleClick = () => {
     if (firstCheckBox) {
-      onClose();
+      mutate(
+        {
+          isPersonalInfoAgreement: firstCheckBox,
+          isMarketingAgreement: secondCheckBox,
+        },
+        {
+          onSuccess: () => {
+            onClose();
+          },
+          onError: error => {
+            console.error("약관 동의 요청 실패", error);
+          },
+        }
+      );
     } else {
       setFirstCheckBox(true);
       setSecondCheckBox(true);
