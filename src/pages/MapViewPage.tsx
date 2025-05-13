@@ -10,7 +10,7 @@ import {
 } from "@/features/mapView/ui";
 import { useEventStore } from "@/shared/stores";
 import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const MapViewPage = () => {
   const isDetail = false; // 임시 작업
@@ -20,8 +20,7 @@ const MapViewPage = () => {
   const { data, isLoading, isError, error } = useEventRoutes();
   const setEventData = useEventStore(state => state.setEventData);
 
-  const [midpointError, setMidpointError] = useState(false); // 중간지점 산출 실패 상태
-  void setMidpointError; // 빌드에러 방지를 위한 임시 처리
+  // const [midpointError, setMidpointError] = useState(false); // 중간지점 산출 실패 상태
 
   const errorCode = (error as AxiosError<{ error: { code: string } }>)?.response?.data?.error?.code;
   const isInsufficientStartPoints = errorCode === "INSUFFICIENT_START_POINTS";
