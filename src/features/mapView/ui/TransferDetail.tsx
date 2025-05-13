@@ -4,8 +4,8 @@ export const BusDetail = () => {};
 
 interface CarDetailProps {
   driveDistance: number;
-  toll: string;
-  taxiToll: string;
+  toll: number;
+  taxiToll: number;
   parking?: { name: string; distance: number };
 }
 
@@ -22,7 +22,7 @@ export const CarDetail = ({ driveDistance, toll, taxiToll, parking }: CarDetailP
           <img src="/icon/parking.svg" alt="parking" className="mt-[2px]" />
           <div className="flex flex-col gap-[2px] text-md font-bold text-gray-60">
             <p>{parking.name}</p>
-            <p className="text-sm font-medium">역에서 {parking.distance}m</p>
+            <p className="text-sm font-medium">역에서 {parking.distance.toFixed()}m</p>
           </div>
         </div>
       )}
