@@ -13,13 +13,8 @@ export const useCreateStartPoint = (eventIdParam: string | null) => {
     onSuccess: response => {
       const { eventId, startPointId } = response.data;
 
-      // 쿠키가 없을 때만 저장
-      if (!getCookie("eventId")) {
-        setCookie("eventId", eventId, { path: "/", maxAge: 86400 });
-      }
-      if (!getCookie("startPointId")) {
-        setCookie("startPointId", startPointId, { path: "/", maxAge: 86400 });
-      }
+      setCookie("eventId", eventId, { path: "/", maxAge: 86400 });
+      setCookie("startPointId", startPointId, { path: "/", maxAge: 86400 });
 
       // 페이지 이동
       navigate(`/mapview?eventId=${eventId}`);
