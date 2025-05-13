@@ -18,7 +18,7 @@ declare global {
 
       class Map {
         constructor(container: HTMLElement, options: { center: LatLng; level: number });
-        setBounds(bounds: LatLngBounds): void;
+        setBounds(bounds: LatLngBounds, padding?: number): void;
       }
 
       class Marker {
@@ -71,11 +71,7 @@ declare global {
         };
 
         class Geocoder {
-          coord2Address(
-            longitude: number,
-            latitude: number,
-            callback: (result: any, status: string) => void
-          ): void;
+          coord2Address(longitude: number, latitude: number, callback: (result: any, status: string) => void): void;
         }
       }
     }
