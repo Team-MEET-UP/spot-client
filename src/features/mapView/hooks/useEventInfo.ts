@@ -15,6 +15,5 @@ export const useEventRoutes = () => {
       return getEventInfo(eventId, startPointId);
     },
     enabled: !!eventId, // eventId가 있을 때만 요청
-    staleTime: 1000 * 60 * 1, // 1분 캐싱
   });
 };
