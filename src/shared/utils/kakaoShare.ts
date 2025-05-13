@@ -24,6 +24,8 @@ export const shareToKakao = ({ title, description, imageUrl, links }: shareConte
         webUrl: links[0].url,
         mobileWebUrl: links[0].url,
       },
+      imageWidth: 800,
+      imageHeight: 400,
     },
     buttons: links.map(link => ({
       title: link.label,
