@@ -1,4 +1,4 @@
-import { useEventRoutes } from "@/features/mapView/hooks/useEventInfo";
+import { useEventRoutes } from "@/features/mapView/hooks";
 import {
   AddMemberBottomSheet,
   DetailKakaoMapView,
