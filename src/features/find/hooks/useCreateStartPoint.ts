@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { addMember, createEvent } from "../service";
 import { FormattedData } from "../model";
-import { setCookie } from "@/shared/utils";
+import { getCookie, setCookie } from "@/shared/utils";
 
 export const useCreateStartPoint = (eventIdParam: string | null) => {
   const navigate = useNavigate();
@@ -13,9 +13,13 @@ export const useCreateStartPoint = (eventIdParam: string | null) => {
     onSuccess: response => {
       const { eventId, startPointId } = response.data;
 
-      // 쿠키 저장
-      setCookie("eventId", eventId, { path: "/", maxAge: 86400 });
-      setCookie("startPointId", startPointId, { path: "/", maxAge: 86400 });
+      // 쿠키가 없을 때만 저장
+      if (!getCookie("eventId")) {
+        setCookie("eventId", eventId, { path: "/", maxAge: 86400 });
+      }
+      if (!getCookie("startPointId")) {
+        setCookie("startPointId", startPointId, { path: "/", maxAge: 86400 });
+      }
 
       // 페이지 이동
       navigate(`/mapview?eventId=${eventId}`);
@@ -28,7 +32,10 @@ export const useCreateStartPoint = (eventIdParam: string | null) => {
   const { mutate: addMemberMutate } = useMutation({
     mutationFn: ({ payload, eventId }: { payload: FormattedData; eventId: string }) => addMember(payload, eventId),
     onSuccess: response => {
-      setCookie("startPointId", response.data.startPointId, { path: "/", maxAge: 86400 });
+      // 쿠키가 없을 때만 저장
+      if (!getCookie("startPointId")) {
+        setCookie("startPointId", response.data.startPointId, { path: "/", maxAge: 86400 });
+      }
       navigate(`/mapview?eventId=${eventIdParam}`);
     },
     onError: error => {

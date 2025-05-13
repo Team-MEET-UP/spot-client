@@ -4,9 +4,22 @@ import { useState } from "react";
 import { LoginModal } from ".";
 import { ShareModal } from "@/shared/ui";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { getCookie } from "@/shared/utils";
 
 export const BottomSheetContent = () => {
   const eventData = useEventStore(state => state.eventData);
+  const startPointId = getCookie("startPointId");
+
+  // 정렬된 routeResponse 만들기
+  const sortedRouteResponse = (() => {
+    if (!eventData?.routeResponse || !startPointId) return eventData?.routeResponse;
+
+    const matched = eventData.routeResponse.find(user => user.id === startPointId);
+    const others = eventData.routeResponse.filter(user => user.id !== startPointId);
+
+    return matched ? [matched, ...others] : eventData.routeResponse;
+  })();
+  console.log(sortedRouteResponse);
 
   return (
     <div className="h-full flex flex-col">
@@ -18,7 +31,7 @@ export const BottomSheetContent = () => {
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden" data-scrollable="true">
-        {eventData?.routeResponse.map(user => (
+        {sortedRouteResponse?.map(user => (
           <UserCard key={user.id} name={user.nickname} startStation={user.startName} totalTime={user.totalTime} />
         ))}
       </div>
