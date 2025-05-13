@@ -41,7 +41,7 @@ export function KakaoMapView() {
             bounds.extend(new window.kakao.maps.LatLng(user.startLatitude, user.startLongitude));
           });
 
-          kakaoMap.setBounds(bounds, 40);
+          kakaoMap.setBounds(bounds, 40); //bounds 40px 여백 설정
         }
       });
     };
