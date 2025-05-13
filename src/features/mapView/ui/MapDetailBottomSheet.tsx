@@ -20,7 +20,7 @@ export const MapDetailBottomSheet = () => {
         <SnapBottomSheet.Header />
         <TransferDetail
           type={type}
-          averageDuration={detailEventData.totalTime}
+          averageDuration={type === "car" ? detailEventData.drivingRoute[0].duration : detailEventData.totalTime}
           startPoint={detailEventData.startName}
           endPoint={eventData.meetingPoint.endStationName}
         />
@@ -39,7 +39,7 @@ export const MapDetailBottomSheet = () => {
               parking={eventData.parkingLot}
             />
           )}
-          <FixedButton type={type} setType={setType} />
+          <FixedButton type={type} setType={setType} isMe={detailEventData.isMe} />
         </SnapBottomSheet.Content>
       </SnapBottomSheet>
     </>

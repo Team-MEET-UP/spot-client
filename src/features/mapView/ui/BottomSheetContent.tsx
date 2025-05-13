@@ -23,6 +23,7 @@ export const BottomSheetContent = () => {
         {eventData?.routeResponse.map(user => (
           <UserCard
             key={user.id}
+            isTransit={user.isTransit}
             name={user.nickname}
             startStation={user.startName}
             totalTime={user.totalTime}
