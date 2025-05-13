@@ -1,12 +1,12 @@
-import { TransferInfo } from "../../model";
-import { BusPath } from "./BusPath";
+import { TransitRoute } from "@/shared/model";
+// import { BusPath } from "./BusPath";
 import { SubwayPath } from "./SubwayPath";
 import { WalkPath } from "./WalkPath";
 
 interface PathProps {
   startPoint: string;
   endPoint: string;
-  transferInfo: TransferInfo[];
+  transferInfo: TransitRoute[];
 }
 
 export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
@@ -22,14 +22,17 @@ export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
       <img src="/icon/shortPath.svg" alt="shortPath" className="ml-[11px] w-[2px]" />
 
       {transferInfo.map((info, index) => {
-        if (info.type === "subway" && info.line) {
+        const prevInfo = index > 0 ? transferInfo[index - 1] : null;
+        const nextInfo = index < transferInfo.length - 1 ? transferInfo[index + 1] : null;
+
+        if (info.trafficType === "SUBWAY") {
           return <SubwayPath key={index} {...info} />;
         }
-        if (info.type === "bus") {
-          return <BusPath key={index} {...info} />;
-        }
-        if (info.type === "walk") {
-          return <WalkPath key={index} {...info} />;
+        // if (info.type === "BUS") {
+        //   return <BusPath key={index} {...info} />;
+        // } // 버스 추후 확인해봐야함
+        if (info.trafficType === "WALKING" && info.distance !== 0) {
+          return <WalkPath key={index} {...info} previousInfo={prevInfo} nextInfo={nextInfo} />;
         }
         return null;
       })}

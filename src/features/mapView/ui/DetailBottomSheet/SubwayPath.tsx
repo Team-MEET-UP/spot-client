@@ -1,8 +1,8 @@
+import { TransitRoute } from "@/shared/model";
 import { metroNameToKey } from "../../config/subwayLine";
-import { SubwayTransfer } from "../../model";
 
-export const SubwayPath = ({ line, startBoard, endBoard, stationsCnt, duration }: SubwayTransfer) => {
-  const lineType = metroNameToKey[line];
+export const SubwayPath = ({ endBoardName, laneName, sectionTime, startBoardName, stationCount }: TransitRoute) => {
+  const lineType = metroNameToKey[laneName!];
 
   return (
     <>
@@ -19,12 +19,12 @@ export const SubwayPath = ({ line, startBoard, endBoard, stationsCnt, duration }
           </div>
         </div>
         <div className="flex flex-col text-md font-medium text-gray-90">
-          <span className="mb-[2px]">{startBoard} 승차</span>
+          <span className="mb-[2px]">{startBoardName}역 승차</span>
           <div className="flex items-center gap-[6px] text-sm mb-8">
-            <p className="font-semibold text-gray-50">{duration}분</p>
-            <p className="text-gray-30">{stationsCnt}개 역 이동</p>
+            <p className="font-semibold text-gray-50">{sectionTime}분</p>
+            <p className="text-gray-30">{stationCount}개 역 이동</p>
           </div>
-          <span>{endBoard} 하차</span>
+          <span>{endBoardName}역 하차</span>
         </div>
       </div>
       <img src="/icon/shortPath.svg" alt="shortPath" className="ml-[11px] w-[2px]" />
