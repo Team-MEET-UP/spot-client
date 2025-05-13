@@ -8,6 +8,7 @@ import {
   SnapMapBottomSheet,
   TooCloseSheet,
 } from "@/features/mapView/ui";
+import BackButton from "@/features/mapView/ui/BackButton";
 import { useEventStore } from "@/shared/stores";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
@@ -33,7 +34,7 @@ const MapViewPage = () => {
 
   return (
     <div>
-      <MapHeader />
+      {!isDetail && <MapHeader />}
       {isLoading ? (
         <div>실시간 교통상황을 가져오고 있습니다...</div>
       ) : isError ? (
@@ -43,10 +44,11 @@ const MapViewPage = () => {
           <TooCloseSheet />
         )
       ) : isDetail ? (
-        <>
+        <div className="relative">
+          <BackButton />
           <DetailKakaoMapView />
           {openDetailBottomSheet && <MapDetailBottomSheet />}
-        </>
+        </div>
       ) : (
         <>
           <KakaoMapView />

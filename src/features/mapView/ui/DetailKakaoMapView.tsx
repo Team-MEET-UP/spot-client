@@ -109,7 +109,7 @@ export const DetailKakaoMapView = () => {
       ref={mapRef}
       style={{
         width: "100%",
-        height: "calc(100vh - 48px - 20vh)",
+        height: "calc(100vh - 20vh)",
       }}>
       {map && (
         <>
