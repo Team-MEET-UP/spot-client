@@ -13,7 +13,9 @@ export const CarDetail = ({ driveDistance, toll, taxiToll, parking }: CarDetailP
   return (
     <section className="flex flex-col gap-4 px-5 mb-16">
       <div className="flex flex-col gap-[2px] text-md font-medium text-gray-40">
-        <span className="text-lg font-bold text-gray-90">{driveDistance}km</span>
+        <span className="text-lg font-bold text-gray-90">
+          {driveDistance >= 1000 ? `${(driveDistance / 1000).toFixed(1)}km` : `${driveDistance}m`}
+        </span>
         <p>통행료 약 {toll}원~</p>
         <p>택시비 약 {taxiToll}원~</p>
       </div>
