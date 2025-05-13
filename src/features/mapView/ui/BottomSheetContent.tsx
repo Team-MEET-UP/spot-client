@@ -1,24 +1,25 @@
-import { useMapStore } from "@/shared/stores";
+import { useEventStore, useUserStore } from "@/shared/stores";
 import { UserCard } from "./UserCard";
 import { useState } from "react";
 import { LoginModal } from ".";
 import { ShareModal } from "@/shared/ui";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const BottomSheetContent = () => {
-  const { users, meetingPoint } = useMapStore();
+  const eventData = useEventStore(state => state.eventData);
 
   return (
     <div className="h-full flex flex-col">
       <div className="mx-5">
         <div>
-          <h1 className="text-gray-80 text-lg font-bold">{meetingPoint.stationName}</h1>
-          <p className="text-gray-40 text-md">{meetingPoint.averageDuration}</p>
+          <h1 className="text-gray-80 text-lg font-bold">{eventData?.meetingPoint.endStationName}</h1>
+          <p className="text-gray-40 text-md">평균 {eventData?.averageTime}분</p>
         </div>
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden" data-scrollable="true">
-        {users.map(user => (
-          <UserCard key={user.id} name={user.name} startStation={user.startStation} totalTime={user.totalTime} />
+        {eventData?.routeResponse.map(user => (
+          <UserCard key={user.id} name={user.nickname} startStation={user.startName} totalTime={user.totalTime} />
         ))}
       </div>
     </div>
@@ -27,7 +28,7 @@ export const BottomSheetContent = () => {
 
 export const FixedButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false); // 추후 로그인 상태인지 검증하는 로직 구현예정
+  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const eventId = new URLSearchParams(window.location.search).get("eventId");
   const shareContent = {
     title: "님이 모임을 생성했어요",
@@ -38,13 +39,25 @@ export const FixedButtons = () => {
       { label: "중간지점 보기", url: `https://meetup-client-silk.vercel.app/mapView?eventId=${eventId}` },
     ],
   };
+  const nickname = useUserStore(state => state.nickname);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const eventIdParam = searchParams.get("eventId");
+
+  const handleAddMemberClick = () => {
+    if (nickname) {
+      navigate(`/find?eventId=${eventIdParam}`);
+    } else {
+      setIsOpenLoginModal(true);
+    }
+  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white p-5">
       <div className="flex flex-row gap-2">
         <button
           className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
-          onClick={() => setIsOpenLoginModal(true)}>
+          onClick={handleAddMemberClick}>
           <img src="./icon/addUser.svg" alt="addUser" />
           <span>멤버 추가하기</span>
         </button>
