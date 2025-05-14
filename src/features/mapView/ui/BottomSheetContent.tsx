@@ -45,7 +45,8 @@ export const FixedButtons = () => {
   const eventData = useEventStore(state => state.eventData);
 
   let title = "";
-  if (eventData?.eventMaker) {
+  if (!eventData?.eventMaker) return <div>이벤트 생성되지 않았습니다.</div>;
+  else {
     title = `${eventData?.eventMaker}님이 모임을 생성했어요`;
   }
 
