@@ -2,7 +2,6 @@ import { useUserInfo } from "@/features/history/hooks";
 import { Banner, Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
 import { mockListData } from "@/shared/model";
 import { useUserStore } from "@/shared/stores";
-import { deleteCookie, getCookie } from "@/shared/utils";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,10 +17,10 @@ const HistoryPage = () => {
   };
 
   useEffect(() => {
-    const eventIdFromCookie = getCookie("shared_link_access");
-    if (eventIdFromCookie) {
-      deleteCookie("shared_link_access"); // 중복 리디렉션 방지
-      navigate(`/find?eventId=${eventIdFromCookie}&startStep=1`);
+    const eventIdFromStorage = localStorage.getItem("shared_link_access");
+    if (eventIdFromStorage) {
+      localStorage.removeItem("shared_link_access"); // 중복 리디렉션 방지
+      navigate(`/find?eventId=${eventIdFromStorage}&startStep=1`);
     }
   }, [navigate]);
 
