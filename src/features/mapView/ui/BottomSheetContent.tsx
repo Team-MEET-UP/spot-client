@@ -39,11 +39,20 @@ export const BottomSheetContent = () => {
 };
 
 export const FixedButtons = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const eventIdParam = searchParams.get("eventId");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const eventId = new URLSearchParams(window.location.search).get("eventId");
+  const nickname = useUserStore(state => state.nickname);
+
+  const eventData = useEventStore(state => state.eventData);
+
+  if (!eventData) return null;
+
   const shareContent = {
-    title: "님이 모임을 생성했어요",
+    title: `$${eventData?.eventMaker}님이 모임을 생성했어요`,
     description: "",
     imageUrl: "https://www.pickspot.co.kr/image/KT2.png",
     links: [
@@ -51,10 +60,6 @@ export const FixedButtons = () => {
       { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },
     ],
   };
-  const nickname = useUserStore(state => state.nickname);
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const eventIdParam = searchParams.get("eventId");
 
   const handleAddMemberClick = () => {
     if (nickname) {
