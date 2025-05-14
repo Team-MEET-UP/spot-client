@@ -1,8 +1,8 @@
 import PlaceCard from "@/shared/ui/PlaceCard";
-import CloseHeader from "@/shared/ui/CloseHeader";
 import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceList";
 import { useNavigate, useParams } from "react-router-dom";
 import { SmallButton, Title } from "@/features/review/ui";
+import { CloseHeader } from "@/widgets/Header";
 
 const ReviewPage = () => {
   const { id } = useParams();

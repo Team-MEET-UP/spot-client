@@ -1,20 +1,14 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 
 interface UseBottomSheetDragProps {
-  minHeightVh: number;
-  maxHeightVh?: number;
+  minHeightPx: number;
+  maxHeightPx?: number;
 }
 
-export const useBottomSheetDrag = ({
-  minHeightVh = 25, // 기본값 25vh
-  maxHeightVh = 80, // 기본값 80vh
-}: UseBottomSheetDragProps) => {
+export const useBottomSheetDrag = ({ minHeightPx, maxHeightPx = 800 }: UseBottomSheetDragProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
-
-  // vh를 픽셀로 변환
-  const vhToPixels = (vh: number) => (window.innerHeight * vh) / 100;
-  const [currentHeight, setCurrentHeight] = useState(vhToPixels(minHeightVh));
+  const [currentHeight, setCurrentHeight] = useState(minHeightPx);
 
   // 스크롤 가능한 영역을 ref로 저장
   const scrollableRef = useRef<HTMLElement | null>(null);
@@ -44,14 +38,10 @@ export const useBottomSheetDrag = ({
       const delta = startY - clientY;
       const newHeight = currentHeight + delta;
 
-      // vh 기준으로 높이 제한
-      const minPixels = vhToPixels(minHeightVh);
-      const maxPixels = vhToPixels(maxHeightVh);
-
-      setCurrentHeight(Math.min(Math.max(newHeight, minPixels), maxPixels));
+      setCurrentHeight(Math.min(Math.max(newHeight, maxHeightPx), maxHeightPx));
       setStartY(clientY);
     },
-    [isDragging, startY, currentHeight, minHeightVh, maxHeightVh]
+    [isDragging, startY, currentHeight, minHeightPx, maxHeightPx]
   );
 
   const handleDragEnd = useCallback(() => {
@@ -77,8 +67,8 @@ export const useBottomSheetDrag = ({
 
   // 화면 크기 변경 시 높이 조정
   const handleResize = useCallback(() => {
-    setCurrentHeight(vhToPixels(minHeightVh));
-  }, [minHeightVh]);
+    setCurrentHeight(minHeightPx);
+  }, [minHeightPx]);
 
   return {
     currentHeight,

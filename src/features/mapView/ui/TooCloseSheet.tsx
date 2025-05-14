@@ -6,7 +6,7 @@ export const TooCloseSheet = () => {
   return (
     <>
       <Overlay />
-      <BottomSheet minHeightVh={60} maxHeightVh={60}>
+      <BottomSheet>
         <BottomSheet.Header />
         <BottomSheet.Content>
           <div className="flex flex-col justify-center items-center h-full">

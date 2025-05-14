@@ -4,7 +4,7 @@ interface CloseHeaderProps {
   url: string;
 }
 
-const CloseHeader = ({ url }: CloseHeaderProps) => {
+export const CloseHeader = ({ url }: CloseHeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -18,5 +18,3 @@ const CloseHeader = ({ url }: CloseHeaderProps) => {
     </header>
   );
 };
-
-export default CloseHeader;

@@ -1,8 +1,8 @@
 import FirstStep from "@/features/visited/ui/FirstStep";
 import SecondStep from "@/features/visited/ui/SecondStep";
-import BackHeader from "@/shared/ui/BackHeader";
 import Button from "@/shared/ui/Button";
 import StepIndicator from "@/shared/ui/StepIndicator";
+import { BackHeader } from "@/widgets/Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

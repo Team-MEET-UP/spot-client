@@ -4,12 +4,12 @@ import {
   DetailKakaoMapView,
   KakaoMapView,
   MapDetailBottomSheet,
-  MapHeader,
   SnapMapBottomSheet,
   TooCloseSheet,
 } from "@/features/mapView/ui";
 import BackButton from "@/features/mapView/ui/BackButton";
 import { useEventStore } from "@/shared/stores";
+import { MapHeader } from "@/widgets/Header";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
 

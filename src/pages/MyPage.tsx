@@ -1,5 +1,5 @@
 import { Logout, Menu, Profile } from "@/features/my/ui";
-import PlainHeader from "@/shared/ui/PlainHeader";
+import { PlainHeader } from "@/widgets/Header";
 
 const MyPage = () => {
   return (

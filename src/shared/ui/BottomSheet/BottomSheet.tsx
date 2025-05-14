@@ -7,15 +7,15 @@ import { motion } from "framer-motion";
 
 interface BottomSheetProps {
   children: React.ReactNode;
-  minHeightVh?: number;
-  maxHeightVh?: number;
+  minHeightPx?: number;
+  maxHeightPx?: number;
   isVisible?: boolean;
 }
 
-export const BottomSheet = ({ children, minHeightVh = 25, maxHeightVh = 80, isVisible = true }: BottomSheetProps) => {
+export const BottomSheet = ({ children, minHeightPx = 330, maxHeightPx = 330, isVisible = true }: BottomSheetProps) => {
   const { currentHeight, isDragging, handlers, bindDragEvents, handleResize } = useBottomSheetDrag({
-    minHeightVh,
-    maxHeightVh,
+    minHeightPx,
+    maxHeightPx,
   });
 
   useEffect(() => {

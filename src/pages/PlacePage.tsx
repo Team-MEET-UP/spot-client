@@ -1,6 +1,6 @@
 import { ConfirmedCard, RecommendCard, RecommendList } from "@/features/place/ui";
 import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceList";
-import PlainHeader from "@/shared/ui/PlainHeader";
+import { PlainHeader } from "@/widgets/Header";
 import { useNavigate } from "react-router-dom";
 
 const PlacePage = () => {
