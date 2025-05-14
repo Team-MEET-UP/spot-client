@@ -1,10 +1,10 @@
 import { useValidation } from "@/shared/hooks";
 import { validateName } from "@/shared/utils";
 import Button from "@/shared/ui/Button";
-import PlainHeader from "@/shared/ui/PlainHeader";
 import { useEffect, useState } from "react";
 import { InputField } from "@/shared/ui";
 import { useNavigate } from "react-router-dom";
+import { PlainHeader } from "@/widgets/Header";
 
 interface NameStepProps {
   setCurrentStep: (step: number) => void;

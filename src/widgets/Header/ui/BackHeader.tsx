@@ -5,7 +5,7 @@ interface BackHeaderProps {
   onClick?: () => void;
 }
 
-const BackHeader = ({ url, onClick }: BackHeaderProps) => {
+export const BackHeader = ({ url, onClick }: BackHeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -25,5 +25,3 @@ const BackHeader = ({ url, onClick }: BackHeaderProps) => {
     </header>
   );
 };
-
-export default BackHeader;

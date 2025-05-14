@@ -1,12 +1,12 @@
 import Button from "@/shared/ui/Button";
 import { GetLocationButton } from ".";
 import { useState, useEffect } from "react";
-import PlainHeader from "@/shared/ui/PlainHeader";
 import { InputField, LocationCard } from "@/shared/ui";
 import { FormattedData, StartPointInfo } from "../model";
 import { highlightMatchingText } from "@/shared/utils";
 import { useSearchParams } from "react-router-dom";
 import { useCreateStartPoint, useSearch } from "../hooks";
+import { PlainHeader } from "@/widgets/Header";
 
 interface StartPoint {
   id: string;

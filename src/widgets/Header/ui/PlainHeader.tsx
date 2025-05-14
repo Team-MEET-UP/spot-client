@@ -6,7 +6,7 @@ interface PlainHeaderProps {
   url?: string;
 }
 
-const PlainHeader = ({ title, onBack, url }: PlainHeaderProps) => {
+export const PlainHeader = ({ title, onBack, url }: PlainHeaderProps) => {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -26,5 +26,3 @@ const PlainHeader = ({ title, onBack, url }: PlainHeaderProps) => {
     </header>
   );
 };
-
-export default PlainHeader;
