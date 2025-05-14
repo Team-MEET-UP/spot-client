@@ -1,5 +1,5 @@
 import { TransitRoute } from "@/shared/model";
-// import { BusPath } from "./BusPath";
+import { BusPath } from "./BusPath";
 import { SubwayPath } from "./SubwayPath";
 import { WalkPath } from "./WalkPath";
 
@@ -29,9 +29,9 @@ export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
         if (info.trafficType === "SUBWAY") {
           return <SubwayPath key={index} {...info} />;
         }
-        // if (info.type === "BUS") {
-        //   return <BusPath key={index} {...info} />;
-        // } // 버스 추후 확인해봐야함
+        if (info.trafficType === "BUS") {
+          return <BusPath key={index} {...info} />;
+        } // 버스 추후 확인해봐야함
         if (info.trafficType === "WALKING" && !isLastIndex && info.distance !== 0) {
           return <WalkPath key={index} {...info} previousInfo={prevInfo} nextInfo={nextInfo} />;
         }
