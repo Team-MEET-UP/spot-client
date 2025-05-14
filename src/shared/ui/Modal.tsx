@@ -25,7 +25,7 @@ export const Modal = ({ children, onClose }: ModalProps) => {
 
   return (
     <Portal>
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[1001]">
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[600px] w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-[1001]">
         <div
           ref={modalRef}
           className="w-[264px] bg-white shadow-[0px_0px_24px_0px_rgba(28, 28, 34, 0.25)] rounded-[20px]">
