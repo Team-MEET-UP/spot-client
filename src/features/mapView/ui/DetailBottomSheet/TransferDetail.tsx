@@ -11,8 +11,7 @@ interface TransferDetailProps {
 
 export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: TransferDetailProps) => {
   const eventData = useEventStore(state => state.eventData);
-  const detailEventData = useEventStore(state => state.detailEventData);
-  if (!eventData || !detailEventData) return;
+  if (!eventData) return;
 
   const TransferMap = {
     subway: [
@@ -21,15 +20,16 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
         alt: "kakaoMap",
         onClick: () =>
           openKakaoMap({
-            startPoint: detailEventData.startName,
-            startLat: detailEventData.startLatitude,
-            startLog: detailEventData.startLongitude,
             endPoint: eventData.meetingPoint.endStationName,
             endLat: eventData.meetingPoint.endLatitude,
             endLog: eventData.meetingPoint.endLongitude,
           }),
       },
-      { src: "/icon/naverMap.svg", alt: "naverMap", onClick: () => console.log("네이버맵 열기") },
+      {
+        src: "/icon/naverMap.svg",
+        alt: "naverMap",
+        onClick: () => console.log("네이버맵 열기"),
+      },
     ],
     car: [{ src: "/icon/TMap.svg", alt: "tMap", onClick: () => console.log("티맵 열기") }],
   };
