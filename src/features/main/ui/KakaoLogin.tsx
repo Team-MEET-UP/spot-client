@@ -1,6 +1,6 @@
 export const KakaoLogin = () => {
   const handleKakaoLogin = () => {
-    const kakaoAuthUrl = "https://meetup-client-silk.vercel.app/oauth2/authrization/kakako";
+    const kakaoAuthUrl = "https://meetup-client-silk.vercel.app/oauth2/authorization/kakao";
     window.location.href = kakaoAuthUrl;
   };
 
