@@ -72,7 +72,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
         </div>
         <div className="flex gap-2">
           {filteredIcons.map(({ src, alt, onClick }) => (
-            <button key={alt} onClick={() => onClick()}>
+            <button key={alt} onClick={onClick}>
               <img src={src} alt={alt} />
             </button>
           ))}
