@@ -1,6 +1,6 @@
 import { useEventStore } from "@/shared/stores";
 import { TransferType } from "../../model";
-import { openKakaoMap } from "../../utils";
+import { openKakaoMap, openNaverMap } from "../../utils";
 
 interface TransferDetailProps {
   type: TransferType;
@@ -11,7 +11,9 @@ interface TransferDetailProps {
 
 export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: TransferDetailProps) => {
   const eventData = useEventStore(state => state.eventData);
-  if (!eventData) return;
+  const detailEventData = useEventStore(state => state.detailEventData);
+
+  if (!eventData || !detailEventData) return;
 
   const TransferMap = {
     subway: [
@@ -28,7 +30,15 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
       {
         src: "/icon/naverMap.svg",
         alt: "naverMap",
-        onClick: () => console.log("네이버맵 열기"),
+        onClick: () =>
+          openNaverMap({
+            startPoint: detailEventData.startName,
+            startLat: detailEventData.startLatitude,
+            startLog: detailEventData.startLongitude,
+            endPoint: eventData.meetingPoint.endStationName,
+            endLat: eventData.meetingPoint.endLatitude,
+            endLog: eventData.meetingPoint.endLongitude,
+          }),
       },
     ],
     car: [{ src: "/icon/TMap.svg", alt: "tMap", onClick: () => console.log("티맵 열기") }],
