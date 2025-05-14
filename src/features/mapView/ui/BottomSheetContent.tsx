@@ -42,8 +42,16 @@ export const FixedButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const eventId = new URLSearchParams(window.location.search).get("eventId");
+  const eventData = useEventStore(state => state.eventData);
+
+  let title = "";
+  if (!eventData?.eventMaker) return <div>이벤트 생성되지 않았습니다.</div>;
+  else {
+    title = `${eventData?.eventMaker}님이 모임을 생성했어요`;
+  }
+
   const shareContent = {
-    title: "님이 모임을 생성했어요",
+    title: title,
     description: "",
     imageUrl: "https://www.pickspot.co.kr/image/KT2.png",
     links: [

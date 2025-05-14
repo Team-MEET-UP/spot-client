@@ -53,6 +53,7 @@ export interface ParkingLot {
 }
 
 export interface GetEventRouteResponse {
+  eventMaker: string;
   peopleCount: number;
   averageTime: number;
   meetingPoint: MeetingPoint;
