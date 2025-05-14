@@ -29,6 +29,7 @@ const HistoryPage = () => {
       // localStorage에서 이벤트 아이디를 가져와 리디렉션 처리
       const eventIdFromStorage = localStorage.getItem("shared_link_access");
       if (eventIdFromStorage) {
+        localStorage.removeItem("shared_link_access"); // 리디렉션 전 로컬스토리지 비우기
         navigate(`/find?eventId=${eventIdFromStorage}&startStep=1`);
       }
     }
