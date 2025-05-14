@@ -1,4 +1,5 @@
 import { Modal } from "@/shared/ui";
+import { kakaoLogin } from "@/shared/utils";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const LoginModal = () => {
@@ -24,7 +25,7 @@ export const LoginModal = () => {
           <button className="w-1/2 border-t border-gray-5 py-3 text-gray-40" onClick={handleNextTime}>
             다음에 하기
           </button>
-          <button className="w-1/2 bg-gray-90 text-white rounded-br-2xl" onClick={() => navigate("/")}>
+          <button className="w-1/2 bg-gray-90 text-white rounded-br-2xl" onClick={kakaoLogin}>
             로그인
           </button>
         </div>
