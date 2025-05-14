@@ -14,7 +14,6 @@ import { AxiosError } from "axios";
 import { useEffect } from "react";
 
 const MapViewPage = () => {
-  const openDetailBottomSheet = true; // 임시 작업
   const memberCount = 2; // 임시 인원 설정
 
   const { data, isLoading, isError, error } = useEventRoutes();
@@ -47,7 +46,7 @@ const MapViewPage = () => {
         <div className="relative">
           <BackButton />
           <DetailKakaoMapView />
-          {openDetailBottomSheet && <MapDetailBottomSheet />}
+          <MapDetailBottomSheet />
         </div>
       ) : (
         <>
