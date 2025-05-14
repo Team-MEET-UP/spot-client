@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Portal } from "../Portal";
 
 import { SnapWrapper } from "./SnapWrapper";
 import { SnapHeader } from "./SnapHeader";
@@ -55,19 +54,17 @@ export const SnapBottomSheet = ({
   }, [bindDragEvents]);
 
   return (
-    <Portal>
-      <SnapWrapper
-        style={{
-          height: `${height}px`,
-          transition: isDragging ? "none" : "height 0.3s ease",
-        }}
-        {...handlers}>
+    <SnapWrapper
+      style={{
+        height: `${height}px`,
+        transition: isDragging ? "none" : "height 0.3s ease",
+      }}
+      {...handlers}>
+      {children}
+      <div ref={contentRef} className="absolute opacity-0 pointer-events-none">
         {children}
-        <div ref={contentRef} className="absolute opacity-0 pointer-events-none">
-          {children}
-        </div>
-      </SnapWrapper>
-    </Portal>
+      </div>
+    </SnapWrapper>
   );
 };
 

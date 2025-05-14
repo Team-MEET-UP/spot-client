@@ -29,7 +29,7 @@ export const BottomSheet = ({ children, minHeightPx = 330, maxHeightPx = 330, is
   }, [handleResize]);
 
   return (
-    <Portal>
+    <Portal type="bottomSheet">
       <motion.div
         initial={{ y: "100%" }}
         animate={{ y: isVisible ? 0 : "100%" }}

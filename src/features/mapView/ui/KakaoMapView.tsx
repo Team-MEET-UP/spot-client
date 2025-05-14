@@ -126,10 +126,6 @@ export function KakaoMapView() {
       style={{
         width: "100%",
         height: "calc(100vh - 48px - 34vh)",
-        position: "fixed",
-        top: "48px",
-        left: 0,
-        zIndex: 0,
       }}>
       {map && (
         <>
