@@ -46,7 +46,7 @@ export const FixedButtons = () => {
   const nickname = useUserStore(state => state.nickname);
 
   let title = "";
-  if (!eventData?.eventMaker || !nickname) {
+  if (!eventData?.eventMaker && !nickname) {
     title = "모임을 생성했어요";
   } else if (!eventData?.eventMaker) {
     title = `${nickname}님이 모임을 생성했어요`;
