@@ -9,7 +9,7 @@ export const RecommendCard = ({ place, onClick }: RecommendCardProps) => {
       <div className="flex flex-col gap-1">
         <h1 className="text-lg font-semibold">
           <span className=" text-sub-sub ">{place}</span> <br />
-          <span className="text-gray-90">여기 어때요{">"}</span>
+          <span className="text-gray-90">여기 어때요?</span>
         </h1>
         <p className="text-gray-50 text-sm font-medium">스팟이 장소를 골라봤어요</p>
       </div>
