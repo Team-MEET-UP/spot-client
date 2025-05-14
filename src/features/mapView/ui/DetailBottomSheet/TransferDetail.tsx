@@ -59,9 +59,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
     ],
   };
 
-  const filteredIcons = TransferMap[type].filter(() =>
-    type === "car" ? !(deviceType === "Windows PC" || deviceType === "Mac PC") : true
-  );
+  const filteredIcons = TransferMap[type].filter(() => (type === "car" ? deviceType === "iPhone" : true));
 
   return (
     <div className="flex flex-col px-5 py-4 gap-1">
