@@ -6,7 +6,7 @@ interface OverlayProps {
 export const Overlay = ({ onClick, isBlur = true }: OverlayProps) => {
   return (
     <div
-      className={`fixed inset-0 bg-black/50 duration-200 transition-opacity z-[100] ${isBlur ? "backdrop-blur-sm" : ""}`}
+      className={`fixed top-0 left-1/2 -translate-x-1/2 max-w-[600px] w-full h-full bg-black/50 duration-200 transition-opacity z-[102] ${isBlur ? "backdrop-blur-sm" : ""}`}
       onClick={onClick}
     />
   );

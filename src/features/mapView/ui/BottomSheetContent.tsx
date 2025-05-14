@@ -45,10 +45,10 @@ export const FixedButtons = () => {
   const shareContent = {
     title: "님이 모임을 생성했어요",
     description: "",
-    imageUrl: "https://meetup-client-silk.vercel.app/image/KT2.png",
+    imageUrl: "https://www.pickspot.co.kr/image/KT2.png",
     links: [
-      { label: "내 출발지 입력", url: `https://meetup-client-silk.vercel.app/find?eventId=${eventId}` },
-      { label: "중간지점 보기", url: `https://meetup-client-silk.vercel.app/mapView?eventId=${eventId}` },
+      { label: "내 출발지 입력", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
+      { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },
     ],
   };
   const nickname = useUserStore(state => state.nickname);

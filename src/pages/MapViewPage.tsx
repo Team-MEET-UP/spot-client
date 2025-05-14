@@ -16,8 +16,6 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const MapViewPage = () => {
-  const openDetailBottomSheet = true; // 임시 작업
-
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
 
@@ -55,7 +53,7 @@ const MapViewPage = () => {
         <div className="relative">
           <BackButton />
           <DetailKakaoMapView />
-          {openDetailBottomSheet && <MapDetailBottomSheet />}
+          <MapDetailBottomSheet />
         </div>
       ) : (
         <>
