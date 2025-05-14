@@ -15,5 +15,6 @@ export const useEventRoutes = () => {
       return getEventInfo(eventId, startPointId);
     },
     enabled: !!eventId, // eventId가 있을 때만 요청
+    retry: false, // 자동 재시도 방지
   });
 };
