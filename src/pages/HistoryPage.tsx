@@ -2,17 +2,28 @@ import { useUserInfo } from "@/features/history/hooks";
 import { Banner, Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
 import { mockListData } from "@/shared/model";
 import { useUserStore } from "@/shared/stores";
+import { deleteCookie, getCookie } from "@/shared/utils";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HistoryPage = () => {
   const { data, isLoading, isError } = useUserInfo();
   const [isPolicy, setIsPolicy] = useState(false);
   const { profileImageUrl } = useUserStore();
   const length = 1; // 임시 ui 구현을 위한 작업!
+  const navigate = useNavigate();
 
   const onClose = () => {
     setIsPolicy(false);
   };
+
+  useEffect(() => {
+    const eventIdFromCookie = getCookie("shared_link_access");
+    if (eventIdFromCookie) {
+      deleteCookie("shared_link_access"); // 중복 리디렉션 방지
+      navigate(`/find?eventId=${eventIdFromCookie}&startStep=1`);
+    }
+  }, [navigate]);
 
   useEffect(() => {
     if (data) {

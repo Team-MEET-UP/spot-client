@@ -9,12 +9,15 @@ import {
 } from "@/features/mapView/ui";
 import BackButton from "@/features/mapView/ui/BackButton";
 import { useEventStore } from "@/shared/stores";
+import { setCookie } from "@/shared/utils";
 import { MapHeader } from "@/widgets/Header";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const MapViewPage = () => {
-  const memberCount = 2; // 임시 인원 설정
+  const [searchParams] = useSearchParams();
+  const eventIdParam = searchParams.get("eventId");
 
   const { data, isLoading, isError, error } = useEventRoutes();
   const setEventData = useEventStore(state => state.setEventData);
@@ -30,6 +33,10 @@ const MapViewPage = () => {
       setEventData(data);
     }
   }, [data, setEventData]);
+
+  useEffect(() => {
+    setCookie("shared_link_access", eventIdParam!);
+  }, [eventIdParam]);
 
   return (
     <div>
@@ -51,7 +58,7 @@ const MapViewPage = () => {
       ) : (
         <>
           <KakaoMapView />
-          {memberCount >= 2 ? <SnapMapBottomSheet /> : <AddMemberBottomSheet />}
+          <SnapMapBottomSheet />
         </>
       )}
     </div>
