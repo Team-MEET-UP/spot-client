@@ -1,10 +1,9 @@
-interface OpenNaverMapProps {
+import { OpenMapProps } from "../model";
+
+interface OpenNaverMapProps extends OpenMapProps {
   startPoint: string;
   startLat: number;
   startLog: number;
-  endPoint: string;
-  endLat: number;
-  endLog: number;
 }
 
 export const openNaverMap = ({ startPoint, startLat, startLog, endPoint, endLat, endLog }: OpenNaverMapProps) => {
