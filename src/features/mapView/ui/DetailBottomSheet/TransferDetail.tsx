@@ -1,6 +1,7 @@
 import { useEventStore } from "@/shared/stores";
 import { TransferType } from "../../model";
-import { openKakaoMap, openNaverMap } from "../../utils";
+import { openKakaoMap, openNaverMap, openTMAP } from "../../utils";
+import { useDeviceDetector } from "../../utils/useDeviceDetector";
 
 interface TransferDetailProps {
   type: TransferType;
@@ -12,6 +13,9 @@ interface TransferDetailProps {
 export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: TransferDetailProps) => {
   const eventData = useEventStore(state => state.eventData);
   const detailEventData = useEventStore(state => state.detailEventData);
+
+  // 디바이스 정보
+  const deviceType = useDeviceDetector();
 
   if (!eventData || !detailEventData) return;
 
@@ -41,8 +45,23 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
           }),
       },
     ],
-    car: [{ src: "/icon/TMap.svg", alt: "tMap", onClick: () => console.log("티맵 열기") }],
+    car: [
+      {
+        src: "/icon/TMap.svg",
+        alt: "tMap",
+        onClick: () =>
+          openTMAP({
+            endPoint: eventData.meetingPoint.endStationName,
+            endLat: eventData.meetingPoint.endLatitude,
+            endLog: eventData.meetingPoint.endLongitude,
+          }),
+      },
+    ],
   };
+
+  const filteredIcons = TransferMap[type].filter(() =>
+    type === "car" ? !(deviceType === "Windows PC" || deviceType === "Mac PC") : true
+  );
 
   return (
     <div className="flex flex-col px-5 py-4 gap-1">
@@ -52,7 +71,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
           <span className="text-xl font-bold text-gray-90">{averageDuration}분</span>
         </div>
         <div className="flex gap-2">
-          {TransferMap[type].map(({ src, alt, onClick }) => (
+          {filteredIcons.map(({ src, alt, onClick }) => (
             <button key={alt} onClick={() => onClick()}>
               <img src={src} alt={alt} />
             </button>
