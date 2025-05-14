@@ -9,7 +9,6 @@ import {
 } from "@/features/mapView/ui";
 import BackButton from "@/features/mapView/ui/BackButton";
 import { useEventStore } from "@/shared/stores";
-import { setCookie } from "@/shared/utils";
 import { MapHeader } from "@/widgets/Header";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
@@ -35,7 +34,9 @@ const MapViewPage = () => {
   }, [data, setEventData]);
 
   useEffect(() => {
-    setCookie("shared_link_access", eventIdParam!);
+    if (eventIdParam) {
+      localStorage.setItem("shared_link_access", eventIdParam);
+    }
   }, [eventIdParam]);
 
   return (
