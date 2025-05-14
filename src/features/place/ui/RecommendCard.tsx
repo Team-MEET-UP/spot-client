@@ -11,7 +11,7 @@ export const RecommendCard = ({ place, onClick }: RecommendCardProps) => {
           <span className=" text-sub-sub ">{place}</span> <br />
           <span className="text-gray-90">여기 어때요?</span>
         </h1>
-        <p className="text-gray-50 text-sm font-medium">스팟의 추천 장소를 확인해보세요</p>
+        <p className="text-gray-50 text-sm font-medium">스팟이 장소를 골라봤어요</p>
       </div>
       <img src="/icon/meetingRecommend.svg" alt="회의 추천장소" />
     </div>

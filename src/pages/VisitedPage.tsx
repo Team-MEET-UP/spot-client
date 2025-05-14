@@ -40,8 +40,13 @@ const VisitedPage = () => {
       <div className="flex flex-col justify-between h-full p-5 pt-2">
         <div>
           <StepIndicator step={currentStep} />
-          <span className="mt-2 text-lg font-bold text-gray-70">이 장소는 어떠셨나요?</span>
-          <p className="text-md font-medium text-gray-40">이용 경험에 대해 알려주세요</p>
+          <span className="mt-2 text-lg font-bold text-gray-70">
+            {currentStep === 1 ? "언제 가셨나요?" : "이 장소는 어떠셨나요?"}
+          </span>
+          <p className="text-md font-medium text-gray-40">
+            {" "}
+            {currentStep === 1 ? "방문한 시간을 알려주세요." : "느낌을 간단하게 알려주세요."}
+          </p>
           <div className="flex-1 overflow-y-auto max-h-[calc(100vh-220px)] scrollbar-hidden overflow-touch">
             {currentStep === 1 && <FirstStep selectedTime={selectedTime} setSelectedTime={setSelectedTime} />}
             {currentStep === 2 && <SecondStep secondData={secondData} setSecondData={setSecondData} />}
@@ -56,7 +61,7 @@ const VisitedPage = () => {
             (currentStep === 2 &&
               (secondData.plugScore === null || secondData.seatScore === null || secondData.crowdedScore === null))
           }>
-          {currentStep === 1 ? "다음" : "등록하기"}
+          {currentStep === 1 ? "다음으로" : "완료하기"}
         </Button>
       </div>
     </div>

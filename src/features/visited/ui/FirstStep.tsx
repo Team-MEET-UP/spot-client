@@ -39,7 +39,7 @@ const FirstStep = ({ selectedTime, setSelectedTime }: FirstStepProps) => {
               ${isSelected ? "bg-white border-sub-sub text-sub-sub" : "bg-gray-5 text-gray-60 border-gray-5"}
             `}>
             <img className="w-8 h-8" src={isSelected ? option.activeUrl : option.imageUrl} alt={option.value} />
-            {option.label}에 방문했어요
+            {option.label}
             {isSelected && <img className="absolute top-4 right-4" src="/icon/checkBlue.svg" alt="check" />}
           </button>
         );

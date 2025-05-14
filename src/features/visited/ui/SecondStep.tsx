@@ -45,7 +45,7 @@ const SecondStep = ({ secondData, setSecondData }: SecondStepProps) => {
               review: e.target.value,
             }))
           }
-          placeholder="이곳은 어땠나요? 한 줄 평가를 남겨보세요."
+          placeholder="친구가 이 곳을 궁금해하면, 어떻게 소개하시겠어요?"
         />
       </div>
     </div>

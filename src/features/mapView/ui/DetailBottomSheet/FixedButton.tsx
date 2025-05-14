@@ -20,7 +20,7 @@ export const FixedButton = ({ type, setType, isMe }: FixedButtonProps) => {
   };
 
   return (
-    <div className="flex px-5 py-3 fixed bottom-0 left-0 w-full z-10 bg-white">
+    <div className="flex px-5 py-3 fixed bottom-0 left-0 w-full z-[1001] bg-white">
       <button
         className={`flex gap-1 items-center w-1/2 justify-center text-md py-2 ${type === "subway" ? "font-semibold text-white rounded-[50px] bg-gray-90" : "font-medium text-gray-30"}`}
         onClick={() => {

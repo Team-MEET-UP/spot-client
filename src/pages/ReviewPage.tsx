@@ -16,7 +16,7 @@ const ReviewPage = () => {
           <Title title="박승광해물손칼국수 진점점dddddd 박승광해물" />
           <div className="flex flex-col gap-3 items-center">
             <PlaceCard {...mockPlaceItems[0]} /> {/* 임시 데이터 추가 */}
-            <p className="text-sm font-semibold text-gray-30">방문하신 장소를 확인해 주세요.</p>
+            <p className="text-sm font-semibold text-gray-30">실제로 가신 곳인지 확인해주세요.</p>
           </div>
         </div>
         <div className="w-full flex gap-2">
@@ -25,14 +25,14 @@ const ReviewPage = () => {
             onClick={() => {
               navigate(`/notVisited/${id}`);
             }}>
-            다른 곳을 방문했어요
+            다른 곳에 갔어요
           </SmallButton>
           <SmallButton
             isVisit={true}
             onClick={() => {
               navigate(`/visited/${id}`);
             }}>
-            네, 방문했어요
+            갔어요
           </SmallButton>
         </div>
       </div>

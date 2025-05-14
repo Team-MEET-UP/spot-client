@@ -15,7 +15,7 @@ export const ProgressBar = ({ type, congestion }: ProgressBarProps) => {
       <div className="flex gap-[18px] items-center text-sm font-semibold">
         <span className="text-gray-40 w-[25px]">{label}</span>
         {isEmpty ? (
-          <p className="text-gray-20">아직 데이터가 없어요</p>
+          <p className="text-gray-20">아직 리뷰가 없어요</p>
         ) : (
           <p className="text-gray-90">{CongestionInfo[congestion]}</p>
         )}
