@@ -47,7 +47,7 @@ export const NameStep = ({ setCurrentStep, setName, name }: NameStepProps) => {
           <p className="text-gray-90 text-lg font-semibold">
             멤버 추가를 위해
             <br />
-            이름과 출발지를 입력해주세요.
+            이름을 알려주세요
           </p>
           <InputField
             value={value}

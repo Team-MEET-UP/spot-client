@@ -12,7 +12,7 @@ export const PlaceModal = ({ onClose, placeName, type, onClick }: PlaceModalProp
     <Modal onClose={onClose}>
       <div className="px-5 py-7 flex flex-col gap-1 items-center">
         <span className="text-md font-semibold text-gray-90">
-          약속 장소를 {type === "fix" ? "확정" : "변경"}할까요?
+          {type === "fix" ? "여기에서 만날까요?" : "모임장소를 바꿀까요?"}
         </span>
         <p className="text-sm font-medium text-gray-40">{placeName}</p>
       </div>
@@ -25,7 +25,7 @@ export const PlaceModal = ({ onClose, placeName, type, onClick }: PlaceModalProp
         <button
           className="w-1/2 py-3 bg-gray-90 rounded-br-[20px] font-semibold text-white border-t border-t-gray-90"
           onClick={onClick}>
-          {type === "fix" ? "확정" : "변경"}하기
+          {type === "fix" ? "선택하기" : "바꾸기"}
         </button>
       </div>
     </Modal>

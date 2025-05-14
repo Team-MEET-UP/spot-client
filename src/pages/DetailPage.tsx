@@ -31,7 +31,8 @@ const DetailPage = () => {
       </div>
 
       <div className={`px-5 py-4 ${isReview ? "sticky bottom-0" : ""}`}>
-        <Button disabled={isComplete}>{isComplete ? "장소 확정 완료" : "약속 장소 확정하기"}</Button>
+        <Button disabled={isComplete}>{isComplete ? "모임장소 바꾸기" : "여기에서 만나기"}</Button>
+        {/* 이미 선택된 장소에요 버튼명 수정해야함 */}
       </div>
     </div>
   );
