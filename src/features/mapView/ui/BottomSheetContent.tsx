@@ -43,10 +43,12 @@ export const FixedButtons = () => {
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const eventId = new URLSearchParams(window.location.search).get("eventId");
   const eventData = useEventStore(state => state.eventData);
+  const nickname = useUserStore(state => state.nickname);
 
   let title = "";
-  if (!eventData?.eventMaker) return <div>이벤트 생성되지 않았습니다.</div>;
-  else {
+  if (!eventData?.eventMaker) {
+    title = `${nickname}님이 모임을 생성했어요`;
+  } else {
     title = `${eventData?.eventMaker}님이 모임을 생성했어요`;
   }
 
@@ -59,7 +61,6 @@ export const FixedButtons = () => {
       { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },
     ],
   };
-  const nickname = useUserStore(state => state.nickname);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
