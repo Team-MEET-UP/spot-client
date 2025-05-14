@@ -1,6 +1,6 @@
 export const metroNameToKey: Record<string, { bg: string; text?: string }> = {
-  공항철도: { bg: "bg-metro-KA" },
-  신분당선: { bg: "bg-metro-S" },
+  "수도권 공항철도": { bg: "bg-metro-KA" },
+  "수도권 신분당선": { bg: "bg-metro-S" },
   "수도권 우이신설경전철": { bg: "bg-metro-UI" },
 
   경의중앙선: { bg: "bg-metro-rail1" },
