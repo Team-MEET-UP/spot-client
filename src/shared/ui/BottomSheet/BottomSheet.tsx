@@ -12,7 +12,7 @@ interface BottomSheetProps {
   isVisible?: boolean;
 }
 
-export const BottomSheet = ({ children, minHeightPx = 25, maxHeightPx = 80, isVisible = true }: BottomSheetProps) => {
+export const BottomSheet = ({ children, minHeightPx = 330, maxHeightPx = 330, isVisible = true }: BottomSheetProps) => {
   const { currentHeight, isDragging, handlers, bindDragEvents, handleResize } = useBottomSheetDrag({
     minHeightPx,
     maxHeightPx,

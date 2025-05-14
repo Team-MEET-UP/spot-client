@@ -6,7 +6,7 @@ export const AddMemberBottomSheet = () => {
   return (
     <>
       <Overlay />
-      <BottomSheet minHeightPx={330} maxHeightPx={330}>
+      <BottomSheet>
         <BottomSheet.Header />
         <BottomSheet.Content>
           <div className="flex flex-col justify-center items-center h-full">
