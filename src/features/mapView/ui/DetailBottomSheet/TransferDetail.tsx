@@ -1,4 +1,6 @@
+import { useEventStore } from "@/shared/stores";
 import { TransferType } from "../../model";
+import { openKakaoMap } from "../../utils";
 
 interface TransferDetailProps {
   type: TransferType;
@@ -7,15 +9,31 @@ interface TransferDetailProps {
   endPoint: string;
 }
 
-const TransferMap = {
-  subway: [
-    { src: "/icon/kakaoMap.svg", alt: "kakaoMap", onClick: () => console.log("카카오맵 열기") },
-    { src: "/icon/naverMap.svg", alt: "naverMap", onClick: () => console.log("네이버맵 열기") },
-  ],
-  car: [{ src: "/icon/TMap.svg", alt: "tMap", onClick: () => console.log("티맵 열기") }],
-} as const;
-
 export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: TransferDetailProps) => {
+  const eventData = useEventStore(state => state.eventData);
+  const detailEventData = useEventStore(state => state.detailEventData);
+  if (!eventData || !detailEventData) return;
+
+  const TransferMap = {
+    subway: [
+      {
+        src: "/icon/kakaoMap.svg",
+        alt: "kakaoMap",
+        onClick: () =>
+          openKakaoMap({
+            startPoint: detailEventData.startName,
+            startLat: detailEventData.startLatitude,
+            startLog: detailEventData.startLongitude,
+            endPoint: eventData.meetingPoint.endStationName,
+            endLat: eventData.meetingPoint.endLatitude,
+            endLog: eventData.meetingPoint.endLongitude,
+          }),
+      },
+      { src: "/icon/naverMap.svg", alt: "naverMap", onClick: () => console.log("네이버맵 열기") },
+    ],
+    car: [{ src: "/icon/TMap.svg", alt: "tMap", onClick: () => console.log("티맵 열기") }],
+  };
+
   return (
     <div className="flex flex-col px-5 py-4 gap-1">
       <div className="flex justify-between items-center">
@@ -25,7 +43,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
         </div>
         <div className="flex gap-2">
           {TransferMap[type].map(({ src, alt, onClick }) => (
-            <button key={alt} onClick={onClick}>
+            <button key={alt} onClick={() => onClick()}>
               <img src={src} alt={alt} />
             </button>
           ))}
