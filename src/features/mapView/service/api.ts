@@ -20,3 +20,24 @@ export const getEventInfo = async (eventId: string, startPointId?: string) => {
     throw error;
   }
 };
+
+export const patchEvent = async (eventId: string, startPointId: string, isTransit: boolean) => {
+  try {
+    const response = await api.patch(`/events/${eventId}`, null, {
+      params: {
+        startPointId,
+        isTransit,
+      },
+    });
+
+    if (response.data.result === "SUCCESS") {
+      return true;
+    } else {
+      console.error(":", response.data.error.message);
+      throw new Error(response.data.error.message);
+    }
+  } catch (error) {
+    console.error("대중교통 변경 실패:", error);
+    throw error;
+  }
+};

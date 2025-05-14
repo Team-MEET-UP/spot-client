@@ -1,7 +1,7 @@
-import { BusTransfer } from "../../model";
+import { TransitRoute } from "@/shared/model";
 import { BusChip } from "./BusChip";
 
-export const BusPath = ({ startBoard, endBoard, bus, stationsCnt, duration }: BusTransfer) => {
+export const BusPath = ({ startBoardName, endBoardName, laneName, stationCount, sectionTime }: TransitRoute) => {
   return (
     <>
       <div className="flex gap-3 items-center">
@@ -13,15 +13,13 @@ export const BusPath = ({ startBoard, endBoard, bus, stationsCnt, duration }: Bu
           </div>
         </div>
         <div className="flex flex-col text-md font-medium text-gray-90">
-          <span className="mb-2">{startBoard} 승차</span>
-          <div className="flex gap-1 mb-2">
-            {bus && bus.map(busNumber => <BusChip key={busNumber} busNumber={busNumber} />)}
-          </div>
+          <span className="mb-2">{startBoardName} 승차</span>
+          <div className="flex gap-1 mb-2">{laneName && <BusChip busNumber={laneName} />}</div>
           <div className="flex items-center gap-[6px] text-sm mb-8">
-            <p className="font-semibold text-gray-50">{duration}분</p>
-            <p className="text-gray-30">{stationsCnt}개 역 이동</p>
+            <p className="font-semibold text-gray-50">{sectionTime}분</p>
+            <p className="text-gray-30">{stationCount}개 정류장 이동</p>
           </div>
-          <span>{endBoard} 하차</span>
+          <span>{endBoardName} 하차</span>
         </div>
       </div>
       <img src="/icon/shortPath.svg" alt="shortPath" className="ml-[11px] w-[2px]" />

@@ -7,6 +7,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const BottomSheetContent = () => {
   const eventData = useEventStore(state => state.eventData);
+  const toggleDetail = useEventStore(state => state.toggleDetail);
+  const setDetailEventData = useEventStore(state => state.setDetailEventData);
 
   return (
     <div className="h-full flex flex-col">
@@ -19,7 +21,17 @@ export const BottomSheetContent = () => {
 
       <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden" data-scrollable="true">
         {eventData?.routeResponse.map(user => (
-          <UserCard key={user.id} name={user.nickname} startStation={user.startName} totalTime={user.totalTime} />
+          <UserCard
+            key={user.id}
+            isTransit={user.isTransit}
+            name={user.nickname}
+            startStation={user.startName}
+            totalTime={user.totalTime}
+            onClick={() => {
+              toggleDetail();
+              setDetailEventData(user);
+            }}
+          />
         ))}
       </div>
     </div>

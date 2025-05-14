@@ -1,23 +1,48 @@
 import { useEffect, useRef, useState } from "react";
 import { MeetingMarker } from "./MeetingMarker";
 import { MapMarker } from "./MapMarker";
-import { mockMapData } from "@/shared/model";
+import { useEventStore } from "@/shared/stores";
+
+interface PathPoint {
+  latitude: number;
+  longitude: number;
+}
 
 export const DetailKakaoMapView = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
+  const eventData = useEventStore(state => state.eventData);
+  const detailEventData = useEventStore(state => state.detailEventData);
 
-  const user = mockMapData.users.find(u => u.id === "user_001");
+  if (!eventData || !detailEventData) {
+    return <div>Loading...</div>;
+  }
 
-  const pathPoints =
-    user?.transferInfo.flatMap(
-      info =>
-        info.stations?.map(station => ({
-          latitude: station.latitude,
-          longitude: station.longitude,
-          name: station.name,
-        })) ?? []
-    ) ?? [];
+  const pathPoints: PathPoint[] = [];
+
+  // 출발지점 추가
+  pathPoints.push({
+    latitude: detailEventData.startLatitude,
+    longitude: detailEventData.startLongitude,
+  });
+
+  // transitRoute 순회하며 경유지 추가
+  detailEventData.transitRoute.forEach(route => {
+    if (route.passStopList) {
+      route.passStopList.stations.forEach(station => {
+        pathPoints.push({
+          latitude: parseFloat(station.y),
+          longitude: parseFloat(station.x),
+        });
+      });
+    }
+  });
+
+  // 마지막 중간지점 마커 추가
+  pathPoints.push({
+    latitude: eventData.meetingPoint.endLatitude,
+    longitude: eventData.meetingPoint.endLongitude,
+  });
 
   useEffect(() => {
     const initializeMap = () => {
@@ -84,7 +109,7 @@ export const DetailKakaoMapView = () => {
       ref={mapRef}
       style={{
         width: "100%",
-        height: "calc(100vh - 48px - 20vh)",
+        height: "calc(100vh - 20vh)",
       }}>
       {map && (
         <>
@@ -92,18 +117,18 @@ export const DetailKakaoMapView = () => {
           <MeetingMarker
             map={map}
             position={{
-              lat: mockMapData.meetingPoint.latitude,
-              lng: mockMapData.meetingPoint.longitude,
+              lat: eventData.meetingPoint.endLatitude,
+              lng: eventData.meetingPoint.endLongitude,
             }}
-            title={mockMapData.meetingPoint.stationName}
+            title={eventData.meetingPoint.endStationName}
           />
           {/* 사용자 마커 */}
           <MapMarker
-            key={mockMapData.users[0].id}
+            key={detailEventData.id}
             map={map}
-            position={{ lat: mockMapData.users[0].latitude, lng: mockMapData.users[0].longitude }}
-            profileImg={mockMapData.users[0].profileImg}
-            name={mockMapData.users[0].name}
+            position={{ lat: detailEventData.startLatitude, lng: detailEventData.startLongitude }}
+            profileImg={detailEventData.profileImage}
+            name={detailEventData.nickname}
           />
         </>
       )}

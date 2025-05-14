@@ -1,31 +1,18 @@
 import { useState } from "react";
 import { CarDetail } from "./TransferDetail";
 import { FixedButton, Path, TransferDetail } from "./DetailBottomSheet";
-import { TransferInfo, TransferType } from "../model";
+import { TransferType } from "../model";
 import { SnapBottomSheet } from "@/shared/ui";
-import { mockMapData } from "@/shared/model";
-
-const transferInfo: TransferInfo[] = [
-  {
-    type: "walk",
-    startBoard: "2번 출구",
-    endBoard: "교대역2번출구 정류장",
-    distance: 535,
-    duration: 4,
-  },
-  {
-    type: "bus",
-    startBoard: "정류장",
-    endBoard: "서울대입구역",
-    stationsCnt: 6,
-    stations: [],
-    bus: ["202", "302"],
-    duration: 15,
-  },
-] as const;
+import { useEventStore } from "@/shared/stores";
 
 export const MapDetailBottomSheet = () => {
-  const [type, setType] = useState<TransferType>("subway");
+  const detailEventData = useEventStore(state => state.detailEventData);
+  const eventData = useEventStore(state => state.eventData);
+  const [type, setType] = useState<TransferType>(detailEventData?.isTransit ? "subway" : "car");
+
+  if (!detailEventData || !eventData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -33,26 +20,26 @@ export const MapDetailBottomSheet = () => {
         <SnapBottomSheet.Header />
         <TransferDetail
           type={type}
-          averageDuration={37}
-          startPoint={mockMapData.users[0].startStation}
-          endPoint={mockMapData.users[0].destination}
+          averageDuration={type === "car" ? detailEventData.drivingRoute[0].duration : detailEventData.totalTime}
+          startPoint={detailEventData.startName}
+          endPoint={eventData.meetingPoint.endStationName}
         />
         <SnapBottomSheet.Content>
           {type === "subway" ? (
             <Path
-              startPoint={mockMapData.users[0].startStation}
-              endPoint={mockMapData.users[0].destination}
-              transferInfo={transferInfo}
+              startPoint={detailEventData.startName}
+              endPoint={eventData.meetingPoint.endStationName}
+              transferInfo={detailEventData.transitRoute}
             />
           ) : (
             <CarDetail
-              driveDistance={37}
-              toll="8,000"
-              taxiToll="27,00"
-              parking={{ name: "잠원동방음언덕형 공영주차장", distance: 40 }}
+              driveDistance={detailEventData.drivingRoute[0].distance}
+              toll={detailEventData.drivingRoute[0].toll}
+              taxiToll={detailEventData.drivingRoute[0].taxi}
+              parking={eventData.parkingLot}
             />
           )}
-          <FixedButton type={type} setType={setType} />
+          <FixedButton type={type} setType={setType} isMe={detailEventData.isMe} />
         </SnapBottomSheet.Content>
       </SnapBottomSheet>
     </>
