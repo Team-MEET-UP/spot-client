@@ -1,4 +1,4 @@
-export const metroNameToKey: Record<string, { bg: string; text?: string }> = {
+export const subwayLine: Record<string, { bg: string; text?: string }> = {
   "수도권 공항철도": { bg: "bg-metro-KA" },
   "수도권 신분당선": { bg: "bg-metro-S" },
   "수도권 우이신설경전철": { bg: "bg-metro-UI" },

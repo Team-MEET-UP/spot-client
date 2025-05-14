@@ -26,9 +26,11 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
         alt: "kakaoMap",
         onClick: () =>
           openKakaoMap({
+            startLat: detailEventData.startLatitude,
+            startLng: detailEventData.startLongitude,
             endPoint: eventData.meetingPoint.endStationName,
             endLat: eventData.meetingPoint.endLatitude,
-            endLog: eventData.meetingPoint.endLongitude,
+            endLng: eventData.meetingPoint.endLongitude,
           }),
       },
       {
@@ -38,10 +40,10 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
           openNaverMap({
             startPoint: detailEventData.startName,
             startLat: detailEventData.startLatitude,
-            startLog: detailEventData.startLongitude,
+            startLng: detailEventData.startLongitude,
             endPoint: eventData.meetingPoint.endStationName,
             endLat: eventData.meetingPoint.endLatitude,
-            endLog: eventData.meetingPoint.endLongitude,
+            endLng: eventData.meetingPoint.endLongitude,
           }),
       },
     ],
@@ -53,7 +55,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
           openTMAP({
             endPoint: eventData.meetingPoint.endStationName,
             endLat: eventData.meetingPoint.endLatitude,
-            endLog: eventData.meetingPoint.endLongitude,
+            endLng: eventData.meetingPoint.endLongitude,
           }),
       },
     ],
