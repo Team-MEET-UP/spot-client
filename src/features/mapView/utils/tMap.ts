@@ -1,7 +1,7 @@
 import { OpenMapProps } from "../model";
 
-export const openTMAP = ({ endPoint, endLat, endLog }: OpenMapProps) => {
-  const tMapUrl = `tmap://route?goalname=${endPoint}&goalx=${endLog}&goaly=${endLat}`;
+export const openTMAP = ({ endPoint, endLat, endLng }: OpenMapProps) => {
+  const tMapUrl = `tmap://route?goalname=${endPoint}&goalx=${endLng}&goaly=${endLat}`;
   const appStoreUrl = "https://apps.apple.com/kr/app/t-map/id431589174";
 
   window.open(tMapUrl, "_blank");
