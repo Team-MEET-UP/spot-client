@@ -19,7 +19,6 @@ const HistoryPage = () => {
   useEffect(() => {
     const eventIdFromStorage = localStorage.getItem("shared_link_access");
     if (eventIdFromStorage) {
-      localStorage.removeItem("shared_link_access"); // 중복 리디렉션 방지
       navigate(`/find?eventId=${eventIdFromStorage}&startStep=1`);
     }
   }, [navigate]);
