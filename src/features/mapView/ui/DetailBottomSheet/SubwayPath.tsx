@@ -1,8 +1,17 @@
 import { TransitRoute } from "@/shared/model";
-import { metroNameToKey } from "../../config/subwayLine";
+import { subwayLine } from "../../config/subwayLine";
 
 export const SubwayPath = ({ endBoardName, laneName, sectionTime, startBoardName, stationCount }: TransitRoute) => {
-  const lineType = metroNameToKey[laneName!];
+  const findMetroKey = (lineName: string) => {
+    if (subwayLine[lineName]) return subwayLine[lineName];
+
+    const foundKey = Object.keys(subwayLine).find(key => lineName.startsWith(key));
+    return foundKey ? subwayLine[foundKey] : null;
+  };
+
+  const lineType = findMetroKey(laneName!);
+
+  if (!lineType) return null;
 
   return (
     <>
