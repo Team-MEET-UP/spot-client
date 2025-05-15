@@ -15,7 +15,7 @@ export const UserCard = ({ isTransit, name, startStation, totalTime, onClick }: 
     <div className="flex justify-between items-center" onClick={onClick}>
       <div className="py-[8px] cursor-pointer">
         <div className="flex gap-1 text-lg font-bold text-gray-80">
-          <img src={isTransit ? Transfer : Car} alt="transfer" />
+          <img src={isTransit ? Transfer : Car} alt="transfer" className="w-5 h-5" />
           <span>{totalTime}분</span>
         </div>
         <p className="text-gray-40 text-sm">
@@ -23,7 +23,7 @@ export const UserCard = ({ isTransit, name, startStation, totalTime, onClick }: 
         </p>
       </div>
       <button>
-        <img src={Arrow} alt="arrow" />
+        <img src={Arrow} alt="arrow" className="w-4 h-4" />
       </button>
     </div>
   );

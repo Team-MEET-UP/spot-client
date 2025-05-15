@@ -88,11 +88,11 @@ export const FixedButtons = () => {
         <button
           className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
           onClick={handleAddMemberClick}>
-          <img src={AddUser} alt="addUser" />
+          <img src={AddUser} alt="addUser" className="w-[27px] h-4" />
           <span>멤버 추가하기</span>
         </button>
         <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-md">
-          <img src={Share} alt="share" onClick={() => setIsOpen(true)} />
+          <img src={Share} alt="share" onClick={() => setIsOpen(true)} className="w-6 h-6" />
         </button>
       </div>
       {isOpen && (

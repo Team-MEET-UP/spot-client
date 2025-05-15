@@ -14,7 +14,7 @@ export const CloseHeader = ({ url }: CloseHeaderProps) => {
         onClick={() => {
           navigate(url);
         }}>
-        <img src={Close} alt="close" />
+        <img src={Close} alt="close" className="w-6 h-6" />
       </button>
     </header>
   );

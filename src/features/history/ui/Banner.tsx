@@ -16,7 +16,7 @@ export const Banner = () => {
         <img src={Arrow} alt="arrow" />
       </div>
       <p className="text-sm font-medium">중간지점을 찾아드려요</p>
-      <img src={BannerImg} className=" absolute top-0 right-5 h-20 w-20" />
+      <img src={BannerImg} className="absolute top-0 right-5 h-20 w-20" />
     </div>
   );
 };

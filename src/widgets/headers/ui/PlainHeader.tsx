@@ -21,7 +21,7 @@ export const PlainHeader = ({ title, onBack, url }: PlainHeaderProps) => {
   return (
     <header className="relative flex w-full py-3 items-center">
       <button onClick={handleBack}>
-        <img src={Back} alt="back" />
+        <img src={Back} alt="back" className="w-6 h-6" />
       </button>
       <span className="absolute top-3 left-1/2 -translate-x-1/2 text-md font-semibold">{title}</span>
     </header>

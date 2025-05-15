@@ -17,12 +17,12 @@ export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
     <div className="flex flex-col my-4 mx-5 mb-16">
       <div className="flex gap-3 items-center">
         <div className="relative">
-          <img src={Start} alt="start" />
+          <img src={Start} alt="start" className="w-6 h-7" />
           <span className="absolute top-[5px] left-[3px] text-xxs font-semibold text-white">출발</span>
         </div>
         <span className="text-md font-semibold text-gray-90">{startPoint}</span>
       </div>
-      <img src={ShortPath} alt="shortPath" className="ml-[11px] w-[2px]" />
+      <img src={ShortPath} alt="shortPath" className="ml-[11px] w-[2px] h-8" />
 
       {transferInfo.map((info, index) => {
         const isLastIndex = index === transferInfo.length - 1;
@@ -43,7 +43,7 @@ export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
 
       <div className="flex gap-3 items-center">
         <div className="relative">
-          <img src={End} alt="end" />
+          <img src={End} alt="end" className="w-6 h-7" />
           <span className="absolute top-[5px] left-[3px] text-xxs font-semibold text-white">도착</span>
         </div>
         <span className="text-md font-semibold text-gray-90">{endPoint}역</span>
