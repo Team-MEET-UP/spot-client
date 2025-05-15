@@ -1,4 +1,5 @@
 import { Chip } from "./Chip";
+import Pin from "@/assets/icon/pin.svg";
 
 interface GroupCardProps {
   id: number;
@@ -29,7 +30,7 @@ export const GroupCard = ({
       <div className="flex gap-1 items-center text-sm font-medium text-gray-40 overflow-hidden text-ellipsis whitespace-nowrap">
         {isSelect ? (
           <>
-            <img src="/icon/pin.svg" alt="pin" />
+            <img src={Pin} alt="pin" />
             <p>{place}</p>
           </>
         ) : (

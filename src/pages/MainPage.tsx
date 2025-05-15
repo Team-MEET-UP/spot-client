@@ -1,6 +1,8 @@
 import { KakaoLogin } from "@/features/main/ui";
 import Button from "@/shared/ui/Button";
 import { useNavigate } from "react-router-dom";
+import Logo from "@/assets/icon/logo.svg";
+import MainImg from "@/assets/image/main.webp";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -15,11 +17,11 @@ const MainPage = () => {
         className="flex flex-col gap-3 items-center pb-6 h-fit px-5 pt-32 z-10"
         style={{ background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 30%)" }}>
         <span className="text-md font-medium text-gray-60">모임의 기준을 만들다</span>
-        <img src="/icon/logo.svg" alt="logo" className="mb-[38px]" />
+        <img src={Logo} alt="logo" className="mb-[38px]" />
         <Button onClick={handleClick}>중간지점 찾기</Button>
         <KakaoLogin />
       </div>
-      <img src="/image/main.png" alt="main" className="absolute top-16 right-0" />
+      <img src={MainImg} alt="main" className="absolute top-16 right-0" />
     </div>
   );
 };

@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import Polygon from "@/assets/icon/polygon.svg";
+import MeetingSpot from "@/assets/icon/meeting-spot.svg";
 
 interface MeetingMarkerProps {
   map: kakao.maps.Map;
@@ -40,7 +42,7 @@ export function MeetingMarker({ map, position, title }: MeetingMarkerProps) {
 
     // 폴리곤 이미지
     const polygon = document.createElement("img");
-    polygon.src = "/icon/polygon.svg";
+    polygon.src = Polygon;
     polygon.style.width = "12px";
     polygon.style.height = "6px";
     polygon.style.marginTop = "0px";
@@ -57,7 +59,7 @@ export function MeetingMarker({ map, position, title }: MeetingMarkerProps) {
 
     // 마커 이미지
     const markerImg = document.createElement("img");
-    markerImg.src = "/icon/meeting-spot.svg";
+    markerImg.src = MeetingSpot;
     markerImg.style.width = "100%";
     markerImg.style.height = "100%";
     container.appendChild(markerImg);

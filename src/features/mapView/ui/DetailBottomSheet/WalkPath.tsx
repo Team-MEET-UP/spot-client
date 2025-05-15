@@ -1,5 +1,7 @@
 import { TransitRoute } from "@/shared/model";
 import { useEventStore } from "@/shared/stores";
+import Walk from "@/assets/icon/walk.svg";
+import Path from "@/assets/icon/middlePath.svg";
 
 interface WalkPathProps extends TransitRoute {
   previousInfo: TransitRoute | null;
@@ -26,8 +28,8 @@ export const WalkPath = ({ sectionTime, distance, previousInfo, nextInfo }: Walk
   return (
     <div className="flex gap-3">
       <div className="flex flex-col">
-        <img src="/icon/walk.svg" alt="walk" className="w-6 h-6" />
-        <img src="/icon/middlePath.svg" alt="Path" className="ml-[11px] w-[2px]" />
+        <img src={Walk} alt="walk" className="w-6 h-6" />
+        <img src={Path} alt="Path" className="ml-[11px] w-[2px]" />
       </div>
       <div className="flex flex-col">
         <span className="text-md font-medium text-gray-90 break-keep whitespace-normal mb-[2px]">

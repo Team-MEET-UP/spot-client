@@ -4,6 +4,8 @@ import { useState } from "react";
 import { LoginModal } from ".";
 import { ShareModal } from "@/shared/ui";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import AddUser from "@/assets/icon/addUser.svg";
+import Share from "@/assets/icon/share.svg";
 
 export const BottomSheetContent = () => {
   const eventData = useEventStore(state => state.eventData);
@@ -62,7 +64,7 @@ export const FixedButtons = () => {
   const shareContent = {
     title: title,
     description: "",
-    imageUrl: "https://www.pickspot.co.kr/image/KT2.png",
+    imageUrl: "https://www.pickspot.co.kr/image/KT2.webp",
     links: [
       { label: "내 출발지 입력", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
       { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },
@@ -86,11 +88,11 @@ export const FixedButtons = () => {
         <button
           className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
           onClick={handleAddMemberClick}>
-          <img src="./icon/addUser.svg" alt="addUser" />
+          <img src={AddUser} alt="addUser" />
           <span>멤버 추가하기</span>
         </button>
         <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-md">
-          <img src="./icon/share.svg" alt="share" onClick={() => setIsOpen(true)} />
+          <img src={Share} alt="share" onClick={() => setIsOpen(true)} />
         </button>
       </div>
       {isOpen && (

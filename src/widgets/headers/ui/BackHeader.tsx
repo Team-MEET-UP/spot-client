@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Back from "@/assets/icon/back.svg";
 
 interface BackHeaderProps {
   url?: string;
@@ -20,7 +21,7 @@ export const BackHeader = ({ url, onClick }: BackHeaderProps) => {
             navigate(-1);
           }
         }}>
-        <img src="/icon/back.svg" alt="back" />
+        <img src={Back} alt="back" />
       </button>
     </header>
   );

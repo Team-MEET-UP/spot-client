@@ -1,4 +1,7 @@
 import React from "react";
+import Plug from "@/assets/icon/plug.svg";
+import SeatGray from "@/assets/icon/seatGray.svg";
+import People from "@/assets/icon/people.svg";
 
 type LabelType = keyof typeof infoMap;
 
@@ -10,7 +13,7 @@ interface ScoreSelectorProps {
 
 const infoMap: Record<string, { icon: string; texts: Record<number, string> }> = {
   콘센트: {
-    icon: "/icon/plug.svg",
+    icon: Plug,
     texts: {
       1: "콘센트가 없어요",
       2: "부족해요",
@@ -20,7 +23,7 @@ const infoMap: Record<string, { icon: string; texts: Record<number, string> }> =
     },
   },
   좌석: {
-    icon: "/icon/seatGray.svg",
+    icon: SeatGray,
     texts: {
       1: "많이 부족해요",
       2: "부족해요",
@@ -30,7 +33,7 @@ const infoMap: Record<string, { icon: string; texts: Record<number, string> }> =
     },
   },
   혼잡도: {
-    icon: "/icon/people.svg",
+    icon: People,
     texts: {
       1: "매우 조용해요",
       2: "조용해요",

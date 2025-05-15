@@ -1,12 +1,14 @@
 import { TransitRoute } from "@/shared/model";
 import { BusChip } from "./BusChip";
+import Bus from "@/assets/icon/bus.svg";
+import Path from "@/assets/icon/shortPath.svg";
 
 export const BusPath = ({ startBoardName, endBoardName, laneName, stationCount, sectionTime }: TransitRoute) => {
   return (
     <>
       <div className="flex gap-3 items-center">
         <div className="flex flex-col items-center w-fit">
-          <img src="/icon/bus.svg" alt="bus" className="w-6 h-6" />
+          <img src={Bus} alt="bus" className="w-6 h-6" />
           <div className="h-[87px] w-1 bg-gray-70" />
           <div className="flex w-6 h-6 justify-center items-center bg-gray-70 rounded-[30px] text-xxs font-semibold text-white">
             하차
@@ -22,7 +24,7 @@ export const BusPath = ({ startBoardName, endBoardName, laneName, stationCount, 
           <span>{endBoardName} 하차</span>
         </div>
       </div>
-      <img src="/icon/shortPath.svg" alt="shortPath" className="ml-[11px] w-[2px]" />
+      <img src={Path} alt="shortPath" className="ml-[11px] w-[2px]" />
     </>
   );
 };

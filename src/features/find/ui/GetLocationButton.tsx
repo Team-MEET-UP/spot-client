@@ -2,6 +2,7 @@ import { getLocationInfo } from "../service/coord2Address";
 import { loadKakaoMapSdk } from "@/shared/utils";
 import { Dispatch, SetStateAction } from "react";
 import { StartPointInfo } from "../model";
+import Location from "@/assets/icon/location.svg";
 
 interface GetLocationButtonProps {
   setValue: Dispatch<SetStateAction<string>>;
@@ -43,7 +44,7 @@ export const GetLocationButton = ({ setValue, setStartPointInfo, name }: GetLoca
     <button
       onClick={handleGetCurrentLocation}
       className="flex gap-2 w-full h-14 justify-center items-center bg-gray-100 text-gray-50 text-md font-semibold rounded-2xl">
-      <img src="/icon/location.svg" alt="현재 위치" className="w-5 h-5" />현 위치 불러오기
+      <img src={Location} alt="현재 위치" className="w-5 h-5" />현 위치 불러오기
     </button>
   );
 };

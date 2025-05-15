@@ -1,3 +1,5 @@
+import Arrow from "@/assets/icon/rightArrow.svg";
+
 const menuItems = [
   {
     label: "이용약관 및 개인정보처리방침",
@@ -33,7 +35,7 @@ export const Menu = () => {
             item.hasArrow ? "text-gray-60" : "text-gray-30"
           }`}>
           {item.label}
-          {item.hasArrow && <img src="/icon/rightArrow.svg" alt="arrow" />}
+          {item.hasArrow && <img src={Arrow} alt="arrow" />}
         </button>
       ))}
     </div>

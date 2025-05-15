@@ -2,6 +2,8 @@ import { Modal } from "@/shared/ui";
 import { ReactNode } from "react";
 import { shareContentProps } from "../model";
 import { shareToKakao } from "../utils";
+import LinkCopy from "@/assets/icon/linkCopy.svg";
+import KakaoShare from "@/assets/icon/kakaoShare.svg";
 
 interface ShareModalProps {
   onClose: () => void;
@@ -12,12 +14,12 @@ interface ShareModalProps {
 
 const shareItems = [
   {
-    src: "/icon/linkCopy.svg",
+    src: LinkCopy,
     alt: "linkCopy",
     label: "링크 복사",
   },
   {
-    src: "/icon/kakaoShare.svg",
+    src: KakaoShare,
     alt: "kakaoShare",
     label: "카카오톡",
   },

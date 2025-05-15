@@ -1,3 +1,11 @@
+import Morning from "@/assets/icon/morning.svg";
+import MorningActive from "@/assets/icon/morningBlue.svg";
+import Afternoon from "@/assets/icon/afternoon.svg";
+import AfternoonActive from "@/assets/icon/afternoonBlue.svg";
+import Evening from "@/assets/icon/evening.svg";
+import EveningActive from "@/assets/icon/eveningBlue.svg";
+import Check from "@/assets/icon/checkBlue.svg";
+
 interface FirstStepProps {
   selectedTime: string | null;
   setSelectedTime: (time: string) => void;
@@ -8,20 +16,20 @@ const options = [
   {
     label: "아침",
     value: "morning",
-    imageUrl: "/icon/morning.svg",
-    activeUrl: "/icon/morningBlue.svg",
+    imageUrl: Morning,
+    activeUrl: MorningActive,
   },
   {
     label: "점심",
     value: "afternoon",
-    imageUrl: "/icon/afternoon.svg",
-    activeUrl: "/icon/afternoonBlue.svg",
+    imageUrl: Afternoon,
+    activeUrl: AfternoonActive,
   },
   {
     label: "저녁",
     value: "evening",
-    imageUrl: "/icon/evening.svg",
-    activeUrl: "/icon/eveningBlue.svg",
+    imageUrl: Evening,
+    activeUrl: EveningActive,
   },
 ];
 
@@ -40,7 +48,7 @@ const FirstStep = ({ selectedTime, setSelectedTime }: FirstStepProps) => {
             `}>
             <img className="w-8 h-8" src={isSelected ? option.activeUrl : option.imageUrl} alt={option.value} />
             {option.label}
-            {isSelected && <img className="absolute top-4 right-4" src="/icon/checkBlue.svg" alt="check" />}
+            {isSelected && <img className="absolute top-4 right-4" src={Check} alt="check" />}
           </button>
         );
       })}

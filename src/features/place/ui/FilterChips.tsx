@@ -1,8 +1,11 @@
 import { useState } from "react";
+import Meeitng from "@/assets/icon/meeting.svg";
+import Study from "@/assets/icon/study.svg";
+import Drinking from "@/assets/icon/drinking.svg";
 
 type FilterType = "회의" | "공부" | "술자리" | "전체";
 const filters: FilterType[] = ["회의", "공부", "술자리", "전체"];
-const icons = ["/icon/meeting.svg", "/icon/study.svg", "/icon/drinking.svg"];
+const icons = [Meeitng, Study, Drinking];
 export const FilterChips = () => {
   const [selected, setSelected] = useState("회의");
   return (

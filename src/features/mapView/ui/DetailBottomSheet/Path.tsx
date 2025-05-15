@@ -2,6 +2,9 @@ import { TransitRoute } from "@/shared/model";
 import { BusPath } from "./BusPath";
 import { SubwayPath } from "./SubwayPath";
 import { WalkPath } from "./WalkPath";
+import Start from "@/assets/icon/start.svg";
+import ShortPath from "@/assets/icon/shortPath.svg";
+import End from "@/assets/icon/end.svg";
 
 interface PathProps {
   startPoint: string;
@@ -14,12 +17,12 @@ export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
     <div className="flex flex-col my-4 mx-5 mb-16">
       <div className="flex gap-3 items-center">
         <div className="relative">
-          <img src="/icon/start.svg" alt="start" />
+          <img src={Start} alt="start" />
           <span className="absolute top-[5px] left-[3px] text-xxs font-semibold text-white">출발</span>
         </div>
         <span className="text-md font-semibold text-gray-90">{startPoint}</span>
       </div>
-      <img src="/icon/shortPath.svg" alt="shortPath" className="ml-[11px] w-[2px]" />
+      <img src={ShortPath} alt="shortPath" className="ml-[11px] w-[2px]" />
 
       {transferInfo.map((info, index) => {
         const isLastIndex = index === transferInfo.length - 1;
@@ -40,7 +43,7 @@ export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
 
       <div className="flex gap-3 items-center">
         <div className="relative">
-          <img src="/icon/end.svg" alt="end" />
+          <img src={End} alt="end" />
           <span className="absolute top-[5px] left-[3px] text-xxs font-semibold text-white">도착</span>
         </div>
         <span className="text-md font-semibold text-gray-90">{endPoint}역</span>
