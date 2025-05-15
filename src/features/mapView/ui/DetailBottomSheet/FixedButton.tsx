@@ -31,7 +31,7 @@ export const FixedButton = ({ type, setType, isMe }: FixedButtonProps) => {
           setType("subway");
           handleClick(true);
         }}>
-        <img src={type === "subway" ? Subway : SubwayGray} alt="subway" />
+        <img src={type === "subway" ? Subway : SubwayGray} alt="subway" className="w-5 h-5" />
         대중교통
       </button>
       <button
@@ -40,7 +40,7 @@ export const FixedButton = ({ type, setType, isMe }: FixedButtonProps) => {
           setType("car");
           handleClick(false);
         }}>
-        <img src={type === "car" ? Car : CarGray} alt="subway" />
+        <img src={type === "car" ? Car : CarGray} alt="subway" className="w-5 h-5" />
         자가용
       </button>
     </div>

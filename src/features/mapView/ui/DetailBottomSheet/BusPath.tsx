@@ -24,7 +24,7 @@ export const BusPath = ({ startBoardName, endBoardName, laneName, stationCount, 
           <span>{endBoardName} 하차</span>
         </div>
       </div>
-      <img src={Path} alt="shortPath" className="ml-[11px] w-[2px]" />
+      <img src={Path} alt="shortPath" className="ml-[11px] w-[2px] h-8" />
     </>
   );
 };

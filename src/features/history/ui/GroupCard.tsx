@@ -30,7 +30,7 @@ export const GroupCard = ({
       <div className="flex gap-1 items-center text-sm font-medium text-gray-40 overflow-hidden text-ellipsis whitespace-nowrap">
         {isSelect ? (
           <>
-            <img src={Pin} alt="pin" />
+            <img src={Pin} alt="pin" className="w-4 h-4" />
             <p>{place}</p>
           </>
         ) : (

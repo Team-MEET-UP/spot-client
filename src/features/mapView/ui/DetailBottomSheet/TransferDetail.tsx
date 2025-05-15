@@ -73,20 +73,20 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
     <div className="flex flex-col px-5 py-4 gap-1">
       <div className="flex justify-between items-center">
         <div className="flex gap-1 items-center">
-          <img src={type === "subway" ? Subway : Car} alt="transfer" />
+          <img src={type === "subway" ? Subway : Car} alt="transfer" className="w-6 h-6" />
           <span className="text-xl font-bold text-gray-90">{averageDuration}분</span>
         </div>
         <div className="flex gap-2">
           {filteredIcons.map(({ src, alt, onClick }) => (
             <button key={alt} onClick={onClick}>
-              <img src={src} alt={alt} />
+              <img src={src} alt={alt} className="w-6 h-6" />
             </button>
           ))}
         </div>
       </div>
       <div className="flex gap-1 items-center text-md font-semibold text-gray-60">
         {startPoint}
-        <img src={ArrowLine} alt="arrow" />
+        <img src={ArrowLine} alt="arrow" className="w-4 h-4" />
         {endPoint}
       </div>
     </div>

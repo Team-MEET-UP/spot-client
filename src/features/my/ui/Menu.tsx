@@ -35,7 +35,7 @@ export const Menu = () => {
             item.hasArrow ? "text-gray-60" : "text-gray-30"
           }`}>
           {item.label}
-          {item.hasArrow && <img src={Arrow} alt="arrow" />}
+          {item.hasArrow && <img src={Arrow} alt="arrow" className="w-4 h-4" />}
         </button>
       ))}
     </div>

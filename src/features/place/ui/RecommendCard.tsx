@@ -15,7 +15,7 @@ export const RecommendCard = ({ place, onClick }: RecommendCardProps) => {
         </h1>
         <p className="text-gray-50 text-sm font-medium">스팟이 장소를 골라봤어요</p>
       </div>
-      <img src={Meeting} alt="회의 추천장소" />
+      <img src={Meeting} alt="회의 추천장소" className="w-32 h-32" />
     </div>
   );
 };

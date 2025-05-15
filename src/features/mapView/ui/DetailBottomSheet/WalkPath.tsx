@@ -29,7 +29,7 @@ export const WalkPath = ({ sectionTime, distance, previousInfo, nextInfo }: Walk
     <div className="flex gap-3">
       <div className="flex flex-col">
         <img src={Walk} alt="walk" className="w-6 h-6" />
-        <img src={Path} alt="Path" className="ml-[11px] w-[2px]" />
+        <img src={Path} alt="Path" className="ml-[11px] w-[2px] h-[55px]" />
       </div>
       <div className="flex flex-col">
         <span className="text-md font-medium text-gray-90 break-keep whitespace-normal mb-[2px]">
