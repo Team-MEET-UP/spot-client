@@ -13,6 +13,7 @@ module.exports = {
         sm: ["14px", { lineHeight: "150%" }],
         xs: ["12px", { lineHeight: "150%" }],
         xxs: ["10px", { lineHeight: "120%" }],
+        xxxs: ["8px", { lineHeight: "110%" }],
       },
       fontWeight: {
         bold: "700",
