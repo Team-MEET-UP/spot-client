@@ -1,3 +1,4 @@
+import { OtherPlaceForm } from "@/features/notVisited/ui";
 import { useState } from "react";
 
 interface VisitedPlaceProps {
@@ -10,12 +11,12 @@ interface VisitedPlaceProps {
 
 const NotVisitedPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [reason, setReason] = useState("");
+  const [unvisitedReason, setUnvisitedReason] = useState("");
   const [visitedPlace, setVisitedPlace] = useState<VisitedPlaceProps | null>(null);
 
   return (
-    <div>
-      {currentStep === 1 && <p>notvisited</p>}
+    <div className="flex flex-col h-screen-dvh">
+      {currentStep === 1 && <OtherPlaceForm unvisitedReason={unvisitedReason} />}
       {currentStep === 2 && <p>search location</p>}
     </div>
   );
