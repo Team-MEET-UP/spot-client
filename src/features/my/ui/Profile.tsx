@@ -3,7 +3,12 @@ import { useState } from "react";
 
 //@TODO 백 연동 시 이름, 프로필사진, 이메일 수정
 export const Profile = () => {
-  const { nickname, setNickname, profileImageUrl, email } = useUserStore();
+  const { nickname, profileImageUrl, email } = useUserStore(state => ({
+    nickname: state.nickname,
+    profileImageUrl: state.profileImageUrl,
+    email: state.email,
+  }));
+  const setNickname = useUserStore(state => state.setNickname);
   const [isEditting, setIsEditting] = useState(false);
 
   const handleEditting = () => {
