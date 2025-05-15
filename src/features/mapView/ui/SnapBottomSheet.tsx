@@ -1,5 +1,5 @@
 import { SnapBottomSheet } from "@/shared/ui";
-import { BottomSheetContent, FixedButtons } from "./BottomSheetContent";
+import { BottomSheetContent, FixedButtons, GroupAverageTime } from "./BottomSheetContent";
 
 export const SnapMapBottomSheet = () => {
   return (
@@ -10,6 +10,7 @@ export const SnapMapBottomSheet = () => {
           모임 장소 정하기
         </button>
       </div>
+      <GroupAverageTime />
       <SnapBottomSheet.Content>
         <BottomSheetContent />
         <FixedButtons />

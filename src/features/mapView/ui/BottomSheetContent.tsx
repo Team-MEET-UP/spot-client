@@ -12,14 +12,7 @@ export const BottomSheetContent = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="mx-5">
-        <div>
-          <h1 className="text-gray-80 text-lg font-bold">{eventData?.meetingPoint.endStationName}</h1>
-          <p className="text-gray-40 text-md">평균 {eventData?.averageTime}분</p>
-        </div>
-      </div>
-
-      <div className="flex-1 min-h-0 overflow-y-auto mx-5 pb-[80px] scrollbar-hidden" data-scrollable="true">
+      <div className="mx-5 pb-[80px]">
         {eventData?.routeResponse.map(user => (
           <UserCard
             key={user.id}
@@ -33,6 +26,18 @@ export const BottomSheetContent = () => {
             }}
           />
         ))}
+      </div>
+    </div>
+  );
+};
+
+export const GroupAverageTime = () => {
+  const eventData = useEventStore(state => state.eventData);
+  return (
+    <div className="mx-5">
+      <div>
+        <h1 className="text-gray-80 text-lg font-bold">{eventData?.meetingPoint.endStationName}</h1>
+        <p className="text-gray-40 text-md">평균 {eventData?.averageTime}분</p>
       </div>
     </div>
   );
