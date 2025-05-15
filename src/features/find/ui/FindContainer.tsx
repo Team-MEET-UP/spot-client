@@ -15,7 +15,7 @@ export const FindContainer = () => {
   const [name, setName] = useState(isLoggedIn && startStepParam === "1" ? nickname : "");
   const [currentStep, setCurrentStep] = useState(() => {
     // 쿼리로 전달받은 값이 1이면 1부터 시작, 아니면 0부터
-    return startStepParam === "1" ? 1 : 0;
+    return +(startStepParam === "1");
   });
   const [startPointInfo, setStartPointInfo] = useState<StartPointInfo | null>(null);
 

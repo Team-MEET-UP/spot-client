@@ -11,28 +11,31 @@ interface PolicyBottomSheetProps {
 
 export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
   const { mutate } = useStoreAgreement();
-  const [firstCheckBox, setFirstCheckBox] = useState(false);
-  const [secondCheckBox, setSecondCheckBox] = useState(false);
+  const [agreements, setAgreements] = useState({
+    personalInfo: false,
+    marketing: false,
+  });
 
-  const handleClick = () => {
-    if (firstCheckBox) {
+  const handleToggle = (key: "personalInfo" | "marketing") => {
+    setAgreements(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleAgreement = () => {
+    if (agreements.personalInfo) {
       mutate(
         {
-          isPersonalInfoAgreement: firstCheckBox,
-          isMarketingAgreement: secondCheckBox,
+          isPersonalInfoAgreement: agreements.personalInfo,
+          isMarketingAgreement: agreements.marketing,
         },
         {
-          onSuccess: () => {
-            onClose();
-          },
+          onSuccess: onClose,
           onError: error => {
-            console.error("약관 동의 요청 실패", error);
+            console.error("약관 동의 요청 실패", error?.message);
           },
         }
       );
     } else {
-      setFirstCheckBox(true);
-      setSecondCheckBox(true);
+      setAgreements({ personalInfo: true, marketing: true });
     }
   };
 
@@ -48,17 +51,17 @@ export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
             <div className="flex flex-col gap-5">
               <CheckBox
                 label="이용약관 및 개인정보처리방침(필수)"
-                isChecked={firstCheckBox}
-                onToggle={() => setFirstCheckBox(prev => !prev)}
+                isChecked={agreements.personalInfo}
+                onToggle={() => handleToggle("personalInfo")}
               />
               <CheckBox
                 label="마케팅 수신 동의(선택)"
-                isChecked={secondCheckBox}
-                onToggle={() => setSecondCheckBox(prev => !prev)}
+                isChecked={agreements.marketing}
+                onToggle={() => handleToggle("marketing")}
               />
             </div>
           </div>
-          <Button onClick={handleClick}>{firstCheckBox ? "완료" : "모두 동의하기"}</Button>
+          <Button onClick={handleAgreement}>{agreements.personalInfo ? "완료" : "모두 동의하기"}</Button>
         </div>
       </BottomSheet>
     </>

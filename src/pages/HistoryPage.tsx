@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 const HistoryPage = () => {
   const { data, isLoading, isError } = useUserInfo();
   const [isPolicy, setIsPolicy] = useState(false);
-  const { profileImageUrl } = useUserStore();
+  const profileImageUrl = useUserStore(state => state.profileImageUrl);
+  const nickname = useUserStore(state => state.nickname);
   const length = 1; // 임시 ui 구현을 위한 작업!
   const navigate = useNavigate();
 
@@ -17,11 +18,18 @@ const HistoryPage = () => {
   };
 
   useEffect(() => {
+    if (!isLoading && nickname === "") {
+      navigate("/");
+    }
+  }, [nickname, isLoading, navigate]);
+
+  useEffect(() => {
     if (data) {
       // 데이터가 로드된 후 사용자 정보 저장
       useUserStore.setState({
         nickname: data.nickname,
         profileImageUrl: data.profileImageUrl,
+        email: data.email,
       });
 
       setIsPolicy(!data.personalInfoAgreement);

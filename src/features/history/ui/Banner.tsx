@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 export const Banner = () => {
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate("/find?startStep=1");
+  };
+
   return (
-    <div
-      className="relative w-full bg-sub-sub px-5 py-4 rounded-2xl text-white cursor-pointer"
-      onClick={() => {
-        navigate("/find?startStep=1");
-      }}>
+    <div className="relative w-full bg-sub-sub px-5 py-4 rounded-2xl text-white cursor-pointer" onClick={handleClick}>
       <div className="flex items-center gap-1">
         <span className="text-lg font-bold">모임 만들기</span>
         <img src="/icon/arrow.svg" alt="arrow" />
