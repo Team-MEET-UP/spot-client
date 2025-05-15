@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-
 import { SnapWrapper } from "./SnapWrapper";
 import { SnapHeader } from "./SnapHeader";
 import { SnapContent } from "./SnapContent";
