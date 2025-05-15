@@ -7,7 +7,6 @@ import MapViewPage from "@/pages/MapViewPage";
 import MyPage from "@/pages/MyPage";
 import PlacePage from "@/pages/PlacePage";
 import ReviewPage from "@/pages/ReviewPage";
-import StartPointPage from "@/pages/StartPointPage";
 import VisitedPage from "@/pages/VisitedPage";
 
 export const router = createBrowserRouter([
@@ -19,6 +18,5 @@ export const router = createBrowserRouter([
   { path: "/my", element: <MyPage /> },
   { path: "/place", element: <PlacePage /> },
   { path: "/review/:id", element: <ReviewPage /> },
-  { path: "/startPoint", element: <StartPointPage /> },
   { path: "/visited/:id", element: <VisitedPage /> },
 ]);
