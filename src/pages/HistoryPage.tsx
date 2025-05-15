@@ -9,12 +9,19 @@ const HistoryPage = () => {
   const { data, isLoading, isError } = useUserInfo();
   const [isPolicy, setIsPolicy] = useState(false);
   const profileImageUrl = useUserStore(state => state.profileImageUrl);
+  const nickname = useUserStore(state => state.nickname);
   const length = 1; // 임시 ui 구현을 위한 작업!
   const navigate = useNavigate();
 
   const onClose = () => {
     setIsPolicy(false);
   };
+
+  useEffect(() => {
+    if (!isLoading && nickname === "") {
+      navigate("/");
+    }
+  }, [nickname, isLoading, navigate]);
 
   useEffect(() => {
     if (data) {

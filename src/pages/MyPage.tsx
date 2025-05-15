@@ -1,7 +1,19 @@
 import { Logout, Menu, Profile } from "@/features/my/ui";
+import { useUserStore } from "@/shared/stores";
 import { PlainHeader } from "@/widgets/header";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
+  const navigate = useNavigate();
+  const nickname = useUserStore(state => state.nickname);
+
+  useEffect(() => {
+    if (nickname === "") {
+      navigate("/");
+    }
+  }, [nickname]);
+
   return (
     <div className="flex flex-col h-screen-dvh">
       <div className="flex flex-col px-5">
