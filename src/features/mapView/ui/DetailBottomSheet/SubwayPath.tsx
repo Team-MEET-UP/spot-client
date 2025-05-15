@@ -19,13 +19,15 @@ export const SubwayPath = ({ endBoardName, laneName, sectionTime, startBoardName
       <div className="flex items-center gap-3">
         <div className="flex flex-col items-center w-fit">
           <div
-            className={`flex w-6 h-6 justify-center items-center ${lineType.bg} rounded-[30px] text-sm font-semibold text-white`}>
-            {lineType.text && lineType.text}
+            className={`flex flex-col w-6 h-6 justify-center items-center ${lineType.bg} rounded-[30px] ${lineType.textSize} ${lineType.fontWeight} text-white`}>
+            <p>{lineType.text}</p>
+            {lineType.secondText && <p>{lineType.secondText}</p>}
           </div>
           <div className={`h-[55px] w-1 ${lineType.bg}`} />
           <div
-            className={`flex w-6 h-6 justify-center items-center ${lineType.bg} rounded-[30px] text-sm font-semibold text-white`}>
-            {lineType.text && lineType.text}
+            className={`flex flex-col w-6 h-6 justify-center items-center ${lineType.bg} rounded-[30px] ${lineType.textSize} ${lineType.fontWeight} text-white`}>
+            <p>{lineType.text}</p>
+            {lineType.secondText && <p>{lineType.secondText}</p>}
           </div>
         </div>
         <div className="flex flex-col text-md font-medium text-gray-90">
