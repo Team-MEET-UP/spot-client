@@ -4,10 +4,10 @@ import FindPage from "@/pages/FindPage";
 import HistoryPage from "@/pages/HistoryPage";
 import MainPage from "@/pages/MainPage";
 import MapViewPage from "@/pages/MapViewPage";
-import MyPage from "@/pages/MyPage";
 import PlacePage from "@/pages/PlacePage";
 import ReviewPage from "@/pages/ReviewPage";
 import VisitedPage from "@/pages/VisitedPage";
+import MyPage from "@/pages/MyPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <MainPage /> },
