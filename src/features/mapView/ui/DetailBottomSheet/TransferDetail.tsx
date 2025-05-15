@@ -2,6 +2,12 @@ import { useEventStore } from "@/shared/stores";
 import { TransferType } from "../../model";
 import { openKakaoMap, openNaverMap, openTMAP } from "../../utils";
 import { useDeviceDetector } from "../../utils/useDeviceDetector";
+import KakaoMap from "@/assets/icon/kakaoMap.svg";
+import NaverMap from "@/assets/icon/naverMap.svg";
+import TMap from "@/assets/icon/TMap.svg";
+import ArrowLine from "@/assets/icon/rightArrowLine.svg";
+import Subway from "@/assets/icon/subway.svg";
+import Car from "@/assets/icon/car.svg";
 
 interface TransferDetailProps {
   type: TransferType;
@@ -22,7 +28,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
   const TransferMap = {
     subway: [
       {
-        src: "/icon/kakaoMap.svg",
+        src: KakaoMap,
         alt: "kakaoMap",
         onClick: () =>
           openKakaoMap({
@@ -34,7 +40,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
           }),
       },
       {
-        src: "/icon/naverMap.svg",
+        src: NaverMap,
         alt: "naverMap",
         onClick: () =>
           openNaverMap({
@@ -49,7 +55,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
     ],
     car: [
       {
-        src: "/icon/TMap.svg",
+        src: TMap,
         alt: "tMap",
         onClick: () =>
           openTMAP({
@@ -67,7 +73,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
     <div className="flex flex-col px-5 py-4 gap-1">
       <div className="flex justify-between items-center">
         <div className="flex gap-1 items-center">
-          <img src={type === "subway" ? "/icon/subway.svg" : "/icon/car.svg"} alt="transfer" />
+          <img src={type === "subway" ? Subway : Car} alt="transfer" />
           <span className="text-xl font-bold text-gray-90">{averageDuration}분</span>
         </div>
         <div className="flex gap-2">
@@ -80,7 +86,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
       </div>
       <div className="flex gap-1 items-center text-md font-semibold text-gray-60">
         {startPoint}
-        <img src="/icon/rightArrowLine.svg" alt="arrow" />
+        <img src={ArrowLine} alt="arrow" />
         {endPoint}
       </div>
     </div>

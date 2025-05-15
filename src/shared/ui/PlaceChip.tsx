@@ -1,11 +1,14 @@
+import Plug from "@/assets/icon/plug.svg";
+import Seat from "@/assets/icon/seat.svg";
+
 interface PlaceChipProps {
   label: string;
 }
 
 ///@TODO chip 종류 추가하기
 const chipMapping: Record<string, { icon: string; displayName: string }> = {
-  "콘센트 많음": { icon: "/icon/plug.svg", displayName: "콘센트 많음" },
-  "좌석 많음": { icon: "/icon/seat.svg", displayName: "좌석 많음" },
+  "콘센트 많음": { icon: Plug, displayName: "콘센트 많음" },
+  "좌석 많음": { icon: Seat, displayName: "좌석 많음" },
 };
 
 const PlaceChip = ({ label }: PlaceChipProps) => {

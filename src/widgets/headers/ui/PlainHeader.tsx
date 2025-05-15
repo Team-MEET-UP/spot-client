@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Back from "@/assets/icon/back.svg";
 
 interface PlainHeaderProps {
   title: string;
@@ -20,7 +21,7 @@ export const PlainHeader = ({ title, onBack, url }: PlainHeaderProps) => {
   return (
     <header className="relative flex w-full py-3 items-center">
       <button onClick={handleBack}>
-        <img src="/icon/back.svg" alt="back" />
+        <img src={Back} alt="back" />
       </button>
       <span className="absolute top-3 left-1/2 -translate-x-1/2 text-md font-semibold">{title}</span>
     </header>

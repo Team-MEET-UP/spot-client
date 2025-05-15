@@ -1,5 +1,9 @@
 import { useTransfer } from "../../hooks";
 import { TransferType } from "../../model";
+import Subway from "@/assets/icon/subway.svg";
+import SubwayGray from "@/assets/icon/subwayGray.svg";
+import Car from "@/assets/icon/car.svg";
+import CarGray from "@/assets/icon/carGray.svg";
 
 interface FixedButtonProps {
   type: TransferType;
@@ -27,7 +31,7 @@ export const FixedButton = ({ type, setType, isMe }: FixedButtonProps) => {
           setType("subway");
           handleClick(true);
         }}>
-        <img src={type === "subway" ? "/icon/subway.svg" : "/icon/subwayGray.svg"} alt="subway" />
+        <img src={type === "subway" ? Subway : SubwayGray} alt="subway" />
         대중교통
       </button>
       <button
@@ -36,7 +40,7 @@ export const FixedButton = ({ type, setType, isMe }: FixedButtonProps) => {
           setType("car");
           handleClick(false);
         }}>
-        <img src={type === "car" ? "/icon/car.svg" : "/icon/carGray.svg"} alt="subway" />
+        <img src={type === "car" ? Car : CarGray} alt="subway" />
         자가용
       </button>
     </div>

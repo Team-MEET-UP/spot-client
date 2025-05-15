@@ -1,5 +1,6 @@
 import { useUserStore } from "@/shared/stores";
 import { useState } from "react";
+import Edit from "@/assets/icon/edit.svg";
 
 //@TODO 백 연동 시 이름, 프로필사진, 이메일 수정
 export const Profile = () => {
@@ -43,7 +44,7 @@ export const Profile = () => {
           <div className="flex gap-1 items-center">
             <span className="text-lg font-semibold text-gray-90">{nickname}</span>
             <button onClick={handleEditting}>
-              <img src="/icon/edit.svg" alt="edit" />
+              <img src={Edit} alt="edit" />
             </button>
           </div>
         )}

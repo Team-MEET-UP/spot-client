@@ -1,5 +1,6 @@
 import { useUserStore } from "@/shared/stores";
 import { useNavigate } from "react-router-dom";
+import Logo from "@/assets/icon/logo.svg";
 
 export const MapHeader = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export const MapHeader = () => {
 
   return (
     <header className="flex justify-between items-center py-3 px-5 bg-white w-full z-[101] relative">
-      <img src="icon/logo.svg" alt="logo" className="h-6" onClick={handleLogoClick} />
+      <img src={Logo} alt="logo" className="h-6" onClick={handleLogoClick} />
       {profileImg ? (
         <button onClick={() => navigate("/my")}>
           <img src={profileImg} alt="프로필 이미지" className="w-8 h-8 rounded-full" />

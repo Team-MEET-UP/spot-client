@@ -1,5 +1,6 @@
 import { TransitRoute } from "@/shared/model";
 import { subwayLine } from "../../config/subwayLine";
+import Path from "@/assets/icon/shortPath.svg";
 
 export const SubwayPath = ({ endBoardName, laneName, sectionTime, startBoardName, stationCount }: TransitRoute) => {
   const findMetroKey = (lineName: string) => {
@@ -36,7 +37,7 @@ export const SubwayPath = ({ endBoardName, laneName, sectionTime, startBoardName
           <span>{endBoardName}역 하차</span>
         </div>
       </div>
-      <img src="/icon/shortPath.svg" alt="shortPath" className="ml-[11px] w-[2px]" />
+      <img src={Path} alt="shortPath" className="ml-[11px] w-[2px]" />
     </>
   );
 };

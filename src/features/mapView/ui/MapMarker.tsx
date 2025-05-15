@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import UserSpot from "@/assets/icon/user-spot.svg";
+import DefaultImg from "@/assets/icon/default-profile.svg";
 
 interface MapMarkerProps {
   map: kakao.maps.Map;
@@ -25,7 +27,7 @@ export const MapMarker = ({ map, position, profileImg, name, onClick }: MapMarke
 
     // 배경 아이콘
     const background = document.createElement("img");
-    background.src = "/icon/user-spot.svg";
+    background.src = UserSpot;
     background.style.width = "100%";
     background.style.height = "100%";
     background.style.position = "absolute";
@@ -35,7 +37,7 @@ export const MapMarker = ({ map, position, profileImg, name, onClick }: MapMarke
 
     // 프로필 이미지
     const profile = document.createElement("img");
-    profile.src = profileImg || "/icon/default-profile.svg";
+    profile.src = profileImg || DefaultImg;
     profile.style.width = "35px";
     profile.style.height = "35px";
     profile.style.position = "absolute";

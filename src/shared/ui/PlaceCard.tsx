@@ -1,4 +1,5 @@
 import PlaceChip from "./PlaceChip";
+import Star from "@/assets/icon/star.svg";
 
 interface PlaceCardItemProps {
   placeName: string;
@@ -37,7 +38,7 @@ const PlaceCard = ({ placeName, distance, image, openingHours, review, onClick }
       {review && (
         <div className="flex gap-2">
           <div className="flex gap-[2px] items-center text-sm font-semibold text-gray-90">
-            <img src="/icon/star.svg" alt="star" className="w-4 h-4" />
+            <img src={Star} alt="star" className="w-4 h-4" />
             {review.score.toFixed(1)}
           </div>
 

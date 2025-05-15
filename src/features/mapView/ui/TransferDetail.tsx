@@ -1,6 +1,4 @@
-export const SubwayDetail = () => {};
-
-export const BusDetail = () => {};
+import Parking from "@/assets/icon/parking.svg";
 
 interface CarDetailProps {
   driveDistance: number;
@@ -21,7 +19,7 @@ export const CarDetail = ({ driveDistance, toll, taxiToll, parking }: CarDetailP
       </div>
       {parking && (
         <div className="flex gap-1 rounded-2xl bg-sub-10 py-3 px-4 items-start">
-          <img src="/icon/parking.svg" alt="parking" className="mt-[2px]" />
+          <img src={Parking} alt="parking" className="mt-[2px]" />
           <div className="flex flex-col gap-[2px] text-md font-bold text-gray-60">
             <p>{parking.name}</p>
             <p className="text-sm font-medium">역에서 {parking.distance.toFixed()}m</p>

@@ -1,7 +1,10 @@
+import Plug from "@/assets/icon/plug.svg";
+import Seat from "@/assets/icon/seat.svg";
+
 export const TagTypeInfo = {
   plug: {
     label: "콘센트",
-    iconSrc: "/icon/plug.svg",
+    iconSrc: Plug,
     scoreText: {
       5: "아주 많아요",
       4: "많아요",
@@ -12,7 +15,7 @@ export const TagTypeInfo = {
   },
   seat: {
     label: "좌석",
-    iconSrc: "/icon/seat.svg",
+    iconSrc: Seat,
     scoreText: {
       5: "아주 많아요",
       4: "많아요",
