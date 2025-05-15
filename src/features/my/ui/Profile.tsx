@@ -1,5 +1,5 @@
 import { useUserStore } from "@/shared/stores";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Edit from "@/assets/icon/edit.svg";
 
 //@TODO 백 연동 시 이름, 프로필사진, 이메일 수정
@@ -11,6 +11,13 @@ export const Profile = () => {
   }));
   const setNickname = useUserStore(state => state.setNickname);
   const [isEditting, setIsEditting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (nickname !== "" && profileImageUrl !== "" && email !== "") {
+      setIsLoading(false);
+    }
+  }, [nickname, profileImageUrl, email]);
 
   const handleEditting = () => {
     setIsEditting(true);
@@ -25,6 +32,10 @@ export const Profile = () => {
       setIsEditting(false);
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="flex py-3 gap-3 items-center">
