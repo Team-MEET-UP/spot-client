@@ -1,11 +1,9 @@
+import { useUserStore } from "@/shared/stores";
 import { useNavigate } from "react-router-dom";
 
-interface HeaderProps {
-  profileImg?: string;
-}
-
-export const MapHeader = ({ profileImg }: HeaderProps) => {
+export const MapHeader = () => {
   const navigate = useNavigate();
+  const profileImg = useUserStore(state => state.profileImageUrl);
 
   const handleLogoClick = () => {
     if (profileImg) {
