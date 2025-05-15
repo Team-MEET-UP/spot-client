@@ -4,7 +4,7 @@ import Button from "@/shared/ui/Button";
 import { useEffect, useState } from "react";
 import { InputField } from "@/shared/ui";
 import { useNavigate } from "react-router-dom";
-import { PlainHeader } from "@/widgets/header";
+import { PlainHeader } from "@/widgets/headers";
 
 interface NameStepProps {
   setCurrentStep: (step: number) => void;

@@ -4,6 +4,7 @@ import { getUserInfo } from "../service";
 interface UserInfo {
   userId: number;
   nickname: string;
+  email: string;
   profileImageUrl: string;
   personalInfoAgreement: boolean;
   marketingAgreement: boolean;
