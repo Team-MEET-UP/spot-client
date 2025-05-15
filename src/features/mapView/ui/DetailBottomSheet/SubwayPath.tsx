@@ -39,7 +39,7 @@ export const SubwayPath = ({ endBoardName, laneName, sectionTime, startBoardName
           <span>{endBoardName}역 하차</span>
         </div>
       </div>
-      <img src={Path} alt="shortPath" className="ml-[11px] w-[2px]" />
+      <img src={Path} alt="shortPath" className="ml-[11px] w-[2px] h-8" />
     </>
   );
 };

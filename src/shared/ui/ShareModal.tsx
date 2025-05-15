@@ -4,6 +4,7 @@ import { shareContentProps } from "../model";
 import { shareToKakao } from "../utils";
 import LinkCopy from "@/assets/icon/linkCopy.svg";
 import KakaoShare from "@/assets/icon/kakaoShare.svg";
+import CloseGray from "@/assets/icon/closeGray.svg";
 
 interface ShareModalProps {
   onClose: () => void;
@@ -39,7 +40,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
             {description && <span className="text-xs text-gray-50 font-semibold">{description}</span>}
           </div>
           <button onClick={onClose}>
-            <img src="/icon/closeGray.svg" alt="close" className="absolute top-5 right-5" />
+            <img src={CloseGray} alt="close" className="absolute top-5 right-5 w-6 h-6" />
           </button>
         </div>
         <div className="flex gap-6">
@@ -55,7 +56,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
                 }
               }}
               className="flex flex-col gap-2 items-center">
-              <img src={src} alt={alt} />
+              <img src={src} alt={alt} className="w-6 h-6" />
               <p className="text-xs font-medium text-gray-80">{label}</p>
             </button>
           ))}

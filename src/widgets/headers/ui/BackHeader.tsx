@@ -21,7 +21,7 @@ export const BackHeader = ({ url, onClick }: BackHeaderProps) => {
             navigate(-1);
           }
         }}>
-        <img src={Back} alt="back" />
+        <img src={Back} alt="back" className="w-6 h-6" />
       </button>
     </header>
   );

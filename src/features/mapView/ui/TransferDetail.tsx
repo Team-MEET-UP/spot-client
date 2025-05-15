@@ -19,7 +19,7 @@ export const CarDetail = ({ driveDistance, toll, taxiToll, parking }: CarDetailP
       </div>
       {parking && (
         <div className="flex gap-1 rounded-2xl bg-sub-10 py-3 px-4 items-start">
-          <img src={Parking} alt="parking" className="mt-[2px]" />
+          <img src={Parking} alt="parking" className="mt-[2px] w-5 h-5" />
           <div className="flex flex-col gap-[2px] text-md font-bold text-gray-60">
             <p>{parking.name}</p>
             <p className="text-sm font-medium">역에서 {parking.distance.toFixed()}m</p>

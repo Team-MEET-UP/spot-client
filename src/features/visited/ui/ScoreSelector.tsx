@@ -52,7 +52,7 @@ const ScoreSelector = ({ label, score, onChange }: ScoreSelectorProps) => {
   return (
     <div className="flex flex-col gap-3 w-full">
       <div className="flex items gap-[2px] text-md font-semibold text-gray-60 items-center">
-        {imageSrc && <img src={imageSrc} alt="이미지" />}
+        {imageSrc && <img src={imageSrc} alt="이미지" className="w-5 h-5" />}
         {label}
 
         {/* 점수 텍스트 */}

@@ -44,7 +44,7 @@ export const Profile = () => {
           <div className="flex gap-1 items-center">
             <span className="text-lg font-semibold text-gray-90">{nickname}</span>
             <button onClick={handleEditting}>
-              <img src={Edit} alt="edit" />
+              <img src={Edit} alt="edit" className="w-5 h-5" />
             </button>
           </div>
         )}

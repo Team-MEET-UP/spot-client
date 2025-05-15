@@ -101,7 +101,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
                 <p className="text-red-500 text-sm">검색 중 오류가 발생했어요.</p>
               ) : searchResults.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-10">
-                  <img src={NoResult} alt="검색 결과 없음" />
+                  <img src={NoResult} alt="검색 결과 없음" className="w-32 h-32" />
                   <p className="text-center text-gray-40 text-sm">
                     일치하는 주소가 없어요
                     <br />

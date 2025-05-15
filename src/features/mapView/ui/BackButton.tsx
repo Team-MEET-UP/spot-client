@@ -8,7 +8,7 @@ const BackButton = () => {
     <button
       className="absolute top-5 left-5 flex justify-center items-center w-10 h-10 bg-white rounded-[30px] shadow-[0px_-4px_24px_0px_rgba(28, 28, 34, 0.10)] z-10"
       onClick={() => toggleDetail()}>
-      <img src={Arrow} alt="arrow" />
+      <img src={Arrow} alt="arrow" className="w-6 h-6" />
     </button>
   );
 };
