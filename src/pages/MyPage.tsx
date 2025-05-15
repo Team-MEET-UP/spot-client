@@ -1,6 +1,6 @@
 import { Logout, Menu, Profile } from "@/features/my/ui";
 import { useUserStore } from "@/shared/stores";
-import { PlainHeader } from "@/widgets/header";
+import { PlainHeader } from "@/widgets/headers";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
