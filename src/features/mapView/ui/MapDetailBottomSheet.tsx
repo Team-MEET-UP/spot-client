@@ -16,7 +16,7 @@ export const MapDetailBottomSheet = () => {
 
   return (
     <>
-      <SnapBottomSheet minHeightVh={20}>
+      <SnapBottomSheet minHeightVh={30}>
         <SnapBottomSheet.Header />
         <TransferDetail
           type={type}
