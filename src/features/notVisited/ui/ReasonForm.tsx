@@ -16,7 +16,7 @@ export const ReasonForm = () => {
   }
 
   return (
-    <div className="px-5">
+    <div>
       <h1 className="text-lg font-bold text-gray-70 mb-6">가지 않은 이유가 무엇인가요?</h1>
       <div className="flex flex-col gap-[12px] mb-4">
         {buttonPairs.map((pair, index) => (
@@ -40,7 +40,7 @@ export const ReasonForm = () => {
       </div>
       <input
         placeholder="직접 입력하기"
-        className="w-full px-4 py-3 rounded-xl border border-gray-40 focus:outline-none focus:ring-0 focus:border-gray-40 text-base text-gray-60 placeholder:text-gray-40"
+        className="w-full px-4 py-3 rounded-xl border border-gray-10 focus:outline-none focus:ring-0 focus:border-gray-40 text-base text-gray-60 placeholder:text-gray-40"
       />
     </div>
   );
