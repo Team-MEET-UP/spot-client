@@ -22,6 +22,7 @@ const HistoryPage = () => {
       useUserStore.setState({
         nickname: data.nickname,
         profileImageUrl: data.profileImageUrl,
+        email: data.email,
       });
 
       setIsPolicy(!data.personalInfoAgreement);

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 //@TODO 백 연동 시 이름, 프로필사진, 이메일 수정
 export const Profile = () => {
-  const { nickname, setNickname, profileImageUrl } = useUserStore();
+  const { nickname, setNickname, profileImageUrl, email } = useUserStore();
   const [isEditting, setIsEditting] = useState(false);
 
   const handleEditting = () => {
@@ -11,13 +11,11 @@ export const Profile = () => {
   };
 
   const handleBlur = () => {
-    console.log(name);
     setIsEditting(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      console.log(name);
       setIsEditting(false);
     }
   };
@@ -44,7 +42,7 @@ export const Profile = () => {
             </button>
           </div>
         )}
-        <p className="text-sm font-medium text-gray-40">wimpy0410@gmail.com</p>
+        <p className="text-sm font-medium text-gray-40">{email}</p>
       </div>
     </div>
   );
