@@ -1,4 +1,4 @@
-import locationPin from "@/assets/icon/locationPin.svg";
+import locationPin from "@/assets/icon/pin.svg";
 import { VisitedPlaceProps } from "../model";
 
 interface LocationInputProps {
@@ -14,11 +14,11 @@ export const LocationInput = ({ handleLocationStep, selectedPlace }: LocationInp
         className="flex gap-[2px] items-center border border-gray-10 px-4 py-3 rounded-xl"
         onClick={handleLocationStep}>
         <img src={locationPin} className="w-4 h-4" />
-        <input 
-          placeholder="장소 검색하기" 
+        <input
+          placeholder="장소 검색하기"
           value={selectedPlace?.name || ""}
           readOnly
-          className="border-none focus:outline-none focus:ring-0 w-full" 
+          className="border-none focus:outline-none focus:ring-0 w-full"
         />
       </div>
     </div>
