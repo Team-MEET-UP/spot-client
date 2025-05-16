@@ -38,8 +38,8 @@ const HistoryPage = () => {
       return; // 여기서 리턴하지 않으면 아래 조건이 동시에 실행됨
     }
 
-    // 만약 닉네임이 없으면 메인 페이지로 리다이렉트
-    if (!data.nickname) {
+    // 만약 이메일이 없으면 메인 페이지로 리다이렉트
+    if (!data.email) {
       navigate("/");
     }
   }, [data, navigate]);

@@ -15,6 +15,8 @@ export const PlainHeader = ({ title, onBack, url }: PlainHeaderProps) => {
       onBack();
     } else if (url) {
       navigate(url);
+    } else {
+      navigate(-1);
     }
   };
 

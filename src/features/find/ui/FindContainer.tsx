@@ -12,7 +12,7 @@ export const FindContainer = () => {
   const [searchParams] = useSearchParams();
   const startStepParam = searchParams.get("startStep");
 
-  const [name, setName] = useState(isLoggedIn && startStepParam === "1" ? nickname : "");
+  const [name, setName] = useState(isLoggedIn && startStepParam === "1" && nickname ? nickname : "");
   const [currentStep, setCurrentStep] = useState(() => {
     // 쿼리로 전달받은 값이 1이면 1부터 시작, 아니면 0부터
     return +(startStepParam === "1");
