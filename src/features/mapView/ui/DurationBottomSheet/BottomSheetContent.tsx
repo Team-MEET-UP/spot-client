@@ -1,7 +1,6 @@
 import { useEventStore, useUserStore } from "@/shared/stores";
-import { UserCard } from "./UserCard";
 import { useState } from "react";
-import { LoginModal } from ".";
+import { LoginModal, UserCard } from "..";
 import { ShareModal } from "@/shared/ui";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AddUser from "@/assets/icon/addUser.svg";

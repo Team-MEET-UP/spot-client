@@ -7,7 +7,7 @@ import {
   SnapMapBottomSheet,
   TooCloseSheet,
 } from "@/features/mapView/ui";
-import BackButton from "@/features/mapView/ui/BackButton";
+import BackButton from "@/features/mapView/ui/Common/BackButton";
 import { useEventStore } from "@/shared/stores";
 import { MapHeader } from "@/widgets/headers";
 import { AxiosError } from "axios";

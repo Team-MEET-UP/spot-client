@@ -1,7 +1,7 @@
 import { BottomSheet } from "@/shared/ui";
-import { FixedButtons } from "./BottomSheetContent";
 import { Overlay } from "@/shared/ui/BottomSheet/Overlay";
 import Member from "@/assets/icon/addMemberRequired.svg";
+import { FixedButtons } from "../DurationBottomSheet";
 
 export const AddMemberBottomSheet = () => {
   return (

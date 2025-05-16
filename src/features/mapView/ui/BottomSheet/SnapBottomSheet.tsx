@@ -1,5 +1,5 @@
 import { SnapBottomSheet } from "@/shared/ui";
-import { BottomSheetContent, FixedButtons, GroupAverageTime } from "./BottomSheetContent";
+import { BottomSheetContent, FixedButtons, GroupAverageTime } from "../DurationBottomSheet";
 
 export const SnapMapBottomSheet = () => {
   return (
