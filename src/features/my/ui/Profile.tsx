@@ -1,29 +1,19 @@
 import { useUserStore } from "@/shared/stores";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Edit from "@/assets/icon/edit.svg";
+import DefaultImg from "@/assets/icon/default-profile.svg";
 
 //@TODO 백 연동 시 이름, 프로필사진, 이메일 수정
 export const Profile = () => {
-  const { nickname, profileImageUrl, email } = useUserStore(state => ({
-    nickname: state.nickname,
-    profileImageUrl: state.profileImageUrl,
-    email: state.email,
-  }));
-  const setNickname = useUserStore(state => state.setNickname);
+  const { nickname, profileImageUrl, email, setNickname } = useUserStore();
   const [isEditting, setIsEditting] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (nickname !== "" && profileImageUrl !== "" && email !== "") {
-      setIsLoading(false);
-    }
-  }, [nickname, profileImageUrl, email]);
 
   const handleEditting = () => {
     setIsEditting(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setNickname(e.target.value);
     setIsEditting(false);
   };
 
@@ -33,28 +23,24 @@ export const Profile = () => {
     }
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div className="flex py-3 gap-3 items-center">
-      <img src={profileImageUrl} alt="profileImg" className="w-16 h-16 rounded-full" />
+    <div className="flex py-3 gap-3 items-center w-full">
+      <img src={profileImageUrl || DefaultImg} alt="profileImg" className="w-16 h-16 rounded-full" />
       <div className="flex flex-col gap-1 w-full">
         {isEditting ? (
-          <div className="flex w-full gap-2 items-center">
+          <div className="flex w-full gap-2 items-end">
             <input
               type="text"
               className="rounded-none w-full border-b-gray-90 border-b outline-none text-lg font-semibold text-gray-90"
-              value={nickname}
+              value={nickname || ""}
               onChange={e => setNickname(e.target.value)}
               onBlur={handleBlur}
               onKeyDown={handleKeyDown}
               autoFocus
             />
             <button
-              className="px-[1px] py-2 text-center rounded-lg bg-sub-10 text-sub-sub text-sm font-semibold"
-              onClick={handleBlur}>
+              className="w-[41px] h-6 px-2 py-[1px] flex justify-center whitespace-nowrap items-center rounded-lg sub-10 bg-sub-10 text-sub-sub text-sm font-semibold"
+              onClick={() => setIsEditting(false)}>
               변경
             </button>
           </div>
