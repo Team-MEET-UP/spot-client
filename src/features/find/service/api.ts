@@ -1,16 +1,5 @@
 import api from "@/shared/api/api";
-import { FormattedData, StartPointResponse } from "../model";
-
-interface SearchStartPointParams {
-  textQuery: string;
-}
-
-export const searchStartPoints = async (params: SearchStartPointParams): Promise<StartPointResponse> => {
-  const response = await api.get<StartPointResponse>("/start-points/search", {
-    params: { textQuery: params.textQuery },
-  });
-  return response.data;
-};
+import { FormattedData } from "../model";
 
 export const createEvent = async (payload: FormattedData) => {
   try {

@@ -37,6 +37,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
             endPoint: eventData.meetingPoint.endStationName,
             endLat: eventData.meetingPoint.endLatitude,
             endLng: eventData.meetingPoint.endLongitude,
+            isPc : deviceType ==="Mac PC" || deviceType === "Windows PC" || deviceType ==="Unknown Device"
           }),
       },
       {

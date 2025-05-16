@@ -107,7 +107,7 @@ export function KakaoMapView() {
         path: fullPath,
         strokeWeight: 4,
         strokeColor: "#9494A8",
-        strokeOpacity: 0.7,
+        strokeOpacity: 1,
         strokeStyle: "solid",
         map: map,
       });
