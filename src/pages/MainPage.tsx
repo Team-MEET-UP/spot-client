@@ -21,7 +21,7 @@ const MainPage = () => {
         <Button onClick={handleClick}>중간지점 찾기</Button>
         <KakaoLogin />
       </div>
-      <img src={MainImg} alt="main" className="absolute top-16 right-0" />
+      <img src={MainImg} alt="main" className="absolute top-16 right-0 w-[600px] h-auto" />
     </div>
   );
 };
