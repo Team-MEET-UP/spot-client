@@ -24,11 +24,11 @@ export const Profile = () => {
   };
 
   return (
-    <div className="flex py-3 gap-3 items-center">
+    <div className="flex py-3 gap-3 items-center w-full">
       <img src={profileImageUrl || DefaultImg} alt="profileImg" className="w-16 h-16 rounded-full" />
       <div className="flex flex-col gap-1 w-full">
         {isEditting ? (
-          <div className="flex w-full gap-2 items-center">
+          <div className="flex w-full gap-2 items-end">
             <input
               type="text"
               className="rounded-none w-full border-b-gray-90 border-b outline-none text-lg font-semibold text-gray-90"
@@ -39,7 +39,7 @@ export const Profile = () => {
               autoFocus
             />
             <button
-              className="px-[1px] py-2 text-center rounded-lg bg-sub-10 text-sub-sub text-sm font-semibold"
+              className="w-[41px] h-6 px-2 py-[1px] flex justify-center whitespace-nowrap items-center rounded-lg sub-10 bg-sub-10 text-sub-sub text-sm font-semibold"
               onClick={() => setIsEditting(false)}>
               변경
             </button>
