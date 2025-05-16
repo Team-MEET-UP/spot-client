@@ -27,3 +27,12 @@ export interface StartPointResponse {
     message: string;
   };
 }
+
+export interface StartPoint {
+  id: string;
+  name: string;
+  address: string;
+  roadAddress: string;
+  latitude: number;
+  longitude: number;
+}

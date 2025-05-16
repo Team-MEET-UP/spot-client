@@ -2,9 +2,10 @@ import { InputField, LocationCard } from "@/shared/ui";
 import { VisitedPlaceProps } from "../model";
 import { CloseHeader } from "@/widgets/headers";
 import NoResult from "@/assets/icon/noresult.svg";
-import { useState } from "react";
 import { highlightMatchingText } from "@/shared/utils";
 import { CompleteButton } from "./CompleteButton";
+import { useSearch } from "@/entities/place/hooks";
+import { StartPoint } from "@/entities/place/model";
 
 interface PlaceSearchProps {
   visitedPlace: VisitedPlaceProps;
@@ -14,31 +15,15 @@ interface PlaceSearchProps {
 }
 
 export const PlaceSearch = ({ visitedPlace, setCurrentStep, onChange, setVisitedPlace }: PlaceSearchProps) => {
-  const isError = false;
-  const searchResults: VisitedPlaceProps[] = [
-    {
-      name: "서울특별시 강남구 테헤란로 14길 6 남도빌딩",
-      roadAddress: "서울특별시 강남구 테헤란로 14길 6 남도빌딩",
-      latitude: 37.5665,
-      longitude: 126.978,
-      regionName: "강남구",
-    },
-  ];
-  const [value, setValue] = useState("");
+  const { value, searchResults, isError, handleChange, isTyping } = useSearch();
 
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    onChange(e);
-  };
-  const handleSelectLocation = (location: VisitedPlaceProps) => {
-    setValue(location.name);
-
+  const handleSelectLocation = (location: StartPoint) => {
     setVisitedPlace({
       name: location.name,
       roadAddress: location.roadAddress,
       latitude: location.latitude,
       longitude: location.longitude,
-      regionName: location.regionName,
+      regionName: location.address.split(" ")[1] || "", // 주소에서 구 이름 추출
     });
   };
 
@@ -47,12 +32,7 @@ export const PlaceSearch = ({ visitedPlace, setCurrentStep, onChange, setVisited
       <div className="flex-1 px-4">
         <CloseHeader onClick={setCurrentStep} />
         <div className="flex flex-col gap-4 px-5">
-          <InputField
-            value={visitedPlace.name}
-            placeholder="출발지를 입력해주세요"
-            onChange={onChangeValue}
-            type="startPoint"
-          />
+          <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} type="startPoint" />
 
           <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {isError ? (
@@ -79,9 +59,11 @@ export const PlaceSearch = ({ visitedPlace, setCurrentStep, onChange, setVisited
           </div>
         </div>
       </div>
-      <div className="absolute bottom-5 w-full">
-        <CompleteButton label="완료" />
-      </div>
+      {!isTyping && (
+        <div className="absolute bottom-5 w-full px-5">
+          <CompleteButton label="완료" />
+        </div>
+      )}
     </div>
   );
 };

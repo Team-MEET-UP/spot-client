@@ -9,15 +9,7 @@ import { useCreateStartPoint } from "../hooks";
 import { PlainHeader } from "@/widgets/headers";
 import NoResult from "@/assets/icon/noresult.svg";
 import { useSearch } from "@/entities/place/hooks";
-
-interface StartPoint {
-  id: string;
-  name: string;
-  address: string;
-  roadAddress: string;
-  latitude: number;
-  longitude: number;
-}
+import { StartPoint } from "@/entities/place/model";
 
 interface LocationStepProps {
   setCurrentStep: (step: number) => void;
