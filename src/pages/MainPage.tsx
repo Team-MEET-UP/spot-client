@@ -16,7 +16,7 @@ const MainPage = () => {
       <div
         className="flex flex-col gap-3 items-center pb-6 h-fit px-5 pt-32 z-10"
         style={{ background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 30%)" }}>
-        <span className="text-md font-medium text-gray-60">모임의 기준을 만들다</span>
+        <span className="text-md font-medium text-gray-60">모두를 위한 하나의 SPOT</span>
         <img src={Logo} alt="logo" className="mb-[38px] w-[173px] h-12" />
         <Button onClick={handleClick}>중간지점 찾기</Button>
         <KakaoLogin />
