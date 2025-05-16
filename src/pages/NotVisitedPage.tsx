@@ -24,6 +24,7 @@ const NotVisitedPage = () => {
           selectedReasons={selectedReasons}
           setSelectedReasons={setSelectedReasons}
           handleLocationStep={handleLocationStep}
+          selectedPlace={visitedPlace}
         />
       )}
       {currentStep === 2 && (

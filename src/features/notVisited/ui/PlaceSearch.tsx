@@ -5,6 +5,7 @@ import NoResult from "@/assets/icon/noresult.svg";
 import { highlightMatchingText } from "@/shared/utils";
 import { CompleteButton } from "./CompleteButton";
 import { useSearch } from "@/entities/place/hooks";
+import { useState } from "react";
 import { StartPoint } from "@/entities/place/model";
 
 interface PlaceSearchProps {
@@ -14,17 +15,25 @@ interface PlaceSearchProps {
   setVisitedPlace: (place: VisitedPlaceProps) => void;
 }
 
-export const PlaceSearch = ({ visitedPlace, setCurrentStep, onChange, setVisitedPlace }: PlaceSearchProps) => {
+export const PlaceSearch = ({ setCurrentStep, setVisitedPlace }: PlaceSearchProps) => {
   const { value, searchResults, isError, handleChange, isTyping } = useSearch();
+  const [selectedLocation, setSelectedLocation] = useState<StartPoint | null>(null);
 
   const handleSelectLocation = (location: StartPoint) => {
-    setVisitedPlace({
-      name: location.name,
-      roadAddress: location.roadAddress,
-      latitude: location.latitude,
-      longitude: location.longitude,
-      regionName: location.address.split(" ")[1] || "", // 주소에서 구 이름 추출
-    });
+    setSelectedLocation(location);
+  };
+
+  const handleComplete = () => {
+    if (selectedLocation) {
+      setVisitedPlace({
+        name: selectedLocation.name,
+        roadAddress: selectedLocation.roadAddress,
+        latitude: selectedLocation.latitude,
+        longitude: selectedLocation.longitude,
+        regionName: selectedLocation.address.split(" ")[1] || "",
+      });
+    }
+    setCurrentStep();
   };
 
   return (
@@ -34,34 +43,36 @@ export const PlaceSearch = ({ visitedPlace, setCurrentStep, onChange, setVisited
         <div className="flex flex-col gap-4 px-5">
           <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} type="startPoint" />
 
-          <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {isError ? (
-              <p className="text-red-500 text-sm">검색 중 오류가 발생했어요.</p>
-            ) : searchResults.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-10">
-                <img src={NoResult} alt="검색 결과 없음" className="w-32 h-32" />
-                <p className="text-center text-gray-40 text-sm">
-                  일치하는 주소가 없어요
-                  <br />
-                  서울 내 지역인지 다시 확인해보세요
-                </p>
-              </div>
-            ) : (
-              searchResults.map((location, index) => (
-                <LocationCard
-                  key={index}
-                  name={highlightMatchingText(location.name, value)}
-                  address={location.roadAddress}
-                  onClick={() => handleSelectLocation(location)}
-                />
-              ))
-            )}
-          </div>
+          {!selectedLocation && (
+            <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              {isError ? (
+                <p className="text-red-500 text-sm">검색 중 오류가 발생했어요.</p>
+              ) : value && searchResults.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-10">
+                  <img src={NoResult} alt="검색 결과 없음" className="w-32 h-32" />
+                  <p className="text-center text-gray-40 text-sm">
+                    일치하는 주소가 없어요
+                    <br />
+                    서울 내 지역인지 다시 확인해보세요
+                  </p>
+                </div>
+              ) : searchResults.length > 0 ? (
+                searchResults.map((location: StartPoint, index) => (
+                  <LocationCard
+                    key={index}
+                    name={highlightMatchingText(location.name, value)}
+                    address={location.roadAddress}
+                    onClick={() => handleSelectLocation(location)}
+                  />
+                ))
+              ) : null}
+            </div>
+          )}
         </div>
       </div>
-      {!isTyping && (
+      {(!isTyping || selectedLocation) && (
         <div className="absolute bottom-5 w-full px-5">
-          <CompleteButton label="완료" />
+          <CompleteButton label="완료" onClick={handleComplete} disabled={!selectedLocation} />
         </div>
       )}
     </div>
