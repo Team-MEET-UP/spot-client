@@ -1,22 +1,24 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { searchStartPoints } from "../service";
-import { StartPointResponse } from "../model";
 import { useDebounce } from "@/shared/hooks";
+import { StartPointResponse, StartPoint } from "@/entities/place/model";
+import { searchStartPoints } from "@/entities/place/api";
 
-interface StartPoint {
-  id: string;
-  name: string;
-  address: string;
-  roadAddress: string;
-  latitude: number;
-  longitude: number;
+interface UseSearchResult {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  isSearching: boolean;
+  setIsSearching: React.Dispatch<React.SetStateAction<boolean>>;
+  searchResults: StartPoint[];
+  isError: boolean;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isTyping: boolean;
 }
 
-export const useSearch = () => {
+export const useSearch = (): UseSearchResult => {
   const [value, setValue] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const debouncedValue = useDebounce(value, 300);
+  const debouncedValue = useDebounce(value, 500);
 
   const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
     queryKey: ["searchStartPoints", debouncedValue],
