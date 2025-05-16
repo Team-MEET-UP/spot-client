@@ -5,18 +5,19 @@ import { CompleteButton } from "./CompleteButton";
 
 interface OtherPlaceFormProps {
   unvisitedReason: string[];
+  handleLocationStep: () => void;
 }
 
-export const OtherPlaceForm = ({ unvisitedReason }: OtherPlaceFormProps) => {
+export const OtherPlaceForm = ({ unvisitedReason, handleLocationStep }: OtherPlaceFormProps) => {
   return (
     <div className="relative min-h-screen pb-[80px]">
       <BackHeader />
       <div className="px-5">
         <ReasonForm />
-        <LocationInput />
+        <LocationInput handleLocationStep={handleLocationStep} />
       </div>
 
-      <div className="fixed bottom-[20px] left-0 w-full px-5">
+      <div className="absolute bottom-[20px] left-0 w-full px-5">
         <CompleteButton label="완료하기" />
       </div>
     </div>
