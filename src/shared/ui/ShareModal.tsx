@@ -33,17 +33,15 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
   };
   return (
     <Modal onClose={onClose}>
-      <div className="relative p-5 pb-[20px] flex flex-col gap-2 items-center">
-        <div className="text-center">
-          <div className="flex flex-col">
-            <span className="text-md font-semibold text-gray-90">{title}</span>
-            {description && <span className="text-xs text-gray-50 font-semibold">{description}</span>}
-          </div>
-          <button onClick={onClose}>
-            <img src={CloseGray} alt="close" className="absolute top-5 right-5 w-6 h-6" />
-          </button>
+      <div className="relative p-5 pb-[20px] flex flex-col gap-6">
+        <button onClick={onClose} className="absolute top-5 right-5 w-6 h-6">
+          <img src={CloseGray} alt="close" className="w-6 h-6" />
+        </button>
+        <div className={`text-md font-semibold text-gray-90 ${description && "flex flex-col items-center"}`}>
+          <span>{title}</span>
+          {description && <span>{description}</span>}
         </div>
-        <div className="flex gap-6">
+        <div className="flex gap-6 justify-center">
           {shareItems.map(({ src, alt, label }) => (
             <button
               key={label}
