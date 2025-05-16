@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { searchStartPoints } from "../service";
-import { StartPointResponse } from "../model";
 import { useDebounce } from "@/shared/hooks";
+import { StartPointResponse } from "@/entities/place/model";
+import { searchStartPoints } from "@/entities/place/api";
 
 interface StartPoint {
   id: string;

@@ -1,12 +1,18 @@
-import { useState } from "react";
-
 const REASONS = ["시끄러워서", "사람이 너무 많아서", "공간이 어두워서", "좌석이 부족해서"];
 
-export const ReasonForm = () => {
-  const [selectedReasons, setSelectedReasons] = useState<string[]>([]);
+interface ReasonFormProps {
+  selectedReasons: string[];
+  setSelectedReasons: React.Dispatch<React.SetStateAction<string[]>>;
+  directInput: string;
+  setDirectInput: (value: string) => void;
+}
 
+export const ReasonForm = ({ selectedReasons, setSelectedReasons, directInput, setDirectInput }: ReasonFormProps) => {
   const handleSelect = (reason: string) => {
-    setSelectedReasons(prev => (prev.includes(reason) ? prev.filter(r => r !== reason) : [...prev, reason]));
+    setSelectedReasons((prev: string[]) => {
+      const newReasons = prev.includes(reason) ? prev.filter((r: string) => r !== reason) : [...prev, reason];
+      return newReasons;
+    });
   };
 
   // 버튼들을 2개씩 그룹화
@@ -40,6 +46,8 @@ export const ReasonForm = () => {
       </div>
       <input
         placeholder="직접 입력하기"
+        value={directInput}
+        onChange={e => setDirectInput(e.target.value)}
         className="w-full px-4 py-3 rounded-xl border border-gray-10 focus:outline-none focus:ring-0 focus:border-gray-40 text-base text-gray-60 placeholder:text-gray-40"
       />
     </div>

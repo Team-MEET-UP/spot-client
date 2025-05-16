@@ -8,22 +8,27 @@ const NotVisitedPage = () => {
   const [visitedPlace, setVisitedPlace] = useState<VisitedPlaceProps | null>(null);
 
   const handleLocationStep = () => {
+    console.log("다음 단계로 이동 - 최종 선택된 이유들:", selectedReasons);
     setCurrentStep(2);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // TODO: 검색 로직 구현
+    void e; // 임시 처리
   };
-
 
   return (
     <div className="flex flex-col h-screen-dvh">
       {currentStep === 1 && (
-        <OtherPlaceForm unvisitedReason={selectedReasons} handleLocationStep={handleLocationStep} />
+        <OtherPlaceForm
+          selectedReasons={selectedReasons}
+          setSelectedReasons={setSelectedReasons}
+          handleLocationStep={handleLocationStep}
+        />
       )}
       {currentStep === 2 && (
-        <PlaceSearch 
-          setCurrentStep={() => setCurrentStep(1)} 
+        <PlaceSearch
+          setCurrentStep={() => setCurrentStep(1)}
           visitedPlace={visitedPlace || { name: "", latitude: 0, longitude: 0, roadAddress: "", regionName: "" }}
           onChange={handleSearchChange}
           setVisitedPlace={setVisitedPlace}
