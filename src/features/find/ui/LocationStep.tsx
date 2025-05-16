@@ -5,9 +5,10 @@ import { InputField, LocationCard } from "@/shared/ui";
 import { FormattedData, StartPointInfo } from "../model";
 import { highlightMatchingText } from "@/shared/utils";
 import { useSearchParams } from "react-router-dom";
-import { useCreateStartPoint, useSearch } from "../hooks";
+import { useCreateStartPoint } from "../hooks";
 import { PlainHeader } from "@/widgets/headers";
 import NoResult from "@/assets/icon/noresult.svg";
+import { useSearch } from "@/entities/place/hooks";
 
 interface StartPoint {
   id: string;
