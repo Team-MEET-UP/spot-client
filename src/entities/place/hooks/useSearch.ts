@@ -18,7 +18,7 @@ interface UseSearchResult {
 export const useSearch = (): UseSearchResult => {
   const [value, setValue] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const debouncedValue = useDebounce(value, 300);
+  const debouncedValue = useDebounce(value, 500);
 
   const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
     queryKey: ["searchStartPoints", debouncedValue],
