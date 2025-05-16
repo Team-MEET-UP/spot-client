@@ -64,7 +64,7 @@ export const FixedButtons = () => {
   const shareContent = {
     title: title,
     description: "",
-    imageUrl: "https://www.pickspot.co.kr/image/KT2.webp",
+    imageUrl: "https://www.pickspot.co.kr/src/assets/image/KT2.webp",
     links: [
       { label: "내 출발지 입력", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
       { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },

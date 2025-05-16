@@ -56,7 +56,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
                 }
               }}
               className="flex flex-col gap-2 items-center">
-              <img src={src} alt={alt} className="w-6 h-6" />
+              <img src={src} alt={alt} className="w-12 h-12" />
               <p className="text-xs font-medium text-gray-80">{label}</p>
             </button>
           ))}
