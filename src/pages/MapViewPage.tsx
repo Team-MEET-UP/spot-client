@@ -8,6 +8,7 @@ import {
   TooCloseSheet,
 } from "@/features/mapView/ui";
 import BackButton from "@/features/mapView/ui/common/BackButton";
+import { DefaultMap } from "@/features/mapView/ui/map/DefaultMap";
 import { useEventStore } from "@/shared/stores";
 import { MapHeader } from "@/widgets/headers";
 import { AxiosError } from "axios";
@@ -30,16 +31,15 @@ const MapViewPage = () => {
   }, [data, setEventData]);
 
   return (
-    <div>
+    <div className="relative w-full h-screen overflow-hidden">
       {!isDetail && <MapHeader />}
       {isLoading ? (
         <div>실시간 교통상황을 가져오고 있습니다...</div>
       ) : isError ? (
-        isInsufficientStartPoints ? (
-          <AddMemberBottomSheet />
-        ) : (
-          <TooCloseSheet />
-        )
+        <>
+          {<DefaultMap />}
+          {isInsufficientStartPoints ? <AddMemberBottomSheet /> : <TooCloseSheet />}
+        </>
       ) : isDetail ? (
         <div className="relative">
           <BackButton />
