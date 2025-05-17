@@ -3,6 +3,7 @@ import {
   AddMemberBottomSheet,
   DetailKakaoMapView,
   KakaoMapView,
+  MapBackground,
   MapDetailBottomSheet,
   SnapMapBottomSheet,
   TooCloseSheet,
@@ -40,16 +41,15 @@ const MapViewPage = () => {
   }, [eventIdParam]);
 
   return (
-    <div>
+    <div className="relative w-full h-screen overflow-hidden">
       {!isDetail && <MapHeader />}
       {isLoading ? (
         <div>실시간 교통상황을 가져오고 있습니다...</div>
       ) : isError ? (
-        isInsufficientStartPoints ? (
-          <AddMemberBottomSheet />
-        ) : (
-          <TooCloseSheet />
-        )
+        <>
+          {<MapBackground />}
+          {isInsufficientStartPoints ? <AddMemberBottomSheet /> : <TooCloseSheet />}
+        </>
       ) : isDetail ? (
         <div className="relative">
           <BackButton />
