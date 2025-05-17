@@ -125,7 +125,7 @@ export function KakaoMapView() {
       ref={mapRef}
       style={{
         width: "100%",
-        height: "calc(100vh - 48px - 34vh)",
+        height: "calc(100vh - 48px - 20vh)",
       }}>
       {map && (
         <>
