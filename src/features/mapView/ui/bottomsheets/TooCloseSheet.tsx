@@ -1,7 +1,7 @@
 import { BottomSheet } from "@/shared/ui";
-import { FixedButtons } from "./BottomSheetContent";
 import { Overlay } from "@/shared/ui/BottomSheet/Overlay";
 import Error from "@/assets/icon/distanceError.svg";
+import { FixedButtons } from "../durationBottomsheet";
 
 export const TooCloseSheet = () => {
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useEventStore } from "@/shared/stores";
 import { MeetingMarker } from "./MeetingMarker";
 import { MapMarker } from "./MapMarker";
-import { useEventStore } from "@/shared/stores";
 
 export function KakaoMapView() {
   const mapRef = useRef<HTMLDivElement>(null);

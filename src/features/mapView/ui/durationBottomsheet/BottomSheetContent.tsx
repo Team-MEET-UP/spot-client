@@ -1,11 +1,11 @@
 import { useEventStore, useUserStore } from "@/shared/stores";
-import { UserCard } from "./UserCard";
 import { useState } from "react";
-import { LoginModal } from ".";
 import { ShareModal } from "@/shared/ui";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AddUser from "@/assets/icon/addUser.svg";
 import Share from "@/assets/icon/share.svg";
+import { UserCard } from "../detail";
+import { LoginModal } from "../common";
 
 export const BottomSheetContent = () => {
   const eventData = useEventStore(state => state.eventData);
