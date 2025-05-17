@@ -15,9 +15,7 @@ interface PlaceCardItemProps {
 
 const PlaceCard = ({ placeName, distance, image, openingHours, review, onClick }: PlaceCardItemProps) => {
   return (
-    <div
-      className="flex flex-col gap-3 p-4 rounded-2xl w-full shadow-[0px_0px_16px_0px_rgba(0,0,0,0.05)] bg-white"
-      onClick={onClick}>
+    <div className="flex flex-col gap-3 p-4 rounded-2xl w-full shadow-list bg-white" onClick={onClick}>
       <div className="flex justify-between">
         <div className="flex gap-1 flex-col text-xs font-medium">
           <span className="text-md font-semibold text-gray-90">{placeName}</span>

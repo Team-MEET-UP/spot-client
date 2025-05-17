@@ -38,7 +38,7 @@ export const BottomSheet = ({ children, minHeightPx = 330, maxHeightPx = 330, is
           height: currentHeight,
           transition: isDragging ? "none" : "height 0.3s ease-out",
         }}
-        className="fixed bottom-0 left-0 w-full z-[1000] bg-white rounded-t-2xl shadow-lg"
+        className="fixed bottom-0 left-0 w-full z-[1000] bg-white rounded-t-2xl shadow-bt01"
         {...handlers}>
         {children}
       </motion.div>
