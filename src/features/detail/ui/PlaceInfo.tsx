@@ -1,8 +1,6 @@
 import Pin from "@/assets/icon/pinBlue.svg";
 import Star from "@/assets/icon/star.svg";
 import Time from "@/assets/icon/time.svg";
-import Kakao from "@/assets/icon/kakaoMap.svg";
-import Naver from "@/assets/icon/naverMap.svg";
 
 export const PlaceInfo = () => {
   return (
@@ -23,14 +21,6 @@ export const PlaceInfo = () => {
           <img src={Time} alt="time" className="w-[14px] h-[14px]" />
           <p className="text-gray-50">영업시간</p>
           <p className="text-gray-80 ml-1">07:30 ~ 22:00</p>
-        </div>
-        <div className="flex gap-2">
-          <button onClick={() => console.log("카카오맵으로 연결")}>
-            <img src={Kakao} alt="kakaoMap" className="w-6 h-6" />
-          </button>
-          <button onClick={() => console.log("네이버맵으로 연결")}>
-            <img src={Naver} alt="naverMap" className="w-6 h-6" />
-          </button>
         </div>
       </div>
     </div>
