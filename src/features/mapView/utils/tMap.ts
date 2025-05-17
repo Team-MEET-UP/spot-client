@@ -11,5 +11,5 @@ export const openTMAP = ({ endPoint, endLat, endLng }: OpenMapProps) => {
     if (!document.hidden) {
       window.open(appStoreUrl, "_blank");
     }
-  }, 1000);
+  }, 2000);
 };
