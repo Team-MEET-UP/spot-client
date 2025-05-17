@@ -4,8 +4,8 @@ import { ShareModal } from "@/shared/ui";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AddUser from "@/assets/icon/addUser.svg";
 import Share from "@/assets/icon/share.svg";
-import { UserCard } from "../detail";
 import { LoginModal } from "../..";
+import { UserCard } from "./UserCard";
 
 export const BottomSheetContent = () => {
   const eventData = useEventStore(state => state.eventData);
