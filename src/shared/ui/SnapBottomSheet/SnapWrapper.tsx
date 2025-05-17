@@ -6,7 +6,7 @@ export const SnapWrapper = forwardRef<HTMLDivElement, WrapperProps>(({ children,
   return (
     <div
       ref={ref}
-      className="fixed left-1/2 bottom-0 transform -translate-x-1/2 z-[1000] bg-white rounded-t-2xl shadow-bt01 flex flex-col w-full max-w-[600px]"
+      className="fixed left-1/2 bottom-0 transform -translate-x-1/2 z-[1000] bg-white rounded-t-3xl shadow-bt01 flex flex-col w-full max-w-[600px]"
       {...props}>
       {children}
     </div>
