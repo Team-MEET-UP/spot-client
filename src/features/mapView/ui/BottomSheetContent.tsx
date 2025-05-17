@@ -39,7 +39,7 @@ export const GroupAverageTime = () => {
     <div className="mx-5">
       <div>
         <h1 className="text-gray-80 text-lg font-bold">{eventData?.meetingPoint.endStationName}</h1>
-        <p className="text-gray-40 text-md">평균 {eventData?.averageTime}분</p>
+        <p className="text-gray-40 text-md pb-3">평균 {eventData?.averageTime}분</p>
       </div>
     </div>
   );
