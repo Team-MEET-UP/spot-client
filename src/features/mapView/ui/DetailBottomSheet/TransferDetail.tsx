@@ -8,7 +8,7 @@ import TMap from "@/assets/icon/TMap.svg";
 import ArrowLine from "@/assets/icon/rightArrowLine.svg";
 import Subway from "@/assets/icon/subway.svg";
 import Car from "@/assets/icon/car.svg";
-import { MapButton } from "@/shared/ui";
+import { MapButton } from "./MapButton";
 
 interface TransferDetailProps {
   type: TransferType;
