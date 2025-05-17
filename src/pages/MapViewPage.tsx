@@ -12,12 +12,8 @@ import { useEventStore } from "@/shared/stores";
 import { MapHeader } from "@/widgets/headers";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 
 const MapViewPage = () => {
-  const [searchParams] = useSearchParams();
-  const eventIdParam = searchParams.get("eventId");
-
   const { data, isLoading, isError, error } = useEventRoutes();
   const setEventData = useEventStore(state => state.setEventData);
   const isDetail = useEventStore(state => state.isDetail);
