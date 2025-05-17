@@ -8,7 +8,6 @@ export const TooCloseSheet = () => {
     <>
       <Overlay />
       <BottomSheet>
-        <BottomSheet.Header />
         <BottomSheet.Content>
           <div className="flex flex-col justify-center items-center h-full">
             <img src={Error} alt="memeberError" className="w-[160px] h-[160px]" />

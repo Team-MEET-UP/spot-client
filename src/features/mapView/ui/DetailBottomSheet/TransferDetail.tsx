@@ -8,6 +8,7 @@ import TMap from "@/assets/icon/TMap.svg";
 import ArrowLine from "@/assets/icon/rightArrowLine.svg";
 import Subway from "@/assets/icon/subway.svg";
 import Car from "@/assets/icon/car.svg";
+import { MapButton } from "./MapButton";
 
 interface TransferDetailProps {
   type: TransferType;
@@ -37,7 +38,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
             endPoint: eventData.meetingPoint.endStationName,
             endLat: eventData.meetingPoint.endLatitude,
             endLng: eventData.meetingPoint.endLongitude,
-            isPc : deviceType ==="Mac PC" || deviceType === "Windows PC" || deviceType ==="Unknown Device"
+            isPc: deviceType === "Mac PC" || deviceType === "Windows PC" || deviceType === "Unknown Device",
           }),
       },
       {
@@ -79,9 +80,7 @@ export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: 
         </div>
         <div className="flex gap-2">
           {filteredIcons.map(({ src, alt, onClick }) => (
-            <button key={alt} onClick={onClick}>
-              <img src={src} alt={alt} className="w-6 h-6" />
-            </button>
+            <MapButton src={src} alt={alt} onClick={onClick} />
           ))}
         </div>
       </div>

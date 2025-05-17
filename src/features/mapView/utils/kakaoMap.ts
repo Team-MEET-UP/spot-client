@@ -21,5 +21,5 @@ export const openKakaoMap = ({ startLat, startLng, endPoint, endLat, endLng, isP
     if (!document.hidden) {
       window.open(kakaoMapUrl, "_blank");
     }
-  }, 1000);
+  }, 2000);
 };
