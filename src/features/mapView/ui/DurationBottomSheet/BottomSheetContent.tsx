@@ -94,14 +94,7 @@ export const FixedButtons = () => {
           <img src={Share} alt="share" onClick={() => setIsOpen(true)} className="w-6 h-6" />
         </button>
       </div>
-      {isOpen && (
-        <ShareModal
-          onClose={() => setIsOpen(false)}
-          title="링크 공유하기"
-          description="멤버가 출발지를 직접 입력할 수 있어요"
-          shareContent={shareContent}
-        />
-      )}
+      {isOpen && <ShareModal onClose={() => setIsOpen(false)} title="이벤트 공유하기" shareContent={shareContent} />}
       {isOpenLoginModal && <LoginModal />}
     </div>
   );

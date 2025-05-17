@@ -41,7 +41,7 @@ export const PlaceSearch = ({ setCurrentStep, setVisitedPlace }: PlaceSearchProp
       <div className="flex-1 px-4">
         <CloseHeader onClick={setCurrentStep} />
         <div className="flex flex-col gap-4 px-5">
-          <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} type="startPoint" />
+          <InputField value={value} placeholder="장소명을 입력해주세요." onChange={handleChange} type="startPoint" />
 
           {!selectedLocation && (
             <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
