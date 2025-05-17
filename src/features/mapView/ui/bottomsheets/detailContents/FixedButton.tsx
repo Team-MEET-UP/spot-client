@@ -1,9 +1,9 @@
-import { useTransfer } from "../../hooks";
-import { TransferType } from "../../model";
 import Subway from "@/assets/icon/subway.svg";
 import SubwayGray from "@/assets/icon/subwayGray.svg";
 import Car from "@/assets/icon/car.svg";
 import CarGray from "@/assets/icon/carGray.svg";
+import { TransferType } from "@/features/mapView/model";
+import { useTransfer } from "@/features/mapView/hooks";
 
 interface FixedButtonProps {
   type: TransferType;

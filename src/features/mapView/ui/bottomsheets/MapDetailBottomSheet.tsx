@@ -2,8 +2,8 @@ import { useState } from "react";
 import { SnapBottomSheet } from "@/shared/ui";
 import { useEventStore } from "@/shared/stores";
 import { TransferType } from "../../model";
-import { FixedButton, Path, TransferDetail } from "../detailContents";
-import { CarDetail } from "../detail";
+import { FixedButton, Path, TransferDetail } from "./detailContents";
+import { CarDetail } from "./detail";
 
 export const MapDetailBottomSheet = () => {
   const detailEventData = useEventStore(state => state.detailEventData);
