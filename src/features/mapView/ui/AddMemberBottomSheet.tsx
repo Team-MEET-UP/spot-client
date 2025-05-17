@@ -8,7 +8,6 @@ export const AddMemberBottomSheet = () => {
     <>
       <Overlay />
       <BottomSheet>
-        <BottomSheet.Header />
         <BottomSheet.Content>
           <div className="flex flex-col justify-center items-center h-full">
             <img src={Member} alt="멤버를 추가 필요" className="w-[160px] h-[160px]" />

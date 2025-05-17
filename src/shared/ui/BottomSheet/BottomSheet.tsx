@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useBottomSheetDrag } from "@/shared/hooks/useBottomSheetDrag";
-import { Header } from "./Header";
 import { Content } from "./Content";
 import { Portal } from "..";
 import { motion } from "framer-motion";
@@ -47,5 +46,4 @@ export const BottomSheet = ({ children, minHeightPx = 330, maxHeightPx = 330, is
   );
 };
 
-BottomSheet.Header = Header;
 BottomSheet.Content = Content;
