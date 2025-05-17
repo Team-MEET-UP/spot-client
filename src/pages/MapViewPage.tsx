@@ -33,12 +33,6 @@ const MapViewPage = () => {
     }
   }, [data, setEventData]);
 
-  useEffect(() => {
-    if (eventIdParam) {
-      localStorage.setItem("shared_link_access", eventIdParam);
-    }
-  }, [eventIdParam]);
-
   return (
     <div>
       {!isDetail && <MapHeader />}

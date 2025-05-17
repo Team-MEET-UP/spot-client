@@ -11,6 +11,13 @@ export const LoginModal = () => {
     navigate(`/find?eventId=${eventIdParam}`);
   };
 
+  const handleKakaoClick = () => {
+    if (eventIdParam) {
+      localStorage.setItem("shared_link_access", eventIdParam);
+      kakaoLogin();
+    }
+  };
+
   return (
     <Modal>
       <div>
@@ -25,7 +32,7 @@ export const LoginModal = () => {
           <button className="w-1/2 border-t border-gray-5 py-3 text-gray-40" onClick={handleNextTime}>
             다음에 하기
           </button>
-          <button className="w-1/2 bg-gray-90 text-white rounded-br-2xl" onClick={kakaoLogin}>
+          <button className="w-1/2 bg-gray-90 text-white rounded-br-2xl" onClick={handleKakaoClick}>
             로그인
           </button>
         </div>
