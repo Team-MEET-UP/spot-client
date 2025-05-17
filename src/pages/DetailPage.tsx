@@ -4,7 +4,7 @@ import Button from "@/shared/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { ShareModal } from "@/shared/ui";
-import { DetailHeader } from "@/widgets/headers/ui/DetailHeader";
+import { DetailHeader } from "@/widgets/headers";
 
 // @TODO 백엔드 데이터 구조에 따라 아래와 같은 type 설정 후 props로 관리하는 구조로 변경해야 함!
 interface Review {
