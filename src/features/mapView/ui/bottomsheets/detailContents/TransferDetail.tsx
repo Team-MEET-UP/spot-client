@@ -1,7 +1,4 @@
 import { useEventStore } from "@/shared/stores";
-import { TransferType } from "../../model";
-import { openKakaoMap, openNaverMap, openTMAP } from "../../utils";
-import { useDeviceDetector } from "../../utils/useDeviceDetector";
 import KakaoMap from "@/assets/icon/kakaoMap.svg";
 import NaverMap from "@/assets/icon/naverMap.svg";
 import TMap from "@/assets/icon/TMap.svg";
@@ -9,6 +6,8 @@ import ArrowLine from "@/assets/icon/rightArrowLine.svg";
 import Subway from "@/assets/icon/subway.svg";
 import Car from "@/assets/icon/car.svg";
 import { MapButton } from "./MapButton";
+import { TransferType } from "@/features/mapView/model";
+import { openKakaoMap, openNaverMap, openTMAP, useDeviceDetector } from "@/features/mapView/utils";
 
 interface TransferDetailProps {
   type: TransferType;

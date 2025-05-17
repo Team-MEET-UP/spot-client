@@ -1,6 +1,6 @@
 import { TransitRoute } from "@/shared/model";
-import { subwayLine } from "../../config/subwayLine";
 import Path from "@/assets/icon/shortPath.svg";
+import { subwayLine } from "@/features/mapView/config";
 
 export const SubwayPath = ({ endBoardName, laneName, sectionTime, startBoardName, stationCount }: TransitRoute) => {
   const findMetroKey = (lineName: string) => {
