@@ -38,8 +38,8 @@ export const GroupAverageTime = () => {
   return (
     <div className="mx-5">
       <div>
-        <h1 className="text-gray-80 text-lg font-bold">{eventData?.meetingPoint.endStationName}</h1>
-        <p className="text-gray-40 text-md">평균 {eventData?.averageTime}분</p>
+        <h1 className="text-gray-80 text-lg font-bold pb-2">{eventData?.meetingPoint.endStationName}</h1>
+        <p className="text-gray-40 text-md pb-3">평균 {eventData?.averageTime}분</p>
       </div>
     </div>
   );
@@ -86,12 +86,12 @@ export const FixedButtons = () => {
     <div className="fixed bottom-0 left-0 right-0 bg-white p-5">
       <div className="flex flex-row gap-2">
         <button
-          className="flex flex-row items-center justify-center gap-2 rounded-md bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
+          className="flex flex-row items-center justify-center gap-2 rounded-xl bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
           onClick={handleAddMemberClick}>
           <img src={AddUser} alt="addUser" className="w-[27px] h-4" />
           <span>멤버 추가하기</span>
         </button>
-        <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-md">
+        <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-xl">
           <img src={Share} alt="share" onClick={() => setIsOpen(true)} className="w-6 h-6" />
         </button>
       </div>

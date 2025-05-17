@@ -56,10 +56,11 @@ export const MapMarker = ({ map, position, profileImg, name, onClick }: MapMarke
       const label = document.createElement("div");
       label.textContent = name;
       label.style.backgroundColor = "white";
-      label.style.padding = "2px 8px";
-      label.style.borderRadius = "4px";
-      label.style.fontSize = "12px";
-      label.style.fontWeight = "500";
+      label.style.padding = "4px 6px";
+      label.style.borderRadius = "6px";
+      label.style.fontSize = "10px";
+      label.style.fontWeight = "700";
+      label.style.lineHeight = "120%";
       label.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
       label.style.whiteSpace = "nowrap";
       wrapper.appendChild(label);

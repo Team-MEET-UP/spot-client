@@ -32,10 +32,11 @@ export function MeetingMarker({ map, position, title }: MeetingMarkerProps) {
     label.textContent = title;
     label.style.backgroundColor = "#007AFF";
     label.style.color = "white";
-    label.style.padding = "4px 12px";
-    label.style.borderRadius = "4px";
+    label.style.padding = "2px 6px";
+    label.style.borderRadius = "6px";
     label.style.fontSize = "12px";
     label.style.fontWeight = "600";
+    label.style.lineHeight = "150%";
     label.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
     label.style.whiteSpace = "nowrap";
     labelContainer.appendChild(label);
