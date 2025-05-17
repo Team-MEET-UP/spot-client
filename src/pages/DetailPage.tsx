@@ -25,6 +25,7 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const isReview = true;
   const isComplete = true; // 약속 장소 확정 유무
+  const isMeetingPlace = true; // 약속 장소인지 유무
   const [isOpenShareModal, setIsOpenShareModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -71,7 +72,9 @@ const DetailPage = () => {
       </div>
 
       <div className={`px-5 py-4 ${isReview ? "sticky bottom-0" : ""}`}>
-        <Button disabled={isComplete}>{isComplete ? "모임장소 바꾸기" : "여기에서 만나기"}</Button>
+        <Button disabled={isMeetingPlace}>
+          {isComplete ? (isMeetingPlace ? "이미 선택한 장소에요" : "모임장소 바꾸기") : "여기에서 만나기"}
+        </Button>
         {/* 이미 선택된 장소에요 버튼명 수정해야함 */}
       </div>
       {isOpenShareModal && (
