@@ -1,5 +1,5 @@
 import { useUserInfo } from "@/features/history/hooks";
-import { Banner, Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
+import { Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
 import { mockListData } from "@/shared/model";
 import { useUserStore } from "@/shared/stores";
 import { useEffect, useState } from "react";
@@ -51,7 +51,6 @@ const HistoryPage = () => {
     <div className="flex flex-col h-screen-dvh">
       <div className="flex flex-col px-5 gap-2">
         <Header profileImg={profileImageUrl} />
-        <Banner />
         <span className="mt-4 py-3 text-lg font-bold">나의 모임</span>
       </div>
       {length > 0 ? (
