@@ -10,7 +10,7 @@ const HistoryPage = () => {
   const { data, isLoading, isError } = useUserInfo();
   const [isPolicy, setIsPolicy] = useState(false);
   const profileImageUrl = useUserStore(state => state.profileImageUrl);
-  const length = 1; // 임시 ui 구현을 위한 작업!
+  const length = 0; // 임시 ui 구현을 위한 작업!
   const navigate = useNavigate();
 
   const onClose = () => {
@@ -67,7 +67,8 @@ const HistoryPage = () => {
       ) : (
         <Empty />
       )}
-      <div className={`px-5 pt-4 pb-6 w-full ${length > 0 ? "sticky bottom-0" : "fixed bottom-0"} z-[100]`}>
+      <div
+        className={`px-5 pt-4 pb-6 w-full ${length > 0 ? "sticky bottom-0" : "fixed bottom-0 max-w-[600px]"} z-[100]`}>
         <Button onClick={handleClick}>모임 만들기</Button>
       </div>
       {isPolicy && <PolicyBottomSheet onClose={onClose} />}
