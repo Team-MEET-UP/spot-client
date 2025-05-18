@@ -6,6 +6,7 @@ import AddUser from "@/assets/icon/addUser.svg";
 import Share from "@/assets/icon/share.svg";
 import { LoginModal } from "../..";
 import { UserCard } from "./UserCard";
+import AddDisabled from "@/assets/icon/addDisabled.svg";
 
 export const BottomSheetContent = () => {
   const eventData = useEventStore(state => state.eventData);
@@ -51,6 +52,8 @@ export const FixedButtons = () => {
   const eventId = new URLSearchParams(window.location.search).get("eventId");
   const eventData = useEventStore(state => state.eventData);
   const nickname = useUserStore(state => state.nickname);
+  const peopleCount = eventData?.peopleCount || 0;
+  const isFull = peopleCount >= 8;
 
   let title = "";
   if (!eventData?.eventMaker && !nickname) {
@@ -86,10 +89,13 @@ export const FixedButtons = () => {
     <div className="fixed bottom-0 left-0 right-0 bg-white p-5">
       <div className="flex flex-row gap-2">
         <button
-          className="flex flex-row items-center justify-center gap-2 rounded-xl bg-sub-sub h-[40px] text-white font-semibold text-sm w-full"
+          disabled={isFull}
+          className={`flex flex-row items-center justify-center gap-2 rounded-xl h-[40px] font-semibold text-sm w-full
+    ${isFull ? "bg-gray-10 text-gray-30 cursor-not-allowed" : "bg-sub-sub text-white"}
+  `}
           onClick={handleAddMemberClick}>
-          <img src={AddUser} alt="addUser" className="w-[27px] h-4" />
-          <span>멤버 추가하기</span>
+          <img src={isFull ? AddDisabled : AddUser} alt={isFull ? "addDisabled" : "addUser"} className="w-[27px] h-4" />
+          <span>{isFull ? "인원이 다 찼어요" : "출발지 추가하기"}</span>
         </button>
         <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-xl">
           <img src={Share} alt="share" onClick={() => setIsOpen(true)} className="w-6 h-6" />
