@@ -51,7 +51,7 @@ declare global {
       }
 
       class CustomOverlay {
-        constructor(options: { position: LatLng; content: HTMLElement; yAnchor?: number });
+        constructor(options: { position: LatLng; content: HTMLElement; yAnchor?: number; zIndex?: numbers });
         setMap(map: Map | null): void;
       }
 

@@ -70,6 +70,7 @@ export function MeetingMarker({ map, position, title }: MeetingMarkerProps) {
       position: new window.kakao.maps.LatLng(position.lat, position.lng),
       content: wrapper,
       yAnchor: 0.7,
+      zIndex: 2,
     });
 
     overlay.setMap(map);
