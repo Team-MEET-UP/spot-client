@@ -14,7 +14,7 @@ export const Header = ({ profileImg }: HeaderProps) => {
   };
 
   return (
-    <header className="flex justify-between items-center py-4">
+    <header className="flex justify-between items-center py-3">
       <img src={Logo} alt="logo" className="w-[87px] h-6" />
       <button onClick={handleClick}>
         <img src={profileImg ?? DefaultImg} alt="profileImg" className="w-8 h-8 rounded-full" />
