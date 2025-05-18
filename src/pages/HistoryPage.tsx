@@ -1,7 +1,8 @@
 import { useUserInfo } from "@/features/history/hooks";
-import { Banner, Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
+import { Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
 import { mockListData } from "@/shared/model";
 import { useUserStore } from "@/shared/stores";
+import Button from "@/shared/ui/Button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +15,10 @@ const HistoryPage = () => {
 
   const onClose = () => {
     setIsPolicy(false);
+  };
+
+  const handleClick = () => {
+    navigate("/find?startStep=1");
   };
 
   useEffect(() => {
@@ -48,14 +53,13 @@ const HistoryPage = () => {
   if (isError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
 
   return (
-    <div className="flex flex-col h-screen-dvh">
-      <div className="flex flex-col px-5 gap-2">
+    <div className="relative flex flex-col h-screen-dvh">
+      <div className="flex flex-col px-5">
         <Header profileImg={profileImageUrl} />
-        <Banner />
-        <span className="mt-4 py-3 text-lg font-bold">나의 모임</span>
+        <span className="pt-3 pb-2 text-lg font-bold">나의 모임</span>
       </div>
       {length > 0 ? (
-        <div>
+        <div className="flex flex-col overflow-y-scroll scrollbar-hidden mb-24">
           {mockListData.map(data => (
             <GroupCard key={data.id} {...data} />
           ))}
@@ -63,6 +67,9 @@ const HistoryPage = () => {
       ) : (
         <Empty />
       )}
+      <div className="px-5 pt-4 pb-6 w-full fixed bottom-0 max-w-[600px] z-[100] bg-white">
+        <Button onClick={handleClick}>모임 만들기</Button>
+      </div>
       {isPolicy && <PolicyBottomSheet onClose={onClose} />}
     </div>
   );
