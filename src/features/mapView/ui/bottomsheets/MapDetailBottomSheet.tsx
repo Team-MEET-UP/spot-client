@@ -19,9 +19,11 @@ export const MapDetailBottomSheet = () => {
         <SnapBottomSheet.Header />
         <TransferDetail
           type={type}
+          setType={setType}
           averageDuration={type === "car" ? detailEventData.drivingRoute[0].duration : detailEventData.totalTime}
           startPoint={detailEventData.startName}
           endPoint={eventData.meetingPoint.endStationName}
+          isMe={detailEventData.isMe}
         />
         <SnapBottomSheet.Content>
           {type === "subway" ? (

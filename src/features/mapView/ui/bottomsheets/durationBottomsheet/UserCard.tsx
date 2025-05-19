@@ -1,6 +1,6 @@
 import Arrow from "@/assets/icon/rightArrow.svg";
 import Transfer from "@/assets/icon/transfer.svg";
-import Car from "@/assets/icon/car.svg";
+import Car from "@/assets/icon/carBlue.svg";
 
 interface UserCardProps {
   isTransit: boolean;
