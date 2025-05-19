@@ -44,7 +44,6 @@ const VisitedPage = () => {
             {currentStep === 1 ? "언제 가셨나요?" : "이 장소는 어떠셨나요?"}
           </span>
           <p className="text-md font-medium text-gray-40">
-            {" "}
             {currentStep === 1 ? "방문한 시간을 알려주세요." : "느낌을 간단하게 알려주세요."}
           </p>
           <div className="flex-1 overflow-y-auto max-h-[calc(100vh-220px)] scrollbar-hidden overflow-touch">

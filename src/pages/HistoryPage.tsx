@@ -67,8 +67,10 @@ const HistoryPage = () => {
       ) : (
         <Empty />
       )}
-      <div className="px-5 pt-4 pb-6 w-full fixed bottom-0 max-w-[600px] z-[100] bg-white">
-        <Button onClick={handleClick}>모임 만들기</Button>
+      <div className="px-5 pt-4 pb-5 w-full fixed bottom-0 max-w-[600px] z-[100] bg-white">
+        <Button onClick={handleClick} isBlue={true}>
+          모임 만들기
+        </Button>
       </div>
       {isPolicy && <PolicyBottomSheet onClose={onClose} />}
     </div>
