@@ -56,7 +56,7 @@ const HistoryPage = () => {
     <div className="relative flex flex-col h-screen-dvh">
       <div className="flex flex-col px-5">
         <Header profileImg={profileImageUrl} />
-        <span className="pt-3 pb-2 text-lg font-bold">나의 모임</span>
+        <span className="pt-3 pb-2 text-xl font-bold">나의 모임</span>
       </div>
       {length > 0 ? (
         <div className="flex flex-col overflow-y-scroll scrollbar-hidden mb-24">

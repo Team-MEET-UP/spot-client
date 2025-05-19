@@ -42,7 +42,7 @@ export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
   return (
     <>
       <Overlay isBlur={false} />
-      <BottomSheet>
+      <BottomSheet minHeightPx={280} maxHeightPx={280}>
         <div className="flex flex-col gap-10 pt-4 p-5 h-full">
           <div>
             <span className="text-lg font-bold text-gray-80 mb-[2px]">잠깐만요!</span>
