@@ -43,7 +43,7 @@ export const NameStep = ({ setCurrentStep, setName, name }: NameStepProps) => {
     <div className="flex flex-col h-full">
       <div className="flex-1 px-4">
         <div className="flex flex-col gap-4">
-          <PlainHeader title="멤버 추가" onBack={() => navigate(-1)} />
+          <PlainHeader title="출발지 추가" onBack={() => navigate(-1)} />
           <p className="text-gray-90 text-lg font-semibold">
             멤버 추가를 위해
             <br />
