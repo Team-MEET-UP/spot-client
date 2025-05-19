@@ -43,7 +43,7 @@ export const GetLocationButton = ({ setValue, setStartPointInfo, name }: GetLoca
   return (
     <button
       onClick={handleGetCurrentLocation}
-      className="flex gap-2 w-full h-14 justify-center items-center bg-gray-100 text-gray-50 text-md font-semibold rounded-2xl">
+      className="flex gap-2 w-full justify-center items-center text-sub-sub text-md font-semibold rounded-2xl">
       <img src={Location} alt="현재 위치" className="w-5 h-5" />현 위치 불러오기
     </button>
   );
