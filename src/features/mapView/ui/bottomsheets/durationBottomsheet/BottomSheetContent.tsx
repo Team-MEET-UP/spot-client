@@ -69,7 +69,7 @@ export const FixedButtons = () => {
     description: "",
     imageUrl: "https://www.pickspot.co.kr/image/KT2.webp",
     links: [
-      { label: "내 출발지 입력", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
+      { label: "내 출발지 추가", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
       { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },
     ],
   };
