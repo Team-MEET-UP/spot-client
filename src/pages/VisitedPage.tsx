@@ -52,7 +52,9 @@ const VisitedPage = () => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-5 left-5 w-[calc(100%-40px)]">
+      <div
+        className="px-5 pt-4 pb-5 w-full fixed bottom-0 max-w-[600px] z-50"
+        style={{ background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 20%)" }}>
         <Button
           onClick={currentStep === 1 ? handleFirstStep : handleSecondStep}
           disabled={
