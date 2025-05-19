@@ -56,7 +56,7 @@ const HistoryPage = () => {
     <div className="relative flex flex-col h-screen-dvh">
       <div className="flex flex-col px-5">
         <Header profileImg={profileImageUrl} />
-        <span className="pt-3 pb-2 text-lg font-bold">나의 모임</span>
+        <span className="pt-3 pb-2 text-xl font-bold">나의 모임</span>
       </div>
       {length > 0 ? (
         <div className="flex flex-col overflow-y-scroll scrollbar-hidden mb-24">
@@ -67,8 +67,10 @@ const HistoryPage = () => {
       ) : (
         <Empty />
       )}
-      <div className="px-5 pt-4 pb-6 w-full fixed bottom-0 max-w-[600px] z-[100] bg-white">
-        <Button onClick={handleClick}>모임 만들기</Button>
+      <div className="px-5 pt-4 pb-5 w-full fixed bottom-0 max-w-[600px] z-[100] bg-white">
+        <Button onClick={handleClick} isBlue={true}>
+          모임 만들기
+        </Button>
       </div>
       {isPolicy && <PolicyBottomSheet onClose={onClose} />}
     </div>

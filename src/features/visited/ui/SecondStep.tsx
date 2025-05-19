@@ -15,7 +15,7 @@ interface SecondStepProps {
 const fields = [
   { label: "콘센트", key: "plugScore" },
   { label: "좌석", key: "seatScore" },
-  { label: "혼잡도", key: "crowdedScore" },
+  { label: "한산함", key: "crowdedScore" },
 ] as const;
 
 const SecondStep = ({ secondData, setSecondData }: SecondStepProps) => {

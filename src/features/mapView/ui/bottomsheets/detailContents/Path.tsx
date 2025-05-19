@@ -14,7 +14,7 @@ interface PathProps {
 
 export const Path = ({ startPoint, endPoint, transferInfo }: PathProps) => {
   return (
-    <div className="flex flex-col my-4 mx-5 mb-16">
+    <div className="flex flex-col my-4 mx-5 mb-[84px]">
       <div className="flex gap-3 items-center">
         <div className="relative">
           <img src={Start} alt="start" className="w-6 h-7" />

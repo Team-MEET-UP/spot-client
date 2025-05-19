@@ -1,86 +1,53 @@
-import { useEventStore } from "@/shared/stores";
-import KakaoMap from "@/assets/icon/kakaoMap.svg";
-import NaverMap from "@/assets/icon/naverMap.svg";
-import TMap from "@/assets/icon/TMap.svg";
 import ArrowLine from "@/assets/icon/rightArrowLine.svg";
 import Subway from "@/assets/icon/subway.svg";
+import SubwayGray from "@/assets/icon/subwayGray.svg";
 import Car from "@/assets/icon/car.svg";
-import { MapButton } from "./MapButton";
+import CarGray from "@/assets/icon/carGray.svg";
 import { TransferType } from "@/features/mapView/model";
-import { openKakaoMap, openNaverMap, openTMAP, useDeviceDetector } from "@/features/mapView/utils";
+import { useTransfer } from "@/features/mapView/hooks";
 
 interface TransferDetailProps {
   type: TransferType;
+  setType: React.Dispatch<React.SetStateAction<"subway" | "car">>;
   averageDuration: number;
   startPoint: string;
   endPoint: string;
+  isMe: boolean;
 }
 
-export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: TransferDetailProps) => {
-  const eventData = useEventStore(state => state.eventData);
-  const detailEventData = useEventStore(state => state.detailEventData);
+export const TransferDetail = ({ type, setType, averageDuration, startPoint, endPoint, isMe }: TransferDetailProps) => {
+  const { mutate } = useTransfer();
 
-  // 디바이스 정보
-  const deviceType = useDeviceDetector();
-
-  if (!eventData || !detailEventData) return;
-
-  const TransferMap = {
-    subway: [
-      {
-        src: KakaoMap,
-        alt: "kakaoMap",
-        onClick: () =>
-          openKakaoMap({
-            startLat: detailEventData.startLatitude,
-            startLng: detailEventData.startLongitude,
-            endPoint: eventData.meetingPoint.endStationName,
-            endLat: eventData.meetingPoint.endLatitude,
-            endLng: eventData.meetingPoint.endLongitude,
-            isPc: deviceType === "Mac PC" || deviceType === "Windows PC" || deviceType === "Unknown Device",
-          }),
-      },
-      {
-        src: NaverMap,
-        alt: "naverMap",
-        onClick: () =>
-          openNaverMap({
-            startPoint: detailEventData.startName,
-            startLat: detailEventData.startLatitude,
-            startLng: detailEventData.startLongitude,
-            endPoint: eventData.meetingPoint.endStationName,
-            endLat: eventData.meetingPoint.endLatitude,
-            endLng: eventData.meetingPoint.endLongitude,
-          }),
-      },
-    ],
-    car: [
-      {
-        src: TMap,
-        alt: "tMap",
-        onClick: () =>
-          openTMAP({
-            endPoint: eventData.meetingPoint.endStationName,
-            endLat: eventData.meetingPoint.endLatitude,
-            endLng: eventData.meetingPoint.endLongitude,
-          }),
-      },
-    ],
+  const handleClick = (isTransit: boolean) => {
+    if (!isMe) return;
+    else {
+      mutate({
+        isTransit: isTransit,
+      });
+    }
   };
-
-  const filteredIcons = TransferMap[type].filter(() => (type === "car" ? deviceType === "iPhone" : true));
 
   return (
     <div className="flex flex-col px-5 py-4 gap-1">
       <div className="flex justify-between items-center">
-        <div className="flex gap-1 items-center">
-          <img src={type === "subway" ? Subway : Car} alt="transfer" className="w-6 h-6" />
-          <span className="text-xl font-bold text-gray-90">{averageDuration}분</span>
-        </div>
+        <span className="text-xl font-bold text-gray-90">{averageDuration}분</span>
         <div className="flex gap-2">
-          {filteredIcons.map(({ src, alt, onClick }) => (
-            <MapButton src={src} alt={alt} onClick={onClick} />
-          ))}
+          <button
+            className={`flex justify-center items-center w-8 h-8 rounded-2xl ${type === "subway" ? "bg-metro-line2" : "bg-gray-5"}`}
+            onClick={() => {
+              setType("subway");
+              handleClick(true);
+            }}>
+            <img src={type === "subway" ? Subway : SubwayGray} alt="subway" className="w-6 h-6" />
+          </button>
+          <button
+            className={`flex justify-center items-center w-8 h-8 rounded-2xl ${type === "car" ? "bg-sub-sub" : "bg-gray-5"}`}
+            onClick={() => {
+              setType("car");
+              handleClick(false);
+            }}>
+            <img src={type === "car" ? Car : CarGray} alt="car" className="w-6 h-6" />
+          </button>
         </div>
       </div>
       <div className="flex gap-1 items-center text-md font-semibold text-gray-60">

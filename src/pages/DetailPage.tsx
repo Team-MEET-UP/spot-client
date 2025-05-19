@@ -24,8 +24,8 @@ const images = [
 const DetailPage = () => {
   const navigate = useNavigate();
   const isReview = true;
-  const isComplete = true; // 약속 장소 확정 유무
-  const isMeetingPlace = true; // 약속 장소인지 유무
+  const isComplete = false; // 약속 장소 확정 유무
+  const isMeetingPlace = false; // 약속 장소인지 유무
   const [isOpenShareModal, setIsOpenShareModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -64,14 +64,15 @@ const DetailPage = () => {
   return (
     <div className="relative flex flex-col h-screen-dvh">
       <DetailHeader backClick={handleClick} shareClick={() => setIsOpenShareModal(true)} isScrolled={isScrolled} />
-      <div className="flex-1 overflow-y-auto" ref={scrollRef}>
+      <div className="flex-1 overflow-y-auto scrollbar-hidden" ref={scrollRef}>
         <Photo images={images} />
         <PlaceInfo />
         <div className="w-full h-2 bg-gray-5" />
         {isReview ? <Review /> : <Empty />}
       </div>
-
-      <div className={`px-5 py-4 ${isReview ? "sticky bottom-0" : ""}`}>
+      <div
+        className="px-5 pt-4 pb-5 w-full fixed bottom-0 max-w-[600px] z-[100]"
+        style={{ background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 20%)" }}>
         <Button disabled={isMeetingPlace}>
           {isComplete ? (isMeetingPlace ? "이미 선택한 장소에요" : "모임장소 바꾸기") : "여기에서 만나기"}
         </Button>
