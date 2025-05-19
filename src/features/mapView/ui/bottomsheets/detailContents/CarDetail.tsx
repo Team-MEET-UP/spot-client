@@ -9,7 +9,7 @@ interface CarDetailProps {
 
 export const CarDetail = ({ driveDistance, toll, taxiToll, parking }: CarDetailProps) => {
   return (
-    <section className="flex flex-col gap-4 px-5 mb-16">
+    <section className="flex flex-col gap-4 px-5 mb-[84px]">
       <div className="flex flex-col gap-[2px] text-md font-medium text-gray-40">
         <span className="text-lg font-bold text-gray-90">
           {driveDistance >= 1000 ? `${(driveDistance / 1000).toFixed(1)}km` : `${driveDistance}m`}

@@ -40,7 +40,7 @@ export const MapDetailBottomSheet = () => {
               parking={eventData.parkingLot}
             />
           )}
-          <FixedButton type={type} setType={setType} isMe={detailEventData.isMe} />
+          <FixedButton />
         </SnapBottomSheet.Content>
       </SnapBottomSheet>
     </>
