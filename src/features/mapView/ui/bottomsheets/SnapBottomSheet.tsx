@@ -7,7 +7,7 @@ export const SnapMapBottomSheet = () => {
       <div className="relative">
         <SnapBottomSheet.Header />
         <button className="absolute -top-14 left-1/2 -translate-x-1/2 bg-gray-80 text-white font-semibold text-md px-[24px] py-[12px] rounded-3xl shadow-pin02">
-          모임 장소 정하기
+          역 주변 둘러보기
         </button>
       </div>
       <GroupAverageTime />
