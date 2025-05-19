@@ -15,7 +15,7 @@ const infoMap: Record<string, { icon: string; texts: Record<number, string> }> =
   콘센트: {
     icon: Plug,
     texts: {
-      1: "콘센트가 없어요",
+      1: "없어요",
       2: "부족해요",
       3: "적당해요",
       4: "많아요",
@@ -32,14 +32,14 @@ const infoMap: Record<string, { icon: string; texts: Record<number, string> }> =
       5: "아주 많아요",
     },
   },
-  혼잡도: {
+  한산함: {
     icon: People,
     texts: {
-      1: "매우 조용해요",
-      2: "조용해요",
+      1: "매우 한산해요",
+      2: "한산해요",
       3: "적당해요",
-      4: "시끄러워요",
-      5: "매우 시끄러워요",
+      4: "약간 붐벼요",
+      5: "매우 붐벼요",
     },
   },
 };
