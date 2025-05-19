@@ -69,7 +69,7 @@ export const FixedButtons = () => {
     description: "",
     imageUrl: "https://www.pickspot.co.kr/image/KT2.webp",
     links: [
-      { label: "내 출발지 입력", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
+      { label: "내 출발지 추가", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
       { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },
     ],
   };
@@ -90,14 +90,14 @@ export const FixedButtons = () => {
       <div className="flex flex-row gap-2">
         <button
           disabled={isFull}
-          className={`flex flex-row items-center justify-center gap-2 rounded-xl h-[40px] font-semibold text-sm w-full
+          className={`flex flex-row items-center justify-center gap-2 rounded-2xl h-[52px] font-semibold text-lg w-full
     ${isFull ? "bg-gray-10 text-gray-30 cursor-not-allowed" : "bg-sub-sub text-white"}
   `}
           onClick={handleAddMemberClick}>
           <img src={isFull ? AddDisabled : AddUser} alt={isFull ? "addDisabled" : "addUser"} className="w-[27px] h-4" />
           <span>{isFull ? "인원이 다 찼어요" : "출발지 추가하기"}</span>
         </button>
-        <button className="flex justify-center items-center bg-gray-5 w-[40px] h-[40px] rounded-xl">
+        <button className="flex justify-center items-center w-[52px] h-[52px] rounded-xl border-2 border-gray-10">
           <img src={Share} alt="share" onClick={() => setIsOpen(true)} className="w-6 h-6" />
         </button>
       </div>

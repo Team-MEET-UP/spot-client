@@ -18,7 +18,7 @@ export const FilterChips = () => {
             onClick={() => setSelected(filter)}
             className={`flex flex-row items-center gap-1 px-[17px] py-[8px] rounded-3xl text-sm font-semibold transition-colors
               ${isSelected ? "bg-gray-80 text-white" : "bg-white text-gray-60"}`}>
-            {filter !== "전체" && <img src={icons[idx]} alt={`${filter} 아이콘`} className="w-32 h-32" />}
+            {filter !== "전체" && <img src={icons[idx]} alt={`${filter} 아이콘`} className="w-[18px] h-[18px]" />}
             {filter}
           </button>
         );
