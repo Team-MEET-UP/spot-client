@@ -31,7 +31,7 @@ const SecondStep = ({ secondData, setSecondData }: SecondStepProps) => {
           />
         ))}
       </div>
-      <div className="flex flex-col gap-3 mb-[10px]">
+      <div className="flex flex-col gap-3 mb-[20px]">
         <div className="flex items-center gap-1">
           <span className="text-md font-semibold text-gray-60">방문 후기</span>
           <div className="text-sm font-medium text-gray-40 py-[2px] px-[6px] bg-gray-5 rounded-[6px]">선택</div>

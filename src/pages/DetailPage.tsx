@@ -64,7 +64,7 @@ const DetailPage = () => {
   return (
     <div className="relative flex flex-col h-screen-dvh">
       <DetailHeader backClick={handleClick} shareClick={() => setIsOpenShareModal(true)} isScrolled={isScrolled} />
-      <div className="flex-1 overflow-y-auto scrollbar-hidden" ref={scrollRef}>
+      <div className="flex-1 overflow-y-auto scrollbar-hidden mb-[88px]" ref={scrollRef}>
         <Photo images={images} />
         <PlaceInfo />
         <div className="w-full h-2 bg-gray-5" />
