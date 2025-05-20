@@ -14,7 +14,9 @@ const PlacePage = () => {
         <PlainHeader title="장소 추천" url="/mapview" />
       </div>
       <div className="flex-none mt-3 px-5">
-        {!isConfirmed && <RecommendCard place="동대문역사문화공원역" onClick={() => navigate("/detail")} />}
+        {!isConfirmed && (
+          <RecommendCard place={mockPlaceItems.data.middlePointName} onClick={() => navigate("/detail")} />
+        )}
         {isConfirmed && (
           <ConfirmedCard
             name={mockData.name}
