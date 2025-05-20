@@ -1,1 +1,1 @@
-export * from "./place.type";
+export * from "./placeList.type";
