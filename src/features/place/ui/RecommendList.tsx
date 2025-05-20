@@ -1,23 +1,27 @@
-import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceList";
+import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceItems";
 import PlaceCard from "@/shared/ui/PlaceCard";
 import { useNavigate } from "react-router-dom";
 // import { FilterChips } from ".";
 
 export const RecommendList = () => {
-  const navigate = useNavigate(); // 추후 id를 넘길 것
+  const navigate = useNavigate();
+  const places = mockPlaceItems.data.placeResponses;
+
   return (
     <div className="h-full flex flex-col bg-gray-5">
       {/* <FilterChips /> */}
       <div className="flex-1 overflow-y-auto px-5 p-3">
         <div className="flex flex-col gap-3">
-          {mockPlaceItems.map(item => (
+          {places.map(place => (
             <PlaceCard
-              key={item.id}
-              placeName={item.placeName}
-              distance={item.distance}
-              openingHours={item.openingHours}
-              image={item.image}
-              review={item.review}
+              key={place.id}
+              name={place.name}
+              distance={place.distance}
+              openTime={place.openTime}
+              closeTime={place.closeTime}
+              image={place.image}
+              averageRating={place.averageRating}
+              placeScore={place.placeScore}
               onClick={() => navigate("/detail")}
             />
           ))}
