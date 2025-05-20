@@ -1,12 +1,7 @@
 import { formatReview } from "../utils";
 import PlaceChip from "./PlaceChip";
 import Star from "@/assets/icon/star.svg";
-
-interface PlaceScore {
-  socket: number;
-  seat: number;
-  quiet: number;
-}
+import { PlaceScore } from "@/features/place/model/placeList.type";
 
 interface PlaceCardItemProps {
   name: string;

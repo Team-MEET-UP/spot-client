@@ -1,5 +1,6 @@
 import PlaceCard from "@/shared/ui/PlaceCard";
 import Confirmed from "@/assets/icon/confirmed.svg";
+import { PlaceScore } from "@/features/place/model/placeList.type";
 
 interface ConfirmedCardProps {
   name: string;
@@ -8,11 +9,7 @@ interface ConfirmedCardProps {
   openTime?: string;
   closeTime?: string;
   averageRating?: number | null;
-  placeScore?: {
-    socket: number;
-    seat: number;
-    quiet: number;
-  } | null;
+  placeScore?: PlaceScore | null;
   onClick: () => void;
 }
 
