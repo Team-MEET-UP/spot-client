@@ -1,24 +1,41 @@
+import { formatReview } from "../utils";
 import PlaceChip from "./PlaceChip";
 import Star from "@/assets/icon/star.svg";
 
+interface PlaceScore {
+  socket: number;
+  seat: number;
+  quiet: number;
+}
+
 interface PlaceCardItemProps {
-  placeName: string;
+  name: string;
   distance: number;
   image?: string;
-  openingHours?: string;
-  review?: {
-    score: number;
-    chips: string[];
-  };
+  openTime?: string;
+  closeTime?: string;
+  averageRating?: number | null;
+  placeScore?: PlaceScore | null;
   onClick?: () => void;
 }
 
-const PlaceCard = ({ placeName, distance, image, openingHours, review, onClick }: PlaceCardItemProps) => {
+const PlaceCard = ({
+  name,
+  distance,
+  image,
+  openTime,
+  closeTime,
+  averageRating,
+  placeScore,
+  onClick,
+}: PlaceCardItemProps) => {
+  const openingHours = openTime && closeTime ? `${openTime} - ${closeTime}` : undefined;
+
   return (
     <div className="flex flex-col gap-3 p-4 rounded-2xl w-full shadow-list bg-white" onClick={onClick}>
       <div className="flex justify-between">
         <div className="flex gap-1 flex-col text-xs font-medium">
-          <span className="text-md font-semibold text-gray-90">{placeName}</span>
+          <span className="text-md font-semibold text-gray-90">{name}</span>
           {/* openingHours가 있을 때만 영업시간 표시 */}
           {openingHours && (
             <div className="flex gap-[6px] items-center">
@@ -32,16 +49,22 @@ const PlaceCard = ({ placeName, distance, image, openingHours, review, onClick }
         {image && <img src={image} alt="placeImg" className="w-[68px] h-[68px] rounded-lg object-cover" />}
       </div>
 
-      {/* review가 있을 때만 별점 + 칩 표시 */}
-      {review && (
+      {(averageRating || placeScore) && (
         <div className="flex gap-2">
-          <div className="flex gap-[2px] items-center text-sm font-semibold text-gray-90">
-            <img src={Star} alt="star" className="w-4 h-4" />
-            {review.score.toFixed(1)}
-          </div>
+          {averageRating && (
+            <div className="flex gap-[2px] items-center text-sm font-semibold text-gray-90">
+              <img src={Star} alt="star" className="w-4 h-4" />
+              {averageRating.toFixed(1)}
+            </div>
+          )}
 
-          {/* chips가 있을 때만 표시 */}
-          {review.chips.length > 0 && review.chips.map(chip => <PlaceChip key={chip} label={chip} />)}
+          {placeScore && (
+            <div className="flex gap-2">
+              {placeScore.socket > 0 && <PlaceChip label={formatReview(placeScore)[0]} />}
+              {placeScore.seat > 0 && <PlaceChip label={formatReview(placeScore)[1]} />}
+              {/* quiet(한산함)는 표시하지 않음 */}
+            </div>
+          )}
         </div>
       )}
     </div>

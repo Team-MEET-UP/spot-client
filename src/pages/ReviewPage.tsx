@@ -1,5 +1,5 @@
 import PlaceCard from "@/shared/ui/PlaceCard";
-import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceList";
+import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceItems";
 import { useNavigate, useParams } from "react-router-dom";
 import { SmallButton, Title } from "@/features/review/ui";
 import { CloseHeader } from "@/widgets/headers";
@@ -15,7 +15,7 @@ const ReviewPage = () => {
         <div className="flex flex-col gap-8">
           <Title title="박승광해물손칼국수 진점점dddddd 박승광해물" />
           <div className="flex flex-col gap-3 items-center">
-            <PlaceCard {...mockPlaceItems[0]} /> {/* 임시 데이터 추가 */}
+            <PlaceCard {...mockPlaceItems.data.placeResponses[0]} /> {/* 임시 데이터 추가 */}
             <p className="text-sm font-semibold text-gray-30">실제로 가신 곳인지 확인해주세요.</p>
           </div>
         </div>

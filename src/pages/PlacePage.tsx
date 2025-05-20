@@ -1,11 +1,11 @@
 import { ConfirmedCard, RecommendCard, RecommendList } from "@/features/place/ui";
-import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceList";
+import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceItems";
 import { PlainHeader } from "@/widgets/headers";
 import { useNavigate } from "react-router-dom";
 
 const PlacePage = () => {
-  const mockData = mockPlaceItems[0];
-  const isConfirmed = false; // 여기서 장소의 확정 상태를 받아온다면
+  const mockData = mockPlaceItems.data.confirmedPlaceResponse;
+  const isConfirmed = mockData !== null;
   const navigate = useNavigate();
 
   return (
@@ -17,11 +17,13 @@ const PlacePage = () => {
         {!isConfirmed && <RecommendCard place="동대문역사문화공원역" onClick={() => navigate("/detail")} />}
         {isConfirmed && (
           <ConfirmedCard
-            placeName="동대문 역사문화공원역"
+            name={mockData.name}
             distance={mockData.distance}
             image={mockData.image}
-            openingHours={mockData.openingHours}
-            review={mockData.review}
+            openTime={mockData.openTime}
+            closeTime={mockData.closeTime}
+            averageRating={mockData.averageRating}
+            placeScore={mockData.placeScore}
             onClick={() => navigate("/detail")}
           />
         )}

@@ -2,18 +2,30 @@ import PlaceCard from "@/shared/ui/PlaceCard";
 import Confirmed from "@/assets/icon/confirmed.svg";
 
 interface ConfirmedCardProps {
-  placeName: string;
+  name: string;
   distance: number;
   image?: string;
-  openingHours?: string;
-  review?: {
-    score: number;
-    chips: string[];
-  };
+  openTime?: string;
+  closeTime?: string;
+  averageRating?: number | null;
+  placeScore?: {
+    socket: number;
+    seat: number;
+    quiet: number;
+  } | null;
   onClick: () => void;
 }
 
-export const ConfirmedCard = ({ placeName, distance, image, openingHours, review, onClick }: ConfirmedCardProps) => {
+export const ConfirmedCard = ({
+  name,
+  distance,
+  image,
+  openTime,
+  closeTime,
+  averageRating,
+  placeScore,
+  onClick,
+}: ConfirmedCardProps) => {
   return (
     <div className="relative cursor-pointer" onClick={onClick}>
       <div className="absolute -top-3 right-1">
@@ -21,17 +33,19 @@ export const ConfirmedCard = ({ placeName, distance, image, openingHours, review
       </div>
       <div className="flex flex-col gap-1">
         <h1 className="text-lg font-semibold">
-          <span className="text-sub-sub">{placeName}</span> <br />
+          <span className="text-sub-sub">{name}</span> <br />
           <span>약속장소가 확정됐어요</span>
         </h1>
       </div>
       <div className="relative mt-[12px] border-[1.5px] border-sub-sub rounded-2xl">
         <PlaceCard
-          placeName={placeName}
+          name={name}
           distance={distance}
           image={image}
-          openingHours={openingHours}
-          review={review}
+          openTime={openTime}
+          closeTime={closeTime}
+          averageRating={averageRating}
+          placeScore={placeScore}
         />
       </div>
     </div>
