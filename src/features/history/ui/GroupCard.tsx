@@ -23,7 +23,7 @@ export const GroupCard = ({
   });
 
   const handleClick = () => {
-    navigate(`/mapView?eventId=${eventId}`);
+    navigate(`/mapView/${eventId}`);
   };
 
   return (

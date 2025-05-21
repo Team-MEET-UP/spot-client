@@ -17,7 +17,7 @@ export const useCreateStartPoint = (eventIdParam: string | null) => {
       setCookie("startPointId", startPointId, { path: "/", maxAge: 86400 });
 
       // 페이지 이동
-      navigate(`/mapview?eventId=${eventId}`);
+      navigate(`/mapview/${eventId}`);
     },
     onError: error => {
       console.error("모임 생성 실패", error);
@@ -31,7 +31,7 @@ export const useCreateStartPoint = (eventIdParam: string | null) => {
       if (!getCookie("startPointId")) {
         setCookie("startPointId", response.data.startPointId, { path: "/", maxAge: 86400 });
       }
-      navigate(`/mapview?eventId=${eventIdParam}`);
+      navigate(`/mapview/${eventIdParam}`);
     },
     onError: error => {
       console.error("멤버 추가 실패", error);

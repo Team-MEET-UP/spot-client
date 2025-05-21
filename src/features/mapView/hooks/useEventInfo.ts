@@ -1,20 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCookie } from "@/shared/utils";
 import { getEventInfo } from "../service";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const useEventRoutes = () => {
-  const [searchParams] = useSearchParams();
-  const eventId = searchParams.get("eventId");
+  const { id } = useParams();
   const startPointId = getCookie("startPointId");
 
   return useQuery({
-    queryKey: ["eventRoutes", eventId, startPointId],
+    queryKey: ["eventRoutes", id, startPointId],
     queryFn: () => {
-      if (!eventId) throw new Error("eventId가 없습니다.");
-      return getEventInfo(eventId, startPointId);
+      if (!id) throw new Error("eventId가 없습니다.");
+      return getEventInfo(id, startPointId);
     },
-    enabled: !!eventId, // eventId가 있을 때만 요청
+    enabled: !!id, // eventId가 있을 때만 요청
     retry: false, // 자동 재시도 방지
   });
 };

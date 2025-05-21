@@ -1,7 +1,7 @@
 import { useEventStore, useUserStore } from "@/shared/stores";
 import { useState } from "react";
 import { ShareModal } from "@/shared/ui";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AddUser from "@/assets/icon/addUser.svg";
 import Share from "@/assets/icon/share.svg";
 import { LoginModal } from "../..";
@@ -49,7 +49,7 @@ export const GroupAverageTime = () => {
 export const FixedButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
-  const eventId = new URLSearchParams(window.location.search).get("eventId");
+  const { id } = useParams();
   const eventData = useEventStore(state => state.eventData);
   const nickname = useUserStore(state => state.nickname);
   const peopleCount = eventData?.peopleCount || 0;
@@ -69,17 +69,15 @@ export const FixedButtons = () => {
     description: "",
     imageUrl: "https://www.pickspot.co.kr/image/KT2.webp",
     links: [
-      { label: "내 출발지 추가", url: `https://www.pickspot.co.kr/find?eventId=${eventId}` },
-      { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView?eventId=${eventId}` },
+      { label: "내 출발지 추가", url: `https://www.pickspot.co.kr/find?eventId=${id}` },
+      { label: "중간지점 보기", url: `https://www.pickspot.co.kr/mapView/${id}` },
     ],
   };
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const eventIdParam = searchParams.get("eventId");
 
   const handleAddMemberClick = () => {
     if (nickname) {
-      navigate(`/find?eventId=${eventIdParam}`);
+      navigate(`/find?eventId=${id}`);
     } else {
       setIsOpenLoginModal(true);
     }

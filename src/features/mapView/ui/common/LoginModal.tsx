@@ -1,19 +1,18 @@
 import { Modal } from "@/shared/ui";
 import { kakaoLogin } from "@/shared/utils";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const LoginModal = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const eventIdParam = searchParams.get("eventId"); // eventId 쿼리 파라미터 추출
+  const { id } = useParams();
 
   const handleNextTime = () => {
-    navigate(`/find?eventId=${eventIdParam}`);
+    navigate(`/find?eventId=${id}`);
   };
 
   const handleKakaoClick = () => {
-    if (eventIdParam) {
-      localStorage.setItem("shared_link_access", eventIdParam);
+    if (id) {
+      localStorage.setItem("shared_link_access", id);
       kakaoLogin();
     }
   };
