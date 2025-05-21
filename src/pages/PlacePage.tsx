@@ -25,7 +25,7 @@ const PlacePage = () => {
         <PlainHeader title="장소 추천" url={`/mapview/${id}`} />
       </div>
       <div className="flex-none mt-3 px-5">
-        {!isConfirmed && <RecommendCard place={data!.data.middlePointName} onClick={() => navigate("/detail")} />}
+        {!isConfirmed && <RecommendCard place={data!.data.middlePointName} />}
         {isConfirmed && (
           <ConfirmedCard
             name={confirmedPlace.name}
