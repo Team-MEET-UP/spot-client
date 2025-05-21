@@ -4,12 +4,14 @@ import Button from "@/shared/ui/Button";
 import { useState } from "react";
 import { CheckBox } from "./CheckBox";
 import { useStoreAgreement } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 interface PolicyBottomSheetProps {
   onClose: () => void;
 }
 
 export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
+  const navigate = useNavigate();
   const { mutate } = useStoreAgreement();
   const [agreements, setAgreements] = useState({
     personalInfo: false,
@@ -52,11 +54,13 @@ export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
                 label="이용약관 및 개인정보처리방침(필수)"
                 isChecked={agreements.personalInfo}
                 onToggle={() => handleToggle("personalInfo")}
+                onClick={() => navigate("/policy")}
               />
               <CheckBox
                 label="마케팅 수신 동의(선택)"
                 isChecked={agreements.marketing}
                 onToggle={() => handleToggle("marketing")}
+                onClick={() => navigate("/marketing")}
               />
             </div>
           </div>

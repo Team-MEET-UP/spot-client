@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const HistoryPage = () => {
   const { data, isLoading, isError } = useUserInfo();
   const { userEvents, isEventsLoading, isEventsError } = useUserEvents();
-  const [isPolicy, setIsPolicy] = useState(false);
+  const [isPolicy, setIsPolicy] = useState(true);
   const profileImageUrl = useUserStore(state => state.profileImageUrl);
   const length = 1; // 임시 ui 구현을 위한 작업!
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const HistoryPage = () => {
     });
 
     // 개인정보 동의 여부 설정
-    setIsPolicy(!data.personalInfoAgreement);
+    //setIsPolicy(!data.personalInfoAgreement);
 
     // localStorage에서 이벤트 아이디를 가져와 리디렉션 처리
     const eventIdFromStorage = localStorage.getItem("shared_link_access");
