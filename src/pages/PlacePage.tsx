@@ -1,12 +1,9 @@
 import { useRecommendedPlaces } from "@/features/place/hooks";
 import { ConfirmedCard, RecommendCard, RecommendList } from "@/features/place/ui";
-import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceItems";
 import { PlainHeader } from "@/widgets/headers";
 import { useNavigate, useParams } from "react-router-dom";
 
 const PlacePage = () => {
-  // const mockData = mockPlaceItems.data.confirmedPlaceResponse;
-  // const isConfirmed = mockData !== null;
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading, isError } = useRecommendedPlaces(id ?? "");
@@ -24,9 +21,7 @@ const PlacePage = () => {
         <PlainHeader title="장소 추천" url={`/mapview/${id}`} />
       </div>
       <div className="flex-none mt-3 px-5">
-        {!isConfirmed && (
-          <RecommendCard place={mockPlaceItems.data.middlePointName} onClick={() => navigate("/detail")} />
-        )}
+        {!isConfirmed && <RecommendCard place={data!.data.middlePointName} onClick={() => navigate("/detail")} />}
         {isConfirmed && (
           <ConfirmedCard
             name={confirmedPlace.name}
