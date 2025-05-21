@@ -12,6 +12,10 @@ const PlacePage = () => {
   const isConfirmed = confirmedPlace !== null;
   const recommendedPlaces = data?.data.placeResponses ?? [];
 
+  const handleNavigate = (placeId: string) => {
+    navigate(`/detail/${id}/${placeId}`);
+  };
+
   if (isLoading) return <div>로딩중...</div>;
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
@@ -31,7 +35,7 @@ const PlacePage = () => {
             closeTime={confirmedPlace.closeTime}
             averageRating={confirmedPlace.averageRating}
             placeScore={confirmedPlace.placeScore}
-            onClick={() => navigate("/detail")}
+            onClick={() => handleNavigate(confirmedPlace.id)}
           />
         )}
       </div>
