@@ -24,5 +24,8 @@ export interface PlaceList {
     confirmedPlaceResponse: PlaceResponse | null;
     placeResponses: PlaceResponse[];
   };
-  error: string | null;
+  error?: {
+    code: string;
+    message: string;
+  };
 }

@@ -12,7 +12,7 @@ import NotVisitedPage from "@/pages/NotVisitedPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <MainPage /> },
-  { path: "/detail", element: <DetailPage /> },
+  { path: "/detail/:eventId/:placeId", element: <DetailPage /> },
   { path: "/find", element: <FindPage /> },
   { path: "/history", element: <HistoryPage /> },
   { path: "/mapView/:id", element: <MapViewPage /> },

@@ -1,11 +1,18 @@
-import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceItems";
 import PlaceCard from "@/shared/ui/PlaceCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { PlaceResponse } from "../model";
 // import { FilterChips } from ".";
 
-export const RecommendList = () => {
+interface RecommendListProps {
+  places: PlaceResponse[];
+}
+
+export const RecommendList = ({ places }: RecommendListProps) => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const places = mockPlaceItems.data.placeResponses;
+  const handleNavigate = (placeId: string) => {
+    navigate(`/detail/${id}/${placeId}`);
+  };
 
   return (
     <div className="h-full flex flex-col bg-gray-5">
@@ -22,7 +29,7 @@ export const RecommendList = () => {
               image={place.image}
               averageRating={place.averageRating}
               placeScore={place.placeScore}
-              onClick={() => navigate("/detail")}
+              onClick={() => handleNavigate(place.id)}
             />
           ))}
         </div>

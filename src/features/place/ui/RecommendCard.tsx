@@ -2,12 +2,11 @@ import Meeting from "@/assets/icon/meetingRecommend.svg";
 
 interface RecommendCardProps {
   place: string;
-  onClick: () => void;
 }
 
-export const RecommendCard = ({ place, onClick }: RecommendCardProps) => {
+export const RecommendCard = ({ place }: RecommendCardProps) => {
   return (
-    <div className="flex flex-row items-center justify-between cursor-pointer" onClick={onClick}>
+    <div className="flex flex-row items-center justify-between cursor-pointer">
       <div className="flex flex-col gap-1">
         <h1 className="text-lg font-semibold">
           <span className=" text-sub-sub ">{place}</span> <br />

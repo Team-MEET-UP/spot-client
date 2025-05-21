@@ -55,5 +55,8 @@ export const mockPlaceItems: PlaceList = {
       },
     ],
   },
-  error: null,
+  error: {
+    code: "",
+    message: "",
+  },
 };
