@@ -1,6 +1,5 @@
-import { useUserInfo } from "@/features/history/hooks";
+import { useUserEvents, useUserInfo } from "@/features/history/hooks";
 import { Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
-import { mockListData } from "@/shared/model";
 import { useUserStore } from "@/shared/stores";
 import Button from "@/shared/ui/Button";
 import { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const HistoryPage = () => {
   const { data, isLoading, isError } = useUserInfo();
+  const { userEvents, isEventsLoading, isEventsError } = useUserEvents();
   const [isPolicy, setIsPolicy] = useState(false);
   const profileImageUrl = useUserStore(state => state.profileImageUrl);
   const length = 1; // 임시 ui 구현을 위한 작업!
@@ -49,8 +49,8 @@ const HistoryPage = () => {
     }
   }, [data, navigate]);
 
-  if (isLoading) return <p>로딩 중...</p>;
-  if (isError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
+  if (isLoading || isEventsLoading) return <p>로딩 중...</p>;
+  if (isError || isEventsError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
 
   return (
     <div className="relative flex flex-col h-screen-dvh">
@@ -60,9 +60,7 @@ const HistoryPage = () => {
       </div>
       {length > 0 ? (
         <div className="flex flex-col overflow-y-scroll scrollbar-hidden mb-24">
-          {mockListData.map(data => (
-            <GroupCard key={data.id} {...data} />
-          ))}
+          {userEvents && userEvents.map(data => <GroupCard key={data.eventId} {...data} />)}
         </div>
       ) : (
         <Empty />

@@ -3,7 +3,7 @@ import Check from "@/assets/icon/check.svg";
 import Review from "@/assets/icon/review.svg";
 
 interface ChipProps {
-  id: number;
+  id: string;
   isComplete: boolean;
 }
 
