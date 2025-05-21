@@ -1,15 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUserEvents } from "../service";
-
-interface UserEvents {
-  eventId: string;
-  middlePointName: string;
-  placeName: string;
-  participatedPeopleCount: number;
-  userProfileImageUrls: string[];
-  eventMadeAgo: number;
-  isReviewed: boolean;
-}
+import { UserEvents } from "../model";
 
 export const useUserEvents = () => {
   const {

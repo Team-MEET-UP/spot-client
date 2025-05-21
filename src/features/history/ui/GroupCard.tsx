@@ -2,16 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Chip } from "./Chip";
 import Pin from "@/assets/icon/pin.svg";
 import DefaultProfile from "@/assets/icon/default-profile.svg";
-
-interface GroupCardProps {
-  eventId: string;
-  middlePointName: string;
-  placeName: string;
-  participatedPeopleCount: number;
-  userProfileImageUrls: string[];
-  eventMadeAgo: number;
-  isReviewed: boolean;
-}
+import { UserEvents } from "../model";
 
 export const GroupCard = ({
   eventId,
@@ -21,7 +12,7 @@ export const GroupCard = ({
   userProfileImageUrls,
   eventMadeAgo,
   isReviewed,
-}: GroupCardProps) => {
+}: UserEvents) => {
   const navigate = useNavigate();
 
   const maxToShow = 3;
