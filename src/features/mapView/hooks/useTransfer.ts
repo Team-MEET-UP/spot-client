@@ -1,18 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchEvent } from "../service";
 import { getCookie } from "@/shared/utils";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const useTransfer = () => {
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
-
-  const eventId = searchParams.get("eventId");
+  const { id } = useParams();
   const startPointId = getCookie("startPointId");
 
   return useMutation({
-    mutationFn: ({ isTransit }: { isTransit: boolean }) =>
-      patchEvent(eventId as string, startPointId as string, isTransit),
+    mutationFn: ({ isTransit }: { isTransit: boolean }) => patchEvent(id as string, startPointId as string, isTransit),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["eventRoutes"],
