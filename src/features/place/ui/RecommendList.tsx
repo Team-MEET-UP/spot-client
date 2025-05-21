@@ -1,11 +1,14 @@
-import { mockPlaceItems } from "@/shared/model/mocks/mockPlaceItems";
 import PlaceCard from "@/shared/ui/PlaceCard";
 import { useNavigate } from "react-router-dom";
+import { PlaceResponse } from "../model";
 // import { FilterChips } from ".";
 
-export const RecommendList = () => {
+interface RecommendListProps {
+  places: PlaceResponse[];
+}
+
+export const RecommendList = ({ places }: RecommendListProps) => {
   const navigate = useNavigate();
-  const places = mockPlaceItems.data.placeResponses;
 
   return (
     <div className="h-full flex flex-col bg-gray-5">
