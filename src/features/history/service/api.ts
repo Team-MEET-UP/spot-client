@@ -37,3 +37,17 @@ export const storeUserAgreement = async ({
     console.error("서버 에러 : ", error);
   }
 };
+
+export const getUserEvents = async () => {
+  try {
+    const response = await api.get("/users/events");
+    if (response.data.result === "SUCCESS") {
+      return response.data.data;
+    } else {
+      console.error("유저 모임 조회 실패 : ", response.data.error.message);
+      throw new Error(response.data.error.message);
+    }
+  } catch (error) {
+    console.error("서버 에러 : ", error);
+  }
+};
