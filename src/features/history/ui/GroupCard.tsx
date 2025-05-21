@@ -64,7 +64,7 @@ export const GroupCard = ({
           <p className="font-semibold text-gray-40">·</p>
           <p className="text-gray-40">{eventMadeAgo}일 전</p>
         </div>
-        <Chip isComplete={isReviewed} id={eventId} />
+        {placeName && <Chip isComplete={isReviewed} id={eventId} />}
       </div>
     </section>
   );
