@@ -5,3 +5,13 @@ export interface VisitedPlaceProps {
   roadAddress: string;
   regionName: string;
 }
+
+export interface NonVisitedReviewRequest {
+  categories: string[];
+  etcReason: string;
+  placeName: string;
+  address: string;
+  roadAddress: string;
+  longitude: number;
+  latitude: number;
+}
