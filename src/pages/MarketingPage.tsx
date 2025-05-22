@@ -43,8 +43,8 @@ const MarketingPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen-dvh" onClick={handleClick}>
-      <CloseHeader title="마케팅 수신 동의" />
+    <div className="flex flex-col h-screen-dvh">
+      <CloseHeader title="마케팅 수신 동의" onClick={handleClick} />
       <div className="flex-1 p-5 text-md text-gray-60 overflow-y-scroll scrollbar-hidden min-h-0">
         <h2 className="text-gray-80 font-semibold">마케팅 정보 수신에 대한 동의 안내</h2>
         <p>
@@ -56,11 +56,11 @@ const MarketingPage = () => {
         {marketingContents.map((section, idx) => (
           <div key={idx}>
             <h3 className="text-gray-80 font-semibold">{section.title}</h3>
-            <ul>
+            <>
               {section.contents.map((text, i) => (
                 <p key={i}>{text}</p>
               ))}
-            </ul>
+            </>
             <hr className="my-3" />
           </div>
         ))}
