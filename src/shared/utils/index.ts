@@ -5,3 +5,4 @@ export * from "./highlightMatchingText";
 export * from "./loadKakaoMap";
 export * from "./kakaoLogin";
 export * from "./formatReview";
+export * from "./toValidScore";

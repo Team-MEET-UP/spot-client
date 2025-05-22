@@ -1,83 +1,103 @@
-import { Photo, PlaceInfo, Review } from "@/features/detail/ui";
+import { Photo, PlaceButton, PlaceInfo, Review } from "@/features/detail/ui";
 import { Empty } from "@/features/detail/ui";
-import Button from "@/shared/ui/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { ShareModal } from "@/shared/ui";
 import { DetailHeader } from "@/widgets/headers";
-
-// @TODO 백엔드 데이터 구조에 따라 아래와 같은 type 설정 후 props로 관리하는 구조로 변경해야 함!
-interface Review {
-  username: string;
-  profileImg: string;
-  date: string;
-  text: string;
-}
-
-const images = [
-  "https://github.com/shadcn.png",
-  "https://github.com/shadcn.png",
-  "https://github.com/shadcn.png",
-  "https://github.com/shadcn.png",
-];
+import { usePlaceInfo } from "@/features/detail/hooks";
 
 const DetailPage = () => {
   const navigate = useNavigate();
-  const isReview = true;
-  const isComplete = false; // 약속 장소 확정 유무
-  const isMeetingPlace = false; // 약속 장소인지 유무
   const [isOpenShareModal, setIsOpenShareModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const topMarkerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsScrolled(!entry.isIntersecting); // 위에 닿아 있지 않으면 스크롤된 상태
+      },
+      {
+        root: scrollRef.current, // 스크롤 기준 대상
+        threshold: 0,
+      }
+    );
+
+    if (topMarkerRef.current) {
+      observer.observe(topMarkerRef.current);
+    }
+
+    return () => {
+      if (topMarkerRef.current) {
+        observer.unobserve(topMarkerRef.current);
+      }
+    };
+  }, []);
+
+  const { eventId, placeId } = useParams();
+
+  if (!placeId || !eventId) return <p>잘못된 접근입니다</p>;
+
+  const { data, isLoading, isError } = usePlaceInfo({ placeId: placeId, eventId: eventId });
+
+  if (isLoading) return <p>로딩 중...</p>;
+  if (isError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
+  if (!data) return <p>데이터 없음</p>;
+
+  const ImageUrl = data.isConfirmed
+    ? "https://www.pickspot.co.kr/image/KT4.webp"
+    : "https://www.pickspot.co.kr/image/KT3.webp";
+
+  const shareContent = {
+    title: data.isConfirmed ? "여기서 만나요!" : "여기 어때요?",
+    description: data.name,
+    imageUrl: ImageUrl,
+    links: [{ label: "모임 장소 보기", url: `https://www.pickspot.co.kr/mapView/${eventId}` }],
+  };
 
   const handleClick = () => {
     navigate(-1);
   };
 
-  const shareContent = {
-    title: "여기 어때요?",
-    description: "스타벅스 병점역앞던킨도너츠점", // 수정되어야하는 부분
-    imageUrl: "https://www.pickspot.co.kr/image/KT3.webp",
-    links: [
-      { label: "내 경로 보기", url: `https://www.pickspot.co.kr/` }, // 변경해야함
-      { label: "모임 장소 보기", url: `https://www.pickspot.co.kr/` }, // 변경해야함
-    ],
-  };
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      setIsScrolled(scrollRef.current.scrollTop > 0);
-    }
-  };
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.addEventListener("scroll", handleScroll);
-    }
-    return () => {
-      if (scrollRef.current) {
-        scrollRef.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
-
   return (
     <div className="relative flex flex-col h-screen-dvh">
-      <DetailHeader backClick={handleClick} shareClick={() => setIsOpenShareModal(true)} isScrolled={isScrolled} />
+      <DetailHeader
+        backClick={handleClick}
+        shareClick={() => setIsOpenShareModal(true)}
+        isScrolled={isScrolled}
+        name={data.name}
+      />
       <div className="flex-1 overflow-y-auto scrollbar-hidden mb-[88px]" ref={scrollRef}>
-        <Photo images={images} />
-        <PlaceInfo />
+        <div ref={topMarkerRef} />
+        <Photo images={data.images} />
+        <PlaceInfo
+          placeId={data.kakaoPlaceId}
+          distance={data.distance}
+          name={data.name}
+          averageRating={data.averageRating}
+          openTime={data.openTime}
+          closeTime={data.closeTime}
+        />
         <div className="w-full h-2 bg-gray-5" />
-        {isReview ? <Review /> : <Empty />}
+        {data.reviews.length > 0 || data.googleReviews.length > 0 ? (
+          <Review
+            placeQuietnessResponse={data.placeQuietnessResponse}
+            placeScore={data.placeScore}
+            reviews={data.reviews}
+            googleReviews={data.googleReviews}
+          />
+        ) : (
+          <Empty />
+        )}
       </div>
-      <div
-        className="px-5 pt-4 pb-5 w-full fixed bottom-0 max-w-[600px] z-[100]"
-        style={{ background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 20%)" }}>
-        <Button disabled={isMeetingPlace}>
-          {isComplete ? (isMeetingPlace ? "이미 선택한 장소에요" : "모임장소 바꾸기") : "여기에서 만나기"}
-        </Button>
-        {/* 이미 선택된 장소에요 버튼명 수정해야함 */}
-      </div>
+      <PlaceButton
+        eventId={eventId}
+        placeId={placeId}
+        name={data.name}
+        isChanged={data.isChanged}
+        isConfirmed={data.isConfirmed}
+      />
       {isOpenShareModal && (
         <ShareModal
           onClose={() => setIsOpenShareModal(false)}
