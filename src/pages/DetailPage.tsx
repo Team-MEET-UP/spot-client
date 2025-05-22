@@ -80,7 +80,13 @@ const DetailPage = () => {
           <Empty />
         )}
       </div>
-      <PlaceButton eventId={eventId} placeId={placeId} isChanged={data.isChanged} isConfirmed={data.isConfirmed} />
+      <PlaceButton
+        eventId={eventId}
+        placeId={placeId}
+        name={data.name}
+        isChanged={data.isChanged}
+        isConfirmed={data.isConfirmed}
+      />
       {isOpenShareModal && (
         <ShareModal
           onClose={() => setIsOpenShareModal(false)}
