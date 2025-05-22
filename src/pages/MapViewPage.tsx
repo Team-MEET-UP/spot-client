@@ -19,8 +19,6 @@ const MapViewPage = () => {
   const setEventData = useEventStore(state => state.setEventData);
   const isDetail = useEventStore(state => state.isDetail);
 
-  // const [midpointError, setMidpointError] = useState(false); // 중간지점 산출 실패 상태
-
   const errorCode = (error as AxiosError<{ error: { code: string } }>)?.response?.data?.error?.code;
   const isInsufficientStartPoints = errorCode === "INSUFFICIENT_START_POINTS";
 
