@@ -15,3 +15,5 @@ export interface NonVisitedReviewRequest {
   longitude: number;
   latitude: number;
 }
+
+export type NonVisitedReasonCategory = "NOISY" | "CONGESTION" | "DARKNESS" | "INSUFFICIENT_SEAT";

@@ -1,24 +1,31 @@
-const REASONS = ["시끄러워서", "사람이 너무 많아서", "공간이 어두워서", "좌석이 부족해서"];
+import { NonVisitedReasonCategory } from "../model";
+
+const REASON_OPTIONS: { value: NonVisitedReasonCategory; label: string }[] = [
+  { value: "NOISY", label: "시끄러워서" },
+  { value: "CONGESTION", label: "사람이 너무 많아서" },
+  { value: "DARKNESS", label: "공간이 어두워서" },
+  { value: "INSUFFICIENT_SEAT", label: "좌석이 부족해서" },
+];
 
 interface ReasonFormProps {
-  selectedReasons: string[];
-  setSelectedReasons: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedReasons: NonVisitedReasonCategory[];
+  setSelectedReasons: React.Dispatch<React.SetStateAction<NonVisitedReasonCategory[]>>;
   directInput: string;
   setDirectInput: (value: string) => void;
 }
 
 export const ReasonForm = ({ selectedReasons, setSelectedReasons, directInput, setDirectInput }: ReasonFormProps) => {
-  const handleSelect = (reason: string) => {
-    setSelectedReasons((prev: string[]) => {
-      const newReasons = prev.includes(reason) ? prev.filter((r: string) => r !== reason) : [...prev, reason];
+  const handleSelect = (reason: NonVisitedReasonCategory) => {
+    setSelectedReasons(prev => {
+      const newReasons = prev.includes(reason) ? prev.filter(r => r !== reason) : [...prev, reason];
       return newReasons;
     });
   };
 
   // 버튼들을 2개씩 그룹화
   const buttonPairs = [];
-  for (let i = 0; i < REASONS.length; i += 2) {
-    buttonPairs.push(REASONS.slice(i, i + 2));
+  for (let i = 0; i < REASON_OPTIONS.length; i += 2) {
+    buttonPairs.push(REASON_OPTIONS.slice(i, i + 2));
   }
 
   return (
@@ -27,18 +34,18 @@ export const ReasonForm = ({ selectedReasons, setSelectedReasons, directInput, s
       <div className="flex flex-col gap-[12px] mb-4">
         {buttonPairs.map((pair, index) => (
           <div key={index} className="flex gap-[12px]">
-            {pair.map(reason => (
+            {pair.map(option => (
               <button
-                key={reason}
-                onClick={() => handleSelect(reason)}
+                key={option.value}
+                onClick={() => handleSelect(option.value)}
                 className={`w-fit px-4 py-3 rounded-2xl border cursor-pointer text-sm font-semibold
               ${
-                selectedReasons.includes(reason)
+                selectedReasons.includes(option.value)
                   ? "bg-white text-sub-sub border-sub-sub"
                   : "bg-gray-white text-gray-40 border-gray-10"
               }
             `}>
-                {reason}
+                {option.label}
               </button>
             ))}
           </div>

@@ -9,18 +9,18 @@ import { useState } from "react";
 import { StartPoint } from "@/entities/place/model";
 
 interface PlaceSearchProps {
-  visitedPlace: VisitedPlaceProps;
   setCurrentStep: () => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  visitedPlace: VisitedPlaceProps;
   setVisitedPlace: (place: VisitedPlaceProps) => void;
 }
 
 export const PlaceSearch = ({ setCurrentStep, setVisitedPlace }: PlaceSearchProps) => {
-  const { value, searchResults, isError, handleChange, isTyping } = useSearch();
+  const { value, searchResults, isError, handleChange, isTyping, setValue } = useSearch();
   const [selectedLocation, setSelectedLocation] = useState<StartPoint | null>(null);
 
   const handleSelectLocation = (location: StartPoint) => {
     setSelectedLocation(location);
+    setValue(location.name);
   };
 
   const handleComplete = () => {
