@@ -13,6 +13,7 @@ const ReviewPage = () => {
   if (isError || !data) return <p className="p-5">데이터를 불러오는 데 실패했어요.</p>;
 
   const { confirmedPlaceResponse } = data;
+  const placeId = confirmedPlaceResponse.id;
 
   return (
     <div className="flex flex-col h-screen-dvh">
@@ -36,16 +37,12 @@ const ReviewPage = () => {
         <div className="w-full flex gap-2">
           <SmallButton
             isVisit={false}
-            onClick={() => {
-              navigate(`/notVisited/${id}`);
-            }}>
+            placeId={placeId}>
             다른 곳에 갔어요
           </SmallButton>
           <SmallButton
             isVisit={true}
-            onClick={() => {
-              navigate(`/visited/${id}`);
-            }}>
+            placeId={placeId}>
             갔어요
           </SmallButton>
         </div>

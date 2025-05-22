@@ -4,7 +4,7 @@ import Button from "@/shared/ui/Button";
 import StepIndicator from "@/shared/ui/StepIndicator";
 import { BackHeader } from "@/widgets/headers";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const VisitedPage = () => {
   const navigate = useNavigate();
@@ -16,6 +16,8 @@ const VisitedPage = () => {
     crowdedScore: null as number | null,
     review: "",
   });
+  const { placeId } = useParams();
+  console.log(placeId);
 
   const handleBack = () => {
     if (currentStep === 2) {
