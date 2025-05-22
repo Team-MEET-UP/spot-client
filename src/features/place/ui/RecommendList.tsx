@@ -15,9 +15,9 @@ export const RecommendList = ({ places }: RecommendListProps) => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gray-5">
+    <div className="h-full flex flex-col bg-gray-5 ">
       {/* <FilterChips /> */}
-      <div className="flex-1 overflow-y-auto px-5 p-3">
+      <div className="flex-1 overflow-y-auto px-5 p-3 scrollbar-hidden">
         <div className="flex flex-col gap-3">
           {places.map(place => (
             <PlaceCard
