@@ -1,12 +1,11 @@
 import PlaceCard from "@/shared/ui/PlaceCard";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { SmallButton, Title } from "@/features/review/ui";
 import { CloseHeader } from "@/widgets/headers";
 import { useReviewPlace } from "@/features/review/hooks";
 
 const ReviewPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const { data, isLoading, isError } = useReviewPlace(id!);
   if (isLoading) return <p className="p-5">로딩 중...</p>;
@@ -35,14 +34,10 @@ const ReviewPage = () => {
           </div>
         </div>
         <div className="w-full flex gap-2">
-          <SmallButton
-            isVisit={false}
-            placeId={placeId}>
+          <SmallButton isVisit={false} placeId={placeId}>
             다른 곳에 갔어요
           </SmallButton>
-          <SmallButton
-            isVisit={true}
-            placeId={placeId}>
+          <SmallButton isVisit={true} placeId={placeId}>
             갔어요
           </SmallButton>
         </div>

@@ -3,5 +3,5 @@ export interface VisitedReviewPayload {
   socket: number;
   seat: number;
   quiet: number;
-  content: string;
+  content?: string;
 }

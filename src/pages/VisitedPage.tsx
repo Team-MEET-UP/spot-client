@@ -1,3 +1,4 @@
+import { usePostVisitedReview } from "@/features/visited/hooks";
 import FirstStep from "@/features/visited/ui/FirstStep";
 import SecondStep from "@/features/visited/ui/SecondStep";
 import Button from "@/shared/ui/Button";
@@ -8,16 +9,17 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const VisitedPage = () => {
   const navigate = useNavigate();
+  const { id: placeId } = useParams();
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedTime, setSelectedTime] = useState("");
+  const [selectedTime, setSelectedTime] = useState<"MORNING" | "LUNCH" | "NIGHT" | "">("");
   const [secondData, setSecondData] = useState({
     plugScore: null as number | null,
     seatScore: null as number | null,
     crowdedScore: null as number | null,
     review: "",
   });
-  const { placeId } = useParams();
-  console.log(placeId);
+
+  const { mutate: postReview, isPending } = usePostVisitedReview(placeId!);
 
   const handleBack = () => {
     if (currentStep === 2) {
@@ -29,11 +31,27 @@ const VisitedPage = () => {
 
   const handleFirstStep = () => {
     setCurrentStep(2);
-    console.log(selectedTime);
   };
 
   const handleSecondStep = () => {
-    console.log(secondData);
+    if (!placeId) return;
+
+    const reviewData = {
+      visitedTime: selectedTime as "MORNING" | "LUNCH" | "NIGHT",
+      socket: secondData.plugScore || 0,
+      seat: secondData.seatScore || 0,
+      quiet: secondData.crowdedScore || 0,
+      ...(secondData.review && { content: secondData.review }),
+    };
+
+    postReview(reviewData, {
+      onSuccess: () => {
+        navigate(`/history`);
+      },
+      onError: error => {
+        console.error("리뷰 작성 실패:", error);
+      },
+    });
   };
 
   return (
@@ -62,7 +80,8 @@ const VisitedPage = () => {
           disabled={
             (currentStep === 1 && !selectedTime) ||
             (currentStep === 2 &&
-              (secondData.plugScore === null || secondData.seatScore === null || secondData.crowdedScore === null))
+              (secondData.plugScore === null || secondData.seatScore === null || secondData.crowdedScore === null)) ||
+            isPending
           }>
           {currentStep === 1 ? "다음으로" : "완료하기"}
         </Button>

@@ -7,27 +7,26 @@ import EveningActive from "@/assets/icon/eveningBlue.svg";
 import Check from "@/assets/icon/checkBlue.svg";
 
 interface FirstStepProps {
-  selectedTime: string | null;
-  setSelectedTime: (time: string) => void;
+  selectedTime: "MORNING" | "LUNCH" | "NIGHT" | "";
+  setSelectedTime: (time: "MORNING" | "LUNCH" | "NIGHT") => void;
 }
 
-// @TODO 이미지 변경하기, 백엔드 구조에 맞게 요청 방식 수정하기
 const options = [
   {
     label: "아침",
-    value: "morning",
+    value: "MORNING" as const,
     imageUrl: Morning,
     activeUrl: MorningActive,
   },
   {
     label: "점심",
-    value: "afternoon",
+    value: "LUNCH" as const,
     imageUrl: Afternoon,
     activeUrl: AfternoonActive,
   },
   {
     label: "저녁",
-    value: "evening",
+    value: "NIGHT" as const,
     imageUrl: Evening,
     activeUrl: EveningActive,
   },
