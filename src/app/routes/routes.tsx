@@ -9,6 +9,8 @@ import ReviewPage from "@/pages/ReviewPage";
 import VisitedPage from "@/pages/VisitedPage";
 import MyPage from "@/pages/MyPage";
 import NotVisitedPage from "@/pages/NotVisitedPage";
+import PolicyPage from "@/pages/PolicyPage";
+import MarketingPage from "@/pages/MarketingPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <MainPage /> },
@@ -21,4 +23,6 @@ export const router = createBrowserRouter([
   { path: "/review/:id", element: <ReviewPage /> },
   { path: "/visited/:id", element: <VisitedPage /> },
   { path: "/notvisited/:id", element: <NotVisitedPage /> },
+  { path: "/policy", element: <PolicyPage /> },
+  { path: "/marketing", element: <MarketingPage /> },
 ]);
