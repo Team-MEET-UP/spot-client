@@ -39,10 +39,14 @@ const DetailPage = () => {
   if (isError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
   if (!data) return <p>데이터 없음</p>;
 
+  const ImageUrl = data.isConfirmed
+    ? "https://www.pickspot.co.kr/image/KT4.webp"
+    : "https://www.pickspot.co.kr/image/KT3.webp";
+
   const shareContent = {
     title: data.isConfirmed ? "여기서 만나요!" : "여기 어때요?",
     description: data.name,
-    imageUrl: "https://www.pickspot.co.kr/image/KT3.webp",
+    imageUrl: ImageUrl,
     links: [{ label: "모임 장소 보기", url: `https://www.pickspot.co.kr/mapView/${eventId}` }],
   };
 
