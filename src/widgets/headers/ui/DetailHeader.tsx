@@ -13,12 +13,12 @@ interface DetailHeaderProps {
 export const DetailHeader = ({ backClick, shareClick, isScrolled, name }: DetailHeaderProps) => {
   return (
     <div
-      className={`flex justify-between z-[1003] ${isScrolled ? "bg-white px-5 py-3" : "absolute top-3 left-5 right-5"}`}>
+      className={`flex justify-between z-[1003] ${isScrolled ? "relative bg-white px-5 py-3" : "absolute top-3 left-5 right-5"}`}>
       <button onClick={backClick}>
         <img src={isScrolled ? BackScroll : Back} alt="back" className="w-6 h-6" />
       </button>
       {isScrolled && (
-        <span className="text-lg font-semibold text-gray-90 w-[252px] overflow-hidden text-ellipsis whitespace-nowrap">
+        <span className="text-lg font-semibold text-gray-90 max-w-[252px] overflow-hidden text-ellipsis whitespace-nowrap">
           {name}
         </span>
       )}

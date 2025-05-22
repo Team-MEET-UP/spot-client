@@ -11,21 +11,27 @@ const DetailPage = () => {
   const [isOpenShareModal, setIsOpenShareModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      setIsScrolled(scrollRef.current.scrollTop > 0);
-    }
-  };
+  const topMarkerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsScrolled(!entry.isIntersecting); // 위에 닿아 있지 않으면 스크롤된 상태
+      },
+      {
+        root: scrollRef.current, // 스크롤 기준 대상
+        threshold: 0,
+      }
+    );
 
-    el.addEventListener("scroll", handleScroll, { passive: true });
+    if (topMarkerRef.current) {
+      observer.observe(topMarkerRef.current);
+    }
 
     return () => {
-      el.removeEventListener("scroll", handleScroll);
+      if (topMarkerRef.current) {
+        observer.unobserve(topMarkerRef.current);
+      }
     };
   }, []);
 
@@ -63,6 +69,7 @@ const DetailPage = () => {
         name={data.name}
       />
       <div className="flex-1 overflow-y-auto scrollbar-hidden mb-[88px]" ref={scrollRef}>
+        <div ref={topMarkerRef} />
         <Photo images={data.images} />
         <PlaceInfo
           placeId={data.kakaoPlaceId}
