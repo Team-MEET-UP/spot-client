@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { VisitedReviewPayload } from "../model";
-import { postVisitedReview } from "../service/api";
+import { postVisitedReview } from "../service";
 
 export const usePostVisitedReview = (placeId: string) => {
   return useMutation({
