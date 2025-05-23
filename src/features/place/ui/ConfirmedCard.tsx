@@ -1,6 +1,6 @@
 import PlaceCard from "@/shared/ui/PlaceCard";
 import Confirmed from "@/assets/icon/confirmed.svg";
-import { PlaceScore } from "@/features/place/model/placeList.type";
+import { PlaceScore } from "@/shared/model";
 
 interface ConfirmedCardProps {
   name: string;
