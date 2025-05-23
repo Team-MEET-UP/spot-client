@@ -1,7 +1,7 @@
+import { PlaceScore } from "../model";
 import { formatReview } from "../utils";
 import PlaceChip from "./PlaceChip";
 import Star from "@/assets/icon/star.svg";
-import { PlaceScore } from "@/features/place/model/placeList.type";
 
 interface PlaceCardItemProps {
   name: string;

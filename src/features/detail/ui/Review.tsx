@@ -1,8 +1,9 @@
 import { toValidScore } from "@/shared/utils";
-import { PlaceScore, PlaceQuietness, ReviewType } from "../model";
+import { PlaceQuietness, ReviewType } from "../model";
 import { ProgressBar } from "./ProgressBar";
 import { ReviewItem } from "./ReviewItem";
 import { Tag } from "./Tag";
+import { PlaceScore } from "@/shared/model";
 
 interface ReviewProps {
   placeQuietnessResponse: PlaceQuietness;
