@@ -1,5 +1,7 @@
+export type VisitedTimeType = "MORNING" | "LUNCH" | "NIGHT";
+
 export interface VisitedReviewPayload {
-  visitedTime: "MORNING" | "LUNCH" | "NIGHT";
+  visitedTime: VisitedTimeType;
   socket: number;
   seat: number;
   quiet: number;

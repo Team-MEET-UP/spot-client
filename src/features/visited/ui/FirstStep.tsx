@@ -5,10 +5,11 @@ import AfternoonActive from "@/assets/icon/afternoonBlue.svg";
 import Evening from "@/assets/icon/evening.svg";
 import EveningActive from "@/assets/icon/eveningBlue.svg";
 import Check from "@/assets/icon/checkBlue.svg";
+import { VisitedTimeType } from "../model";
 
 interface FirstStepProps {
-  selectedTime: "MORNING" | "LUNCH" | "NIGHT" | "";
-  setSelectedTime: (time: "MORNING" | "LUNCH" | "NIGHT") => void;
+  selectedTime: VisitedTimeType | "";
+  setSelectedTime: (time: VisitedTimeType) => void;
 }
 
 const options = [
