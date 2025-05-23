@@ -1,4 +1,5 @@
 import { usePostVisitedReview } from "@/features/visited/hooks";
+import { VisitedTimeType } from "@/features/visited/model";
 import FirstStep from "@/features/visited/ui/FirstStep";
 import SecondStep from "@/features/visited/ui/SecondStep";
 import Button from "@/shared/ui/Button";
@@ -11,7 +12,7 @@ const VisitedPage = () => {
   const navigate = useNavigate();
   const { id: placeId } = useParams();
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedTime, setSelectedTime] = useState<"MORNING" | "LUNCH" | "NIGHT" | "">("");
+  const [selectedTime, setSelectedTime] = useState<VisitedTimeType | "">("");
   const [secondData, setSecondData] = useState({
     plugScore: null as number | null,
     seatScore: null as number | null,
@@ -37,7 +38,7 @@ const VisitedPage = () => {
     if (!placeId) return;
 
     const reviewData = {
-      visitedTime: selectedTime as "MORNING" | "LUNCH" | "NIGHT",
+      visitedTime: selectedTime as VisitedTimeType,
       socket: secondData.plugScore || 0,
       seat: secondData.seatScore || 0,
       quiet: secondData.crowdedScore || 0,
