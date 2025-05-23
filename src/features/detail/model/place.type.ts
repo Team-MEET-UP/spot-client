@@ -1,3 +1,5 @@
+import { PlaceScore } from "@/shared/model";
+
 export interface ReviewType {
   nickname: string;
   profileImage: string | null;
@@ -10,11 +12,6 @@ export interface PlaceQuietness {
   morning: number | null;
   lunch: number | null;
   night: number | null;
-}
-
-export interface PlaceScore {
-  socket: number;
-  seat: number;
 }
 
 export interface PlaceInfo {

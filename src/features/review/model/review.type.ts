@@ -1,8 +1,4 @@
-export interface PlaceScore {
-  socket: number;
-  seat: number;
-  quiet: number;
-}
+import { PlaceScore } from "@/shared/model";
 
 export interface Place {
   id: string;
