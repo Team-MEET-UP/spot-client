@@ -7,3 +7,4 @@ export * from "./Portal";
 export * from "./Modal";
 export * from "./SnapBottomSheet/SnapBottomSheet";
 export * from "./ShareModal";
+export * from "./LoadingSpinner";

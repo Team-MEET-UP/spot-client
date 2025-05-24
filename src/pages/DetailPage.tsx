@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { ShareModal } from "@/shared/ui";
 import { DetailHeader } from "@/widgets/headers";
 import { usePlaceInfo } from "@/features/detail/hooks";
+import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -41,7 +42,13 @@ const DetailPage = () => {
 
   const { data, isLoading, isError } = usePlaceInfo({ placeId: placeId, eventId: eventId });
 
-  if (isLoading) return <p>로딩 중...</p>;
+  if (isLoading)
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 h-screen-dvh">
+        <LoadingSpinner />
+        <p>로딩 중...</p>
+      </div>
+    );
   if (isError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
   if (!data) return <p>데이터 없음</p>;
 
