@@ -14,10 +14,7 @@ export const ParkingMarker = ({ map, position }: ParkingMarkerProps) => {
 
     const markerImage = new kakao.maps.MarkerImage(
       Parking, // 이미지 경로
-      new kakao.maps.Size(20, 20), // 이미지 크기
-      {
-        offset: new kakao.maps.Point(13, 29), // 기준점 (중앙 하단)
-      }
+      new kakao.maps.Size(20, 20) // 이미지 크기
     );
 
     const marker = new kakao.maps.Marker({
