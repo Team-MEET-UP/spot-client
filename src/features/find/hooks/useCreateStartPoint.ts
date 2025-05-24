@@ -13,7 +13,6 @@ export const useCreateStartPoint = (eventIdParam: string | null) => {
     onSuccess: response => {
       const { eventId, guestId } = response.data;
 
-      // setCookie("eventId", eventId, { path: "/", maxAge: 86400 });
       if (!getCookie("guestId")) {
         setCookie("guestId", guestId, { path: "/", maxAge: 86400 });
       }
