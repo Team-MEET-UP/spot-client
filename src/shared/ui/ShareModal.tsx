@@ -1,10 +1,11 @@
 import { Modal } from "@/shared/ui";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { shareContentProps } from "../model";
 import { shareToKakao } from "../utils";
 import LinkCopy from "@/assets/icon/linkCopy.svg";
 import KakaoShare from "@/assets/icon/kakaoShare.svg";
 import CloseGray from "@/assets/icon/closeGray.svg";
+import Toast from "./Toast";
 
 interface ShareModalProps {
   onClose: () => void;
@@ -27,10 +28,18 @@ const shareItems = [
 ];
 
 export const ShareModal = ({ onClose, title, description, shareContent }: ShareModalProps) => {
+  const [showToast, setShowToast] = useState(false);
+
   const handleKakaoShare = () => {
     shareToKakao(shareContent);
     onClose();
   };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setShowToast(true);
+  };
+
   return (
     <Modal onClose={onClose}>
       <div className="relative p-5 pb-[20px] flex flex-col gap-6">
@@ -49,8 +58,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
                 if (label === "카카오톡") {
                   handleKakaoShare();
                 } else if (label === "링크 복사") {
-                  navigator.clipboard.writeText(window.location.href);
-                  alert("링크가 복사되었어요");
+                  handleCopyLink();
                 }
               }}
               className="flex flex-col gap-2 items-center">
@@ -59,6 +67,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
             </button>
           ))}
         </div>
+        {showToast && <Toast message="복사가 완료되었어요" />}
       </div>
     </Modal>
   );
