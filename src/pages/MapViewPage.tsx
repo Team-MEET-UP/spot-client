@@ -11,6 +11,7 @@ import {
 import BackButton from "@/features/mapView/ui/common/BackButton";
 import { DefaultMap } from "@/features/mapView/ui/map/DefaultMap";
 import { useEventStore } from "@/shared/stores";
+import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import { MapHeader } from "@/widgets/headers";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
@@ -35,7 +36,10 @@ const MapViewPage = () => {
     <div className="relative w-full h-screen overflow-hidden">
       {!isDetail && <MapHeader />}
       {isLoading ? (
-        <div>실시간 교통상황을 가져오고 있습니다...</div>
+        <div className="flex flex-col items-center justify-center h-full gap-3">
+          <LoadingSpinner />
+          <p>실시간 교통상황을 가져오고 있습니다...</p>
+        </div>
       ) : isError ? (
         <>
           {<DefaultMap />}

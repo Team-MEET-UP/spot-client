@@ -3,12 +3,19 @@ import { useParams } from "react-router-dom";
 import { SmallButton, Title } from "@/features/review/ui";
 import { CloseHeader } from "@/widgets/headers";
 import { useReviewPlace } from "@/features/review/hooks";
+import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 
 const ReviewPage = () => {
   const { id } = useParams();
 
   const { data, isLoading, isError } = useReviewPlace(id!);
-  if (isLoading) return <p className="p-5">로딩 중...</p>;
+  if (isLoading)
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 h-screen-dvh">
+        <LoadingSpinner />
+        <p>로딩 중...</p>
+      </div>
+    );
   if (isError || !data) return <p className="p-5">데이터를 불러오는 데 실패했어요.</p>;
 
   const { confirmedPlaceResponse } = data;

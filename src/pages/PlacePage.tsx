@@ -1,5 +1,6 @@
 import { useRecommendedPlaces } from "@/features/place/hooks";
 import { ConfirmedCard, RecommendCard, RecommendList } from "@/features/place/ui";
+import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import { PlainHeader } from "@/widgets/headers";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -16,7 +17,13 @@ const PlacePage = () => {
     navigate(`/detail/${id}/${placeId}`);
   };
 
-  if (isLoading) return <div>로딩중...</div>;
+  if (isLoading)
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 h-screen-dvh">
+        <LoadingSpinner />
+        <p>로딩 중...</p>
+      </div>
+    );
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   return (

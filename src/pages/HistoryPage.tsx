@@ -2,6 +2,7 @@ import { useUserEvents, useUserInfo } from "@/features/history/hooks";
 import { Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
 import { useUserStore } from "@/shared/stores";
 import Button from "@/shared/ui/Button";
+import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -49,7 +50,13 @@ const HistoryPage = () => {
     }
   }, [data, navigate]);
 
-  if (isLoading || isEventsLoading) return <p>로딩 중...</p>;
+  if (isLoading || isEventsLoading)
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 h-screen-dvh">
+        <LoadingSpinner />
+        <p>로딩 중...</p>
+      </div>
+    );
   if (isError || isEventsError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
 
   return (
