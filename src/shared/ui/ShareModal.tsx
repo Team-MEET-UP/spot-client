@@ -28,7 +28,7 @@ const shareItems = [
 ];
 
 export const ShareModal = ({ onClose, title, description, shareContent }: ShareModalProps) => {
-  const [showToast, setShowToast] = useState(false);
+  const [toastKey, setToastKey] = useState<number | null>(null);
 
   const handleKakaoShare = () => {
     shareToKakao(shareContent);
@@ -37,7 +37,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    setShowToast(true);
+    setToastKey(Date.now()); // 새로운 키로 Toast 재생성
   };
 
   return (
@@ -67,7 +67,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
             </button>
           ))}
         </div>
-        {showToast && <Toast message="복사가 완료되었어요" />}
+        {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" />}
       </div>
     </Modal>
   );

@@ -8,19 +8,12 @@ interface ToastProps {
 
 const Toast = ({ message, duration = 2000 }: ToastProps) => {
   const [visible, setVisible] = useState(true);
-  const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
     const hideTimeout = setTimeout(() => setVisible(false), duration);
-    const removeTimeout = setTimeout(() => setShouldRender(false), duration + 300); // transition 시간 고려
 
-    return () => {
-      clearTimeout(hideTimeout);
-      clearTimeout(removeTimeout);
-    };
+    return () => clearTimeout(hideTimeout);
   }, [duration]);
-
-  if (!shouldRender) return null;
 
   return (
     <div
