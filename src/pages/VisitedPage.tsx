@@ -2,6 +2,7 @@ import { usePostVisitedReview } from "@/features/visited/hooks";
 import { VisitedTimeType } from "@/features/visited/model";
 import FirstStep from "@/features/visited/ui/FirstStep";
 import SecondStep from "@/features/visited/ui/SecondStep";
+import { ReviewModal } from "@/shared/ui";
 import Button from "@/shared/ui/Button";
 import StepIndicator from "@/shared/ui/StepIndicator";
 import { BackHeader } from "@/widgets/headers";
@@ -19,6 +20,7 @@ const VisitedPage = () => {
     crowdedScore: null as number | null,
     review: "",
   });
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const { mutate: postReview, isPending } = usePostVisitedReview(placeId!);
 
@@ -47,7 +49,7 @@ const VisitedPage = () => {
 
     postReview(reviewData, {
       onSuccess: () => {
-        navigate(`/history`);
+        setModalOpen(true);
       },
       onError: error => {
         console.error("리뷰 작성 실패:", error);
@@ -87,6 +89,7 @@ const VisitedPage = () => {
           {currentStep === 1 ? "다음으로" : "완료하기"}
         </Button>
       </div>
+      {isModalOpen && <ReviewModal isOpen={isModalOpen} onClose={() => navigate("/history")} />}
     </div>
   );
 };
