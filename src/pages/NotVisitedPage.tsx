@@ -1,17 +1,18 @@
 import { NonVisitedReasonCategory, VisitedPlaceProps } from "@/features/notVisited/model";
 import { OtherPlaceForm, PlaceSearch } from "@/features/notVisited/ui";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { usePostNonVisitedReview } from "@/features/notVisited/hooks";
+import { ReviewModal } from "@/shared/ui";
 
 const NotVisitedPage = () => {
-  const navigate = useNavigate();
   const { id: placeId } = useParams();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedReasons, setSelectedReasons] = useState<NonVisitedReasonCategory[]>([]);
   const [etcReason, setEtcReason] = useState("");
   const [directInput, setDirectInput] = useState("");
   const [visitedPlace, setVisitedPlace] = useState<VisitedPlaceProps | null>(null);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const { mutate: postReview, isPending } = usePostNonVisitedReview();
 
@@ -36,7 +37,7 @@ const NotVisitedPage = () => {
       { placeId, data: reviewData },
       {
         onSuccess: () => {
-          navigate("/history");
+          setModalOpen(true);
         },
         onError: error => {
           console.error("리뷰 작성 실패:", error);
@@ -45,8 +46,12 @@ const NotVisitedPage = () => {
     );
   };
 
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <div className="flex flex-col h-screen-dvh">
+    <div className="relative flex flex-col h-screen">
       {currentStep === 1 && (
         <OtherPlaceForm
           selectedReasons={selectedReasons}
@@ -67,6 +72,7 @@ const NotVisitedPage = () => {
           setVisitedPlace={setVisitedPlace}
         />
       )}
+      {isModalOpen && <ReviewModal isOpen={isModalOpen} onClose={handleModalClose} />}
     </div>
   );
 };
