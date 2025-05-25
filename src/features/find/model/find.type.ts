@@ -8,7 +8,7 @@ export interface StartPointInfo {
 }
 
 export interface FormattedData {
-  username: string;
+  username?: string;
   startPoint: string;
   address: string;
   roadAddress: string;

@@ -57,7 +57,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   };
 
   const getFormattedData = (): FormattedData | null => {
-    if (!name || !startPointInfo) return null;
+    if (!startPointInfo) return null;
 
     return {
       username: name,
