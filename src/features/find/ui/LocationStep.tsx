@@ -62,7 +62,10 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
     if (!startPointInfo) return null;
 
     if (nickname) {
+      const formattedUsername = nickname.length > 5 ? nickname.slice(0, 5) : nickname;
+
       return {
+        username: formattedUsername,
         startPoint: startPointInfo.startPoint,
         address: startPointInfo.address,
         roadAddress: startPointInfo.roadAddress,
