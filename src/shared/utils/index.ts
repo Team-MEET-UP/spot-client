@@ -6,3 +6,4 @@ export * from "./loadKakaoMap";
 export * from "./kakaoLogin";
 export * from "./formatReview";
 export * from "./toValidScore";
+export * from "./formatName";
