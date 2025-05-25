@@ -1,5 +1,7 @@
 export const formatDaysAgo = (day: number) => {
-  if (day < 7) {
+  if (day < 1) {
+    return null;
+  } else if (day < 7) {
     return `${day}일 전`;
   } else if (day < 14) {
     return "1주일 전";
