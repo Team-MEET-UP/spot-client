@@ -1,8 +1,10 @@
 import Arrow from "@/assets/icon/rightArrow.svg";
 import { useNavigate } from "react-router-dom";
+import { UseDeleteAccount } from "../hooks";
 
 export const Menu = () => {
   const navigate = useNavigate();
+  const { mutate } = UseDeleteAccount();
 
   const menuItems = [
     {
@@ -23,7 +25,7 @@ export const Menu = () => {
       label: "탈퇴하기",
       hasArrow: false,
       onClick: () => {
-        console.log("탈퇴하기 클릭");
+        mutate();
       },
     },
   ];
