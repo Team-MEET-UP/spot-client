@@ -1,4 +1,5 @@
 import { useEventRoutes } from "@/features/mapView/hooks";
+import { TransferType } from "@/features/mapView/model";
 import {
   AddMemberBottomSheet,
   DetailKakaoMapView,
@@ -13,8 +14,8 @@ import { useEventStore } from "@/shared/stores";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import { MapHeader } from "@/widgets/headers";
 import { AxiosError } from "axios";
-import { useEffect } from "react";
 import { setCookie } from "@/shared/utils";
+import { useEffect, useState } from "react";
 
 const MapViewPage = () => {
   const { data, isLoading, isError, error } = useEventRoutes();
@@ -23,6 +24,8 @@ const MapViewPage = () => {
 
   const errorCode = (error as AxiosError<{ error: { code: string } }>)?.response?.data?.error?.code;
   const isInsufficientStartPoints = errorCode === "INSUFFICIENT_START_POINTS";
+
+  const [type, setType] = useState<TransferType>("subway");
 
   useEffect(() => {
     if (data) {
@@ -52,8 +55,8 @@ const MapViewPage = () => {
       ) : isDetail ? (
         <div className="relative">
           <BackButton />
-          <DetailKakaoMapView />
-          <MapDetailBottomSheet />
+          <DetailKakaoMapView type={type} />
+          <MapDetailBottomSheet type={type} setType={setType} />
         </div>
       ) : (
         <>
