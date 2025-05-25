@@ -2,24 +2,29 @@ import { useUserStore } from "@/shared/stores";
 import { useState } from "react";
 import Edit from "@/assets/icon/edit.svg";
 import DefaultImg from "@/assets/icon/default-profile.svg";
+import { useChangeName } from "../hooks";
 
-//@TODO 백 연동 시 이름, 프로필사진, 이메일 수정
 export const Profile = () => {
-  const { nickname, profileImageUrl, email, setNickname } = useUserStore();
+  const { nickname, profileImageUrl, email } = useUserStore();
   const [isEditting, setIsEditting] = useState(false);
+  const [newNickname, setNewNickname] = useState(nickname || "");
+
+  const { mutate } = useChangeName();
 
   const handleEditting = () => {
     setIsEditting(true);
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
+  const handleSubmit = () => {
+    if (newNickname && newNickname !== nickname) {
+      mutate(newNickname);
+    }
     setIsEditting(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      setIsEditting(false);
+      handleSubmit();
     }
   };
 
@@ -32,15 +37,14 @@ export const Profile = () => {
             <input
               type="text"
               className="rounded-none w-full border-b-gray-90 border-b outline-none text-lg font-semibold text-gray-90"
-              value={nickname || ""}
-              onChange={e => setNickname(e.target.value)}
-              onBlur={handleBlur}
+              value={newNickname}
+              onChange={e => setNewNickname(e.target.value)}
               onKeyDown={handleKeyDown}
               autoFocus
             />
             <button
               className="w-[41px] h-6 px-2 py-[1px] flex justify-center whitespace-nowrap items-center rounded-lg sub-10 bg-sub-10 text-sub-sub text-sm font-semibold"
-              onClick={() => setIsEditting(false)}>
+              onClick={handleSubmit}>
               변경
             </button>
           </div>
