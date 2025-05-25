@@ -57,6 +57,10 @@ const VisitedPage = () => {
     });
   };
 
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="relative flex flex-col h-screen">
       <BackHeader onClick={handleBack} />
@@ -89,7 +93,7 @@ const VisitedPage = () => {
           {currentStep === 1 ? "다음으로" : "완료하기"}
         </Button>
       </div>
-      {isModalOpen && <ReviewModal isOpen={isModalOpen} onClose={() => navigate("/history")} />}
+      {isModalOpen && <ReviewModal isOpen={isModalOpen} onClose={handleModalClose} />}
     </div>
   );
 };
