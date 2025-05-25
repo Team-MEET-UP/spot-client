@@ -10,7 +10,6 @@ import { PlainHeader } from "@/widgets/headers";
 import NoResult from "@/assets/icon/noresult.svg";
 import { useSearch } from "@/entities/place/hooks";
 import { StartPoint } from "@/entities/place/model";
-import { useUserStore } from "@/shared/stores";
 
 interface LocationStepProps {
   setCurrentStep: (step: number) => void;
@@ -23,7 +22,6 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
-  const nickname = useUserStore(state => state.nickname);
 
   const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching } = useSearch();
 
@@ -60,19 +58,6 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
 
   const getFormattedData = (): FormattedData | null => {
     if (!startPointInfo) return null;
-
-    if (nickname) {
-      const formattedUsername = nickname.length > 5 ? nickname.slice(0, 5) : nickname;
-
-      return {
-        username: formattedUsername,
-        startPoint: startPointInfo.startPoint,
-        address: startPointInfo.address,
-        roadAddress: startPointInfo.roadAddress,
-        longitude: startPointInfo.longitude,
-        latitude: startPointInfo.latitude,
-      };
-    }
 
     return {
       username: name,
