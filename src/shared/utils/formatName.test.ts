@@ -1,4 +1,4 @@
-import { formatName } from "./formatName"; // 실제 경로에 맞게 수정하세요
+import { formatName } from "./formatName";
 
 describe("formatName", () => {
   it("should return the original name if it's within the max length", () => {
