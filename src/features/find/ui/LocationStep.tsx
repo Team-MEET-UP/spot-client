@@ -23,7 +23,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
-  const { nickname } = useUserStore();
+  const nickname = useUserStore(state => state.nickname);
 
   const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching } = useSearch();
 
