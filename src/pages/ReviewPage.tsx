@@ -36,7 +36,7 @@ const ReviewPage = () => {
               closeTime={confirmedPlaceResponse.closeTime}
               averageRating={confirmedPlaceResponse.averageRating}
               placeScore={confirmedPlaceResponse.placeScore}
-            />{" "}
+            />
             <p className="text-sm font-semibold text-gray-30">실제로 가신 곳인지 확인해주세요.</p>
           </div>
         </div>
