@@ -23,7 +23,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
 
-  const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching } = useSearch();
+  const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching, isSearching } = useSearch();
 
   const { handleSubmit } = useCreateStartPoint(eventIdParam);
 
@@ -93,7 +93,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
           <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mt-4">
             {isError ? (
               <p className="text-red-500 text-sm">검색 중 오류가 발생했어요.</p>
-            ) : searchResults.length === 0 ? (
+            ) : searchResults.length === 0 && !isSearching ? (
               <div className="flex flex-col items-center justify-center py-10">
                 <img src={NoResult} alt="검색 결과 없음" className="w-32 h-32" />
                 <p className="text-center text-gray-40 text-sm">
