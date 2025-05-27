@@ -22,6 +22,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
+  const [locationError, setLocationError] = useState(false);
 
   const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching, isSearching } = useSearch();
 
@@ -46,6 +47,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const handleSelectLocation = (location: StartPoint) => {
     setValue(location.name);
     setIsSearching(false);
+    setLocationError(false);
     setStartPointInfo({
       name: name,
       startPoint: location.name,
@@ -114,8 +116,23 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
             )}
           </div>
         ) : (
-          <div>
-            <GetLocationButton setValue={setValue} setStartPointInfo={setStartPointInfo} name={name} />
+          <div className="flex flex-col gap-4">
+            <GetLocationButton
+              setValue={setValue}
+              setStartPointInfo={setStartPointInfo}
+              name={name}
+              onError={() => setLocationError(true)}
+            />
+            {locationError && (
+              <div className="flex flex-col items-center justify-center py-4">
+                <img src={NoResult} alt="위치 에러" className="w-32 h-32" />
+                <p className="text-center text-gray-40 text-sm">
+                  일치하는 주소가 없어요
+                  <br />
+                  서울 내 지역인지 다시 확인해보세요
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>
