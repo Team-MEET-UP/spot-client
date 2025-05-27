@@ -1,9 +1,9 @@
-import Morning from "@/assets/icon/morning.svg";
-import MorningActive from "@/assets/icon/morningBlue.svg";
-import Afternoon from "@/assets/icon/afternoon.svg";
-import AfternoonActive from "@/assets/icon/afternoonBlue.svg";
-import Evening from "@/assets/icon/evening.svg";
-import EveningActive from "@/assets/icon/eveningBlue.svg";
+import Morning from "@/assets/image/morning.webp";
+import MorningActive from "@/assets/image/morningBlue.webp";
+import Afternoon from "@/assets/image/afternoon.webp";
+import AfternoonActive from "@/assets/image/afternoonBlue.webp";
+import Evening from "@/assets/image/evening.webp";
+import EveningActive from "@/assets/image/eveningBlue.webp";
 import Check from "@/assets/icon/checkBlue.svg";
 import { VisitedTimeType } from "../model";
 
