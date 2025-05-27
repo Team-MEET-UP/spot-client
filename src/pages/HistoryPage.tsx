@@ -3,6 +3,7 @@ import { Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/
 import { useUserStore } from "@/shared/stores";
 import Button from "@/shared/ui/Button";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
+import { getCookie, setCookie } from "@/shared/utils";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -73,6 +74,20 @@ const HistoryPage = () => {
 
     return () => observer.disconnect();
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+  // 리뷰 작성하기 재진입
+  useEffect(() => {
+    const alreadyRedirected = getCookie("redirectedToReview");
+
+    if (alreadyRedirected) return;
+
+    const targetEvent = allUserEvents.find(event => !event.isReviewed && !!event.placeName);
+
+    if (targetEvent) {
+      setCookie("redirectedToReview", "true", { path: "/", maxAge: 86400 });
+      navigate(`/review/${targetEvent.eventId}`);
+    }
+  }, [allUserEvents]);
 
   if (isLoading || isEventsLoading)
     return (
