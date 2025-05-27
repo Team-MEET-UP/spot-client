@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CheckBox } from "./CheckBox";
 import { useStoreAgreement } from "../hooks";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "@/shared/stores";
 
 interface PolicyBottomSheetProps {
   onClose: () => void;
@@ -30,7 +31,10 @@ export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
           isMarketingAgreement: agreements.marketing,
         },
         {
-          onSuccess: onClose,
+          onSuccess: () => {
+            useUserStore.setState({ personalInfoAgreement: true });
+            onClose();
+          },
           onError: error => {
             console.error("약관 동의 요청 실패", error?.message);
           },
