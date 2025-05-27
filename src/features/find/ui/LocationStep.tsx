@@ -59,6 +59,18 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
     });
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+
+    if ((startPointInfo && newValue === startPointInfo.startPoint) || (startPointInfo && newValue === "")) {
+      setIsSearching(false);
+      return;
+    }
+
+    handleChange(e);
+  };
+
   const getFormattedData = (): FormattedData | null => {
     if (!startPointInfo) return null;
 
@@ -96,7 +108,12 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
             <br />
             출발지를 알려주세요
           </p>
-          <InputField value={value} placeholder="출발지를 입력해주세요" onChange={handleChange} type="startPoint" />
+          <InputField
+            value={value}
+            placeholder="출발지를 입력해주세요"
+            onChange={handleInputChange}
+            type="startPoint"
+          />
         </div>
         {isTyping ? (
           <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mt-4">
