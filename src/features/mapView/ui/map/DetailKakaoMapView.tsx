@@ -122,7 +122,7 @@ export const DetailKakaoMapView = ({ type }: DetailKakaoMapViewProps) => {
       script.onload = initializeMap;
       document.head.appendChild(script);
     }
-  }, [type]);
+  }, [type, eventData, detailEventData]);
 
   return (
     <div
