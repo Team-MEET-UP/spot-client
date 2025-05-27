@@ -23,6 +23,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const [searchParams] = useSearchParams();
   const eventIdParam = searchParams.get("eventId");
   const [locationError, setLocationError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching, isFetching } = useSearch();
 
@@ -72,11 +73,17 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   };
 
   const handleComplete = () => {
+    if (isSubmitting) return; // 중복 방지
     if (value.trim().length === 0 || !startPointInfo) return;
     const data = getFormattedData();
     if (!data) return;
 
-    handleSubmit(data);
+    try {
+      setIsSubmitting(true);
+      handleSubmit(data);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -138,7 +145,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
           style={{
             marginBottom: keyboardHeight > 0 ? `${keyboardHeight + 20}px` : "20px",
           }}>
-          <Button onClick={handleComplete} disabled={value.trim().length === 0}>
+          <Button onClick={handleComplete} disabled={value.trim().length === 0 || isSubmitting}>
             추가하기
           </Button>
         </div>

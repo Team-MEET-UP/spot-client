@@ -42,7 +42,7 @@ export const getLocationInfo = (latitude: number, longitude: number): Promise<Lo
             const region = document.address.region_1depth_name;
 
             // 서울 외 지역 차단
-            if (region !== "서울ㅋ") {
+            if (region !== "서울") {
               reject(new Error("서울 지역 외에서는 사용할 수 없습니다"));
               return;
             }
