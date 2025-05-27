@@ -24,7 +24,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const eventIdParam = searchParams.get("eventId");
   const [locationError, setLocationError] = useState(false);
 
-  const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching, isSearching } = useSearch();
+  const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching, isFetching } = useSearch();
 
   const { handleSubmit } = useCreateStartPoint(eventIdParam);
 
@@ -95,7 +95,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
           <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mt-4">
             {isError ? (
               <p className="text-red-500 text-sm">검색 중 오류가 발생했어요.</p>
-            ) : searchResults.length === 0 && !isSearching ? (
+            ) : searchResults.length === 0 && !isFetching ? (
               <div className="flex flex-col items-center justify-center py-10">
                 <img src={NoResult} alt="검색 결과 없음" className="w-32 h-32" />
                 <p className="text-center text-gray-40 text-sm">
@@ -126,11 +126,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
             {locationError && (
               <div className="flex flex-col items-center justify-center py-4">
                 <img src={NoResult} alt="위치 에러" className="w-32 h-32" />
-                <p className="text-center text-gray-40 text-sm">
-                  일치하는 주소가 없어요
-                  <br />
-                  서울 내 지역인지 다시 확인해보세요
-                </p>
+                <p className="text-center text-gray-40 text-sm">현재 서울 내 지역인지 다시 확인해보세요</p>
               </div>
             )}
           </div>
