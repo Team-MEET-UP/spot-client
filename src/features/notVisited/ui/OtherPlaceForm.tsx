@@ -51,13 +51,13 @@ export const OtherPlaceForm = ({
         <LocationInput handleLocationStep={handleLocationStep} selectedPlace={selectedPlace} />
       </div>
 
-      <div className="absolute bottom-[20px] left-0 w-full px-5">
+      <div className="fixed bottom-[20px] left-0 right-0 px-5 max-w-[600px] mx-auto">
         <Button
           onClick={handleComplete}
           disabled={isDisabled}
           className={`w-full h-[52px] text-white transition text-lg font-semibold rounded-xl
-    ${isDisabled ? "bg-gray-10 text-gray-30 cursor-not-allowed" : "bg-gray-90"}
-  `}>
+      ${isDisabled ? "bg-gray-10 text-gray-30 cursor-not-allowed" : "bg-gray-90"}
+    `}>
           완료하기
         </Button>
       </div>
