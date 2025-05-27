@@ -108,8 +108,8 @@ const DetailPage = () => {
       {isOpenShareModal && (
         <ShareModal
           onClose={() => setIsOpenShareModal(false)}
-          title="모임장소가 정해졌어요!"
-          description="멤버들에게 알려주세요"
+          title={data.isConfirmed ? "모임장소가 정해졌어요!" : "장소 공유하기"}
+          description={data.isConfirmed ? "멤버들에게 알려주세요" : undefined}
           shareContent={shareContent}
         />
       )}
