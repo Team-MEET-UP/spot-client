@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Plug from "@/assets/icon/plug.svg";
 import SeatGray from "@/assets/icon/seatGray.svg";
 import People from "@/assets/icon/people.svg";
@@ -45,27 +45,66 @@ const infoMap: Record<string, { icon: string; texts: Record<number, string> }> =
 };
 
 const ScoreSelector = ({ label, score, onChange }: ScoreSelectorProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const scores = [1, 2, 3, 4, 5];
   const imageSrc = infoMap[label]?.icon;
   const currentText = score !== null ? infoMap[label].texts[score] : "";
 
-  return (
-    <div className="flex flex-col gap-3 w-full">
-      <div className="flex items gap-[2px] text-md font-semibold text-gray-60 items-center">
-        {imageSrc && <img src={imageSrc} alt="이미지" className="w-5 h-5" />}
-        {label}
+  const handleSelectByPosition = (clientX: number) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
 
-        {/* 점수 텍스트 */}
+    const relativeX = clientX - rect.left;
+    const widthPerScore = rect.width / 5;
+    const selected = Math.min(5, Math.max(1, Math.ceil(relativeX / widthPerScore)));
+    if (selected !== score) onChange(selected);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    handleSelectByPosition(e.clientX);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging) handleSelectByPosition(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleSelectByPosition(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    handleSelectByPosition(e.touches[0].clientX);
+  };
+
+  return (
+    <div className="flex flex-col gap-3 w-full select-none">
+      <div className="flex items gap-[2px] text-md font-semibold text-gray-60 items-center">
+        {imageSrc && <img src={imageSrc} alt="아이콘" className="w-5 h-5" />}
+        {label}
         {currentText && <span className="text-sub-sub text-sm font-medium ml-[6px]">{currentText}</span>}
       </div>
 
-      {/* 점수 선택*/}
-      <div className="flex items-center w-full">
+      <div
+        ref={containerRef}
+        className="flex items-center w-full"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}>
         {scores.map((num, idx) => (
           <React.Fragment key={num}>
             <button
               onClick={() => onChange(num)}
-              className={`w-6 h-6 rounded-full shrink-0 ${score !== null && num <= score ? "bg-sub-sub" : "bg-gray-10"}`}
+              className={`w-6 h-6 rounded-full shrink-0 transition-colors duration-150
+                ${score !== null && num <= score ? "bg-sub-sub" : "bg-gray-10"}`}
             />
             {idx < scores.length - 1 && (
               <div className={`flex-1 h-1 ${score !== null && num < score ? "bg-sub-sub" : "bg-gray-10"}`} />
