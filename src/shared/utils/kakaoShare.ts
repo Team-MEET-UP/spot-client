@@ -14,25 +14,30 @@ export const shareToKakao = ({ title, description, imageUrl, links }: shareConte
     return;
   }
 
-  window.Kakao.Link.sendDefault({
-    objectType: "feed",
-    content: {
-      title,
-      description,
-      imageUrl,
-      link: {
-        webUrl: links[0].url,
-        mobileWebUrl: links[0].url,
+  try {
+    window.Kakao.Link.sendDefault({
+      objectType: "feed",
+      content: {
+        title,
+        description,
+        imageUrl,
+        link: {
+          webUrl: links[0].url,
+          mobileWebUrl: links[0].url,
+        },
+        imageWidth: 800,
+        imageHeight: 400,
       },
-      imageWidth: 800,
-      imageHeight: 400,
-    },
-    buttons: links.map(link => ({
-      title: link.label,
-      link: {
-        webUrl: link.url,
-        mobileWebUrl: link.url,
-      },
-    })),
-  });
+      buttons: links.map(link => ({
+        title: link.label,
+        link: {
+          webUrl: link.url,
+          mobileWebUrl: link.url,
+        },
+      })),
+    });
+  } catch (error) {
+    console.error("카카오 공유 실패:", error);
+    alert("카카오 공유에 실패했습니다. 모바일에서 카카오톡이 설치되어 있는지 확인해주세요.");
+  }
 };
