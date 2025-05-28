@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CheckBox } from "./CheckBox";
 import { useStoreAgreement } from "../hooks";
 import { useNavigate } from "react-router-dom";
-import { useUserStore } from "@/shared/stores";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface PolicyBottomSheetProps {
   onClose: () => void;
@@ -13,6 +13,7 @@ interface PolicyBottomSheetProps {
 
 export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { mutate } = useStoreAgreement();
   const [agreements, setAgreements] = useState({
     personalInfo: false,
@@ -32,7 +33,7 @@ export const PolicyBottomSheet = ({ onClose }: PolicyBottomSheetProps) => {
         },
         {
           onSuccess: () => {
-            useUserStore.setState({ personalInfoAgreement: true });
+            queryClient.invalidateQueries({ queryKey: ["userInfo"] });
             onClose();
           },
           onError: error => {

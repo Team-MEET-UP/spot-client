@@ -39,11 +39,9 @@ const HistoryPage = () => {
       nickname: data.nickname,
       profileImageUrl: data.profileImageUrl,
       email: data.email,
-      personalInfoAgreement: data.personalInfoAgreement,
     });
-
     // 개인정보 동의 여부 설정
-    setIsPolicy(!useUserStore.getState().personalInfoAgreement);
+    setIsPolicy(!data.personalInfoAgreement);
 
     // localStorage에서 이벤트 아이디를 가져와 리디렉션 처리
     const eventIdFromStorage = localStorage.getItem("shared_link_access");
