@@ -61,7 +61,7 @@ export function MeetingMarker({ map, position, title }: MeetingMarkerProps) {
     const overlay = new window.kakao.maps.CustomOverlay({
       position: new window.kakao.maps.LatLng(position.lat, position.lng),
       content: wrapper,
-      yAnchor: 0.7,
+      yAnchor: 1.0,
       zIndex: 2,
     });
 
