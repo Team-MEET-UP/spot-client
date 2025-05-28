@@ -12,8 +12,7 @@ export const LoginModal = () => {
 
   const handleKakaoClick = () => {
     if (id) {
-      localStorage.setItem("shared_link_access", id);
-      kakaoLogin();
+      kakaoLogin({ to: "find", eventId: id });
     }
   };
 
