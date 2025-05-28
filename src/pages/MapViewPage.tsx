@@ -10,12 +10,13 @@ import {
 } from "@/features/mapView/ui";
 import BackButton from "@/features/mapView/ui/common/BackButton";
 import { DefaultMap } from "@/features/mapView/ui/map/DefaultMap";
-import { useEventStore } from "@/shared/stores";
+import { useEventStore, useUserStore } from "@/shared/stores";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import { MapHeader } from "@/widgets/headers";
 import { AxiosError } from "axios";
 import { setCookie } from "@/shared/utils";
 import { useEffect, useState } from "react";
+import { PolicyBottomSheet } from "@/shared/ui";
 
 const MapViewPage = () => {
   const { data, isLoading, isError, error } = useEventRoutes();
@@ -24,8 +25,22 @@ const MapViewPage = () => {
 
   const errorCode = (error as AxiosError<{ error: { code: string } }>)?.response?.data?.error?.code;
   const isInsufficientStartPoints = errorCode === "INSUFFICIENT_START_POINTS";
-
+  const email = useUserStore(state => state.email);
+  const personalInfoAgreement = useUserStore(state => state.personalInfoAgreement);
+  const setPersonalInfoAgreement = useUserStore(state => state.setPersonalInfoAgreement);
   const [type, setType] = useState<TransferType>("subway");
+  const [isPolicyOpen, setIsPolicyOpen] = useState(false);
+
+  const onClose = () => {
+    setIsPolicyOpen(false);
+    setPersonalInfoAgreement(true);
+  };
+
+  useEffect(() => {
+    if (email && personalInfoAgreement === false) {
+      setIsPolicyOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (data) {
@@ -61,7 +76,7 @@ const MapViewPage = () => {
       ) : (
         <>
           <KakaoMapView />
-          <SnapMapBottomSheet />
+          {isPolicyOpen ? <PolicyBottomSheet onClose={onClose} /> : <SnapMapBottomSheet />}
         </>
       )}
     </div>

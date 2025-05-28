@@ -1,7 +1,7 @@
 import Button from "@/shared/ui/Button";
 import { GetLocationButton } from ".";
 import { useState, useEffect } from "react";
-import { InputField, LocationCard } from "@/shared/ui";
+import { InputField, LocationCard, PolicyBottomSheet } from "@/shared/ui";
 import { FormattedData, StartPointInfo } from "../model";
 import { highlightMatchingText } from "@/shared/utils";
 import { useSearchParams } from "react-router-dom";
@@ -10,6 +10,7 @@ import { PlainHeader } from "@/widgets/headers";
 import NoResult from "@/assets/icon/noresult.svg";
 import { useSearch } from "@/entities/place/hooks";
 import { StartPoint } from "@/entities/place/model";
+import { useUserStore } from "@/shared/stores";
 
 interface LocationStepProps {
   setCurrentStep: (step: number) => void;
@@ -24,10 +25,25 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
   const eventIdParam = searchParams.get("eventId");
   const [locationError, setLocationError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPolicyOpen, setIsPolicyOpen] = useState(false);
+  const email = useUserStore(state => state.email);
+  const personalInfoAgreement = useUserStore(state => state.personalInfoAgreement);
+  const setPersonalInfoAgreement = useUserStore(state => state.setPersonalInfoAgreement);
 
   const { value, setValue, searchResults, isError, handleChange, isTyping, setIsSearching, isFetching } = useSearch();
 
   const { handleSubmit } = useCreateStartPoint(eventIdParam);
+
+  const onClose = () => {
+    setIsPolicyOpen(false);
+    setPersonalInfoAgreement(true);
+  };
+
+  useEffect(() => {
+    if (email && personalInfoAgreement === false) {
+      setIsPolicyOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -167,6 +183,7 @@ export const LocationStep = ({ setCurrentStep, startPointInfo, setStartPointInfo
           </Button>
         </div>
       )}
+      {isPolicyOpen && <PolicyBottomSheet onClose={onClose} />}
     </div>
   );
 };

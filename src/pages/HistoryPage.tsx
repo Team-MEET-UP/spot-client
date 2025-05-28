@@ -1,6 +1,7 @@
 import { useUserEvents } from "@/features/history/hooks";
-import { Empty, Header, GroupCard, PolicyBottomSheet } from "@/features/history/ui";
+import { Empty, Header, GroupCard } from "@/features/history/ui";
 import { useUserStore } from "@/shared/stores";
+import { PolicyBottomSheet } from "@/shared/ui";
 import Button from "@/shared/ui/Button";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import { getCookie, setCookie } from "@/shared/utils";
@@ -13,6 +14,7 @@ const HistoryPage = () => {
 
   const personalInfoAgreement = useUserStore(state => state.personalInfoAgreement);
   const profileImageUrl = useUserStore(state => state.profileImageUrl);
+  const setPersonalInfoAgreement = useUserStore(state => state.setPersonalInfoAgreement);
   const navigate = useNavigate();
   const [isPolicyOpen, setIsPolicyOpen] = useState(false);
 
@@ -21,6 +23,7 @@ const HistoryPage = () => {
 
   const onClose = () => {
     setIsPolicyOpen(false);
+    setPersonalInfoAgreement(true);
   };
 
   const handleClick = () => {
@@ -34,7 +37,7 @@ const HistoryPage = () => {
     if (!email) {
       navigate("/");
     }
-  }, [personalInfoAgreement, email]);
+  }, []);
 
   useEffect(() => {
     if (!scrollRef.current || !hasNextPage || isFetchingNextPage) return;

@@ -9,3 +9,4 @@ export * from "./SnapBottomSheet/SnapBottomSheet";
 export * from "./ShareModal";
 export * from "./LoadingSpinner";
 export * from "./ReviewModal";
+export * from "./PolicyBottomSheet";
