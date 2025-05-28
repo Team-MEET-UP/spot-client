@@ -6,6 +6,7 @@ import { ShareModal } from "@/shared/ui";
 import { DetailHeader } from "@/widgets/headers";
 import { usePlaceInfo } from "@/features/detail/hooks";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
+import Toast from "@/shared/ui/Toast";
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const DetailPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const topMarkerRef = useRef<HTMLDivElement>(null);
+  const [toastKey, setToastKey] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -108,11 +110,13 @@ const DetailPage = () => {
       {isOpenShareModal && (
         <ShareModal
           onClose={() => setIsOpenShareModal(false)}
+          onCopyComplete={() => setToastKey(Date.now())}
           title={data.isConfirmed ? "모임장소가 정해졌어요!" : "장소 공유하기"}
           description={data.isConfirmed ? "멤버들에게 알려주세요" : undefined}
           shareContent={shareContent}
         />
       )}
+      {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" />}
     </div>
   );
 };

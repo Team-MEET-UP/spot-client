@@ -7,6 +7,7 @@ import Share from "@/assets/icon/share.svg";
 import { LoginModal } from "../..";
 import { UserCard } from "./UserCard";
 import AddDisabled from "@/assets/icon/addDisabled.svg";
+import Toast from "@/shared/ui/Toast";
 
 export const BottomSheetContent = () => {
   const eventData = useEventStore(state => state.eventData);
@@ -83,6 +84,8 @@ export const FixedButtons = () => {
     }
   };
 
+  const [toastKey, setToastKey] = useState<number | null>(null);
+
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white p-5">
       <div className="flex flex-row gap-2">
@@ -99,8 +102,16 @@ export const FixedButtons = () => {
           <img src={Share} alt="share" onClick={() => setIsOpen(true)} className="w-6 h-6" />
         </button>
       </div>
-      {isOpen && <ShareModal onClose={() => setIsOpen(false)} title="이벤트 공유하기" shareContent={shareContent} />}
+      {isOpen && (
+        <ShareModal
+          onClose={() => setIsOpen(false)}
+          onCopyComplete={() => setToastKey(Date.now())}
+          title="이벤트 공유하기"
+          shareContent={shareContent}
+        />
+      )}
       {isOpenLoginModal && <LoginModal />}
+      {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" />}
     </div>
   );
 };

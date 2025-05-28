@@ -1,20 +1,18 @@
 import { Modal } from "@/shared/ui";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { shareContentProps } from "../model";
 import { shareToKakao } from "../utils";
 import LinkCopy from "@/assets/icon/linkCopy.svg";
 import KakaoShare from "@/assets/icon/kakaoShare.svg";
 import CloseGray from "@/assets/icon/closeGray.svg";
-import Toast from "./Toast";
 
 interface ShareModalProps {
   onClose: () => void;
   title: ReactNode;
   description?: string;
   shareContent: shareContentProps;
+  onCopyComplete?: () => void;
 }
-
-const TOAST_DURATION = 2000;
 
 const shareItems = [
   {
@@ -29,9 +27,7 @@ const shareItems = [
   },
 ];
 
-export const ShareModal = ({ onClose, title, description, shareContent }: ShareModalProps) => {
-  const [toastKey, setToastKey] = useState<number | null>(null);
-
+export const ShareModal = ({ onClose, title, description, shareContent, onCopyComplete }: ShareModalProps) => {
   const handleKakaoShare = () => {
     shareToKakao(shareContent);
     onClose();
@@ -39,13 +35,8 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    const now = Date.now();
-    setToastKey(now);
-
-    // TOAST_DURATION 뒤에 모달 닫기
-    setTimeout(() => {
-      onClose();
-    }, TOAST_DURATION);
+    onCopyComplete?.();
+    onClose();
   };
 
   return (
@@ -75,7 +66,6 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
             </button>
           ))}
         </div>
-        {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" duration={TOAST_DURATION} />}
       </div>
     </Modal>
   );
