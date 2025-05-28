@@ -3,10 +3,10 @@ import { VisitedPlaceProps } from "../model";
 import { CloseHeader } from "@/widgets/headers";
 import NoResult from "@/assets/icon/noresult.svg";
 import { highlightMatchingText } from "@/shared/utils";
-import { CompleteButton } from "./CompleteButton";
 import { useSearch } from "@/entities/place/hooks";
 import { useState } from "react";
 import { StartPoint } from "@/entities/place/model";
+import Button from "@/shared/ui/Button";
 
 interface PlaceSearchProps {
   setCurrentStep: () => void;
@@ -15,7 +15,7 @@ interface PlaceSearchProps {
 }
 
 export const PlaceSearch = ({ setCurrentStep, setVisitedPlace }: PlaceSearchProps) => {
-  const { value, searchResults, isError, handleChange, isTyping, setValue } = useSearch();
+  const { value, searchResults, isError, handleChange, isTyping, setValue, isFetching } = useSearch();
   const [selectedLocation, setSelectedLocation] = useState<StartPoint | null>(null);
 
   const handleSelectLocation = (location: StartPoint) => {
@@ -47,7 +47,7 @@ export const PlaceSearch = ({ setCurrentStep, setVisitedPlace }: PlaceSearchProp
             <div className="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-216px)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {isError ? (
                 <p className="text-red-500 text-sm">검색 중 오류가 발생했어요.</p>
-              ) : value && searchResults.length === 0 ? (
+              ) : value && searchResults.length === 0 && !isFetching ? (
                 <div className="flex flex-col items-center justify-center py-10">
                   <img src={NoResult} alt="검색 결과 없음" className="w-32 h-32" />
                   <p className="text-center text-gray-40 text-sm">
@@ -71,8 +71,10 @@ export const PlaceSearch = ({ setCurrentStep, setVisitedPlace }: PlaceSearchProp
         </div>
       </div>
       {(!isTyping || selectedLocation) && (
-        <div className="absolute bottom-5 w-full px-5">
-          <CompleteButton label="완료" onClick={handleComplete} disabled={!selectedLocation} />
+        <div className="fixed bottom-5 left-0 right-0 px-5 mx-auto max-w-[600px]">
+          <Button onClick={handleComplete} disabled={!selectedLocation}>
+            완료
+          </Button>
         </div>
       )}
     </div>

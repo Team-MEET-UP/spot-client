@@ -1,8 +1,8 @@
 import { BackHeader } from "@/widgets/headers";
 import { ReasonForm } from "./ReasonForm";
 import { LocationInput } from "./LocationInput";
-import { CompleteButton } from "./CompleteButton";
 import { NonVisitedReasonCategory, VisitedPlaceProps } from "../model";
+import Button from "@/shared/ui/Button";
 
 interface OtherPlaceFormProps {
   selectedReasons: NonVisitedReasonCategory[];
@@ -35,6 +35,8 @@ export const OtherPlaceForm = ({
       onSubmit();
     }
   };
+  const isFormValid = selectedReasons.length > 0 && selectedPlace !== null;
+  const isDisabled = isSubmitting || !isFormValid;
 
   return (
     <div className="relative min-h-screen pb-[80px]">
@@ -49,8 +51,10 @@ export const OtherPlaceForm = ({
         <LocationInput handleLocationStep={handleLocationStep} selectedPlace={selectedPlace} />
       </div>
 
-      <div className="absolute bottom-[20px] left-0 w-full px-5">
-        <CompleteButton label="완료하기" onClick={handleComplete} disabled={isSubmitting} />
+      <div className="fixed bottom-[20px] left-0 right-0 px-5 max-w-[600px] mx-auto">
+        <Button onClick={handleComplete} disabled={isDisabled}>
+          완료하기
+        </Button>
       </div>
     </div>
   );

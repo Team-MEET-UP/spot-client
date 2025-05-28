@@ -13,6 +13,7 @@ interface UseSearchResult {
   isError: boolean;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isTyping: boolean;
+  isFetching: boolean;
 }
 
 export const useSearch = (): UseSearchResult => {
@@ -20,7 +21,11 @@ export const useSearch = (): UseSearchResult => {
   const [isSearching, setIsSearching] = useState(false);
   const debouncedValue = useDebounce(value, 500);
 
-  const { data: searchResults = [], isError } = useQuery<StartPointResponse, Error, StartPoint[]>({
+  const {
+    data: searchResults = [],
+    isError,
+    isFetching,
+  } = useQuery<StartPointResponse, Error, StartPoint[]>({
     queryKey: ["searchStartPoints", debouncedValue],
     queryFn: () => searchStartPoints({ textQuery: debouncedValue.trim() }),
     select: response =>
@@ -53,5 +58,6 @@ export const useSearch = (): UseSearchResult => {
     isError,
     handleChange,
     isTyping,
+    isFetching,
   };
 };

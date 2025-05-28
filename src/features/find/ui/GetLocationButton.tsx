@@ -8,9 +8,10 @@ interface GetLocationButtonProps {
   setValue: Dispatch<SetStateAction<string>>;
   setStartPointInfo: (info: StartPointInfo) => void;
   name: string;
+  onError?: () => void;
 }
 
-export const GetLocationButton = ({ setValue, setStartPointInfo, name }: GetLocationButtonProps) => {
+export const GetLocationButton = ({ setValue, setStartPointInfo, name, onError }: GetLocationButtonProps) => {
   const handleGetCurrentLocation = async () => {
     try {
       const position = await new Promise<GeolocationPosition>((resolve, reject) => {
@@ -37,6 +38,7 @@ export const GetLocationButton = ({ setValue, setStartPointInfo, name }: GetLoca
       });
     } catch (error) {
       console.error("위치 검색 실패", error);
+      onError?.(); // 부모에게 에러 알림
     }
   };
 
