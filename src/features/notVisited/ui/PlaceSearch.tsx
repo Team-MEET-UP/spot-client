@@ -72,12 +72,7 @@ export const PlaceSearch = ({ setCurrentStep, setVisitedPlace }: PlaceSearchProp
       </div>
       {(!isTyping || selectedLocation) && (
         <div className="fixed bottom-5 left-0 right-0 px-5 mx-auto max-w-[600px]">
-          <Button
-            onClick={handleComplete}
-            disabled={!selectedLocation}
-            className={`w-full h-[52px] text-white transition text-lg font-semibold rounded-xl
-        ${!selectedLocation ? "bg-gray-10 text-gray-30 cursor-not-allowed" : "bg-gray-90"}
-      `}>
+          <Button onClick={handleComplete} disabled={!selectedLocation}>
             완료
           </Button>
         </div>
