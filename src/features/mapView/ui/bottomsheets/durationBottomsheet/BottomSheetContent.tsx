@@ -95,7 +95,7 @@ export const FixedButtons = () => {
           <img src={isFull ? AddDisabled : AddUser} alt={isFull ? "addDisabled" : "addUser"} className="w-[27px] h-4" />
           <span>{isFull ? "인원이 다 찼어요" : "출발지 추가하기"}</span>
         </button>
-        <button className="flex justify-center items-center w-[52px] h-[52px] rounded-xl border-2 border-gray-10">
+        <button className="flex-shrink-0 flex justify-center items-center w-[52px] h-[52px] rounded-xl border-2 border-gray-10">
           <img src={Share} alt="share" onClick={() => setIsOpen(true)} className="w-6 h-6" />
         </button>
       </div>
