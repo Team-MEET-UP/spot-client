@@ -77,6 +77,8 @@ const HistoryPage = () => {
 
   // 리뷰 작성하기 재진입
   useEffect(() => {
+    if (!allUserEvents || allUserEvents.length === 0) return;
+
     const alreadyRedirected = getCookie("redirectedToReview");
 
     if (alreadyRedirected) return;
