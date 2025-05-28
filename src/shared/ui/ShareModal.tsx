@@ -14,6 +14,8 @@ interface ShareModalProps {
   shareContent: shareContentProps;
 }
 
+const TOAST_DURATION = 2000;
+
 const shareItems = [
   {
     src: LinkCopy,
@@ -37,7 +39,13 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    setToastKey(Date.now()); // 새로운 키로 Toast 재생성
+    const now = Date.now();
+    setToastKey(now);
+
+    // TOAST_DURATION 뒤에 모달 닫기
+    setTimeout(() => {
+      onClose();
+    }, TOAST_DURATION);
   };
 
   return (
@@ -67,7 +75,7 @@ export const ShareModal = ({ onClose, title, description, shareContent }: ShareM
             </button>
           ))}
         </div>
-        {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" />}
+        {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" duration={TOAST_DURATION} />}
       </div>
     </Modal>
   );
