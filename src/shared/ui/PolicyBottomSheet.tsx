@@ -2,8 +2,8 @@ import { BottomSheet } from "@/shared/ui";
 import { Overlay } from "@/shared/ui/BottomSheet/Overlay";
 import Button from "@/shared/ui/Button";
 import { useState } from "react";
-import { CheckBox } from "./CheckBox";
-import { useStoreAgreement } from "../hooks";
+import { CheckBox } from "@/features/history/ui";
+import { useStoreAgreement } from "@/features/history/hooks";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 

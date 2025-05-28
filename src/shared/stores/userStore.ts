@@ -9,6 +9,7 @@ interface UserState {
   setNickname: (nickname: string) => void;
   setProfileImgUrl: (url: string) => void;
   setEmail: (email: string) => void;
+  setPersonalInfoAgreement: (agree: boolean) => void;
 }
 
 export const useUserStore = create(
@@ -21,6 +22,7 @@ export const useUserStore = create(
       setNickname: nickname => set({ nickname }),
       setProfileImgUrl: url => set({ profileImageUrl: url }),
       setEmail: email => set({ email }),
+      setPersonalInfoAgreement: agree => set({ personalInfoAgreement: agree }),
     }),
     {
       name: "user-storage",
