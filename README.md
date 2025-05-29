@@ -163,4 +163,5 @@ src/assets/icons로 옮기고, **static import 방식**으로 변경하여 **번
   정규표현식 객체를 생성하게 됩니다.
 - 이를 `substring()`과 `indexOf()`기반으로 변경함으로써 **Pattern 객체 생성을 방지**하고, **GC 부담을 줄여 문자열 처리
   성능을 확보**하였습니다.
+  
 ![performance](https://github.com/user-attachments/assets/79001665-0321-48df-89b2-f3d4c34e16cc)
