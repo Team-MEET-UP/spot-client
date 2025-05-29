@@ -35,11 +35,11 @@ const infoMap: Record<string, { icon: string; texts: Record<number, string> }> =
   한산함: {
     icon: People,
     texts: {
-      1: "매우 한산해요",
-      2: "한산해요",
+      1: "매우 붐벼요",
+      2: "약간 붐벼요",
       3: "적당해요",
-      4: "약간 붐벼요",
-      5: "매우 붐벼요",
+      4: "한산해요",
+      5: "매우 한산해요",
     },
   },
 };
