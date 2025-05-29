@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 interface SmallButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   isVisit: boolean;
+  eventId: string;
   placeId: string;
 }
 
-export const SmallButton = ({ children, isVisit, placeId }: SmallButtonProps) => {
+export const SmallButton = ({ children, isVisit, eventId, placeId }: SmallButtonProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    const path = `/${isVisit ? "visited" : "notVisited"}/${placeId}`;
+    const path = `/${isVisit ? "visited" : "notVisited"}/${eventId}/${placeId}`;
     navigate(path);
   };
 

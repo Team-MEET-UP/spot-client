@@ -4,7 +4,7 @@ import { postNonVisitedReview } from "../service";
 
 export const usePostNonVisitedReview = () => {
   return useMutation({
-    mutationFn: ({ placeId, data }: { placeId: string; data: NonVisitedReviewRequest }) =>
-      postNonVisitedReview(placeId, data),
+    mutationFn: ({ eventId, placeId, data }: { eventId: string; placeId: string; data: NonVisitedReviewRequest }) =>
+      postNonVisitedReview(eventId, placeId, data),
   });
 };

@@ -1,8 +1,13 @@
 import api from "@/shared/api/api";
 import { VisitedReviewPayload } from "../model";
 
-export const postVisitedReview = async (placeId: string, payload: VisitedReviewPayload) => {
-  const response = await api.post(`/places/${placeId}/reviews/visited`, payload);
+export const postVisitedReview = async (eventId: string, placeId: string, payload: VisitedReviewPayload) => {
+  const response = await api.post(`/places/${placeId}/reviews/visited`, payload, {
+    params: {
+      eventId,
+      placeId,
+    },
+  });
 
   if (response.data.result === "SUCCESS") {
     return response.data.data;

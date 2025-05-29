@@ -6,7 +6,7 @@ import { usePostNonVisitedReview } from "@/features/notVisited/hooks";
 import { ReviewModal } from "@/shared/ui";
 
 const NotVisitedPage = () => {
-  const { id: placeId } = useParams();
+  const { eventId, placeId } = useParams();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedReasons, setSelectedReasons] = useState<NonVisitedReasonCategory[]>([]);
   const [etcReason, setEtcReason] = useState("");
@@ -21,7 +21,7 @@ const NotVisitedPage = () => {
   };
 
   const handleSubmit = (directReason?: string) => {
-    if (!placeId || !visitedPlace) return;
+    if (!eventId || !placeId || !visitedPlace) return;
 
     const reviewData = {
       categories: selectedReasons,
@@ -34,7 +34,7 @@ const NotVisitedPage = () => {
     };
 
     postReview(
-      { placeId, data: reviewData },
+      { eventId, placeId, data: reviewData },
       {
         onSuccess: () => {
           setModalOpen(true);

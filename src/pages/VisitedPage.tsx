@@ -11,7 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const VisitedPage = () => {
   const navigate = useNavigate();
-  const { id: placeId } = useParams();
+  const { eventId, placeId } = useParams();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedTime, setSelectedTime] = useState<VisitedTimeType | "">("");
   const [secondData, setSecondData] = useState({
@@ -22,7 +22,7 @@ const VisitedPage = () => {
   });
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const { mutate: postReview, isPending } = usePostVisitedReview(placeId!);
+  const { mutate: postReview, isPending } = usePostVisitedReview(eventId!, placeId!);
 
   const handleBack = () => {
     if (currentStep === 2) {

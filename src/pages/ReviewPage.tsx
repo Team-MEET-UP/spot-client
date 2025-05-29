@@ -41,10 +41,10 @@ const ReviewPage = () => {
           </div>
         </div>
         <div className="w-full flex gap-2">
-          <SmallButton isVisit={false} placeId={placeId}>
+          <SmallButton isVisit={false} eventId={id!} placeId={placeId}>
             다른 곳에 갔어요
           </SmallButton>
-          <SmallButton isVisit={true} placeId={placeId}>
+          <SmallButton isVisit={true} eventId={id!} placeId={placeId}>
             갔어요
           </SmallButton>
         </div>
