@@ -18,7 +18,7 @@ export const Menu = () => {
       label: "의견 남기기",
       hasArrow: true,
       onClick: () => {
-        console.log("의견 남기기 클릭");
+        window.open("https://forms.gle/szYZ3WieM7Sf5Y4f6", "_blank");
       },
     },
     {
