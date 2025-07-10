@@ -41,9 +41,9 @@ export const getLocationInfo = (latitude: number, longitude: number): Promise<Lo
             const document = result[0];
             const region = document.address.region_1depth_name;
 
-            // 서울 외 지역 차단
-            if (region !== "서울") {
-              reject(new Error("서울 지역 외에서는 사용할 수 없습니다"));
+            // 서울 및 경기 외 지역 차단
+            if (region !== "서울" && region !== "경기") {
+              reject(new Error("서울 및 경기도 지역 외에서는 사용할 수 없습니다"));
               return;
             }
 
