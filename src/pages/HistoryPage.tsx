@@ -6,6 +6,7 @@ import Button from "@/shared/ui/Button";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import { getCookie, setCookie } from "@/shared/utils";
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 
 const HistoryPage = () => {
@@ -79,28 +80,33 @@ const HistoryPage = () => {
   if (isError) return <p>유저 정보를 가져오는 데 실패했습니다.</p>;
 
   return (
-    <div className="relative flex flex-col h-screen-dvh">
-      <div className="flex flex-col px-5">
-        <Header profileImg={profileImageUrl} />
-        <span className="pt-3 pb-2 text-xl font-bold">나의 모임</span>
-      </div>
-      {allUserEvents.length > 0 ? (
-        <div className="flex flex-col overflow-y-scroll scrollbar-hidden mb-24">
-          {allUserEvents.map(data => (
-            <GroupCard key={data.eventId} {...data} />
-          ))}
-          <div ref={scrollRef} className="h-1" />
+    <>
+      <Helmet>
+        <title>나의 모임 | SPOT</title>
+      </Helmet>
+      <div className="relative flex flex-col h-screen-dvh">
+        <div className="flex flex-col px-5">
+          <Header profileImg={profileImageUrl} />
+          <span className="pt-3 pb-2 text-xl font-bold">나의 모임</span>
         </div>
-      ) : (
-        <Empty />
-      )}
-      <div className="px-5 pt-4 pb-5 w-full fixed bottom-0 max-w-[600px] z-[100] bg-white">
-        <Button onClick={handleClick} isBlue={true}>
-          모임 만들기
-        </Button>
+        {allUserEvents.length > 0 ? (
+          <div className="flex flex-col overflow-y-scroll scrollbar-hidden mb-24">
+            {allUserEvents.map(data => (
+              <GroupCard key={data.eventId} {...data} />
+            ))}
+            <div ref={scrollRef} className="h-1" />
+          </div>
+        ) : (
+          <Empty />
+        )}
+        <div className="px-5 pt-4 pb-5 w-full fixed bottom-0 max-w-[600px] z-[100] bg-white">
+          <Button onClick={handleClick} isBlue={true}>
+            모임 만들기
+          </Button>
+        </div>
+        {isPolicyOpen && <PolicyBottomSheet onClose={onClose} />}
       </div>
-      {isPolicyOpen && <PolicyBottomSheet onClose={onClose} />}
-    </div>
+    </>
   );
 };
 

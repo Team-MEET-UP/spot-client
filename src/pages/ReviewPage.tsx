@@ -4,6 +4,7 @@ import { SmallButton, Title } from "@/features/review/ui";
 import { CloseHeader } from "@/widgets/headers";
 import { useReviewPlace } from "@/features/review/hooks";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const ReviewPage = () => {
   const { id } = useParams();
@@ -22,34 +23,39 @@ const ReviewPage = () => {
   const placeId = confirmedPlaceResponse.id;
 
   return (
-    <div className="flex flex-col h-screen-dvh">
-      <CloseHeader url="/history" />
-      <div className="flex flex-col justify-between h-full p-5 pt-4">
-        <div className="flex flex-col gap-8">
-          <Title title={confirmedPlaceResponse.name} />
-          <div className="flex flex-col gap-3 items-center">
-            <PlaceCard
-              name={confirmedPlaceResponse.name}
-              distance={confirmedPlaceResponse.distance}
-              image={confirmedPlaceResponse.image}
-              openTime={confirmedPlaceResponse.openTime}
-              closeTime={confirmedPlaceResponse.closeTime}
-              averageRating={confirmedPlaceResponse.averageRating}
-              placeScore={confirmedPlaceResponse.placeScore}
-            />
-            <p className="text-sm font-semibold text-gray-30">실제로 가신 곳인지 확인해주세요.</p>
+    <>
+      <Helmet>
+        <title>장소 리뷰 | SPOT</title>
+      </Helmet>
+      <div className="flex flex-col h-screen-dvh">
+        <CloseHeader url="/history" />
+        <div className="flex flex-col justify-between h-full p-5 pt-4">
+          <div className="flex flex-col gap-8">
+            <Title title={confirmedPlaceResponse.name} />
+            <div className="flex flex-col gap-3 items-center">
+              <PlaceCard
+                name={confirmedPlaceResponse.name}
+                distance={confirmedPlaceResponse.distance}
+                image={confirmedPlaceResponse.image}
+                openTime={confirmedPlaceResponse.openTime}
+                closeTime={confirmedPlaceResponse.closeTime}
+                averageRating={confirmedPlaceResponse.averageRating}
+                placeScore={confirmedPlaceResponse.placeScore}
+              />
+              <p className="text-sm font-semibold text-gray-30">실제로 가신 곳인지 확인해주세요.</p>
+            </div>
+          </div>
+          <div className="w-full flex gap-2">
+            <SmallButton isVisit={false} eventId={id!} placeId={placeId}>
+              다른 곳에 갔어요
+            </SmallButton>
+            <SmallButton isVisit={true} eventId={id!} placeId={placeId}>
+              갔어요
+            </SmallButton>
           </div>
         </div>
-        <div className="w-full flex gap-2">
-          <SmallButton isVisit={false} eventId={id!} placeId={placeId}>
-            다른 곳에 갔어요
-          </SmallButton>
-          <SmallButton isVisit={true} eventId={id!} placeId={placeId}>
-            갔어요
-          </SmallButton>
-        </div>
       </div>
-    </div>
+    </>
   );
 };
 
