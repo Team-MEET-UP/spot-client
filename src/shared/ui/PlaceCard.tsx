@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { PlaceScore } from "../model";
 import { formatReview } from "../utils";
 import PlaceChip from "./PlaceChip";
@@ -25,6 +26,7 @@ const PlaceCard = ({
   onClick,
 }: PlaceCardItemProps) => {
   const openingHours = openTime && closeTime ? `${openTime} - ${closeTime}` : undefined;
+  const [hasImgError, setHasImgError] = useState(false);
 
   return (
     <div className="flex flex-col gap-3 p-4 rounded-2xl w-full shadow-list bg-white" onClick={onClick}>
@@ -41,7 +43,14 @@ const PlaceCard = ({
           <p className="text-sub-sub">역에서 {distance}m</p>
         </div>
         {/* image가 있을 때만 이미지 표시 */}
-        {image && <img src={image} alt="placeImg" className="w-[68px] h-[68px] rounded-lg object-cover" />}
+        {image && !hasImgError && (
+          <img
+            src={image}
+            alt="placeImg"
+            className="w-[68px] h-[68px] rounded-lg object-cover"
+            onError={() => setHasImgError(true)}
+          />
+        )}
       </div>
 
       {(averageRating || placeScore) && (
