@@ -9,8 +9,9 @@ interface PlaceButtonProps {
   name: string;
   isChanged: boolean;
   isConfirmed: boolean;
+  onComplete?: () => void;
 }
-export const PlaceButton = ({ eventId, placeId, name, isChanged, isConfirmed }: PlaceButtonProps) => {
+export const PlaceButton = ({ eventId, placeId, name, isChanged, isConfirmed, onComplete }: PlaceButtonProps) => {
   const { mutate, isPending } = useSetPlace();
   const [isChangedOpen, setIsChangedOpen] = useState(false);
   const [isConfirmedOpen, setIsConfirmedOpen] = useState(false);
@@ -30,6 +31,7 @@ export const PlaceButton = ({ eventId, placeId, name, isChanged, isConfirmed }: 
         onSuccess: () => {
           setIsConfirmedOpen(false);
           setIsChangedOpen(false);
+          onComplete?.();
         },
       }
     );

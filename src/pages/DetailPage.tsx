@@ -106,6 +106,7 @@ const DetailPage = () => {
         name={data.name}
         isChanged={data.isChanged}
         isConfirmed={data.isConfirmed}
+        onComplete={() => setIsOpenShareModal(true)}
       />
       {isOpenShareModal && (
         <ShareModal
