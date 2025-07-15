@@ -7,6 +7,7 @@ import { DetailHeader } from "@/widgets/headers";
 import { usePlaceInfo } from "@/features/detail/hooks";
 import LoadingSpinner from "@/shared/ui/LoadingSpinner";
 import Toast from "@/shared/ui/Toast";
+import { Helmet } from "react-helmet-async";
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -70,54 +71,60 @@ const DetailPage = () => {
   };
 
   return (
-    <div className="relative flex flex-col h-screen-dvh">
-      <DetailHeader
-        backClick={handleClick}
-        shareClick={() => setIsOpenShareModal(true)}
-        isScrolled={isScrolled}
-        name={data.name}
-      />
-      <div className="flex-1 overflow-y-auto scrollbar-hidden mb-[88px]" ref={scrollRef}>
-        <div ref={topMarkerRef} />
-        <Photo images={data.images} />
-        <PlaceInfo
-          placeId={data.kakaoPlaceId}
-          distance={data.distance}
+    <>
+      <Helmet>
+        <title>장소 상세 | SPOT</title>
+      </Helmet>
+      <div className="relative flex flex-col h-screen-dvh">
+        <DetailHeader
+          backClick={handleClick}
+          shareClick={() => setIsOpenShareModal(true)}
+          isScrolled={isScrolled}
           name={data.name}
-          averageRating={data.averageRating}
-          openTime={data.openTime}
-          closeTime={data.closeTime}
         />
-        <div className="w-full h-2 bg-gray-5" />
-        {data.reviews.length > 0 || data.googleReviews.length > 0 ? (
-          <Review
-            placeQuietnessResponse={data.placeQuietnessResponse}
-            placeScore={data.placeScore}
-            reviews={data.reviews}
-            googleReviews={data.googleReviews}
+        <div className="flex-1 overflow-y-auto scrollbar-hidden mb-[88px]" ref={scrollRef}>
+          <div ref={topMarkerRef} />
+          <Photo images={data.images} />
+          <PlaceInfo
+            placeId={data.kakaoPlaceId}
+            distance={data.distance}
+            name={data.name}
+            averageRating={data.averageRating}
+            openTime={data.openTime}
+            closeTime={data.closeTime}
           />
-        ) : (
-          <Empty />
-        )}
-      </div>
-      <PlaceButton
-        eventId={eventId}
-        placeId={placeId}
-        name={data.name}
-        isChanged={data.isChanged}
-        isConfirmed={data.isConfirmed}
-      />
-      {isOpenShareModal && (
-        <ShareModal
-          onClose={() => setIsOpenShareModal(false)}
-          onCopyComplete={() => setToastKey(Date.now())}
-          title={data.isConfirmed ? "모임장소가 정해졌어요!" : "장소 공유하기"}
-          description={data.isConfirmed ? "멤버들에게 알려주세요" : undefined}
-          shareContent={shareContent}
+          <div className="w-full h-2 bg-gray-5" />
+          {data.reviews.length > 0 || data.googleReviews.length > 0 ? (
+            <Review
+              placeQuietnessResponse={data.placeQuietnessResponse}
+              placeScore={data.placeScore}
+              reviews={data.reviews}
+              googleReviews={data.googleReviews}
+            />
+          ) : (
+            <Empty />
+          )}
+        </div>
+        <PlaceButton
+          eventId={eventId}
+          placeId={placeId}
+          name={data.name}
+          isChanged={data.isChanged}
+          isConfirmed={data.isConfirmed}
+          onComplete={() => setIsOpenShareModal(true)}
         />
-      )}
-      {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" />}
-    </div>
+        {isOpenShareModal && (
+          <ShareModal
+            onClose={() => setIsOpenShareModal(false)}
+            onCopyComplete={() => setToastKey(Date.now())}
+            title={data.isConfirmed ? "모임장소가 정해졌어요!" : "장소 공유하기"}
+            description={data.isConfirmed ? "멤버들에게 알려주세요" : undefined}
+            shareContent={shareContent}
+          />
+        )}
+        {toastKey && <Toast key={toastKey} message="복사가 완료되었어요" />}
+      </div>
+    </>
   );
 };
 
