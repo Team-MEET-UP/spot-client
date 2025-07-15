@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { usePostNonVisitedReview } from "@/features/notVisited/hooks";
 import { ReviewModal } from "@/shared/ui";
+import { Helmet } from "react-helmet-async";
 
 const NotVisitedPage = () => {
   const { eventId, placeId } = useParams();
@@ -51,29 +52,34 @@ const NotVisitedPage = () => {
   };
 
   return (
-    <div className="relative flex flex-col h-screen">
-      {currentStep === 1 && (
-        <OtherPlaceForm
-          selectedReasons={selectedReasons}
-          setSelectedReasons={setSelectedReasons}
-          handleLocationStep={handleLocationStep}
-          selectedPlace={visitedPlace}
-          setEtcReason={setEtcReason}
-          onSubmit={handleSubmit}
-          isSubmitting={isPending}
-          directInput={directInput}
-          setDirectInput={setDirectInput}
-        />
-      )}
-      {currentStep === 2 && (
-        <PlaceSearch
-          setCurrentStep={() => setCurrentStep(1)}
-          visitedPlace={visitedPlace || { name: "", latitude: 0, longitude: 0, roadAddress: "", regionName: "" }}
-          setVisitedPlace={setVisitedPlace}
-        />
-      )}
-      {isModalOpen && <ReviewModal isOpen={isModalOpen} onClose={handleModalClose} />}
-    </div>
+    <>
+      <Helmet>
+        <title>장소 리뷰 | SPOT</title>
+      </Helmet>
+      <div className="relative flex flex-col h-screen">
+        {currentStep === 1 && (
+          <OtherPlaceForm
+            selectedReasons={selectedReasons}
+            setSelectedReasons={setSelectedReasons}
+            handleLocationStep={handleLocationStep}
+            selectedPlace={visitedPlace}
+            setEtcReason={setEtcReason}
+            onSubmit={handleSubmit}
+            isSubmitting={isPending}
+            directInput={directInput}
+            setDirectInput={setDirectInput}
+          />
+        )}
+        {currentStep === 2 && (
+          <PlaceSearch
+            setCurrentStep={() => setCurrentStep(1)}
+            visitedPlace={visitedPlace || { name: "", latitude: 0, longitude: 0, roadAddress: "", regionName: "" }}
+            setVisitedPlace={setVisitedPlace}
+          />
+        )}
+        {isModalOpen && <ReviewModal isOpen={isModalOpen} onClose={handleModalClose} />}
+      </div>
+    </>
   );
 };
 

@@ -17,6 +17,7 @@ import { AxiosError } from "axios";
 import { setCookie } from "@/shared/utils";
 import { useEffect, useState } from "react";
 import { PolicyBottomSheet } from "@/shared/ui";
+import { Helmet } from "react-helmet-async";
 
 const MapViewPage = () => {
   const { data, isLoading, isError, error } = useEventRoutes();
@@ -55,31 +56,36 @@ const MapViewPage = () => {
   }, [data, setEventData]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      {!isDetail && <MapHeader />}
-      {isLoading ? (
-        <div className="flex flex-col items-center justify-center h-full gap-3">
-          <LoadingSpinner />
-          <p>실시간 교통상황을 가져오고 있습니다...</p>
-        </div>
-      ) : isError ? (
-        <>
-          {<DefaultMap />}
-          {isInsufficientStartPoints ? <AddMemberBottomSheet /> : <TooCloseSheet />}
-        </>
-      ) : isDetail ? (
-        <div className="relative">
-          <BackButton />
-          <DetailKakaoMapView type={type} />
-          <MapDetailBottomSheet type={type} setType={setType} />
-        </div>
-      ) : (
-        <>
-          <KakaoMapView />
-          {isPolicyOpen ? <PolicyBottomSheet onClose={onClose} /> : <SnapMapBottomSheet />}
-        </>
-      )}
-    </div>
+    <>
+      <Helmet>
+        <title>중간장소 | SPOT</title>
+      </Helmet>
+      <div className="relative w-full h-screen overflow-hidden">
+        {!isDetail && <MapHeader />}
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center h-full gap-3">
+            <LoadingSpinner />
+            <p>실시간 교통상황을 가져오고 있습니다...</p>
+          </div>
+        ) : isError ? (
+          <>
+            {<DefaultMap />}
+            {isInsufficientStartPoints ? <AddMemberBottomSheet /> : <TooCloseSheet />}
+          </>
+        ) : isDetail ? (
+          <div className="relative">
+            <BackButton />
+            <DetailKakaoMapView type={type} />
+            <MapDetailBottomSheet type={type} setType={setType} />
+          </div>
+        ) : (
+          <>
+            <KakaoMapView />
+            {isPolicyOpen ? <PolicyBottomSheet onClose={onClose} /> : <SnapMapBottomSheet />}
+          </>
+        )}
+      </div>
+    </>
   );
 };
 
