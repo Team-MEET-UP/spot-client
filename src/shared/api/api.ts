@@ -12,8 +12,9 @@ const api = axios.create({
 api.interceptors.response.use(
   res => res,
   err => {
-    if (err.response?.status === 401) {
+    if (err.response?.status === 401 || err.response?.status === 403) {
       window.location.href = "/";
+      localStorage.removeItem("user-storage");
     }
     return Promise.reject(err);
   }
