@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
   <url>
     <loc>https://www.pickspot.co.kr/</loc>
     <priority>1.0</priority>
@@ -8,61 +10,4 @@
     <loc>https://www.pickspot.co.kr/find</loc>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/history</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/kakaocallback</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/main</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/mapview</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/marketing</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/my</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/notvisited</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/place</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/policy</loc>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/review</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/visited</loc>
-    <priority>0.6</priority>
-  </url>
-  <!-- 동적 라우트 예시 -->
-  <url>
-    <loc>https://www.pickspot.co.kr/detail/12345</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/mapview/12345</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.pickspot.co.kr/find?eventId=12345</loc>
-    <priority>0.6</priority>
-  </url>
-</urlset> 
+</urlset>
