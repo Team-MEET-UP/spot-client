@@ -4,6 +4,7 @@ interface KakaoLoginProps {
 }
 
 export const kakaoLogin = ({ to, eventId }: KakaoLoginProps) => {
-  const kakaoAuthUrl = `https://api-prod.pickspot.co.kr/oauth2/authorization/kakao?to=${to}&eventId=${eventId}`;
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const kakaoAuthUrl = `${baseUrl}/oauth2/authorization/kakao?to=${to}&eventId=${eventId}`;
   window.location.href = kakaoAuthUrl;
 };
