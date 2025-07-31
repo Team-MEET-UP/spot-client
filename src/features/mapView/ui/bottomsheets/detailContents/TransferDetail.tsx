@@ -1,60 +1,61 @@
 import ArrowLine from "@/assets/icon/rightArrowLine.svg";
 import Subway from "@/assets/icon/subway.svg";
-import SubwayGray from "@/assets/icon/subwayGray.svg";
 import Car from "@/assets/icon/car.svg";
-import CarGray from "@/assets/icon/carGray.svg";
-import { TransferType } from "@/features/mapView/model";
-import { useTransfer } from "@/features/mapView/hooks";
+import Setting from "@/assets/icon/setting.svg";
+import Edit from "@/assets/icon/editGray.svg";
+import Delete from "@/assets/icon/delete.svg";
+import { useState } from "react";
+import DeleteModal from "./DeleteModal";
 
 interface TransferDetailProps {
-  type: TransferType;
-  setType: React.Dispatch<React.SetStateAction<"subway" | "car">>;
+  type: boolean;
   averageDuration: number;
   startPoint: string;
   endPoint: string;
   isMe: boolean;
 }
 
-export const TransferDetail = ({ type, setType, averageDuration, startPoint, endPoint, isMe }: TransferDetailProps) => {
-  const { mutate } = useTransfer();
-
-  const handleClick = (isTransit: boolean) => {
-    if (!isMe) return;
-    else {
-      mutate({
-        isTransit: isTransit,
-      });
-    }
-  };
+export const TransferDetail = ({ type, averageDuration, startPoint, endPoint }: TransferDetailProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   return (
     <div className="flex flex-col px-5 py-4 gap-1">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center gap-[6px]">
+        <img src={type ? Subway : Car} alt="transfer" className="w-6 h-6" />
         <span className="text-xl font-bold text-gray-90">{averageDuration}분</span>
-        <div className="flex gap-2">
-          <button
-            className={`flex justify-center items-center w-8 h-8 rounded-2xl ${type === "subway" ? "bg-metro-line2" : "bg-gray-5"}`}
-            onClick={() => {
-              setType("subway");
-              handleClick(true);
-            }}>
-            <img src={type === "subway" ? Subway : SubwayGray} alt="subway" className="w-6 h-6" />
-          </button>
-          <button
-            className={`flex justify-center items-center w-8 h-8 rounded-2xl ${type === "car" ? "bg-sub-sub" : "bg-gray-5"}`}
-            onClick={() => {
-              setType("car");
-              handleClick(false);
-            }}>
-            <img src={type === "car" ? Car : CarGray} alt="car" className="w-6 h-6" />
-          </button>
+      </div>
+      <div className="flex justify-between items-center">
+        <div className="flex gap-1 items-center text-md font-semibold text-gray-60">
+          {startPoint}
+          <img src={ArrowLine} alt="arrow" className="w-4 h-4" />
+          {endPoint}
         </div>
+        <button
+          className="relative"
+          onClick={() => {
+            setIsOpen(prev => !prev);
+          }}>
+          <img src={Setting} alt="setting" className="w-[3px] h-[15px]" />
+          {isOpen && (
+            <div className="absolute top-[33px] right-0 w-[175px] h-[98px] rounded-[20px] bg-white shadow-box cursor-pointer">
+              <div className="px-5 py-[14px] flex gap-[26px] items-center">
+                <p className="text-sm font-medium text-gray-80">출발지 수정하기</p>
+                <img src={Edit} alt="edit" className="w-5 h-5" />
+              </div>
+              <div
+                className="px-5 py-[14px] flex gap-[26px] items-center border-t border-t-gray-5 cursor-pointer"
+                onClick={() => {
+                  setOpenDeleteModal(true);
+                }}>
+                <p className="text-sm font-medium text-gray-80">출발지 삭제하기</p>
+                <img src={Delete} alt="delete" className="w-5 h-5" />
+              </div>
+            </div>
+          )}
+        </button>
       </div>
-      <div className="flex gap-1 items-center text-md font-semibold text-gray-60">
-        {startPoint}
-        <img src={ArrowLine} alt="arrow" className="w-4 h-4" />
-        {endPoint}
-      </div>
+      {openDeleteModal && <DeleteModal endPoint={endPoint} onClose={() => setOpenDeleteModal(false)} />}
     </div>
   );
 };
